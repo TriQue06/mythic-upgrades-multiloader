@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": {
+      "item": "mythicupgrades:jade"
+    }
+  },
+  "pattern": [
+    "G G",
+    "G G"
+  ],
+  "result": {
+    "item": "mythicupgrades:jade_boots"
+  },
+  "show_notification": true
+}

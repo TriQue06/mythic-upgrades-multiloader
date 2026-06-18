@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find \"C:\\\\Users\\\\baris\\\\Documents\\\\GitHub\\\\mythic-upgrades-multiloader\" -type d -not -path \"*/\\\\.*\" -not -path \"*/build*\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\baris\\\\Documents\\\\GitHub\\\\mythic-upgrades-multiloader\\\\common\\\\src\\\\main\\\\java\\\\net\\\\trique\\\\mythicupgrades\\\\mixin\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\baris\\\\Documents\\\\GitHub\\\\mythic-upgrades-multiloader\\\\common\\\\src\\\\main\\\\java\\\\net\\\\trique\\\\mythicupgrades\\\\platform\\\\services\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\baris\\\\Documents\\\\GitHub\\\\mythic-upgrades-multiloader\\\\fabric\\\\src\\\\main\\\\java\\\\net\\\\trique\\\\mythicupgrades\\\\mixin\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\baris\\\\Documents\\\\GitHub\\\\mythic-upgrades-multiloader\\\\fabric\\\\src\\\\main\\\\java\\\\net\\\\trique\\\\mythicupgrades\\\\platform\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\baris\\\\Documents\\\\GitHub\\\\mythic-upgrades-multiloader\\\\forge\\\\src\\\\main\\\\java\\\\net\\\\trique\\\\mythicupgrades\\\\mixin\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\baris\\\\Documents\\\\GitHub\\\\mythic-upgrades-multiloader\\\\forge\\\\src\\\\main\\\\java\\\\net\\\\trique\\\\mythicupgrades\\\\platform\")",
+      "PowerShell(Get-ChildItem \"$env:USERPROFILE\\\\.gradle\\\\caches\\\\fabric-loom\\\\minecraftMaven\\\\net\\\\minecraft\\\\minecraft-merged\" -Recurse -ErrorAction SilentlyContinue | Where-Object { $_.Name -match \"sources\" -and $_.Name -match \"1.20.1\" } | Select-Object FullName)",
+      "PowerShell(Get-ChildItem \"$env:USERPROFILE\\\\.gradle\\\\caches\\\\fabric-loom\\\\minecraftMaven\\\\net\\\\minecraft\\\\minecraft-merged\" -Recurse -ErrorAction SilentlyContinue | Select-Object Name)",
+      "Bash(find \"C:/Users/baris/Documents/GitHub/mythic-upgrades-multiloader-cybersteve-halfdone\" -name \"*.java\" | head -40)"
+    ]
+  }
+}

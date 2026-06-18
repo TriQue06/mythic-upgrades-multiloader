@@ -1,0 +1,15 @@
+{
+  "type": "mythicupgrades:upgrading",
+  "addition": {
+    "item": "mythicupgrades:sapphire"
+  },
+  "base": {
+    "item": "minecraft:netherite_pickaxe"
+  },
+  "crystal": {
+    "item": "mythicupgrades:sapphire_crystal_shard"
+  },
+  "result": {
+    "item": "mythicupgrades:sapphire_pickaxe"
+  }
+}

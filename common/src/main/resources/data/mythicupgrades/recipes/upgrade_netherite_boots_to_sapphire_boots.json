@@ -1,0 +1,7 @@
+{
+  "type": "mythicupgrades:upgrading",
+  "base": { "item": "minecraft:netherite_boots" },
+  "addition": { "item": "mythicupgrades:sapphire" },
+  "crystal": { "item": "mythicupgrades:sapphire_crystal_shard" },
+  "result": { "item": "mythicupgrades:sapphire_boots" }
+}

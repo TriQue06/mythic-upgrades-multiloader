@@ -1,0 +1,15 @@
+{
+  "type": "mythicupgrades:upgrading",
+  "addition": {
+    "item": "mythicupgrades:citrine"
+  },
+  "base": {
+    "item": "minecraft:netherite_pickaxe"
+  },
+  "crystal": {
+    "item": "mythicupgrades:citrine_crystal_shard"
+  },
+  "result": {
+    "item": "mythicupgrades:citrine_pickaxe"
+  }
+}

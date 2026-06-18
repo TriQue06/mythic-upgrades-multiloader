@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": {
+      "item": "mythicupgrades:topaz"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "GG",
+    "GS",
+    " S"
+  ],
+  "result": {
+    "item": "mythicupgrades:topaz_axe"
+  },
+  "show_notification": true
+}

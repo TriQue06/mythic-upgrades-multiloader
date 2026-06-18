@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "mythicupgrades:block/mythic_upgrading_table" }
+  }
+}

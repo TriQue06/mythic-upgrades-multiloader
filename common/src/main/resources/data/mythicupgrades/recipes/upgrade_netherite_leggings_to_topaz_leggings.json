@@ -1,0 +1,7 @@
+{
+  "type": "mythicupgrades:upgrading",
+  "base": { "item": "minecraft:netherite_leggings" },
+  "addition": { "item": "mythicupgrades:topaz" },
+  "crystal": { "item": "mythicupgrades:topaz_crystal_shard" },
+  "result": { "item": "mythicupgrades:topaz_leggings" }
+}

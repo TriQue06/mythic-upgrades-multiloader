@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": {
+      "item": "mythicupgrades:ametrine"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "G",
+    "G",
+    "S"
+  ],
+  "result": {
+    "item": "mythicupgrades:ametrine_sword"
+  },
+  "show_notification": true
+}

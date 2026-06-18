@@ -1,0 +1,15 @@
+{
+  "type": "mythicupgrades:upgrading",
+  "addition": {
+    "item": "mythicupgrades:kyanite"
+  },
+  "base": {
+    "item": "minecraft:netherite_helmet"
+  },
+  "crystal": {
+    "item": "mythicupgrades:kyanite_crystal_shard"
+  },
+  "result": {
+    "item": "mythicupgrades:kyanite_helmet"
+  }
+}

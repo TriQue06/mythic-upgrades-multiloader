@@ -1,0 +1,7 @@
+{
+  "type": "mythicupgrades:upgrading",
+  "base": { "item": "minecraft:netherite_helmet" },
+  "addition": { "item": "mythicupgrades:ametrine" },
+  "crystal": { "item": "mythicupgrades:ametrine_crystal_shard" },
+  "result": { "item": "mythicupgrades:ametrine_helmet" }
+}

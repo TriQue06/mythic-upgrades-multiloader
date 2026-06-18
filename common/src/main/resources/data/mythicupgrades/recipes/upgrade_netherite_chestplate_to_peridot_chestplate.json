@@ -1,0 +1,7 @@
+{
+  "type": "mythicupgrades:upgrading",
+  "base": { "item": "minecraft:netherite_chestplate" },
+  "addition": { "item": "mythicupgrades:peridot" },
+  "crystal": { "item": "mythicupgrades:peridot_crystal_shard" },
+  "result": { "item": "mythicupgrades:peridot_chestplate" }
+}

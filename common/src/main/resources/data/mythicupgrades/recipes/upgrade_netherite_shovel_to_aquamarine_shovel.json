@@ -1,0 +1,7 @@
+{
+  "type": "mythicupgrades:upgrading",
+  "base": { "item": "minecraft:netherite_shovel" },
+  "addition": { "item": "mythicupgrades:aquamarine" },
+  "crystal": { "item": "mythicupgrades:aquamarine_crystal_shard" },
+  "result": { "item": "mythicupgrades:aquamarine_shovel" }
+}

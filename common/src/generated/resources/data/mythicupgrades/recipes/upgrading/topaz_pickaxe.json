@@ -1,0 +1,15 @@
+{
+  "type": "mythicupgrades:upgrading",
+  "addition": {
+    "item": "mythicupgrades:topaz"
+  },
+  "base": {
+    "item": "minecraft:netherite_pickaxe"
+  },
+  "crystal": {
+    "item": "mythicupgrades:topaz_crystal_shard"
+  },
+  "result": {
+    "item": "mythicupgrades:topaz_pickaxe"
+  }
+}
