@@ -1,7 +1,7 @@
 {
   "type": "mythicupgrades:upgrading",
   "base": { "item": "minecraft:netherite_leggings" },
-  "addition": { "item": "mythicupgrades:ametrine" },
+  "addition": { "item": "mythicupgrades:ametrine_ingot" },
   "crystal": { "item": "mythicupgrades:ametrine_crystal_shard" },
   "result": { "item": "mythicupgrades:ametrine_leggings" }
 }

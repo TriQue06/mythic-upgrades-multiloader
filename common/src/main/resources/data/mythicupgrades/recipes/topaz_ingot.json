@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "mythicupgrades:necoium_ingot" },
+    { "item": "mythicupgrades:necoium_ingot" },
+    { "item": "mythicupgrades:necoium_ingot" },
+    { "item": "mythicupgrades:necoium_ingot" },
+    { "item": "mythicupgrades:topaz" },
+    { "item": "mythicupgrades:topaz" },
+    { "item": "mythicupgrades:topaz" },
+    { "item": "mythicupgrades:topaz" }
+  ],
+  "result": {
+    "item": "mythicupgrades:topaz_ingot",
+    "count": 1
+  }
+}

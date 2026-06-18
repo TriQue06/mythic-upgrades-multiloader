@@ -27,7 +27,6 @@ public class MythicBlocks {
         return block;
     }
 
-    // Overworld gem ores
     public static final Block AQUAMARINE_ORE = defer("aquamarine_ore", new DropExperienceBlock(
         BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).mapColor(MapColor.STONE).strength(3.0F, 3.0F),
         UniformInt.of(3, 7)));
@@ -68,7 +67,6 @@ public class MythicBlocks {
         BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F),
         UniformInt.of(3, 7)));
 
-    // Nether gem ores
     public static final Block RUBY_ORE = defer("ruby_ore", new DropExperienceBlock(
         BlockBehaviour.Properties.copy(Blocks.NETHER_GOLD_ORE).mapColor(MapColor.NETHER).strength(3.0F, 3.0F),
         UniformInt.of(2, 5)));
@@ -77,7 +75,6 @@ public class MythicBlocks {
         BlockBehaviour.Properties.copy(Blocks.NETHER_GOLD_ORE).mapColor(MapColor.NETHER).strength(3.0F, 3.0F),
         UniformInt.of(2, 5)));
 
-    // End ores
     public static final Block JADE_ORE = defer("jade_ore", new DropExperienceBlock(
         BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM)
             .requiresCorrectToolForDrops().strength(3.0F, 9.0F),
@@ -93,11 +90,9 @@ public class MythicBlocks {
             .requiresCorrectToolForDrops().strength(3.0F, 9.0F),
         UniformInt.of(3, 7)));
 
-    // Raw storage block
     public static final Block RAW_NECOIUM_BLOCK = defer("raw_necoium_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.RAW_GOLD_BLOCK).mapColor(MapColor.WARPED_NYLIUM).strength(5.0F, 6.0F)));
 
-    // Gem storage blocks
     public static final Block AQUAMARINE_BLOCK = defer("aquamarine_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE).strength(5.0F, 6.0F)));
 
@@ -128,8 +123,6 @@ public class MythicBlocks {
     public static final Block NECOIUM_BLOCK = defer("necoium_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.WARPED_NYLIUM).strength(5.0F, 6.0F)));
 
-    // Crystal blocks — amethyst-style for 9 gems (necoium excluded)
-    // Aquamarine
     public static final Block AQUAMARINE_CRYSTAL_BLOCK = defer("aquamarine_crystal_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final Block AQUAMARINE_CRYSTAL_CLUSTER = defer("aquamarine_crystal_cluster", new AmethystClusterBlock(7, 3,
@@ -145,7 +138,6 @@ public class MythicBlocks {
         () -> LARGE_AQUAMARINE_CRYSTAL_BUD, () -> AQUAMARINE_CRYSTAL_CLUSTER,
         BlockBehaviour.Properties.copy(Blocks.BUDDING_AMETHYST).mapColor(MapColor.COLOR_LIGHT_BLUE)));
 
-    // Kyanite
     public static final Block KYANITE_CRYSTAL_BLOCK = defer("kyanite_crystal_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_CYAN)));
     public static final Block KYANITE_CRYSTAL_CLUSTER = defer("kyanite_crystal_cluster", new AmethystClusterBlock(7, 3,
@@ -161,7 +153,6 @@ public class MythicBlocks {
         () -> LARGE_KYANITE_CRYSTAL_BUD, () -> KYANITE_CRYSTAL_CLUSTER,
         BlockBehaviour.Properties.copy(Blocks.BUDDING_AMETHYST).mapColor(MapColor.COLOR_CYAN)));
 
-    // Citrine
     public static final Block CITRINE_CRYSTAL_BLOCK = defer("citrine_crystal_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_YELLOW)));
     public static final Block CITRINE_CRYSTAL_CLUSTER = defer("citrine_crystal_cluster", new AmethystClusterBlock(7, 3,
@@ -177,7 +168,6 @@ public class MythicBlocks {
         () -> LARGE_CITRINE_CRYSTAL_BUD, () -> CITRINE_CRYSTAL_CLUSTER,
         BlockBehaviour.Properties.copy(Blocks.BUDDING_AMETHYST).mapColor(MapColor.COLOR_YELLOW)));
 
-    // Topaz
     public static final Block TOPAZ_CRYSTAL_BLOCK = defer("topaz_crystal_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_ORANGE)));
     public static final Block TOPAZ_CRYSTAL_CLUSTER = defer("topaz_crystal_cluster", new AmethystClusterBlock(7, 3,
@@ -193,7 +183,6 @@ public class MythicBlocks {
         () -> LARGE_TOPAZ_CRYSTAL_BUD, () -> TOPAZ_CRYSTAL_CLUSTER,
         BlockBehaviour.Properties.copy(Blocks.BUDDING_AMETHYST).mapColor(MapColor.COLOR_ORANGE)));
 
-    // Peridot
     public static final Block PERIDOT_CRYSTAL_BLOCK = defer("peridot_crystal_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_GREEN)));
     public static final Block PERIDOT_CRYSTAL_CLUSTER = defer("peridot_crystal_cluster", new AmethystClusterBlock(7, 3,
@@ -209,7 +198,6 @@ public class MythicBlocks {
         () -> LARGE_PERIDOT_CRYSTAL_BUD, () -> PERIDOT_CRYSTAL_CLUSTER,
         BlockBehaviour.Properties.copy(Blocks.BUDDING_AMETHYST).mapColor(MapColor.COLOR_LIGHT_GREEN)));
 
-    // Ruby
     public static final Block RUBY_CRYSTAL_BLOCK = defer("ruby_crystal_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_RED)));
     public static final Block RUBY_CRYSTAL_CLUSTER = defer("ruby_crystal_cluster", new AmethystClusterBlock(7, 3,
@@ -225,7 +213,6 @@ public class MythicBlocks {
         () -> LARGE_RUBY_CRYSTAL_BUD, () -> RUBY_CRYSTAL_CLUSTER,
         BlockBehaviour.Properties.copy(Blocks.BUDDING_AMETHYST).mapColor(MapColor.COLOR_RED)));
 
-    // Sapphire
     public static final Block SAPPHIRE_CRYSTAL_BLOCK = defer("sapphire_crystal_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.LAPIS)));
     public static final Block SAPPHIRE_CRYSTAL_CLUSTER = defer("sapphire_crystal_cluster", new AmethystClusterBlock(7, 3,
@@ -241,7 +228,6 @@ public class MythicBlocks {
         () -> LARGE_SAPPHIRE_CRYSTAL_BUD, () -> SAPPHIRE_CRYSTAL_CLUSTER,
         BlockBehaviour.Properties.copy(Blocks.BUDDING_AMETHYST).mapColor(MapColor.LAPIS)));
 
-    // Jade
     public static final Block JADE_CRYSTAL_BLOCK = defer("jade_crystal_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.PLANT)));
     public static final Block JADE_CRYSTAL_CLUSTER = defer("jade_crystal_cluster", new AmethystClusterBlock(7, 3,
@@ -257,7 +243,6 @@ public class MythicBlocks {
         () -> LARGE_JADE_CRYSTAL_BUD, () -> JADE_CRYSTAL_CLUSTER,
         BlockBehaviour.Properties.copy(Blocks.BUDDING_AMETHYST).mapColor(MapColor.PLANT)));
 
-    // Ametrine
     public static final Block AMETRINE_CRYSTAL_BLOCK = defer("ametrine_crystal_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
     public static final Block AMETRINE_CRYSTAL_CLUSTER = defer("ametrine_crystal_cluster", new AmethystClusterBlock(7, 3,
@@ -273,7 +258,6 @@ public class MythicBlocks {
         () -> LARGE_AMETRINE_CRYSTAL_BUD, () -> AMETRINE_CRYSTAL_CLUSTER,
         BlockBehaviour.Properties.copy(Blocks.BUDDING_AMETHYST).mapColor(MapColor.COLOR_PURPLE)));
 
-    // Mythic Upgrading Table
     public static final MythicUpgradingTableBlock MYTHIC_UPGRADING_TABLE = defer("mythic_upgrading_table",
         new MythicUpgradingTableBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).strength(3.5F)));
 

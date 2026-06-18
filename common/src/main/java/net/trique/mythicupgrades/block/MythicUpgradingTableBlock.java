@@ -44,8 +44,6 @@ public class MythicUpgradingTableBlock extends BaseEntityBlock {
         shape = Shapes.join(shape, Shapes.box(0.3125, 0.875, 0.375, 0.4375, 1, 0.75), BooleanOp.OR);
         shape = Shapes.join(shape, Shapes.box(0.5625, 0.875, 0.75, 0.8125, 1, 0.875), BooleanOp.OR);
         shape = Shapes.join(shape, Shapes.box(0.5625, 1, 0.75, 0.6875, 1.125, 0.875), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(-0.057598304703363135, 0.875, 0.5506662607362388, 0.31740169529663687, 1.125, 0.8006662607362388), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.059819173824159244, 0.9375, 0.17566626073623878, 0.18481917382415924, 1.0625, 0.5506662607362388), BooleanOp.OR);
         return shape;
     }
 

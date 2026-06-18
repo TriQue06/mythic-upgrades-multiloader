@@ -12,6 +12,7 @@ public class MythicCreativeTabs {
 
     public static CreativeModeTab ITEMS_TAB;
     public static CreativeModeTab BLOCKS_TAB;
+    public static CreativeModeTab GEAR_TAB;
 
     public static void register(BiFunction<String, CreativeModeTab, CreativeModeTab> reg) {
         ITEMS_TAB = reg.apply("items",
@@ -19,29 +20,47 @@ public class MythicCreativeTabs {
                 .title(Component.translatable("itemGroup.mythicupgrades.items"))
                 .icon(() -> new ItemStack(MythicItems.AQUAMARINE))
                 .displayItems((params, output) -> {
-                    // Gems & crystal shards
+                    // Raw gems, ingots & crystal shards
                     output.accept(MythicItems.AQUAMARINE);
+                    output.accept(MythicItems.AQUAMARINE_INGOT);
                     output.accept(MythicItems.AQUAMARINE_CRYSTAL_SHARD);
                     output.accept(MythicItems.KYANITE);
+                    output.accept(MythicItems.KYANITE_INGOT);
                     output.accept(MythicItems.KYANITE_CRYSTAL_SHARD);
                     output.accept(MythicItems.CITRINE);
+                    output.accept(MythicItems.CITRINE_INGOT);
                     output.accept(MythicItems.CITRINE_CRYSTAL_SHARD);
                     output.accept(MythicItems.TOPAZ);
+                    output.accept(MythicItems.TOPAZ_INGOT);
                     output.accept(MythicItems.TOPAZ_CRYSTAL_SHARD);
                     output.accept(MythicItems.PERIDOT);
+                    output.accept(MythicItems.PERIDOT_INGOT);
                     output.accept(MythicItems.PERIDOT_CRYSTAL_SHARD);
                     output.accept(MythicItems.RUBY);
+                    output.accept(MythicItems.RUBY_INGOT);
                     output.accept(MythicItems.RUBY_CRYSTAL_SHARD);
                     output.accept(MythicItems.SAPPHIRE);
+                    output.accept(MythicItems.SAPPHIRE_INGOT);
                     output.accept(MythicItems.SAPPHIRE_CRYSTAL_SHARD);
                     output.accept(MythicItems.JADE);
+                    output.accept(MythicItems.JADE_INGOT);
                     output.accept(MythicItems.JADE_CRYSTAL_SHARD);
                     output.accept(MythicItems.AMETRINE);
+                    output.accept(MythicItems.AMETRINE_INGOT);
                     output.accept(MythicItems.AMETRINE_CRYSTAL_SHARD);
                     // Necoium
                     output.accept(MythicItems.RAW_NECOIUM);
                     output.accept(MythicItems.NECOIUM_INGOT);
-                    // Aquamarine tools & armor
+                })
+                .build()
+        );
+
+        GEAR_TAB = reg.apply("gear",
+            CreativeModeTab.builder(CreativeModeTab.Row.TOP, 2)
+                .title(Component.translatable("itemGroup.mythicupgrades.gear"))
+                .icon(() -> new ItemStack(MythicItems.AQUAMARINE_SWORD))
+                .displayItems((params, output) -> {
+                    // Aquamarine
                     output.accept(MythicItems.AQUAMARINE_SWORD);
                     output.accept(MythicItems.AQUAMARINE_PICKAXE);
                     output.accept(MythicItems.AQUAMARINE_AXE);
@@ -51,7 +70,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicItems.AQUAMARINE_CHESTPLATE);
                     output.accept(MythicItems.AQUAMARINE_LEGGINGS);
                     output.accept(MythicItems.AQUAMARINE_BOOTS);
-                    // Kyanite tools & armor
+                    // Kyanite
                     output.accept(MythicItems.KYANITE_SWORD);
                     output.accept(MythicItems.KYANITE_PICKAXE);
                     output.accept(MythicItems.KYANITE_AXE);
@@ -61,7 +80,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicItems.KYANITE_CHESTPLATE);
                     output.accept(MythicItems.KYANITE_LEGGINGS);
                     output.accept(MythicItems.KYANITE_BOOTS);
-                    // Citrine tools & armor
+                    // Citrine
                     output.accept(MythicItems.CITRINE_SWORD);
                     output.accept(MythicItems.CITRINE_PICKAXE);
                     output.accept(MythicItems.CITRINE_AXE);
@@ -71,7 +90,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicItems.CITRINE_CHESTPLATE);
                     output.accept(MythicItems.CITRINE_LEGGINGS);
                     output.accept(MythicItems.CITRINE_BOOTS);
-                    // Topaz tools & armor
+                    // Topaz
                     output.accept(MythicItems.TOPAZ_SWORD);
                     output.accept(MythicItems.TOPAZ_PICKAXE);
                     output.accept(MythicItems.TOPAZ_AXE);
@@ -81,7 +100,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicItems.TOPAZ_CHESTPLATE);
                     output.accept(MythicItems.TOPAZ_LEGGINGS);
                     output.accept(MythicItems.TOPAZ_BOOTS);
-                    // Peridot tools & armor
+                    // Peridot
                     output.accept(MythicItems.PERIDOT_SWORD);
                     output.accept(MythicItems.PERIDOT_PICKAXE);
                     output.accept(MythicItems.PERIDOT_AXE);
@@ -91,7 +110,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicItems.PERIDOT_CHESTPLATE);
                     output.accept(MythicItems.PERIDOT_LEGGINGS);
                     output.accept(MythicItems.PERIDOT_BOOTS);
-                    // Ruby tools & armor
+                    // Ruby
                     output.accept(MythicItems.RUBY_SWORD);
                     output.accept(MythicItems.RUBY_PICKAXE);
                     output.accept(MythicItems.RUBY_AXE);
@@ -101,7 +120,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicItems.RUBY_CHESTPLATE);
                     output.accept(MythicItems.RUBY_LEGGINGS);
                     output.accept(MythicItems.RUBY_BOOTS);
-                    // Sapphire tools & armor
+                    // Sapphire
                     output.accept(MythicItems.SAPPHIRE_SWORD);
                     output.accept(MythicItems.SAPPHIRE_PICKAXE);
                     output.accept(MythicItems.SAPPHIRE_AXE);
@@ -111,7 +130,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicItems.SAPPHIRE_CHESTPLATE);
                     output.accept(MythicItems.SAPPHIRE_LEGGINGS);
                     output.accept(MythicItems.SAPPHIRE_BOOTS);
-                    // Jade tools & armor
+                    // Jade
                     output.accept(MythicItems.JADE_SWORD);
                     output.accept(MythicItems.JADE_PICKAXE);
                     output.accept(MythicItems.JADE_AXE);
@@ -121,7 +140,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicItems.JADE_CHESTPLATE);
                     output.accept(MythicItems.JADE_LEGGINGS);
                     output.accept(MythicItems.JADE_BOOTS);
-                    // Ametrine tools & armor
+                    // Ametrine
                     output.accept(MythicItems.AMETRINE_SWORD);
                     output.accept(MythicItems.AMETRINE_PICKAXE);
                     output.accept(MythicItems.AMETRINE_AXE);
@@ -136,7 +155,7 @@ public class MythicCreativeTabs {
         );
 
         BLOCKS_TAB = reg.apply("blocks",
-            CreativeModeTab.builder(CreativeModeTab.Row.TOP, 1)
+            CreativeModeTab.builder(CreativeModeTab.Row.TOP, 3)
                 .title(Component.translatable("itemGroup.mythicupgrades.blocks"))
                 .icon(() -> new ItemStack(MythicBlocks.AQUAMARINE_BLOCK))
                 .displayItems((params, output) -> {

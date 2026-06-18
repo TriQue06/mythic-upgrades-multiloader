@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "mythicupgrades:necoium_ingot" },
+    { "item": "mythicupgrades:necoium_ingot" },
+    { "item": "mythicupgrades:necoium_ingot" },
+    { "item": "mythicupgrades:necoium_ingot" },
+    { "item": "mythicupgrades:ruby" },
+    { "item": "mythicupgrades:ruby" },
+    { "item": "mythicupgrades:ruby" },
+    { "item": "mythicupgrades:ruby" }
+  ],
+  "result": {
+    "item": "mythicupgrades:ruby_ingot",
+    "count": 1
+  }
+}

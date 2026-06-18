@@ -1,7 +1,7 @@
 {
   "type": "mythicupgrades:upgrading",
   "base": { "item": "minecraft:netherite_hoe" },
-  "addition": { "item": "mythicupgrades:topaz" },
+  "addition": { "item": "mythicupgrades:topaz_ingot" },
   "crystal": { "item": "mythicupgrades:topaz_crystal_shard" },
   "result": { "item": "mythicupgrades:topaz_hoe" }
 }
