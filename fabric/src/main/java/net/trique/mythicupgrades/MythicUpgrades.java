@@ -30,7 +30,6 @@ public class MythicUpgrades implements ModInitializer {
         MythicCreativeTabs.register((name, tab) ->
             Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, new ResourceLocation(Constants.MOD_ID, name), tab));
 
-        // Block entity type (Fabric uses FabricBlockEntityTypeBuilder which exposes a public factory)
         MythicBlockEntityTypes.UPGRADING_TABLE = Registry.register(
                 BuiltInRegistries.BLOCK_ENTITY_TYPE,
                 new ResourceLocation(Constants.MOD_ID, "mythic_upgrading_table"),
@@ -38,7 +37,6 @@ public class MythicUpgrades implements ModInitializer {
                         MythicBlocks.MYTHIC_UPGRADING_TABLE).build());
         MythicBlockEntityTypes.onRegistered();
 
-        // Menu type (Fabric uses ScreenHandlerRegistry which bypasses the package-private constructor)
         MythicMenuTypes.UPGRADING_TABLE = ScreenHandlerRegistry.registerSimple(
                 new ResourceLocation(Constants.MOD_ID, "mythic_upgrading_table"),
                 MythicUpgradingTableMenu::createClientMenu);

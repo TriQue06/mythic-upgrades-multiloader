@@ -1,0 +1,10 @@
+{
+  "asset_name": "mythicupgrades_sapphire",
+  "description": {
+    "color": "#0C46B2",
+    "translate": "trim_material.mythicupgrades.sapphire"
+  },
+  "ingredient": "mythicupgrades:sapphire_crystal_shard",
+  "item_model_index": 1.7,
+  "override_armor_materials": {}
+}

@@ -32,43 +32,40 @@ import java.util.Optional;
 
 public class MythicUpgradingTableBlockEntity extends BlockEntity implements WorldlyContainer, MenuProvider {
 
-    // Slot indices
     public static final int SLOT_NECOIUM_INGOT = 0;
-    public static final int SLOT_FUEL          = 1;
-    public static final int SLOT_BASE          = 2;
-    public static final int SLOT_ADDITION1     = 3;
-    public static final int SLOT_ADDITION2     = 4;
-    public static final int SLOT_RESULT        = 5;
-    public static final int NUM_SLOTS          = 6;
+    public static final int SLOT_FUEL = 1;
+    public static final int SLOT_BASE = 2;
+    public static final int SLOT_ADDITION1 = 3;
+    public static final int SLOT_ADDITION2 = 4;
+    public static final int SLOT_RESULT = 5;
+    public static final int NUM_SLOTS = 6;
 
-    // ContainerData indices
-    private static final int DATA_BURN_TIME     = 0;
+    private static final int DATA_BURN_TIME = 0;
     private static final int DATA_BURN_DURATION = 1;
-    private static final int DATA_COOK_TIME     = 2;
-    private static final int DATA_NECOIUM_FUEL  = 3;
-    private static final int NUM_DATA_VALUES    = 4;
+    private static final int DATA_COOK_TIME = 2;
+    private static final int DATA_NECOIUM_FUEL = 3;
+    private static final int NUM_DATA_VALUES = 4;
 
-    public static final int COOK_TIME_TOTAL     = 200;
-    public static final int MAX_NECOIUM_FUEL    = 20;
-    public static final int NECOIUM_PER_SMELT   = 4;
+    public static final int COOK_TIME_TOTAL = 200;
+    public static final int MAX_NECOIUM_FUEL = 20;
+    public static final int NECOIUM_PER_SMELT = 4;
 
     private net.minecraft.core.NonNullList<ItemStack> items =
             net.minecraft.core.NonNullList.withSize(NUM_SLOTS, ItemStack.EMPTY);
 
-    // Fuel state
-    private int burnTime     = 0;  // remaining ticks of current fuel
-    private int burnDuration = 0;  // total ticks of fuel item that started current burn
-    private int cookTime     = 0;  // progress toward smelting necoium ingot (0..200)
-    private int necoiumFuel  = 0;  // stored necoium fuel units (0..20)
+    private int burnTime = 0;
+    private int burnDuration = 0;
+    private int cookTime = 0;
+    private int necoiumFuel = 0;
 
     private final ContainerData dataAccess = new ContainerData() {
         @Override
         public int get(int index) {
             return switch (index) {
-                case DATA_BURN_TIME     -> burnTime;
+                case DATA_BURN_TIME -> burnTime;
                 case DATA_BURN_DURATION -> burnDuration;
-                case DATA_COOK_TIME     -> cookTime;
-                case DATA_NECOIUM_FUEL  -> necoiumFuel;
+                case DATA_COOK_TIME -> cookTime;
+                case DATA_NECOIUM_FUEL -> necoiumFuel;
                 default -> 0;
             };
         }
@@ -76,10 +73,10 @@ public class MythicUpgradingTableBlockEntity extends BlockEntity implements Worl
         @Override
         public void set(int index, int value) {
             switch (index) {
-                case DATA_BURN_TIME     -> burnTime     = value;
+                case DATA_BURN_TIME -> burnTime = value;
                 case DATA_BURN_DURATION -> burnDuration = value;
-                case DATA_COOK_TIME     -> cookTime     = value;
-                case DATA_NECOIUM_FUEL  -> necoiumFuel  = value;
+                case DATA_COOK_TIME -> cookTime = value;
+                case DATA_NECOIUM_FUEL -> necoiumFuel = value;
             }
         }
 
@@ -90,10 +87,6 @@ public class MythicUpgradingTableBlockEntity extends BlockEntity implements Worl
     public MythicUpgradingTableBlockEntity(BlockPos pos, BlockState state) {
         super(MythicBlockEntityTypes.UPGRADING_TABLE, pos, state);
     }
-
-    // -------------------------------------------------------------------------
-    // Ticker
-    // -------------------------------------------------------------------------
 
     public static <T extends BlockEntity> BlockEntityTicker<T> createTicker(Level level) {
         if (level.isClientSide) return null;
@@ -107,12 +100,10 @@ public class MythicUpgradingTableBlockEntity extends BlockEntity implements Worl
     private void tick(Level level, BlockPos pos, BlockState state) {
         boolean wasBurning = this.isBurning();
 
-        // --- Fuel consumption ---
         if (this.isBurning()) {
             burnTime--;
         }
 
-        // Try to start new burn if not burning and there is fuel in slot 1
         if (!this.isBurning()) {
             ItemStack fuelStack = items.get(SLOT_FUEL);
             if (!fuelStack.isEmpty()) {
@@ -120,7 +111,6 @@ public class MythicUpgradingTableBlockEntity extends BlockEntity implements Worl
                 if (bt > 0) {
                     burnDuration = bt;
                     burnTime = bt;
-                    // Consume one item from fuel slot
                     if (fuelStack.getItem() == net.minecraft.world.item.Items.LAVA_BUCKET) {
                         items.set(SLOT_FUEL, new ItemStack(net.minecraft.world.item.Items.BUCKET));
                     } else {
@@ -134,7 +124,6 @@ public class MythicUpgradingTableBlockEntity extends BlockEntity implements Worl
             }
         }
 
-        // --- Necoium ingot smelting ---
         if (this.isBurning()) {
             ItemStack necoiumStack = items.get(SLOT_NECOIUM_INGOT);
             boolean canSmelt = !necoiumStack.isEmpty()
@@ -159,7 +148,6 @@ public class MythicUpgradingTableBlockEntity extends BlockEntity implements Worl
             cookTime = 0;
         }
 
-        // --- Upgrade result calculation ---
         updateResult(level);
 
         if (wasBurning != this.isBurning()) {
@@ -168,8 +156,8 @@ public class MythicUpgradingTableBlockEntity extends BlockEntity implements Worl
     }
 
     private void updateResult(Level level) {
-        ItemStack baseStack    = items.get(SLOT_BASE);
-        ItemStack addStack     = items.get(SLOT_ADDITION1);
+        ItemStack baseStack = items.get(SLOT_BASE);
+        ItemStack addStack = items.get(SLOT_ADDITION1);
         ItemStack crystalStack = items.get(SLOT_ADDITION2);
 
         ItemStack newResult;
@@ -193,7 +181,6 @@ public class MythicUpgradingTableBlockEntity extends BlockEntity implements Worl
         }
     }
 
-    // Called by the menu when the player takes the result
     public void consumeUpgradeInputs() {
         items.get(SLOT_BASE).shrink(1);
         if (items.get(SLOT_BASE).isEmpty()) items.set(SLOT_BASE, ItemStack.EMPTY);
@@ -214,14 +201,9 @@ public class MythicUpgradingTableBlockEntity extends BlockEntity implements Worl
 
     private int getBurnDurationForStack(ItemStack stack) {
         if (stack.isEmpty()) return 0;
-        // Use vanilla fuel map (works on both Forge and Fabric through mixin)
         return net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity.getFuel()
                 .getOrDefault(stack.getItem(), 0);
     }
-
-    // -------------------------------------------------------------------------
-    // Container
-    // -------------------------------------------------------------------------
 
     @Override
     public int getContainerSize() {
@@ -277,18 +259,14 @@ public class MythicUpgradingTableBlockEntity extends BlockEntity implements Worl
         items.clear();
     }
 
-    // -------------------------------------------------------------------------
-    // WorldlyContainer
-    // -------------------------------------------------------------------------
-
-    private static final int[] SLOTS_FOR_UP    = { SLOT_NECOIUM_INGOT };
-    private static final int[] SLOTS_FOR_SIDE  = { SLOT_FUEL };
-    private static final int[] SLOTS_FOR_DOWN  = { SLOT_RESULT };
+    private static final int[] SLOTS_FOR_UP = { SLOT_NECOIUM_INGOT };
+    private static final int[] SLOTS_FOR_SIDE = { SLOT_FUEL };
+    private static final int[] SLOTS_FOR_DOWN = { SLOT_RESULT };
 
     @Override
     public int[] getSlotsForFace(Direction side) {
         if (side == Direction.DOWN) return SLOTS_FOR_DOWN;
-        if (side == Direction.UP)   return SLOTS_FOR_UP;
+        if (side == Direction.UP) return SLOTS_FOR_UP;
         return SLOTS_FOR_SIDE;
     }
 
@@ -306,9 +284,8 @@ public class MythicUpgradingTableBlockEntity extends BlockEntity implements Worl
     public boolean canPlaceItem(int slot, ItemStack stack) {
         return switch (slot) {
             case SLOT_NECOIUM_INGOT -> stack.is(MythicItems.NECOIUM_INGOT);
-            case SLOT_FUEL          -> getBurnDurationForStack(stack) > 0;
-            case SLOT_BASE          -> {
-                // accepts items whose registration name starts with "netherite_"
+            case SLOT_FUEL -> getBurnDurationForStack(stack) > 0;
+            case SLOT_BASE -> {
                 String path = net.minecraft.core.registries.BuiltInRegistries.ITEM
                         .getKey(stack.getItem()).getPath();
                 yield path.startsWith("netherite_");
@@ -318,10 +295,6 @@ public class MythicUpgradingTableBlockEntity extends BlockEntity implements Worl
             default -> false;
         };
     }
-
-    // -------------------------------------------------------------------------
-    // MenuProvider
-    // -------------------------------------------------------------------------
 
     @Override
     public Component getDisplayName() {
@@ -334,18 +307,14 @@ public class MythicUpgradingTableBlockEntity extends BlockEntity implements Worl
                 ContainerLevelAccess.create(level, worldPosition), dataAccess);
     }
 
-    // -------------------------------------------------------------------------
-    // NBT persistence
-    // -------------------------------------------------------------------------
-
     @Override
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         ContainerHelper.saveAllItems(tag, items);
-        tag.putInt("BurnTime",     burnTime);
+        tag.putInt("BurnTime", burnTime);
         tag.putInt("BurnDuration", burnDuration);
-        tag.putInt("CookTime",     cookTime);
-        tag.putInt("NecoiumFuel",  necoiumFuel);
+        tag.putInt("CookTime", cookTime);
+        tag.putInt("NecoiumFuel", necoiumFuel);
     }
 
     @Override
@@ -353,10 +322,10 @@ public class MythicUpgradingTableBlockEntity extends BlockEntity implements Worl
         super.load(tag);
         items = net.minecraft.core.NonNullList.withSize(NUM_SLOTS, ItemStack.EMPTY);
         ContainerHelper.loadAllItems(tag, items);
-        burnTime     = tag.getInt("BurnTime");
+        burnTime = tag.getInt("BurnTime");
         burnDuration = tag.getInt("BurnDuration");
-        cookTime     = tag.getInt("CookTime");
-        necoiumFuel  = tag.getInt("NecoiumFuel");
+        cookTime = tag.getInt("CookTime");
+        necoiumFuel = tag.getInt("NecoiumFuel");
     }
 
     public ContainerData getContainerData() {

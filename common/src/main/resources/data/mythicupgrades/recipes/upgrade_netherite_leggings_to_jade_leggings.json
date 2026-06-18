@@ -1,7 +1,0 @@
-{
-  "type": "mythicupgrades:upgrading",
-  "base": { "item": "minecraft:netherite_leggings" },
-  "addition": { "item": "mythicupgrades:jade_ingot" },
-  "crystal": { "item": "mythicupgrades:jade_crystal_shard" },
-  "result": { "item": "mythicupgrades:jade_leggings" }
-}

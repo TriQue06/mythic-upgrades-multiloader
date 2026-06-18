@@ -1,7 +1,0 @@
-{
-  "type": "mythicupgrades:upgrading",
-  "base": { "item": "minecraft:netherite_axe" },
-  "addition": { "item": "mythicupgrades:citrine_ingot" },
-  "crystal": { "item": "mythicupgrades:citrine_crystal_shard" },
-  "result": { "item": "mythicupgrades:citrine_axe" }
-}

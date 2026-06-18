@@ -6,9 +6,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.function.Supplier;
 
 public enum MythicToolMaterials implements Tier {
-    // level, uses, speed, damage, enchant, repairIngredient
     AQUAMARINE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.AQUAMARINE)),
-    KYANITE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.KYANITE)),
     CITRINE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.CITRINE)),
     TOPAZ(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.TOPAZ)),
     PERIDOT(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.PERIDOT)),

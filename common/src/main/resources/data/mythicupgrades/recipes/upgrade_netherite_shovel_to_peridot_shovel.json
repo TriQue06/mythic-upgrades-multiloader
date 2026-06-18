@@ -1,7 +1,0 @@
-{
-  "type": "mythicupgrades:upgrading",
-  "base": { "item": "minecraft:netherite_shovel" },
-  "addition": { "item": "mythicupgrades:peridot_ingot" },
-  "crystal": { "item": "mythicupgrades:peridot_crystal_shard" },
-  "result": { "item": "mythicupgrades:peridot_shovel" }
-}

@@ -32,7 +32,6 @@ public class MythicUpgradingTableRecipe implements Recipe<Container> {
         this.result = result;
     }
 
-    // slot 2 = base, slot 3 = addition1, slot 4 = addition2 (crystal)
     @Override
     public boolean matches(Container container, Level level) {
         return base.test(container.getItem(2))

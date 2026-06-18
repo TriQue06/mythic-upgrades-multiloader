@@ -26,20 +26,17 @@ public class MythicUpgradingTableMenu extends AbstractContainerMenu {
     private final ContainerData data;
     private final ContainerLevelAccess access;
 
-    // Slot pixel positions matching the GUI layout
-    private static final int SLOT_NECOIUM_X = 16,  SLOT_NECOIUM_Y = 15;
-    private static final int SLOT_FUEL_X    = 16,  SLOT_FUEL_Y    = 53;
-    private static final int SLOT_BASE_X    = 53,  SLOT_BASE_Y    = 47;
-    private static final int SLOT_ADD1_X    = 71,  SLOT_ADD1_Y    = 35;
-    private static final int SLOT_ADD2_X    = 71,  SLOT_ADD2_Y    = 57;
-    private static final int SLOT_RESULT_X  = 114, SLOT_RESULT_Y  = 42;
+    private static final int SLOT_NECOIUM_X = 16, SLOT_NECOIUM_Y = 15;
+    private static final int SLOT_FUEL_X = 16, SLOT_FUEL_Y = 53;
+    private static final int SLOT_BASE_X = 53, SLOT_BASE_Y = 47;
+    private static final int SLOT_ADD1_X = 71, SLOT_ADD1_Y = 35;
+    private static final int SLOT_ADD2_X = 71, SLOT_ADD2_Y = 57;
+    private static final int SLOT_RESULT_X = 114, SLOT_RESULT_Y = 42;
 
-    // Player inventory layout
     private static final int PLAYER_INV_START_X = 8;
     private static final int PLAYER_INV_START_Y = 84;
-    private static final int PLAYER_HOTBAR_Y    = 142;
+    private static final int PLAYER_HOTBAR_Y = 142;
 
-    /** Client-side factory used by MenuType registration (no ContainerData available yet). */
     public static MythicUpgradingTableMenu createClientMenu(int containerId, Inventory playerInv) {
         return new MythicUpgradingTableMenu(containerId, playerInv, ContainerLevelAccess.NULL, new SimpleContainerData(4));
     }
@@ -50,7 +47,6 @@ public class MythicUpgradingTableMenu extends AbstractContainerMenu {
         this.access = access;
         this.data = data;
 
-        // Determine the container from access or create a dummy
         Container[] containerRef = { null };
         access.execute((level, pos) -> {
             if (level.getBlockEntity(pos) instanceof MythicUpgradingTableBlockEntity be) {
@@ -61,9 +57,6 @@ public class MythicUpgradingTableMenu extends AbstractContainerMenu {
                 () -> new SimpleContainer(MythicUpgradingTableBlockEntity.NUM_SLOTS));
         this.container.startOpen(playerInv.player);
 
-        // --- Block entity slots ---
-
-        // Slot 0: necoium ingot
         addSlot(new Slot(container, MythicUpgradingTableBlockEntity.SLOT_NECOIUM_INGOT,
                 SLOT_NECOIUM_X, SLOT_NECOIUM_Y) {
             @Override
@@ -72,7 +65,6 @@ public class MythicUpgradingTableMenu extends AbstractContainerMenu {
             }
         });
 
-        // Slot 1: fuel
         addSlot(new Slot(container, MythicUpgradingTableBlockEntity.SLOT_FUEL,
                 SLOT_FUEL_X, SLOT_FUEL_Y) {
             @Override
@@ -82,7 +74,6 @@ public class MythicUpgradingTableMenu extends AbstractContainerMenu {
             }
         });
 
-        // Slot 2: base (netherite_* items)
         addSlot(new Slot(container, MythicUpgradingTableBlockEntity.SLOT_BASE,
                 SLOT_BASE_X, SLOT_BASE_Y) {
             @Override
@@ -93,15 +84,12 @@ public class MythicUpgradingTableMenu extends AbstractContainerMenu {
             }
         });
 
-        // Slot 3: gem addition
         addSlot(new Slot(container, MythicUpgradingTableBlockEntity.SLOT_ADDITION1,
                 SLOT_ADD1_X, SLOT_ADD1_Y));
 
-        // Slot 4: crystal shard
         addSlot(new Slot(container, MythicUpgradingTableBlockEntity.SLOT_ADDITION2,
                 SLOT_ADD2_X, SLOT_ADD2_Y));
 
-        // Slot 5: result (output-only, not player-insertable, consume inputs on take)
         addSlot(new Slot(container, MythicUpgradingTableBlockEntity.SLOT_RESULT,
                 SLOT_RESULT_X, SLOT_RESULT_Y) {
             @Override
@@ -122,7 +110,6 @@ public class MythicUpgradingTableMenu extends AbstractContainerMenu {
             }
         });
 
-        // --- Player inventory slots (rows 0-2) ---
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
                 addSlot(new Slot(playerInv, col + row * 9 + 9,
@@ -130,7 +117,6 @@ public class MythicUpgradingTableMenu extends AbstractContainerMenu {
             }
         }
 
-        // --- Player hotbar slots ---
         for (int col = 0; col < 9; col++) {
             addSlot(new Slot(playerInv, col,
                     PLAYER_INV_START_X + col * 18, PLAYER_HOTBAR_Y));
@@ -152,18 +138,15 @@ public class MythicUpgradingTableMenu extends AbstractContainerMenu {
             ItemStack slotStack = slot.getItem();
             itemstack = slotStack.copy();
             if (index == MythicUpgradingTableBlockEntity.SLOT_RESULT) {
-                // Result → player inventory
                 if (!moveItemStackTo(slotStack, 6, 42, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onQuickCraft(slotStack, itemstack);
             } else if (index < 6) {
-                // Block entity slots → player inventory
                 if (!moveItemStackTo(slotStack, 6, 42, false)) {
                     return ItemStack.EMPTY;
                 }
             } else {
-                // Player inventory → try to put in block entity slots (0-4, not result)
                 if (!moveItemStackTo(slotStack, 0, 5, false)) {
                     return ItemStack.EMPTY;
                 }
@@ -187,18 +170,13 @@ public class MythicUpgradingTableMenu extends AbstractContainerMenu {
         this.container.stopOpen(player);
     }
 
-    // -------------------------------------------------------------------------
-    // Accessors for the screen
-    // -------------------------------------------------------------------------
-
-    public int getBurnTime()     { return data.get(0); }
+    public int getBurnTime() { return data.get(0); }
     public int getBurnDuration() { return data.get(1); }
-    public int getCookTime()     { return data.get(2); }
-    public int getNecoiumFuel()  { return data.get(3); }
+    public int getCookTime() { return data.get(2); }
+    public int getNecoiumFuel() { return data.get(3); }
 
-    public boolean isBurning()   { return getBurnTime() > 0; }
+    public boolean isBurning() { return getBurnTime() > 0; }
 
-    /** Returns 0..13 for fire animation height (like furnace). */
     public int getBurnProgress() {
         int bt = getBurnTime();
         int bd = getBurnDuration();
@@ -206,14 +184,12 @@ public class MythicUpgradingTableMenu extends AbstractContainerMenu {
         return bt * 13 / bd;
     }
 
-    /** Returns 0..24 for arrow width. */
     public int getCookProgress() {
         int ct = getCookTime();
         if (ct == 0) return 0;
         return ct * 24 / MythicUpgradingTableBlockEntity.COOK_TIME_TOTAL;
     }
 
-    /** Returns bar pixel fill width 0..60 (left-to-right, matches 60px bar in GUI). */
     public int getNecoiumBarWidth() {
         int fuel = getNecoiumFuel();
         return fuel * 60 / MythicUpgradingTableBlockEntity.MAX_NECOIUM_FUEL;

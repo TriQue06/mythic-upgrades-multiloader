@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "P": {
+      "item": "mythicupgrades:ametrine_crystal_pillar"
+    }
+  },
+  "pattern": [
+    "PP",
+    "PP"
+  ],
+  "result": {
+    "count": 4,
+    "item": "mythicupgrades:cut_ametrine_crystal_pillar"
+  },
+  "show_notification": true
+}

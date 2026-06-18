@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "P": {
+      "item": "mythicupgrades:polished_sapphire_crystal_block"
+    }
+  },
+  "pattern": [
+    "PP",
+    "PP"
+  ],
+  "result": {
+    "count": 4,
+    "item": "mythicupgrades:sapphire_crystal_bricks"
+  },
+  "show_notification": true
+}

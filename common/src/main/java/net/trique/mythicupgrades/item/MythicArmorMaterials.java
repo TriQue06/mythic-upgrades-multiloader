@@ -9,10 +9,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.function.Supplier;
 
 public enum MythicArmorMaterials implements ArmorMaterial {
-    // Slot protections ordered by EquipmentSlot.getIndex(): [0]=FEET [1]=LEGS [2]=CHEST [3]=HEAD
-    // name,                      durMult, {feet, legs, chest, head}, enchant, equipSound,                            tough, kbRes, repairIngredient
     AQUAMARINE("mythicupgrades:aquamarine", 37, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> Ingredient.of(MythicItems.AQUAMARINE)),
-    KYANITE("mythicupgrades:kyanite", 37, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> Ingredient.of(MythicItems.KYANITE)),
     CITRINE("mythicupgrades:citrine", 37, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> Ingredient.of(MythicItems.CITRINE)),
     TOPAZ("mythicupgrades:topaz", 37, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> Ingredient.of(MythicItems.TOPAZ)),
     PERIDOT("mythicupgrades:peridot", 37, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> Ingredient.of(MythicItems.PERIDOT)),
@@ -21,7 +18,6 @@ public enum MythicArmorMaterials implements ArmorMaterial {
     JADE("mythicupgrades:jade", 37, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> Ingredient.of(MythicItems.JADE)),
     AMETRINE("mythicupgrades:ametrine", 37, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> Ingredient.of(MythicItems.AMETRINE));
 
-    // Slot health multipliers, same order: [0]=FEET [1]=LEGS [2]=CHEST [3]=HEAD
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
 
     private final String name;

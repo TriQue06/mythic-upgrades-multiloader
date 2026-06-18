@@ -1,0 +1,10 @@
+{
+  "asset_name": "mythicupgrades_aquamarine",
+  "description": {
+    "color": "#057B9E",
+    "translate": "trim_material.mythicupgrades.aquamarine"
+  },
+  "ingredient": "mythicupgrades:aquamarine_crystal_shard",
+  "item_model_index": 1.1,
+  "override_armor_materials": {}
+}

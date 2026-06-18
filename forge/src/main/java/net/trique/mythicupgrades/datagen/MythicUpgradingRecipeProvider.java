@@ -16,13 +16,11 @@ public class MythicUpgradingRecipeProvider implements DataProvider {
 
     private final PackOutput output;
 
-    // 9 gems in order
     private static final String[] GEMS = {
-        "aquamarine", "kyanite", "citrine", "topaz", "peridot",
+        "aquamarine", "citrine", "topaz", "peridot",
         "ruby", "sapphire", "jade", "ametrine"
     };
 
-    // 9 equipment types
     private static final String[] EQUIPMENT = {
         "sword", "pickaxe", "axe", "shovel", "hoe",
         "helmet", "chestplate", "leggings", "boots"
@@ -42,10 +40,10 @@ public class MythicUpgradingRecipeProvider implements DataProvider {
         for (String gem : GEMS) {
             for (String equip : EQUIPMENT) {
                 String netherite = "minecraft:netherite_" + equip;
-                String addition  = "mythicupgrades:" + gem;
-                String crystal   = "mythicupgrades:" + gem + "_crystal_shard";
-                String result    = "mythicupgrades:" + gem + "_" + equip;
-                String id        = "upgrading/" + gem + "_" + equip;
+                String addition = "mythicupgrades:" + gem;
+                String crystal = "mythicupgrades:" + gem + "_crystal_shard";
+                String result = "mythicupgrades:" + gem + "_" + equip;
+                String id = "upgrading/" + gem + "_" + equip;
 
                 JsonObject json = buildRecipeJson(netherite, addition, crystal, result);
                 Path filePath = recipePath.resolve(id + ".json");

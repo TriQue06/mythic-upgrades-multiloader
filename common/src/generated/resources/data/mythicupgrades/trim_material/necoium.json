@@ -1,0 +1,10 @@
+{
+  "asset_name": "mythicupgrades_necoium",
+  "description": {
+    "color": "#9F1C73",
+    "translate": "trim_material.mythicupgrades.necoium"
+  },
+  "ingredient": "mythicupgrades:necoium_ingot",
+  "item_model_index": 2.0,
+  "override_armor_materials": {}
+}

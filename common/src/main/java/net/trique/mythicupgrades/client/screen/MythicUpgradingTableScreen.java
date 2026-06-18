@@ -22,43 +22,39 @@ public class MythicUpgradingTableScreen extends AbstractContainerScreen<MythicUp
     private static final ResourceLocation TEXTURE =
             new ResourceLocation("mythicupgrades", "textures/gui/mythic_upgrading_table.png");
 
-    // Armor stand: same style as smithing table
     private static final Quaternionf ARMOR_STAND_ANGLE =
             new Quaternionf().rotationXYZ(0.43633232F, 0.0F, (float) Math.PI);
-    private static final int ARMOR_STAND_SCALE    = 22;
+    private static final int ARMOR_STAND_SCALE = 22;
     private static final int ARMOR_STAND_OFFSET_X = 153;
     private static final int ARMOR_STAND_OFFSET_Y = 60;
 
-    // Fire animation widget (in texture, right of main area)
-    private static final int FIRE_TEX_X        = 176;
-    private static final int FIRE_TEX_Y        = 0;
-    private static final int FIRE_W            = 14;
-    private static final int FIRE_H            = 13;
-    private static final int FIRE_GUI_X        = 19;
-    private static final int FIRE_GUI_Y        = 36;
+    private static final int FIRE_TEX_X = 176;
+    private static final int FIRE_TEX_Y = 0;
+    private static final int FIRE_W = 14;
+    private static final int FIRE_H = 13;
+    private static final int FIRE_GUI_X = 19;
+    private static final int FIRE_GUI_Y = 36;
 
-    // Necoium bar widget — centered in GUI at y=79, max 60px wide
-    private static final int BAR_TEX_X         = 176;
-    private static final int BAR_TEX_Y         = 13;
-    private static final int BAR_MAX_W         = 60;
-    private static final int BAR_H             = 5;
-    private static final int BAR_GUI_X         = 58;
-    private static final int BAR_GUI_Y         = 79;
+    private static final int BAR_TEX_X = 176;
+    private static final int BAR_TEX_Y = 13;
+    private static final int BAR_MAX_W = 60;
+    private static final int BAR_H = 5;
+    private static final int BAR_GUI_X = 58;
+    private static final int BAR_GUI_Y = 79;
 
-    // Arrow widget
-    private static final int ARROW_EMPTY_TEX_Y  = 18;
+    private static final int ARROW_EMPTY_TEX_Y = 18;
     private static final int ARROW_FILLED_TEX_Y = 33;
-    private static final int ARROW_TEX_X        = 176;
-    private static final int ARROW_W            = 22;
-    private static final int ARROW_H            = 15;
-    private static final int ARROW_GUI_X        = 90;
-    private static final int ARROW_GUI_Y        = 47;
+    private static final int ARROW_TEX_X = 176;
+    private static final int ARROW_W = 22;
+    private static final int ARROW_H = 15;
+    private static final int ARROW_GUI_X = 90;
+    private static final int ARROW_GUI_Y = 47;
 
     private ArmorStand armorStand;
 
     public MythicUpgradingTableScreen(MythicUpgradingTableMenu menu, Inventory playerInv, Component title) {
         super(menu, playerInv, title);
-        this.imageWidth  = 176;
+        this.imageWidth = 176;
         this.imageHeight = 166;
         this.titleLabelX = 8;
         this.titleLabelY = 6;
@@ -74,9 +70,9 @@ public class MythicUpgradingTableScreen extends AbstractContainerScreen<MythicUp
             armorStand = new ArmorStand(mc.level, 0, 0, 0);
             armorStand.setNoBasePlate(true);
             armorStand.setShowArms(true);
-            armorStand.yBodyRot    = 210.0F;
+            armorStand.yBodyRot = 210.0F;
             armorStand.setXRot(25.0F);
-            armorStand.yHeadRot  = armorStand.getYRot();
+            armorStand.yHeadRot = armorStand.getYRot();
             armorStand.yHeadRotO = armorStand.getYRot();
         }
         updateArmorStand(menu.getSlot(5).getItem());
@@ -116,12 +112,10 @@ public class MythicUpgradingTableScreen extends AbstractContainerScreen<MythicUp
         int x = this.leftPos;
         int y = this.topPos;
 
-        // Main background
         g.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
-        // Fire animation (shrinks upward as fuel runs out, like furnace)
         if (menu.isBurning()) {
-            int fireH = menu.getBurnProgress();  // 0..13
+            int fireH = menu.getBurnProgress();
             if (fireH > 0) {
                 g.blit(TEXTURE,
                         x + FIRE_GUI_X, y + FIRE_GUI_Y + (FIRE_H - fireH),
@@ -130,18 +124,15 @@ public class MythicUpgradingTableScreen extends AbstractContainerScreen<MythicUp
             }
         }
 
-        // Necoium fuel bar (horizontal fill, like brewing stand blaze bar)
-        int barW = menu.getNecoiumBarWidth();  // 0..18
+        int barW = menu.getNecoiumBarWidth();
         if (barW > 0) {
             g.blit(TEXTURE, x + BAR_GUI_X, y + BAR_GUI_Y, BAR_TEX_X, BAR_TEX_Y, barW, BAR_H);
         }
 
-        // Arrow: filled when upgrade is ready, empty otherwise
         boolean ready = !menu.getSlot(5).getItem().isEmpty();
         int arrowTexY = ready ? ARROW_FILLED_TEX_Y : ARROW_EMPTY_TEX_Y;
         g.blit(TEXTURE, x + ARROW_GUI_X, y + ARROW_GUI_Y, ARROW_TEX_X, arrowTexY, ARROW_W, ARROW_H);
 
-        // Armor stand preview (fixed angle, exactly like smithing table)
         if (armorStand != null) {
             InventoryScreen.renderEntityInInventory(
                     g,
@@ -157,14 +148,13 @@ public class MythicUpgradingTableScreen extends AbstractContainerScreen<MythicUp
 
     @Override
     protected void renderLabels(GuiGraphics g, int mouseX, int mouseY) {
-        g.drawString(this.font, this.title,            this.titleLabelX,     this.titleLabelY,     0x404040, false);
+        g.drawString(this.font, this.title, this.titleLabelX, this.titleLabelY, 0x404040, false);
         g.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 0x404040, false);
     }
 
     @Override
     public void render(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
         this.renderBackground(g);
-        // Sync armor stand with result slot every frame — more reliable than ContainerListener on client
         updateArmorStand(menu.getSlot(5).getItem());
         super.render(g, mouseX, mouseY, partialTick);
         this.renderTooltip(g, mouseX, mouseY);

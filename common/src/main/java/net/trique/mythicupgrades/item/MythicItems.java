@@ -25,7 +25,6 @@ public class MythicItems {
     }
 
     public static final Item AQUAMARINE = defer("aquamarine", new Item(new Item.Properties()));
-    public static final Item KYANITE = defer("kyanite", new Item(new Item.Properties()));
     public static final Item CITRINE = defer("citrine", new Item(new Item.Properties()));
     public static final Item TOPAZ = defer("topaz", new Item(new Item.Properties()));
     public static final Item PERIDOT = defer("peridot", new Item(new Item.Properties()));
@@ -35,7 +34,6 @@ public class MythicItems {
     public static final Item AMETRINE = defer("ametrine", new Item(new Item.Properties()));
 
     public static final Item AQUAMARINE_INGOT = defer("aquamarine_ingot", new Item(new Item.Properties()));
-    public static final Item KYANITE_INGOT = defer("kyanite_ingot", new Item(new Item.Properties()));
     public static final Item CITRINE_INGOT = defer("citrine_ingot", new Item(new Item.Properties()));
     public static final Item TOPAZ_INGOT = defer("topaz_ingot", new Item(new Item.Properties()));
     public static final Item PERIDOT_INGOT = defer("peridot_ingot", new Item(new Item.Properties()));
@@ -56,16 +54,6 @@ public class MythicItems {
     public static final Item AQUAMARINE_CHESTPLATE = defer("aquamarine_chestplate", new ArmorItem(MythicArmorMaterials.AQUAMARINE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final Item AQUAMARINE_LEGGINGS = defer("aquamarine_leggings", new ArmorItem(MythicArmorMaterials.AQUAMARINE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final Item AQUAMARINE_BOOTS = defer("aquamarine_boots", new ArmorItem(MythicArmorMaterials.AQUAMARINE, ArmorItem.Type.BOOTS, new Item.Properties()));
-
-    public static final Item KYANITE_SWORD = defer("kyanite_sword", new SwordItem(MythicToolMaterials.KYANITE, 3, -2.4F, new Item.Properties()));
-    public static final Item KYANITE_PICKAXE = defer("kyanite_pickaxe", new PickaxeItem(MythicToolMaterials.KYANITE, 1, -2.8F, new Item.Properties()) {});
-    public static final Item KYANITE_AXE = defer("kyanite_axe", new AxeItem(MythicToolMaterials.KYANITE, 5.0F, -3.0F, new Item.Properties()) {});
-    public static final Item KYANITE_SHOVEL = defer("kyanite_shovel", new ShovelItem(MythicToolMaterials.KYANITE, 1.5F, -3.0F, new Item.Properties()));
-    public static final Item KYANITE_HOE = defer("kyanite_hoe", new HoeItem(MythicToolMaterials.KYANITE, -4, 0.0F, new Item.Properties()) {});
-    public static final Item KYANITE_HELMET = defer("kyanite_helmet", new ArmorItem(MythicArmorMaterials.KYANITE, ArmorItem.Type.HELMET, new Item.Properties()));
-    public static final Item KYANITE_CHESTPLATE = defer("kyanite_chestplate", new ArmorItem(MythicArmorMaterials.KYANITE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
-    public static final Item KYANITE_LEGGINGS = defer("kyanite_leggings", new ArmorItem(MythicArmorMaterials.KYANITE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
-    public static final Item KYANITE_BOOTS = defer("kyanite_boots", new ArmorItem(MythicArmorMaterials.KYANITE, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final Item CITRINE_SWORD = defer("citrine_sword", new SwordItem(MythicToolMaterials.CITRINE, 3, -2.4F, new Item.Properties()));
     public static final Item CITRINE_PICKAXE = defer("citrine_pickaxe", new PickaxeItem(MythicToolMaterials.CITRINE, 1, -2.8F, new Item.Properties()) {});
@@ -138,7 +126,6 @@ public class MythicItems {
     public static final Item AMETRINE_BOOTS = defer("ametrine_boots", new ArmorItem(MythicArmorMaterials.AMETRINE, ArmorItem.Type.BOOTS, new Item.Properties()));
 
     public static final Item AQUAMARINE_CRYSTAL_SHARD = defer("aquamarine_crystal_shard", new Item(new Item.Properties()));
-    public static final Item KYANITE_CRYSTAL_SHARD = defer("kyanite_crystal_shard", new Item(new Item.Properties()));
     public static final Item CITRINE_CRYSTAL_SHARD = defer("citrine_crystal_shard", new Item(new Item.Properties()));
     public static final Item TOPAZ_CRYSTAL_SHARD = defer("topaz_crystal_shard", new Item(new Item.Properties()));
     public static final Item PERIDOT_CRYSTAL_SHARD = defer("peridot_crystal_shard", new Item(new Item.Properties()));

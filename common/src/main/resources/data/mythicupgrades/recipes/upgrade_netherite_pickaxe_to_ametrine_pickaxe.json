@@ -1,7 +1,0 @@
-{
-  "type": "mythicupgrades:upgrading",
-  "base": { "item": "minecraft:netherite_pickaxe" },
-  "addition": { "item": "mythicupgrades:ametrine_ingot" },
-  "crystal": { "item": "mythicupgrades:ametrine_crystal_shard" },
-  "result": { "item": "mythicupgrades:ametrine_pickaxe" }
-}

@@ -5,6 +5,8 @@ import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropExperienceBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
@@ -32,14 +34,6 @@ public class MythicBlocks {
         UniformInt.of(3, 7)));
 
     public static final Block DEEPSLATE_AQUAMARINE_ORE = defer("deepslate_aquamarine_ore", new DropExperienceBlock(
-        BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F),
-        UniformInt.of(3, 7)));
-
-    public static final Block KYANITE_ORE = defer("kyanite_ore", new DropExperienceBlock(
-        BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).mapColor(MapColor.STONE).strength(3.0F, 3.0F),
-        UniformInt.of(3, 7)));
-
-    public static final Block DEEPSLATE_KYANITE_ORE = defer("deepslate_kyanite_ore", new DropExperienceBlock(
         BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F),
         UniformInt.of(3, 7)));
 
@@ -96,9 +90,6 @@ public class MythicBlocks {
     public static final Block AQUAMARINE_BLOCK = defer("aquamarine_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE).strength(5.0F, 6.0F)));
 
-    public static final Block KYANITE_BLOCK = defer("kyanite_block", new Block(
-        BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.COLOR_CYAN).strength(5.0F, 6.0F)));
-
     public static final Block CITRINE_BLOCK = defer("citrine_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(5.0F, 6.0F)));
 
@@ -137,21 +128,6 @@ public class MythicBlocks {
         () -> SMALL_AQUAMARINE_CRYSTAL_BUD, () -> MEDIUM_AQUAMARINE_CRYSTAL_BUD,
         () -> LARGE_AQUAMARINE_CRYSTAL_BUD, () -> AQUAMARINE_CRYSTAL_CLUSTER,
         BlockBehaviour.Properties.copy(Blocks.BUDDING_AMETHYST).mapColor(MapColor.COLOR_LIGHT_BLUE)));
-
-    public static final Block KYANITE_CRYSTAL_BLOCK = defer("kyanite_crystal_block", new Block(
-        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_CYAN)));
-    public static final Block KYANITE_CRYSTAL_CLUSTER = defer("kyanite_crystal_cluster", new AmethystClusterBlock(7, 3,
-        BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).mapColor(MapColor.COLOR_CYAN)));
-    public static final Block LARGE_KYANITE_CRYSTAL_BUD = defer("large_kyanite_crystal_bud", new AmethystClusterBlock(5, 3,
-        BlockBehaviour.Properties.copy(Blocks.LARGE_AMETHYST_BUD).mapColor(MapColor.COLOR_CYAN)));
-    public static final Block MEDIUM_KYANITE_CRYSTAL_BUD = defer("medium_kyanite_crystal_bud", new AmethystClusterBlock(4, 3,
-        BlockBehaviour.Properties.copy(Blocks.MEDIUM_AMETHYST_BUD).mapColor(MapColor.COLOR_CYAN)));
-    public static final Block SMALL_KYANITE_CRYSTAL_BUD = defer("small_kyanite_crystal_bud", new AmethystClusterBlock(3, 4,
-        BlockBehaviour.Properties.copy(Blocks.SMALL_AMETHYST_BUD).mapColor(MapColor.COLOR_CYAN)));
-    public static final Block BUDDING_KYANITE_CRYSTAL = defer("budding_kyanite_crystal", new MythicBuddingCrystalBlock(
-        () -> SMALL_KYANITE_CRYSTAL_BUD, () -> MEDIUM_KYANITE_CRYSTAL_BUD,
-        () -> LARGE_KYANITE_CRYSTAL_BUD, () -> KYANITE_CRYSTAL_CLUSTER,
-        BlockBehaviour.Properties.copy(Blocks.BUDDING_AMETHYST).mapColor(MapColor.COLOR_CYAN)));
 
     public static final Block CITRINE_CRYSTAL_BLOCK = defer("citrine_crystal_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_YELLOW)));
@@ -257,6 +233,198 @@ public class MythicBlocks {
         () -> SMALL_AMETRINE_CRYSTAL_BUD, () -> MEDIUM_AMETRINE_CRYSTAL_BUD,
         () -> LARGE_AMETRINE_CRYSTAL_BUD, () -> AMETRINE_CRYSTAL_CLUSTER,
         BlockBehaviour.Properties.copy(Blocks.BUDDING_AMETHYST).mapColor(MapColor.COLOR_PURPLE)));
+
+    public static final Block AQUAMARINE_CRYSTAL_BLOCK_SLAB = defer("aquamarine_crystal_block_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final Block AQUAMARINE_CRYSTAL_BLOCK_STAIRS = defer("aquamarine_crystal_block_stairs", new MythicStairBlock(
+        AQUAMARINE_CRYSTAL_BLOCK.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final Block POLISHED_AQUAMARINE_CRYSTAL_BLOCK = defer("polished_aquamarine_crystal_block", new Block(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final Block POLISHED_AQUAMARINE_CRYSTAL_BLOCK_SLAB = defer("polished_aquamarine_crystal_block_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final Block POLISHED_AQUAMARINE_CRYSTAL_BLOCK_STAIRS = defer("polished_aquamarine_crystal_block_stairs", new MythicStairBlock(
+        POLISHED_AQUAMARINE_CRYSTAL_BLOCK.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final Block AQUAMARINE_CRYSTAL_BRICKS = defer("aquamarine_crystal_bricks", new Block(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final Block AQUAMARINE_CRYSTAL_BRICKS_SLAB = defer("aquamarine_crystal_bricks_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final Block AQUAMARINE_CRYSTAL_BRICKS_STAIRS = defer("aquamarine_crystal_bricks_stairs", new MythicStairBlock(
+        AQUAMARINE_CRYSTAL_BRICKS.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final Block AQUAMARINE_CRYSTAL_PILLAR = defer("aquamarine_crystal_pillar", new RotatedPillarBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final Block CUT_AQUAMARINE_CRYSTAL_PILLAR = defer("cut_aquamarine_crystal_pillar", new RotatedPillarBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+
+    public static final Block CITRINE_CRYSTAL_BLOCK_SLAB = defer("citrine_crystal_block_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_YELLOW)));
+    public static final Block CITRINE_CRYSTAL_BLOCK_STAIRS = defer("citrine_crystal_block_stairs", new MythicStairBlock(
+        CITRINE_CRYSTAL_BLOCK.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_YELLOW)));
+    public static final Block POLISHED_CITRINE_CRYSTAL_BLOCK = defer("polished_citrine_crystal_block", new Block(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_YELLOW)));
+    public static final Block POLISHED_CITRINE_CRYSTAL_BLOCK_SLAB = defer("polished_citrine_crystal_block_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_YELLOW)));
+    public static final Block POLISHED_CITRINE_CRYSTAL_BLOCK_STAIRS = defer("polished_citrine_crystal_block_stairs", new MythicStairBlock(
+        POLISHED_CITRINE_CRYSTAL_BLOCK.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_YELLOW)));
+    public static final Block CITRINE_CRYSTAL_BRICKS = defer("citrine_crystal_bricks", new Block(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_YELLOW)));
+    public static final Block CITRINE_CRYSTAL_BRICKS_SLAB = defer("citrine_crystal_bricks_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_YELLOW)));
+    public static final Block CITRINE_CRYSTAL_BRICKS_STAIRS = defer("citrine_crystal_bricks_stairs", new MythicStairBlock(
+        CITRINE_CRYSTAL_BRICKS.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_YELLOW)));
+    public static final Block CITRINE_CRYSTAL_PILLAR = defer("citrine_crystal_pillar", new RotatedPillarBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_YELLOW)));
+    public static final Block CUT_CITRINE_CRYSTAL_PILLAR = defer("cut_citrine_crystal_pillar", new RotatedPillarBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_YELLOW)));
+
+    public static final Block TOPAZ_CRYSTAL_BLOCK_SLAB = defer("topaz_crystal_block_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_ORANGE)));
+    public static final Block TOPAZ_CRYSTAL_BLOCK_STAIRS = defer("topaz_crystal_block_stairs", new MythicStairBlock(
+        TOPAZ_CRYSTAL_BLOCK.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_ORANGE)));
+    public static final Block POLISHED_TOPAZ_CRYSTAL_BLOCK = defer("polished_topaz_crystal_block", new Block(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_ORANGE)));
+    public static final Block POLISHED_TOPAZ_CRYSTAL_BLOCK_SLAB = defer("polished_topaz_crystal_block_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_ORANGE)));
+    public static final Block POLISHED_TOPAZ_CRYSTAL_BLOCK_STAIRS = defer("polished_topaz_crystal_block_stairs", new MythicStairBlock(
+        POLISHED_TOPAZ_CRYSTAL_BLOCK.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_ORANGE)));
+    public static final Block TOPAZ_CRYSTAL_BRICKS = defer("topaz_crystal_bricks", new Block(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_ORANGE)));
+    public static final Block TOPAZ_CRYSTAL_BRICKS_SLAB = defer("topaz_crystal_bricks_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_ORANGE)));
+    public static final Block TOPAZ_CRYSTAL_BRICKS_STAIRS = defer("topaz_crystal_bricks_stairs", new MythicStairBlock(
+        TOPAZ_CRYSTAL_BRICKS.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_ORANGE)));
+    public static final Block TOPAZ_CRYSTAL_PILLAR = defer("topaz_crystal_pillar", new RotatedPillarBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_ORANGE)));
+    public static final Block CUT_TOPAZ_CRYSTAL_PILLAR = defer("cut_topaz_crystal_pillar", new RotatedPillarBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_ORANGE)));
+
+    public static final Block PERIDOT_CRYSTAL_BLOCK_SLAB = defer("peridot_crystal_block_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_GREEN)));
+    public static final Block PERIDOT_CRYSTAL_BLOCK_STAIRS = defer("peridot_crystal_block_stairs", new MythicStairBlock(
+        PERIDOT_CRYSTAL_BLOCK.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_GREEN)));
+    public static final Block POLISHED_PERIDOT_CRYSTAL_BLOCK = defer("polished_peridot_crystal_block", new Block(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_GREEN)));
+    public static final Block POLISHED_PERIDOT_CRYSTAL_BLOCK_SLAB = defer("polished_peridot_crystal_block_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_GREEN)));
+    public static final Block POLISHED_PERIDOT_CRYSTAL_BLOCK_STAIRS = defer("polished_peridot_crystal_block_stairs", new MythicStairBlock(
+        POLISHED_PERIDOT_CRYSTAL_BLOCK.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_GREEN)));
+    public static final Block PERIDOT_CRYSTAL_BRICKS = defer("peridot_crystal_bricks", new Block(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_GREEN)));
+    public static final Block PERIDOT_CRYSTAL_BRICKS_SLAB = defer("peridot_crystal_bricks_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_GREEN)));
+    public static final Block PERIDOT_CRYSTAL_BRICKS_STAIRS = defer("peridot_crystal_bricks_stairs", new MythicStairBlock(
+        PERIDOT_CRYSTAL_BRICKS.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_GREEN)));
+    public static final Block PERIDOT_CRYSTAL_PILLAR = defer("peridot_crystal_pillar", new RotatedPillarBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_GREEN)));
+    public static final Block CUT_PERIDOT_CRYSTAL_PILLAR = defer("cut_peridot_crystal_pillar", new RotatedPillarBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_GREEN)));
+
+    public static final Block RUBY_CRYSTAL_BLOCK_SLAB = defer("ruby_crystal_block_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_RED)));
+    public static final Block RUBY_CRYSTAL_BLOCK_STAIRS = defer("ruby_crystal_block_stairs", new MythicStairBlock(
+        RUBY_CRYSTAL_BLOCK.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_RED)));
+    public static final Block POLISHED_RUBY_CRYSTAL_BLOCK = defer("polished_ruby_crystal_block", new Block(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_RED)));
+    public static final Block POLISHED_RUBY_CRYSTAL_BLOCK_SLAB = defer("polished_ruby_crystal_block_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_RED)));
+    public static final Block POLISHED_RUBY_CRYSTAL_BLOCK_STAIRS = defer("polished_ruby_crystal_block_stairs", new MythicStairBlock(
+        POLISHED_RUBY_CRYSTAL_BLOCK.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_RED)));
+    public static final Block RUBY_CRYSTAL_BRICKS = defer("ruby_crystal_bricks", new Block(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_RED)));
+    public static final Block RUBY_CRYSTAL_BRICKS_SLAB = defer("ruby_crystal_bricks_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_RED)));
+    public static final Block RUBY_CRYSTAL_BRICKS_STAIRS = defer("ruby_crystal_bricks_stairs", new MythicStairBlock(
+        RUBY_CRYSTAL_BRICKS.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_RED)));
+    public static final Block RUBY_CRYSTAL_PILLAR = defer("ruby_crystal_pillar", new RotatedPillarBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_RED)));
+    public static final Block CUT_RUBY_CRYSTAL_PILLAR = defer("cut_ruby_crystal_pillar", new RotatedPillarBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_RED)));
+
+    public static final Block SAPPHIRE_CRYSTAL_BLOCK_SLAB = defer("sapphire_crystal_block_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.LAPIS)));
+    public static final Block SAPPHIRE_CRYSTAL_BLOCK_STAIRS = defer("sapphire_crystal_block_stairs", new MythicStairBlock(
+        SAPPHIRE_CRYSTAL_BLOCK.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.LAPIS)));
+    public static final Block POLISHED_SAPPHIRE_CRYSTAL_BLOCK = defer("polished_sapphire_crystal_block", new Block(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.LAPIS)));
+    public static final Block POLISHED_SAPPHIRE_CRYSTAL_BLOCK_SLAB = defer("polished_sapphire_crystal_block_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.LAPIS)));
+    public static final Block POLISHED_SAPPHIRE_CRYSTAL_BLOCK_STAIRS = defer("polished_sapphire_crystal_block_stairs", new MythicStairBlock(
+        POLISHED_SAPPHIRE_CRYSTAL_BLOCK.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.LAPIS)));
+    public static final Block SAPPHIRE_CRYSTAL_BRICKS = defer("sapphire_crystal_bricks", new Block(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.LAPIS)));
+    public static final Block SAPPHIRE_CRYSTAL_BRICKS_SLAB = defer("sapphire_crystal_bricks_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.LAPIS)));
+    public static final Block SAPPHIRE_CRYSTAL_BRICKS_STAIRS = defer("sapphire_crystal_bricks_stairs", new MythicStairBlock(
+        SAPPHIRE_CRYSTAL_BRICKS.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.LAPIS)));
+    public static final Block SAPPHIRE_CRYSTAL_PILLAR = defer("sapphire_crystal_pillar", new RotatedPillarBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.LAPIS)));
+    public static final Block CUT_SAPPHIRE_CRYSTAL_PILLAR = defer("cut_sapphire_crystal_pillar", new RotatedPillarBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.LAPIS)));
+
+    public static final Block JADE_CRYSTAL_BLOCK_SLAB = defer("jade_crystal_block_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.PLANT)));
+    public static final Block JADE_CRYSTAL_BLOCK_STAIRS = defer("jade_crystal_block_stairs", new MythicStairBlock(
+        JADE_CRYSTAL_BLOCK.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.PLANT)));
+    public static final Block POLISHED_JADE_CRYSTAL_BLOCK = defer("polished_jade_crystal_block", new Block(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.PLANT)));
+    public static final Block POLISHED_JADE_CRYSTAL_BLOCK_SLAB = defer("polished_jade_crystal_block_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.PLANT)));
+    public static final Block POLISHED_JADE_CRYSTAL_BLOCK_STAIRS = defer("polished_jade_crystal_block_stairs", new MythicStairBlock(
+        POLISHED_JADE_CRYSTAL_BLOCK.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.PLANT)));
+    public static final Block JADE_CRYSTAL_BRICKS = defer("jade_crystal_bricks", new Block(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.PLANT)));
+    public static final Block JADE_CRYSTAL_BRICKS_SLAB = defer("jade_crystal_bricks_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.PLANT)));
+    public static final Block JADE_CRYSTAL_BRICKS_STAIRS = defer("jade_crystal_bricks_stairs", new MythicStairBlock(
+        JADE_CRYSTAL_BRICKS.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.PLANT)));
+    public static final Block JADE_CRYSTAL_PILLAR = defer("jade_crystal_pillar", new RotatedPillarBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.PLANT)));
+    public static final Block CUT_JADE_CRYSTAL_PILLAR = defer("cut_jade_crystal_pillar", new RotatedPillarBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.PLANT)));
+
+    public static final Block AMETRINE_CRYSTAL_BLOCK_SLAB = defer("ametrine_crystal_block_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+    public static final Block AMETRINE_CRYSTAL_BLOCK_STAIRS = defer("ametrine_crystal_block_stairs", new MythicStairBlock(
+        AMETRINE_CRYSTAL_BLOCK.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+    public static final Block POLISHED_AMETRINE_CRYSTAL_BLOCK = defer("polished_ametrine_crystal_block", new Block(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+    public static final Block POLISHED_AMETRINE_CRYSTAL_BLOCK_SLAB = defer("polished_ametrine_crystal_block_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+    public static final Block POLISHED_AMETRINE_CRYSTAL_BLOCK_STAIRS = defer("polished_ametrine_crystal_block_stairs", new MythicStairBlock(
+        POLISHED_AMETRINE_CRYSTAL_BLOCK.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+    public static final Block AMETRINE_CRYSTAL_BRICKS = defer("ametrine_crystal_bricks", new Block(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+    public static final Block AMETRINE_CRYSTAL_BRICKS_SLAB = defer("ametrine_crystal_bricks_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+    public static final Block AMETRINE_CRYSTAL_BRICKS_STAIRS = defer("ametrine_crystal_bricks_stairs", new MythicStairBlock(
+        AMETRINE_CRYSTAL_BRICKS.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+    public static final Block AMETRINE_CRYSTAL_PILLAR = defer("ametrine_crystal_pillar", new RotatedPillarBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+    public static final Block CUT_AMETRINE_CRYSTAL_PILLAR = defer("cut_ametrine_crystal_pillar", new RotatedPillarBlock(
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
 
     public static final MythicUpgradingTableBlock MYTHIC_UPGRADING_TABLE = defer("mythic_upgrading_table",
         new MythicUpgradingTableBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).strength(3.5F)));

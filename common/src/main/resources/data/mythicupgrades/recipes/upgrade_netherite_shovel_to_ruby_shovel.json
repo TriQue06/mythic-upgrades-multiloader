@@ -1,7 +1,0 @@
-{
-  "type": "mythicupgrades:upgrading",
-  "base": { "item": "minecraft:netherite_shovel" },
-  "addition": { "item": "mythicupgrades:ruby_ingot" },
-  "crystal": { "item": "mythicupgrades:ruby_crystal_shard" },
-  "result": { "item": "mythicupgrades:ruby_shovel" }
-}

@@ -1,0 +1,10 @@
+{
+  "asset_name": "mythicupgrades_citrine",
+  "description": {
+    "color": "#DCB40A",
+    "translate": "trim_material.mythicupgrades.citrine"
+  },
+  "ingredient": "mythicupgrades:citrine_crystal_shard",
+  "item_model_index": 1.3,
+  "override_armor_materials": {}
+}

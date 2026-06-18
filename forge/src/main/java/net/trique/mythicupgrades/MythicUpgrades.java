@@ -62,7 +62,6 @@ public class MythicUpgrades {
             );
         } else if (event.getRegistryKey().equals(Registries.BLOCK_ENTITY_TYPE)) {
             event.register(Registries.BLOCK_ENTITY_TYPE, helper -> {
-                // On Forge, BlockEntityType.BlockEntitySupplier is public via ATs
                 BlockEntityType<MythicUpgradingTableBlockEntity> type =
                         BlockEntityType.Builder.of(
                                 MythicUpgradingTableBlockEntity::new,
@@ -74,7 +73,6 @@ public class MythicUpgrades {
             });
         } else if (event.getRegistryKey().equals(Registries.MENU)) {
             event.register(Registries.MENU, helper -> {
-                // On Forge, MenuType.MenuSupplier is public via ATs; constructor needs FeatureFlagSet
                 MenuType<MythicUpgradingTableMenu> type =
                         new MenuType<>(MythicUpgradingTableMenu::createClientMenu, FeatureFlags.VANILLA_SET);
                 helper.register(new ResourceLocation(Constants.MOD_ID, "mythic_upgrading_table"), type);
@@ -110,45 +108,37 @@ public class MythicUpgrades {
 
     private static void registerCutoutRenderLayers() {
         RenderType cutout = RenderType.cutout();
-        // Clusters
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.AQUAMARINE_CRYSTAL_CLUSTER,  cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.KYANITE_CRYSTAL_CLUSTER,     cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.CITRINE_CRYSTAL_CLUSTER,     cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.TOPAZ_CRYSTAL_CLUSTER,       cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.PERIDOT_CRYSTAL_CLUSTER,     cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.RUBY_CRYSTAL_CLUSTER,        cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SAPPHIRE_CRYSTAL_CLUSTER,    cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.JADE_CRYSTAL_CLUSTER,        cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.AMETRINE_CRYSTAL_CLUSTER,    cutout);
-        // Large buds
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.LARGE_AQUAMARINE_CRYSTAL_BUD,  cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.LARGE_KYANITE_CRYSTAL_BUD,     cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.LARGE_CITRINE_CRYSTAL_BUD,     cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.LARGE_TOPAZ_CRYSTAL_BUD,       cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.LARGE_PERIDOT_CRYSTAL_BUD,     cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.LARGE_RUBY_CRYSTAL_BUD,        cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.LARGE_SAPPHIRE_CRYSTAL_BUD,    cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.LARGE_JADE_CRYSTAL_BUD,        cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.LARGE_AMETRINE_CRYSTAL_BUD,    cutout);
-        // Medium buds
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.MEDIUM_AQUAMARINE_CRYSTAL_BUD,  cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.MEDIUM_KYANITE_CRYSTAL_BUD,     cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.MEDIUM_CITRINE_CRYSTAL_BUD,     cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.MEDIUM_TOPAZ_CRYSTAL_BUD,       cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.MEDIUM_PERIDOT_CRYSTAL_BUD,     cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.MEDIUM_RUBY_CRYSTAL_BUD,        cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.MEDIUM_SAPPHIRE_CRYSTAL_BUD,    cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.MEDIUM_JADE_CRYSTAL_BUD,        cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.MEDIUM_AMETRINE_CRYSTAL_BUD,    cutout);
-        // Small buds
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SMALL_AQUAMARINE_CRYSTAL_BUD,  cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SMALL_KYANITE_CRYSTAL_BUD,     cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SMALL_CITRINE_CRYSTAL_BUD,     cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SMALL_TOPAZ_CRYSTAL_BUD,       cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SMALL_PERIDOT_CRYSTAL_BUD,     cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SMALL_RUBY_CRYSTAL_BUD,        cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SMALL_SAPPHIRE_CRYSTAL_BUD,    cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SMALL_JADE_CRYSTAL_BUD,        cutout);
-        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SMALL_AMETRINE_CRYSTAL_BUD,    cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.AQUAMARINE_CRYSTAL_CLUSTER, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.CITRINE_CRYSTAL_CLUSTER, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.TOPAZ_CRYSTAL_CLUSTER, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.PERIDOT_CRYSTAL_CLUSTER, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.RUBY_CRYSTAL_CLUSTER, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SAPPHIRE_CRYSTAL_CLUSTER, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.JADE_CRYSTAL_CLUSTER, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.AMETRINE_CRYSTAL_CLUSTER, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.LARGE_AQUAMARINE_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.LARGE_CITRINE_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.LARGE_TOPAZ_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.LARGE_PERIDOT_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.LARGE_RUBY_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.LARGE_SAPPHIRE_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.LARGE_JADE_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.LARGE_AMETRINE_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.MEDIUM_AQUAMARINE_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.MEDIUM_CITRINE_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.MEDIUM_TOPAZ_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.MEDIUM_PERIDOT_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.MEDIUM_RUBY_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.MEDIUM_SAPPHIRE_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.MEDIUM_JADE_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.MEDIUM_AMETRINE_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SMALL_AQUAMARINE_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SMALL_CITRINE_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SMALL_TOPAZ_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SMALL_PERIDOT_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SMALL_RUBY_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SMALL_SAPPHIRE_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SMALL_JADE_CRYSTAL_BUD, cutout);
+        ItemBlockRenderTypes.setRenderLayer(MythicBlocks.SMALL_AMETRINE_CRYSTAL_BUD, cutout);
     }
 }
