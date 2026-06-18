@@ -15,6 +15,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegisterEvent;
+import net.trique.mythicupgrades.MythicEffects;
 import net.trique.mythicupgrades.block.MythicBlocks;
 import net.trique.mythicupgrades.block.entity.MythicUpgradingTableBlockEntity;
 import net.trique.mythicupgrades.client.screen.MythicUpgradingTableScreen;
@@ -90,6 +91,13 @@ public class MythicUpgrades {
                 MythicRecipeTypes.registerSerializer((name, serializer) -> {
                     helper.register(new ResourceLocation(Constants.MOD_ID, name), serializer);
                     return serializer;
+                })
+            );
+        } else if (event.getRegistryKey().equals(Registries.MOB_EFFECT)) {
+            event.register(Registries.MOB_EFFECT, helper ->
+                MythicEffects.register((name, effect) -> {
+                    helper.register(new ResourceLocation(Constants.MOD_ID, name), effect);
+                    return effect;
                 })
             );
         }

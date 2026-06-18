@@ -1,4 +1,4 @@
-// 1.20.1	2026-06-18T09:46:09.9983023	MythicUpgrades Upgrading Recipes
+// 1.20.1	2026-06-18T21:34:13.2396928	MythicUpgrades Upgrading Recipes
 8649ea8235d2da3c3d5c0490e0fe8a82075c3832 data/mythicupgrades/recipes/upgrading/ametrine_axe.json
 a8b4f56f261d9e4473b8259ed02d69d22ab99f13 data/mythicupgrades/recipes/upgrading/ametrine_boots.json
 092d909477bf1ab5b4ed5a2dd84efd565ad28d9d data/mythicupgrades/recipes/upgrading/ametrine_chestplate.json
@@ -35,15 +35,6 @@ dc8a57f9927f17afe02469078034498561951809 data/mythicupgrades/recipes/upgrading/j
 050ced1d629c066390fd8c3fe3bd49b17d42afc4 data/mythicupgrades/recipes/upgrading/jade_pickaxe.json
 75415495c998dca54482b54ea894303d9e730afc data/mythicupgrades/recipes/upgrading/jade_shovel.json
 7d6921973b45e5b566e0518f9c687cf7f7a0a1de data/mythicupgrades/recipes/upgrading/jade_sword.json
-3ca3ad85842068c34b083152ccd09008fa44a769 data/mythicupgrades/recipes/upgrading/kyanite_axe.json
-bc0c5f7f4d6f2c5dfcbb2f87aaf9ee281e716107 data/mythicupgrades/recipes/upgrading/kyanite_boots.json
-14489eafdb93f0a253b3265cd33b6ee326e96795 data/mythicupgrades/recipes/upgrading/kyanite_chestplate.json
-e61b2ad93caac11ebbefc4dfcf01ce1e0f13bddc data/mythicupgrades/recipes/upgrading/kyanite_helmet.json
-918eb1318c16aeeefb233ee72c49c95ef2cf0ba4 data/mythicupgrades/recipes/upgrading/kyanite_hoe.json
-196a82ff77950abb22c77ae32999ed94bae50830 data/mythicupgrades/recipes/upgrading/kyanite_leggings.json
-90a8a8a2072829b9db2184def5f07c54714bc549 data/mythicupgrades/recipes/upgrading/kyanite_pickaxe.json
-7766b3da8f527ebb1bdd904097d09df8ce33078b data/mythicupgrades/recipes/upgrading/kyanite_shovel.json
-be7c7d5bb2a1bb67aa3a47aff20e200a45c14381 data/mythicupgrades/recipes/upgrading/kyanite_sword.json
 ee5e222ef45ea47ba59bd941e63f07e79b2b24b0 data/mythicupgrades/recipes/upgrading/peridot_axe.json
 4bece09f050b42f1c85bb20b6db29ca089e95584 data/mythicupgrades/recipes/upgrading/peridot_boots.json
 57d62dade0ec26e8a97e86bf0c7f3d1ba546d923 data/mythicupgrades/recipes/upgrading/peridot_chestplate.json

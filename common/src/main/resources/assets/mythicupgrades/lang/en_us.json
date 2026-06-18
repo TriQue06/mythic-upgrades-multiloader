@@ -273,5 +273,10 @@
   "block.mythicupgrades.ametrine_crystal_bricks_slab": "Ametrine Crystal Bricks Slab",
   "block.mythicupgrades.ametrine_crystal_bricks_stairs": "Ametrine Crystal Bricks Stairs",
   "block.mythicupgrades.ametrine_crystal_pillar": "Ametrine Crystal Pillar",
-  "block.mythicupgrades.cut_ametrine_crystal_pillar": "Cut Ametrine Crystal Pillar"
+  "block.mythicupgrades.cut_ametrine_crystal_pillar": "Cut Ametrine Crystal Pillar",
+
+  "effect.mythicupgrades.damage_deflection": "Damage Deflection",
+  "effect.mythicupgrades.arcane_aura": "Arcane Aura",
+  "effect.mythicupgrades.topaz_reaction": "Topaz Reaction",
+  "effect.mythicupgrades.blood_thirst": "Blood Thirst"
 }

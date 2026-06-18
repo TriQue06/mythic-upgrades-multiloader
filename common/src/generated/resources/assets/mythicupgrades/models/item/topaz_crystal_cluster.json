@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "mythicupgrades:block/topaz_crystal_cluster"
+  }
+}

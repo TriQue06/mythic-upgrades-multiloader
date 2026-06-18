@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.trique.mythicupgrades.MythicEffects;
 import net.trique.mythicupgrades.block.MythicBlocks;
 import net.trique.mythicupgrades.block.entity.MythicUpgradingTableBlockEntity;
 import net.trique.mythicupgrades.item.MythicItems;
@@ -46,6 +47,9 @@ public class MythicUpgrades implements ModInitializer {
 
         MythicRecipeTypes.registerSerializer((name, serializer) ->
             Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, new ResourceLocation(Constants.MOD_ID, name), serializer));
+
+        MythicEffects.register((name, effect) ->
+            Registry.register(BuiltInRegistries.MOB_EFFECT, new ResourceLocation(Constants.MOD_ID, name), effect));
 
         CommonClass.init();
     }

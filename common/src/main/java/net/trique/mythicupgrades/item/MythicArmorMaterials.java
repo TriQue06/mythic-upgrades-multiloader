@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 public enum MythicArmorMaterials implements ArmorMaterial {
     AQUAMARINE("mythicupgrades:aquamarine", 37, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> Ingredient.of(MythicItems.AQUAMARINE)),
     CITRINE("mythicupgrades:citrine", 37, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> Ingredient.of(MythicItems.CITRINE)),
-    TOPAZ("mythicupgrades:topaz", 37, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> Ingredient.of(MythicItems.TOPAZ)),
+    TOPAZ("mythicupgrades:topaz", 74, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> Ingredient.of(MythicItems.TOPAZ)),
     PERIDOT("mythicupgrades:peridot", 37, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> Ingredient.of(MythicItems.PERIDOT)),
     RUBY("mythicupgrades:ruby", 37, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> Ingredient.of(MythicItems.RUBY)),
     SAPPHIRE("mythicupgrades:sapphire", 37, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> Ingredient.of(MythicItems.SAPPHIRE)),
