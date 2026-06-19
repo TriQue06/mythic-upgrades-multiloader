@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "mythicupgrades:block/ruby_stone_slab"
+    },
+    "type=double": {
+      "model": "mythicupgrades:block/ruby_stone"
+    },
+    "type=top": {
+      "model": "mythicupgrades:block/ruby_stone_slab_top"
+    }
+  }
+}

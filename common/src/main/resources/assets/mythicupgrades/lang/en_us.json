@@ -24,6 +24,7 @@
   "item.mythicupgrades.ametrine_ingot": "Ametrine Ingot",
   "item.mythicupgrades.raw_necoium": "Raw Necoium",
   "item.mythicupgrades.necoium_ingot": "Necoium Ingot",
+  "item.mythicupgrades.necoium_carrot": "Necoium Carrot",
 
   "item.mythicupgrades.aquamarine_sword": "Aquamarine Sword",
   "item.mythicupgrades.aquamarine_pickaxe": "Aquamarine Pickaxe",
@@ -275,6 +276,72 @@
   "block.mythicupgrades.ametrine_crystal_pillar": "Ametrine Crystal Pillar",
   "block.mythicupgrades.cut_ametrine_crystal_pillar": "Cut Ametrine Crystal Pillar",
 
+  "block.mythicupgrades.aquamarine_stone": "Aquamarine Stone",
+  "block.mythicupgrades.aquamarine_stone_slab": "Aquamarine Stone Slab",
+  "block.mythicupgrades.aquamarine_stone_stairs": "Aquamarine Stone Stairs",
+  "block.mythicupgrades.polished_aquamarine_stone": "Polished Aquamarine Stone",
+  "block.mythicupgrades.polished_aquamarine_stone_slab": "Polished Aquamarine Stone Slab",
+  "block.mythicupgrades.polished_aquamarine_stone_stairs": "Polished Aquamarine Stone Stairs",
+
+  "block.mythicupgrades.citrine_stone": "Citrine Stone",
+  "block.mythicupgrades.citrine_stone_slab": "Citrine Stone Slab",
+  "block.mythicupgrades.citrine_stone_stairs": "Citrine Stone Stairs",
+  "block.mythicupgrades.polished_citrine_stone": "Polished Citrine Stone",
+  "block.mythicupgrades.polished_citrine_stone_slab": "Polished Citrine Stone Slab",
+  "block.mythicupgrades.polished_citrine_stone_stairs": "Polished Citrine Stone Stairs",
+
+  "block.mythicupgrades.topaz_stone": "Topaz Stone",
+  "block.mythicupgrades.topaz_stone_slab": "Topaz Stone Slab",
+  "block.mythicupgrades.topaz_stone_stairs": "Topaz Stone Stairs",
+  "block.mythicupgrades.polished_topaz_stone": "Polished Topaz Stone",
+  "block.mythicupgrades.polished_topaz_stone_slab": "Polished Topaz Stone Slab",
+  "block.mythicupgrades.polished_topaz_stone_stairs": "Polished Topaz Stone Stairs",
+
+  "block.mythicupgrades.peridot_stone": "Peridot Stone",
+  "block.mythicupgrades.peridot_stone_slab": "Peridot Stone Slab",
+  "block.mythicupgrades.peridot_stone_stairs": "Peridot Stone Stairs",
+  "block.mythicupgrades.polished_peridot_stone": "Polished Peridot Stone",
+  "block.mythicupgrades.polished_peridot_stone_slab": "Polished Peridot Stone Slab",
+  "block.mythicupgrades.polished_peridot_stone_stairs": "Polished Peridot Stone Stairs",
+
+  "block.mythicupgrades.ruby_stone": "Ruby Stone",
+  "block.mythicupgrades.ruby_stone_slab": "Ruby Stone Slab",
+  "block.mythicupgrades.ruby_stone_stairs": "Ruby Stone Stairs",
+  "block.mythicupgrades.polished_ruby_stone": "Polished Ruby Stone",
+  "block.mythicupgrades.polished_ruby_stone_slab": "Polished Ruby Stone Slab",
+  "block.mythicupgrades.polished_ruby_stone_stairs": "Polished Ruby Stone Stairs",
+
+  "block.mythicupgrades.sapphire_stone": "Sapphire Stone",
+  "block.mythicupgrades.sapphire_stone_slab": "Sapphire Stone Slab",
+  "block.mythicupgrades.sapphire_stone_stairs": "Sapphire Stone Stairs",
+  "block.mythicupgrades.polished_sapphire_stone": "Polished Sapphire Stone",
+  "block.mythicupgrades.polished_sapphire_stone_slab": "Polished Sapphire Stone Slab",
+  "block.mythicupgrades.polished_sapphire_stone_stairs": "Polished Sapphire Stone Stairs",
+
+  "block.mythicupgrades.jade_stone": "Jade Stone",
+  "block.mythicupgrades.jade_stone_slab": "Jade Stone Slab",
+  "block.mythicupgrades.jade_stone_stairs": "Jade Stone Stairs",
+  "block.mythicupgrades.polished_jade_stone": "Polished Jade Stone",
+  "block.mythicupgrades.polished_jade_stone_slab": "Polished Jade Stone Slab",
+  "block.mythicupgrades.polished_jade_stone_stairs": "Polished Jade Stone Stairs",
+
+  "block.mythicupgrades.ametrine_stone": "Ametrine Stone",
+  "block.mythicupgrades.ametrine_stone_slab": "Ametrine Stone Slab",
+  "block.mythicupgrades.ametrine_stone_stairs": "Ametrine Stone Stairs",
+  "block.mythicupgrades.polished_ametrine_stone": "Polished Ametrine Stone",
+  "block.mythicupgrades.polished_ametrine_stone_slab": "Polished Ametrine Stone Slab",
+  "block.mythicupgrades.polished_ametrine_stone_stairs": "Polished Ametrine Stone Stairs",
+
+  "trim_material.mythicupgrades.aquamarine": "Aquamarine",
+  "trim_material.mythicupgrades.citrine": "Citrine",
+  "trim_material.mythicupgrades.topaz": "Topaz",
+  "trim_material.mythicupgrades.peridot": "Peridot",
+  "trim_material.mythicupgrades.ruby": "Ruby",
+  "trim_material.mythicupgrades.sapphire": "Sapphire",
+  "trim_material.mythicupgrades.jade": "Jade",
+  "trim_material.mythicupgrades.ametrine": "Ametrine",
+  "trim_material.mythicupgrades.necoium": "Necoium",
+
   "effect.mythicupgrades.damage_deflection": "Damage Deflection",
   "effect.mythicupgrades.arcane_aura": "Arcane Aura",
   "effect.mythicupgrades.topaz_reaction": "Topaz Reaction",
@@ -293,5 +360,6 @@
   "death.attack.citrine_chain.player": "%1$s had the misfortune of standing near %2$s's target",
   "death.attack.static_field": "%1$s was electrocuted by a static field",
   "effect.mythicupgrades.bouncer": "Bouncer",
-  "effect.mythicupgrades.jade_aura": "Jade Aura"
+  "effect.mythicupgrades.jade_aura": "Jade Aura",
+  "effect.mythicupgrades.necoium_share": "Necoium Share"
 }

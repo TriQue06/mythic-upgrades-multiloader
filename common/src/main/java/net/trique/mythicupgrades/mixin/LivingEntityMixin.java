@@ -141,23 +141,27 @@ public abstract class LivingEntityMixin {
         if (self.getItemBySlot(EquipmentSlot.FEET).getItem() == MythicItems.PERIDOT_BOOTS) peridotLevel += MythicStats.PERIDOT_BOOTS_LEVELS;
         if (peridotLevel != mu_peridotLevel) {
             mu_peridotLevel = peridotLevel;
-            mu_miasmaTick = 0;
             self.removeEffect(MythicEffects.MIASMA);
             if (peridotLevel > 0)
                 self.addEffect(new MobEffectInstance(MythicEffects.MIASMA, -1, peridotLevel - 1, false, false, true));
         }
-        if (peridotLevel > 0) {
+        // Miasma behavior is effect-driven: works whether from armor, potion, or command
+        MobEffectInstance miasmaEff = self.getEffect(MythicEffects.MIASMA);
+        if (miasmaEff != null) {
+            int miasmaLevel = miasmaEff.getAmplifier() + 1;
             mu_miasmaTick++;
             if (mu_miasmaTick >= MythicStats.MIASMA_INTERVAL_TICKS && self.level() instanceof ServerLevel serverLevel) {
                 mu_miasmaTick = 0;
-                applyMiasmaPoison(serverLevel, self, peridotLevel);
+                applyMiasmaPoison(serverLevel, self, miasmaLevel);
                 mu_miasmaWaveTick = 0;
-                mu_miasmaWaveMaxRadius = Math.min(peridotLevel * MythicStats.MIASMA_CLOUD_RADIUS_PER_LEVEL, MythicStats.MIASMA_CLOUD_MAX_RADIUS);
+                mu_miasmaWaveMaxRadius = Math.min(miasmaLevel * MythicStats.MIASMA_CLOUD_RADIUS_PER_LEVEL, MythicStats.MIASMA_CLOUD_MAX_RADIUS);
                 mu_miasmaWaveX = self.getX();
                 mu_miasmaWaveY = self.getY() + 1.0;
                 mu_miasmaWaveZ = self.getZ();
-                mu_miasmaWaveLevel = peridotLevel;
+                mu_miasmaWaveLevel = miasmaLevel;
             }
+        } else {
+            mu_miasmaTick = 0;
         }
 
         int aquamarineLevel = 0;
@@ -185,12 +189,15 @@ public abstract class LivingEntityMixin {
             if (citrineLevel > 0)
                 self.addEffect(new MobEffectInstance(MythicEffects.STATIC_FIELD, -1, citrineLevel - 1, false, false, true));
         }
-        if (citrineLevel > 0 && self.level() instanceof ServerLevel citrineSLevel) {
-            float fieldRadius = Math.min(citrineLevel * MythicStats.STATIC_FIELD_RADIUS_PER_LEVEL, MythicStats.STATIC_FIELD_MAX_RADIUS);
+        // Static field behavior is effect-driven: works whether from armor, potion, or command
+        MobEffectInstance staticFieldEff = self.getEffect(MythicEffects.STATIC_FIELD);
+        if (staticFieldEff != null && self.level() instanceof ServerLevel citrineSLevel) {
+            int staticLevel = staticFieldEff.getAmplifier() + 1;
+            float fieldRadius = Math.min(staticLevel * MythicStats.STATIC_FIELD_RADIUS_PER_LEVEL, MythicStats.STATIC_FIELD_MAX_RADIUS);
             if (self.tickCount % MythicAnims.CITRINE_STATIC_FIELD_PARTICLE_INTERVAL == 0)
-                emitStaticFieldParticles(citrineSLevel, self, fieldRadius, citrineLevel);
+                emitStaticFieldParticles(citrineSLevel, self, fieldRadius, staticLevel);
             if (self.tickCount % 20 == 0) {
-                float fieldDamage = Math.min(citrineLevel * MythicStats.STATIC_FIELD_DAMAGE_PER_LEVEL_PER_SECOND, MythicStats.STATIC_FIELD_MAX_DAMAGE_PER_SECOND);
+                float fieldDamage = Math.min(staticLevel * MythicStats.STATIC_FIELD_DAMAGE_PER_LEVEL_PER_SECOND, MythicStats.STATIC_FIELD_MAX_DAMAGE_PER_SECOND);
                 AABB fbb = new AABB(self.getX() - fieldRadius, self.getY() - fieldRadius, self.getZ() - fieldRadius,
                     self.getX() + fieldRadius, self.getY() + fieldRadius, self.getZ() + fieldRadius);
                 int currentTick = self.tickCount;
@@ -214,6 +221,9 @@ public abstract class LivingEntityMixin {
                     }
                 }
             }
+        } else if (staticFieldEff == null) {
+            mu_staticFieldStacks.clear();
+            mu_staticFieldLastHitTick.clear();
         }
 
         int jadeLevel = 0;
@@ -227,47 +237,38 @@ public abstract class LivingEntityMixin {
             if (jadeLevel > 0)
                 self.addEffect(new MobEffectInstance(MythicEffects.JADE_AURA, -1, jadeLevel - 1, false, false, true));
         }
-        if (jadeLevel > 0 && self.level() instanceof ServerLevel jadeSLevel) {
-            if (self.tickCount % MythicStats.JADE_TRAIL_INTERVAL_TICKS == 0) {
-                applyJadeTrail(jadeSLevel, self, jadeLevel);
-                MobEffectInstance jadeAuraInst = self.getEffect(MythicEffects.JADE_AURA);
-                if (jadeAuraInst != null) {
-                    int auraLevel = jadeAuraInst.getAmplifier() + 1;
-                    int lingerTicks = Math.min(auraLevel * MythicStats.JADE_TRAIL_LINGER_TICKS_PER_LEVEL, MythicStats.JADE_TRAIL_LINGER_MAX_TICKS);
-                    mu_jadeLingerTrail.add(new float[]{(float)self.tickCount, (float)self.getX(), (float)self.getY(), (float)self.getZ(), (float)lingerTicks, (float)auraLevel});
-                }
-            }
-            if (!mu_jadeLingerTrail.isEmpty()) {
-                mu_jadeLingerTrail.removeIf(p -> self.tickCount - p[0] >= p[4]);
-                for (float[] p : mu_jadeLingerTrail) {
-                    if (self.tickCount % 4 == 0)
-                        emitJadeLingerParticles(jadeSLevel, p[1], p[2], p[3]);
-                    float cr = MythicStats.JADE_TRAIL_LINGER_CONTACT_RADIUS;
-                    AABB cbb = new AABB(p[1] - cr, p[2] - cr, p[3] - cr, p[1] + cr, p[2] + cr, p[3] + cr);
-                    for (LivingEntity touched : jadeSLevel.getEntitiesOfClass(LivingEntity.class, cbb)) {
-                        if (touched == self) continue;
-                        if (touched.distanceTo(self) < 0 || Math.sqrt(Math.pow(touched.getX()-p[1],2)+Math.pow(touched.getZ()-p[3],2)) > cr) continue;
-                        int aLvl = (int)p[5];
-                        int dur = MythicStats.JADE_TRAIL_CONTACT_EFFECT_DURATION_TICKS;
-                        int spAmp = Math.min(aLvl - 1, 9);
-                        int jpAmp = Math.min(aLvl / 2, 9);
-                        touched.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, dur, spAmp, false, true, false));
-                        touched.addEffect(new MobEffectInstance(MobEffects.JUMP, dur, jpAmp, false, true, false));
-                    }
+        // Linger trail processing runs regardless of current effect state so laid trail persists
+        if (!mu_jadeLingerTrail.isEmpty() && self.level() instanceof ServerLevel jadeLingerLevel) {
+            mu_jadeLingerTrail.removeIf(p -> self.tickCount - p[0] >= p[4]);
+            for (float[] p : mu_jadeLingerTrail) {
+                if (self.tickCount % 4 == 0)
+                    emitJadeLingerParticles(jadeLingerLevel, p[1], p[2], p[3]);
+                float cr = MythicStats.JADE_TRAIL_LINGER_CONTACT_RADIUS;
+                AABB cbb = new AABB(p[1] - cr, p[2] - cr, p[3] - cr, p[1] + cr, p[2] + cr, p[3] + cr);
+                for (LivingEntity touched : jadeLingerLevel.getEntitiesOfClass(LivingEntity.class, cbb)) {
+                    if (touched == self) continue;
+                    if (Math.sqrt(Math.pow(touched.getX()-p[1],2)+Math.pow(touched.getZ()-p[3],2)) > cr) continue;
+                    int aLvl = (int)p[5];
+                    int dur = MythicStats.JADE_TRAIL_CONTACT_EFFECT_DURATION_TICKS;
+                    int spAmp = Math.min(aLvl - 1, 9);
+                    int jpAmp = Math.min(aLvl / 2, 9);
+                    touched.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, dur, spAmp, false, true, false));
+                    touched.addEffect(new MobEffectInstance(MobEffects.JUMP, dur, jpAmp, false, true, false));
                 }
             }
         }
-
-        if (self.getEffect(MythicEffects.BOUNCER) != null) {
-            Item mainHand = self.getMainHandItem().getItem();
-            Item offHand = self.getOffhandItem().getItem();
-            if (!isJadeTool(mainHand) && !isJadeTool(offHand))
-                self.removeEffect(MythicEffects.BOUNCER);
+        // Jade trail behavior is effect-driven: works whether from armor, potion, or command
+        MobEffectInstance jadeAuraActive = self.getEffect(MythicEffects.JADE_AURA);
+        if (jadeAuraActive != null && self.tickCount % MythicStats.JADE_TRAIL_INTERVAL_TICKS == 0
+                && self.level() instanceof ServerLevel jadeSLevel) {
+            int auraLevel = jadeAuraActive.getAmplifier() + 1;
+            applyJadeTrail(jadeSLevel, self, auraLevel);
+            int lingerTicks = Math.min(auraLevel * MythicStats.JADE_TRAIL_LINGER_TICKS_PER_LEVEL, MythicStats.JADE_TRAIL_LINGER_MAX_TICKS);
+            mu_jadeLingerTrail.add(new float[]{(float)self.tickCount, (float)self.getX(), (float)self.getY(), (float)self.getZ(), (float)lingerTicks, (float)auraLevel});
         }
 
-        MobEffectInstance jadeAuraEffect = self.getEffect(MythicEffects.JADE_AURA);
-        if (jadeAuraEffect != null && self.tickCount % 4 == 0 && self.level() instanceof ServerLevel jadeAmbientLevel) {
-            emitJadeAuraAmbientParticles(jadeAmbientLevel, self, jadeAuraEffect.getAmplifier() + 1);
+        if (jadeAuraActive != null && self.tickCount % 4 == 0 && self.level() instanceof ServerLevel jadeAmbientLevel) {
+            emitJadeAuraAmbientParticles(jadeAmbientLevel, self, jadeAuraActive.getAmplifier() + 1);
         }
 
         if (self.getEffect(MythicEffects.FREEZE) != null && self.tickCount % 3 == 0 && self.level() instanceof ServerLevel freezeLevel) {

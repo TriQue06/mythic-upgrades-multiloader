@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "C": {
+      "item": "minecraft:cobblestone"
+    },
+    "S": {
+      "item": "mythicupgrades:aquamarine_crystal_shard"
+    }
+  },
+  "pattern": [
+    "CS",
+    "SC"
+  ],
+  "result": {
+    "count": 4,
+    "item": "mythicupgrades:aquamarine_stone"
+  },
+  "show_notification": true
+}

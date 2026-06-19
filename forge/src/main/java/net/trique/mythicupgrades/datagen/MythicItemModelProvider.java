@@ -26,6 +26,7 @@ public class MythicItemModelProvider extends ItemModelProvider {
         }
         generated("raw_necoium", modLoc("item/raw_necoium"));
         generated("necoium_ingot", modLoc("item/necoium_ingot"));
+        generated("necoium_carrot", modLoc("item/necoium_carrot"));
         blockItem("necoium_ore");
         blockItem("raw_necoium_block");
         blockItem("necoium_block");
@@ -63,6 +64,12 @@ public class MythicItemModelProvider extends ItemModelProvider {
         blockItem(gem + "_crystal_bricks_stairs");
         blockItem(gem + "_crystal_pillar");
         blockItem("cut_" + gem + "_crystal_pillar");
+        blockItem(gem + "_stone");
+        blockItem(gem + "_stone_slab");
+        blockItem(gem + "_stone_stairs");
+        blockItem("polished_" + gem + "_stone");
+        blockItem("polished_" + gem + "_stone_slab");
+        blockItem("polished_" + gem + "_stone_stairs");
     }
 
     private void generated(String name, ResourceLocation texture) {

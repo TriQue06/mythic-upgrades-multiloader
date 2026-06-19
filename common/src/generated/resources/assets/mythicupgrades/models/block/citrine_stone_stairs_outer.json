@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "mythicupgrades:block/citrine_stone",
+    "side": "mythicupgrades:block/citrine_stone",
+    "top": "mythicupgrades:block/citrine_stone"
+  }
+}

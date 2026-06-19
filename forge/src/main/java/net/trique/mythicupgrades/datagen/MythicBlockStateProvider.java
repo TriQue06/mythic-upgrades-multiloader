@@ -65,6 +65,11 @@ public class MythicBlockStateProvider extends BlockStateProvider {
         axisBlock((RotatedPillarBlock) block("cut_" + gem + "_crystal_pillar"),
             modLoc("block/cut_" + gem + "_crystal_pillar"),
             modLoc("block/" + gem + "_crystal_pillar_top"));
+
+        simpleBlock(block(gem + "_stone"));
+        simpleBlock(block("polished_" + gem + "_stone"));
+        slabAndStairs(gem + "_stone", modLoc("block/" + gem + "_stone"));
+        slabAndStairs("polished_" + gem + "_stone", modLoc("block/polished_" + gem + "_stone"));
     }
 
     private void slabAndStairs(String baseName, ResourceLocation texture) {

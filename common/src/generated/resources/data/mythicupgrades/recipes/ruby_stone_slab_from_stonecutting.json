@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "mythicupgrades:ruby_stone"
+  },
+  "result": "mythicupgrades:ruby_stone_slab"
+}

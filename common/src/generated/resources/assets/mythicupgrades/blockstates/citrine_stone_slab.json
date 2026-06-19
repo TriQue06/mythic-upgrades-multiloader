@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "mythicupgrades:block/citrine_stone_slab"
+    },
+    "type=double": {
+      "model": "mythicupgrades:block/citrine_stone"
+    },
+    "type=top": {
+      "model": "mythicupgrades:block/citrine_stone_slab_top"
+    }
+  }
+}

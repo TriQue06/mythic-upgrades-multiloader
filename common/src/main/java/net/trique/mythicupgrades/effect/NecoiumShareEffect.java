@@ -1,0 +1,25 @@
+package net.trique.mythicupgrades.effect;
+
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.LivingEntity;
+import net.trique.mythicupgrades.handler.NecoiumShareHandler;
+
+public class NecoiumShareEffect extends MobEffect {
+    public NecoiumShareEffect() {
+        super(MobEffectCategory.BENEFICIAL, 0xe61a8f);
+    }
+
+    @Override
+    public boolean isDurationEffectTick(int duration, int amplifier) {
+        return duration % 10 == 0;
+    }
+
+    @Override
+    public void applyEffectTick(LivingEntity entity, int amplifier) {
+        if (entity.level() instanceof ServerLevel serverLevel) {
+            NecoiumShareHandler.onTick(serverLevel, entity);
+        }
+    }
+}

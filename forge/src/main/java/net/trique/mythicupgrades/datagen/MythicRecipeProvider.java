@@ -56,6 +56,24 @@ public class MythicRecipeProvider extends RecipeProvider {
         storageBlock(writer, MythicItems.RAW_NECOIUM, MythicBlocks.RAW_NECOIUM_BLOCK, "raw_necoium");
         storageBlock(writer, MythicItems.NECOIUM_INGOT, MythicBlocks.NECOIUM_BLOCK, "necoium_ingot");
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, MythicItems.NECOIUM_CARROT)
+            .define('N', MythicBlocks.NECOIUM_BLOCK)
+            .define('C', Items.CARROT)
+            .pattern("NNN")
+            .pattern("NCN")
+            .pattern("NNN")
+            .unlockedBy("has_necoium_block", has(MythicBlocks.NECOIUM_BLOCK))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, "necoium_carrot_from_carrot"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, MythicItems.NECOIUM_CARROT)
+            .define('N', MythicBlocks.NECOIUM_BLOCK)
+            .define('C', Items.GOLDEN_CARROT)
+            .pattern("NNN")
+            .pattern("NCN")
+            .pattern("NNN")
+            .unlockedBy("has_necoium_block", has(MythicBlocks.NECOIUM_BLOCK))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, "necoium_carrot_from_golden_carrot"));
+
         unpackBlock(writer, MythicBlocks.AQUAMARINE_BLOCK, MythicItems.AQUAMARINE, "aquamarine");
         unpackBlock(writer, MythicBlocks.CITRINE_BLOCK, MythicItems.CITRINE, "citrine");
         unpackBlock(writer, MythicBlocks.TOPAZ_BLOCK, MythicItems.TOPAZ, "topaz");
@@ -157,6 +175,39 @@ public class MythicRecipeProvider extends RecipeProvider {
         armorTrim(writer, MythicItems.AMETRINE_CHESTPLATE, "ametrine_chestplate");
         armorTrim(writer, MythicItems.AMETRINE_LEGGINGS, "ametrine_leggings");
         armorTrim(writer, MythicItems.AMETRINE_BOOTS, "ametrine_boots");
+
+        stoneBlocks(writer, MythicItems.AQUAMARINE_CRYSTAL_SHARD,
+            MythicBlocks.AQUAMARINE_STONE, MythicBlocks.AQUAMARINE_STONE_SLAB, MythicBlocks.AQUAMARINE_STONE_STAIRS,
+            MythicBlocks.POLISHED_AQUAMARINE_STONE, MythicBlocks.POLISHED_AQUAMARINE_STONE_SLAB, MythicBlocks.POLISHED_AQUAMARINE_STONE_STAIRS,
+            "aquamarine");
+        stoneBlocks(writer, MythicItems.CITRINE_CRYSTAL_SHARD,
+            MythicBlocks.CITRINE_STONE, MythicBlocks.CITRINE_STONE_SLAB, MythicBlocks.CITRINE_STONE_STAIRS,
+            MythicBlocks.POLISHED_CITRINE_STONE, MythicBlocks.POLISHED_CITRINE_STONE_SLAB, MythicBlocks.POLISHED_CITRINE_STONE_STAIRS,
+            "citrine");
+        stoneBlocks(writer, MythicItems.TOPAZ_CRYSTAL_SHARD,
+            MythicBlocks.TOPAZ_STONE, MythicBlocks.TOPAZ_STONE_SLAB, MythicBlocks.TOPAZ_STONE_STAIRS,
+            MythicBlocks.POLISHED_TOPAZ_STONE, MythicBlocks.POLISHED_TOPAZ_STONE_SLAB, MythicBlocks.POLISHED_TOPAZ_STONE_STAIRS,
+            "topaz");
+        stoneBlocks(writer, MythicItems.PERIDOT_CRYSTAL_SHARD,
+            MythicBlocks.PERIDOT_STONE, MythicBlocks.PERIDOT_STONE_SLAB, MythicBlocks.PERIDOT_STONE_STAIRS,
+            MythicBlocks.POLISHED_PERIDOT_STONE, MythicBlocks.POLISHED_PERIDOT_STONE_SLAB, MythicBlocks.POLISHED_PERIDOT_STONE_STAIRS,
+            "peridot");
+        stoneBlocks(writer, MythicItems.RUBY_CRYSTAL_SHARD,
+            MythicBlocks.RUBY_STONE, MythicBlocks.RUBY_STONE_SLAB, MythicBlocks.RUBY_STONE_STAIRS,
+            MythicBlocks.POLISHED_RUBY_STONE, MythicBlocks.POLISHED_RUBY_STONE_SLAB, MythicBlocks.POLISHED_RUBY_STONE_STAIRS,
+            "ruby");
+        stoneBlocks(writer, MythicItems.SAPPHIRE_CRYSTAL_SHARD,
+            MythicBlocks.SAPPHIRE_STONE, MythicBlocks.SAPPHIRE_STONE_SLAB, MythicBlocks.SAPPHIRE_STONE_STAIRS,
+            MythicBlocks.POLISHED_SAPPHIRE_STONE, MythicBlocks.POLISHED_SAPPHIRE_STONE_SLAB, MythicBlocks.POLISHED_SAPPHIRE_STONE_STAIRS,
+            "sapphire");
+        stoneBlocks(writer, MythicItems.JADE_CRYSTAL_SHARD,
+            MythicBlocks.JADE_STONE, MythicBlocks.JADE_STONE_SLAB, MythicBlocks.JADE_STONE_STAIRS,
+            MythicBlocks.POLISHED_JADE_STONE, MythicBlocks.POLISHED_JADE_STONE_SLAB, MythicBlocks.POLISHED_JADE_STONE_STAIRS,
+            "jade");
+        stoneBlocks(writer, MythicItems.AMETRINE_CRYSTAL_SHARD,
+            MythicBlocks.AMETRINE_STONE, MythicBlocks.AMETRINE_STONE_SLAB, MythicBlocks.AMETRINE_STONE_STAIRS,
+            MythicBlocks.POLISHED_AMETRINE_STONE, MythicBlocks.POLISHED_AMETRINE_STONE_SLAB, MythicBlocks.POLISHED_AMETRINE_STONE_STAIRS,
+            "ametrine");
 
         crystalSubBlocks(writer, MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK,
             MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK_SLAB, MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK_STAIRS,
@@ -358,6 +409,58 @@ public class MythicRecipeProvider extends RecipeProvider {
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(pillar), RecipeCategory.BUILDING_BLOCKS, cutPillar)
             .unlockedBy("has_" + gem + "_crystal_pillar", has(pillar))
             .save(writer, new ResourceLocation(Constants.MOD_ID, "cut_" + gem + "_crystal_pillar_from_stonecutting"));
+    }
+
+    private void stoneBlocks(Consumer<FinishedRecipe> writer, Item shard,
+            Block stone, Block stoneSlab, Block stoneStairs,
+            Block polished, Block polishedSlab, Block polishedStairs,
+            String gem) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, stone, 4)
+            .define('C', Items.COBBLESTONE).define('S', shard)
+            .pattern("CS").pattern("SC")
+            .unlockedBy("has_" + gem + "_crystal_shard", has(shard))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, gem + "_stone_from_cobblestone"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, polished, 4)
+            .define('B', stone).pattern("BB").pattern("BB")
+            .unlockedBy("has_" + gem + "_stone", has(stone))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, "polished_" + gem + "_stone_from_stone"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, stoneSlab, 6)
+            .define('B', stone).pattern("BBB")
+            .unlockedBy("has_" + gem + "_stone", has(stone))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, gem + "_stone_slab_from_stone"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, stoneStairs, 4)
+            .define('B', stone).pattern("B  ").pattern("BB ").pattern("BBB")
+            .unlockedBy("has_" + gem + "_stone", has(stone))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, gem + "_stone_stairs_from_stone"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, polishedSlab, 6)
+            .define('B', polished).pattern("BBB")
+            .unlockedBy("has_polished_" + gem + "_stone", has(polished))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, "polished_" + gem + "_stone_slab_from_polished"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, polishedStairs, 4)
+            .define('B', polished).pattern("B  ").pattern("BB ").pattern("BBB")
+            .unlockedBy("has_polished_" + gem + "_stone", has(polished))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, "polished_" + gem + "_stone_stairs_from_polished"));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(stone), RecipeCategory.BUILDING_BLOCKS, stoneSlab, 2)
+            .unlockedBy("has_" + gem + "_stone", has(stone))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, gem + "_stone_slab_from_stonecutting"));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(stone), RecipeCategory.BUILDING_BLOCKS, stoneStairs)
+            .unlockedBy("has_" + gem + "_stone", has(stone))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, gem + "_stone_stairs_from_stonecutting"));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(stone), RecipeCategory.BUILDING_BLOCKS, polished)
+            .unlockedBy("has_" + gem + "_stone", has(stone))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, "polished_" + gem + "_stone_from_stonecutting"));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(stone), RecipeCategory.BUILDING_BLOCKS, polishedSlab, 2)
+            .unlockedBy("has_" + gem + "_stone", has(stone))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, "polished_" + gem + "_stone_slab_from_stone_stonecutting"));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(stone), RecipeCategory.BUILDING_BLOCKS, polishedStairs)
+            .unlockedBy("has_" + gem + "_stone", has(stone))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, "polished_" + gem + "_stone_stairs_from_stone_stonecutting"));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(polished), RecipeCategory.BUILDING_BLOCKS, polishedSlab, 2)
+            .unlockedBy("has_polished_" + gem + "_stone", has(polished))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, "polished_" + gem + "_stone_slab_from_stonecutting"));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(polished), RecipeCategory.BUILDING_BLOCKS, polishedStairs)
+            .unlockedBy("has_polished_" + gem + "_stone", has(polished))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, "polished_" + gem + "_stone_stairs_from_stonecutting"));
     }
 
     private void toolAndArmor(Consumer<FinishedRecipe> writer, Item gem, String n,

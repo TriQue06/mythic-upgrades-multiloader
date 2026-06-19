@@ -13,6 +13,7 @@ import net.trique.mythicupgrades.effect.IceShieldEffect;
 import net.trique.mythicupgrades.effect.IceShieldMarkEffect;
 import net.trique.mythicupgrades.effect.LethalIncubationEffect;
 import net.trique.mythicupgrades.effect.MiasmaEffect;
+import net.trique.mythicupgrades.effect.NecoiumShareEffect;
 import net.trique.mythicupgrades.effect.TopazReactionEffect;
 
 import java.util.AbstractMap;
@@ -43,6 +44,7 @@ public static final MobEffect FREEZE = defer("freeze", new FreezeEffect());
     public static final MobEffect STATIC_FIELD = defer("static_field", new StaticFieldEffect());
     public static final MobEffect BOUNCER = defer("bouncer", new BouncerEffect());
     public static final MobEffect JADE_AURA = defer("jade_aura", new JadeAuraEffect());
+    public static final MobEffect NECOIUM_SHARE = defer("necoium_share", new NecoiumShareEffect());
 
     public static void register(BiFunction<String, MobEffect, MobEffect> reg) {
         DEFERRED.forEach(e -> reg.apply(e.getKey(), e.getValue()));

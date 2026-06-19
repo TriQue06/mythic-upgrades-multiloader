@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "mythicupgrades:block/aquamarine_stone_slab"
+    },
+    "type=double": {
+      "model": "mythicupgrades:block/aquamarine_stone"
+    },
+    "type=top": {
+      "model": "mythicupgrades:block/aquamarine_stone_slab_top"
+    }
+  }
+}

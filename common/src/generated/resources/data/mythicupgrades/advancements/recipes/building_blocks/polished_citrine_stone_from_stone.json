@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_citrine_stone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mythicupgrades:citrine_stone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "mythicupgrades:polished_citrine_stone_from_stone"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_citrine_stone",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "mythicupgrades:polished_citrine_stone_from_stone"
+    ]
+  },
+  "sends_telemetry_event": false
+}

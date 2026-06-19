@@ -44,6 +44,7 @@ public class MythicItems {
 
     public static final Item RAW_NECOIUM = defer("raw_necoium", new Item(new Item.Properties()));
     public static final Item NECOIUM_INGOT = defer("necoium_ingot", new Item(new Item.Properties()));
+    public static final Item NECOIUM_CARROT = defer("necoium_carrot", new NecoiumCarrotItem());
 
     public static final Item AQUAMARINE_SWORD = defer("aquamarine_sword", new SwordItem(MythicToolMaterials.AQUAMARINE, 3, -2.4F, new Item.Properties()));
     public static final Item AQUAMARINE_PICKAXE = defer("aquamarine_pickaxe", new PickaxeItem(MythicToolMaterials.AQUAMARINE, 1, -2.8F, new Item.Properties()) {});

@@ -429,6 +429,126 @@ public class MythicBlocks {
     public static final Block CUT_AMETRINE_CRYSTAL_PILLAR = defer("cut_ametrine_crystal_pillar", new RotatedPillarBlock(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
 
+    public static final Block AQUAMARINE_STONE = defer("aquamarine_stone", new Block(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_LIGHT_BLUE).strength(1.5F, 6.0F)));
+    public static final Block AQUAMARINE_STONE_SLAB = defer("aquamarine_stone_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_LIGHT_BLUE).strength(1.5F, 6.0F)));
+    public static final Block AQUAMARINE_STONE_STAIRS = defer("aquamarine_stone_stairs", new MythicStairBlock(
+        AQUAMARINE_STONE.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_LIGHT_BLUE).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_AQUAMARINE_STONE = defer("polished_aquamarine_stone", new Block(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_LIGHT_BLUE).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_AQUAMARINE_STONE_SLAB = defer("polished_aquamarine_stone_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_LIGHT_BLUE).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_AQUAMARINE_STONE_STAIRS = defer("polished_aquamarine_stone_stairs", new MythicStairBlock(
+        POLISHED_AQUAMARINE_STONE.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_LIGHT_BLUE).strength(1.5F, 6.0F)));
+
+    public static final Block CITRINE_STONE = defer("citrine_stone", new Block(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_YELLOW).strength(1.5F, 6.0F)));
+    public static final Block CITRINE_STONE_SLAB = defer("citrine_stone_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_YELLOW).strength(1.5F, 6.0F)));
+    public static final Block CITRINE_STONE_STAIRS = defer("citrine_stone_stairs", new MythicStairBlock(
+        CITRINE_STONE.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_YELLOW).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_CITRINE_STONE = defer("polished_citrine_stone", new Block(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_YELLOW).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_CITRINE_STONE_SLAB = defer("polished_citrine_stone_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_YELLOW).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_CITRINE_STONE_STAIRS = defer("polished_citrine_stone_stairs", new MythicStairBlock(
+        POLISHED_CITRINE_STONE.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_YELLOW).strength(1.5F, 6.0F)));
+
+    public static final Block TOPAZ_STONE = defer("topaz_stone", new Block(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_ORANGE).strength(1.5F, 6.0F)));
+    public static final Block TOPAZ_STONE_SLAB = defer("topaz_stone_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_ORANGE).strength(1.5F, 6.0F)));
+    public static final Block TOPAZ_STONE_STAIRS = defer("topaz_stone_stairs", new MythicStairBlock(
+        TOPAZ_STONE.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_ORANGE).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_TOPAZ_STONE = defer("polished_topaz_stone", new Block(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_ORANGE).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_TOPAZ_STONE_SLAB = defer("polished_topaz_stone_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_ORANGE).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_TOPAZ_STONE_STAIRS = defer("polished_topaz_stone_stairs", new MythicStairBlock(
+        POLISHED_TOPAZ_STONE.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_ORANGE).strength(1.5F, 6.0F)));
+
+    public static final Block PERIDOT_STONE = defer("peridot_stone", new Block(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_LIGHT_GREEN).strength(1.5F, 6.0F)));
+    public static final Block PERIDOT_STONE_SLAB = defer("peridot_stone_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_LIGHT_GREEN).strength(1.5F, 6.0F)));
+    public static final Block PERIDOT_STONE_STAIRS = defer("peridot_stone_stairs", new MythicStairBlock(
+        PERIDOT_STONE.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_LIGHT_GREEN).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_PERIDOT_STONE = defer("polished_peridot_stone", new Block(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_LIGHT_GREEN).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_PERIDOT_STONE_SLAB = defer("polished_peridot_stone_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_LIGHT_GREEN).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_PERIDOT_STONE_STAIRS = defer("polished_peridot_stone_stairs", new MythicStairBlock(
+        POLISHED_PERIDOT_STONE.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_LIGHT_GREEN).strength(1.5F, 6.0F)));
+
+    public static final Block RUBY_STONE = defer("ruby_stone", new Block(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_RED).strength(1.5F, 6.0F)));
+    public static final Block RUBY_STONE_SLAB = defer("ruby_stone_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_RED).strength(1.5F, 6.0F)));
+    public static final Block RUBY_STONE_STAIRS = defer("ruby_stone_stairs", new MythicStairBlock(
+        RUBY_STONE.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_RED).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_RUBY_STONE = defer("polished_ruby_stone", new Block(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_RED).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_RUBY_STONE_SLAB = defer("polished_ruby_stone_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_RED).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_RUBY_STONE_STAIRS = defer("polished_ruby_stone_stairs", new MythicStairBlock(
+        POLISHED_RUBY_STONE.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_RED).strength(1.5F, 6.0F)));
+
+    public static final Block SAPPHIRE_STONE = defer("sapphire_stone", new Block(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.LAPIS).strength(1.5F, 6.0F)));
+    public static final Block SAPPHIRE_STONE_SLAB = defer("sapphire_stone_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.LAPIS).strength(1.5F, 6.0F)));
+    public static final Block SAPPHIRE_STONE_STAIRS = defer("sapphire_stone_stairs", new MythicStairBlock(
+        SAPPHIRE_STONE.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.LAPIS).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_SAPPHIRE_STONE = defer("polished_sapphire_stone", new Block(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.LAPIS).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_SAPPHIRE_STONE_SLAB = defer("polished_sapphire_stone_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.LAPIS).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_SAPPHIRE_STONE_STAIRS = defer("polished_sapphire_stone_stairs", new MythicStairBlock(
+        POLISHED_SAPPHIRE_STONE.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.LAPIS).strength(1.5F, 6.0F)));
+
+    public static final Block JADE_STONE = defer("jade_stone", new Block(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.PLANT).strength(1.5F, 6.0F)));
+    public static final Block JADE_STONE_SLAB = defer("jade_stone_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.PLANT).strength(1.5F, 6.0F)));
+    public static final Block JADE_STONE_STAIRS = defer("jade_stone_stairs", new MythicStairBlock(
+        JADE_STONE.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.PLANT).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_JADE_STONE = defer("polished_jade_stone", new Block(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.PLANT).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_JADE_STONE_SLAB = defer("polished_jade_stone_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.PLANT).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_JADE_STONE_STAIRS = defer("polished_jade_stone_stairs", new MythicStairBlock(
+        POLISHED_JADE_STONE.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.PLANT).strength(1.5F, 6.0F)));
+
+    public static final Block AMETRINE_STONE = defer("ametrine_stone", new Block(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_PURPLE).strength(1.5F, 6.0F)));
+    public static final Block AMETRINE_STONE_SLAB = defer("ametrine_stone_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_PURPLE).strength(1.5F, 6.0F)));
+    public static final Block AMETRINE_STONE_STAIRS = defer("ametrine_stone_stairs", new MythicStairBlock(
+        AMETRINE_STONE.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_PURPLE).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_AMETRINE_STONE = defer("polished_ametrine_stone", new Block(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_PURPLE).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_AMETRINE_STONE_SLAB = defer("polished_ametrine_stone_slab", new SlabBlock(
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_PURPLE).strength(1.5F, 6.0F)));
+    public static final Block POLISHED_AMETRINE_STONE_STAIRS = defer("polished_ametrine_stone_stairs", new MythicStairBlock(
+        POLISHED_AMETRINE_STONE.defaultBlockState(),
+        BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_PURPLE).strength(1.5F, 6.0F)));
+
     public static final MythicUpgradingTableBlock MYTHIC_UPGRADING_TABLE = defer("mythic_upgrading_table",
         new MythicUpgradingTableBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).strength(3.5F)));
 
