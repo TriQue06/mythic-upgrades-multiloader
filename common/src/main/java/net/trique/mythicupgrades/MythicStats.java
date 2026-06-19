@@ -9,6 +9,7 @@ public class MythicStats {
     public static float DEFLECT_PER_LEVEL = 0.05f;
 
     public static float SAPPHIRE_TOOL_PERCENT_DAMAGE = 0.05f;
+    public static float SAPPHIRE_TOOL_PERCENT_DAMAGE_CAP = 15.0f;
 
     public static int AMETRINE_HELMET_LEVELS = 2;
     public static int AMETRINE_CHESTPLATE_LEVELS = 4;
@@ -32,6 +33,8 @@ public class MythicStats {
 
     public static float TOPAZ_SHOCK_DAMAGE_PER_LEVEL = 1.0f;
     public static float TOPAZ_SHOCK_KNOCKBACK_PER_LEVEL = 0.5f;
+    public static float TOPAZ_FALL_REDUCTION_PER_LEVEL = 0.05f;
+    public static float TOPAZ_FALL_MAX_REDUCTION = 0.50f;
     public static float TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL = 1.0f;
     public static float TOPAZ_ARMOR_SHOCK_MAX_RADIUS = 10.0f;
 
@@ -50,7 +53,7 @@ public class MythicStats {
     public static float BLOOD_THIRST_MAX_RADIUS = 30.0f;
     public static float BLOOD_THIRST_HEAL_FRACTION_PER_LEVEL = 0.05f;
     public static float BLOOD_THIRST_MAX_HEAL_FRACTION = 0.5f;
-    public static int BLOOD_THIRST_PARTICLES_PER_LEVEL = 2;
+    public static int BLOOD_THIRST_PARTICLES_PER_LEVEL = 6;
 
     public static int PERIDOT_HELMET_LEVELS = 2;
     public static int PERIDOT_CHESTPLATE_LEVELS = 4;
@@ -101,12 +104,16 @@ public class MythicStats {
     public static int CITRINE_CHARGED_LIGHTNING_MAX = 3;
     public static float CITRINE_CHARGED_LIGHTNING_SPREAD = 1.5f;
 
-    public static float STATIC_FIELD_RADIUS_PER_LEVEL = 0.30f;
-    public static float STATIC_FIELD_MAX_RADIUS = 3.0f;
+    public static float STATIC_FIELD_RADIUS_PER_LEVEL = 0.45f;
+    public static float STATIC_FIELD_MAX_RADIUS = 4.5f;
     public static float STATIC_FIELD_DAMAGE_PER_LEVEL_PER_SECOND = 0.30f;
     public static float STATIC_FIELD_MAX_DAMAGE_PER_SECOND = 3.0f;
     public static float STATIC_FIELD_LIGHTNING_CHANCE_PER_LEVEL = 0.01f;
     public static float STATIC_FIELD_MAX_LIGHTNING_CHANCE = 0.10f;
+    public static double CITRINE_LIGHTNING_REDIRECT_DISTANCE = 7.0;
+    public static int STATIC_FIELD_MAX_STACKS = 5;
+    public static float STATIC_FIELD_STACK_DAMAGE_INCREASE = 0.10f;
+    public static int STATIC_FIELD_STACK_RESET_TICKS = 60;
 
     public static int ICE_SHIELD_SLOWNESS_DURATION_TICKS_PER_LEVEL = 10;
     public static int ICE_SHIELD_SLOWNESS_MAX_DURATION_TICKS = 100;
@@ -128,4 +135,8 @@ public class MythicStats {
     public static float JADE_TRAIL_RADIUS = 1.0f;
     public static int JADE_TRAIL_DURATION_TICKS = 60;
     public static int JADE_TRAIL_EFFECT_DURATION_TICKS = 80;
+    public static int JADE_TRAIL_LINGER_TICKS_PER_LEVEL = 10;
+    public static int JADE_TRAIL_LINGER_MAX_TICKS = 100;
+    public static float JADE_TRAIL_LINGER_CONTACT_RADIUS = 1.0f;
+    public static int JADE_TRAIL_CONTACT_EFFECT_DURATION_TICKS = 300;
 }

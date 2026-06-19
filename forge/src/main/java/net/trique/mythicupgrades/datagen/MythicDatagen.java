@@ -28,6 +28,9 @@ public class MythicDatagen {
         event.getGenerator().addProvider(event.includeClient(),
                 new MythicItemModelProvider(output, existingFileHelper));
 
+        event.getGenerator().addProvider(event.includeClient(),
+                new MythicTrimAtlasProvider(output));
+
         event.getGenerator().addProvider(event.includeServer(),
                 new LootTableProvider(output, Set.of(),
                         List.of(new LootTableProvider.SubProviderEntry(
@@ -42,7 +45,10 @@ public class MythicDatagen {
         event.getGenerator().addProvider(event.includeServer(),
                 new MythicTrimMaterialProvider(output));
 
+        MythicBlockTagsProvider blockTags = new MythicBlockTagsProvider(output, event.getLookupProvider(), existingFileHelper);
+        event.getGenerator().addProvider(event.includeServer(), blockTags);
+
         event.getGenerator().addProvider(event.includeServer(),
-                new MythicBlockTagsProvider(output, event.getLookupProvider(), existingFileHelper));
+                new MythicItemTagsProvider(output, event.getLookupProvider(), blockTags.contentsGetter()));
     }
 }

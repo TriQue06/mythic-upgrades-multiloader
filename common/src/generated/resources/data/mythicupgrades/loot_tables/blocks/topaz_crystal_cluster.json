@@ -35,7 +35,7 @@
                     {
                       "condition": "minecraft:match_tool",
                       "predicate": {
-                        "tag": "minecraft:cluster_max_harvestables"
+                        "tag": "minecraft:pickaxes"
                       }
                     }
                   ],

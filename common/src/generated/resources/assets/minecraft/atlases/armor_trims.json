@@ -1,0 +1,60 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:paletted_permutations",
+      "palette_key": "trims/color_palettes/trim_palette",
+      "permutations": {
+        "ametrine": "trims/color_palettes/ametrine",
+        "ametrine_darker": "trims/color_palettes/ametrine_darker",
+        "aquamarine": "trims/color_palettes/aquamarine",
+        "aquamarine_darker": "trims/color_palettes/aquamarine_darker",
+        "citrine": "trims/color_palettes/citrine",
+        "jade": "trims/color_palettes/jade",
+        "jade_darker": "trims/color_palettes/jade_darker",
+        "necoium": "trims/color_palettes/necoium",
+        "peridot": "trims/color_palettes/peridot",
+        "peridot_darker": "trims/color_palettes/peridot_darker",
+        "ruby": "trims/color_palettes/ruby",
+        "ruby_darker": "trims/color_palettes/ruby_darker",
+        "sapphire": "trims/color_palettes/sapphire",
+        "sapphire_darker": "trims/color_palettes/sapphire_darker",
+        "topaz": "trims/color_palettes/topaz",
+        "topaz_darker": "trims/color_palettes/topaz_darker"
+      },
+      "textures": [
+        "trims/models/armor/coast",
+        "trims/models/armor/coast_leggings",
+        "trims/models/armor/dune",
+        "trims/models/armor/dune_leggings",
+        "trims/models/armor/eye",
+        "trims/models/armor/eye_leggings",
+        "trims/models/armor/host",
+        "trims/models/armor/host_leggings",
+        "trims/models/armor/raiser",
+        "trims/models/armor/raiser_leggings",
+        "trims/models/armor/rib",
+        "trims/models/armor/rib_leggings",
+        "trims/models/armor/sentry",
+        "trims/models/armor/sentry_leggings",
+        "trims/models/armor/shaper",
+        "trims/models/armor/shaper_leggings",
+        "trims/models/armor/silence",
+        "trims/models/armor/silence_leggings",
+        "trims/models/armor/snout",
+        "trims/models/armor/snout_leggings",
+        "trims/models/armor/spire",
+        "trims/models/armor/spire_leggings",
+        "trims/models/armor/tide",
+        "trims/models/armor/tide_leggings",
+        "trims/models/armor/vex",
+        "trims/models/armor/vex_leggings",
+        "trims/models/armor/ward",
+        "trims/models/armor/ward_leggings",
+        "trims/models/armor/wayfinder",
+        "trims/models/armor/wayfinder_leggings",
+        "trims/models/armor/wild",
+        "trims/models/armor/wild_leggings"
+      ]
+    }
+  ]
+}

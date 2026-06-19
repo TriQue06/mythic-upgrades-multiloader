@@ -1,0 +1,9 @@
+// 1.20.1	2026-06-19T17:34:59.5642228	Tags for minecraft:item mod id vanilla
+e43290af425b118b75badac7f1a56c42886b5ea9 data/minecraft/tags/items/axes.json
+25462aa8876855ea08f9441725947c72b8f4e47e data/minecraft/tags/items/cluster_max_harvestables.json
+cb83d3b14fb257900f3511b20ab3f5165f642708 data/minecraft/tags/items/hoes.json
+25462aa8876855ea08f9441725947c72b8f4e47e data/minecraft/tags/items/pickaxes.json
+0974a5e1fd57a60faae0b4221d093f6b3426dc10 data/minecraft/tags/items/shovels.json
+181c1d6b1e5c867fbc919ae7a6a6af40ba70bfd5 data/minecraft/tags/items/swords.json
+05954f17535b5ec177ae48864c87dbd6649a9d06 data/minecraft/tags/items/trimmable_armor.json
+de26190e5dab6aacf36e5dc88775d28c93a3f5eb data/minecraft/tags/items/trim_materials.json

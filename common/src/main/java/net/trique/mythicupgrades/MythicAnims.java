@@ -43,11 +43,11 @@ public class MythicAnims {
     public static float TOPAZ_WAVE_SOUND_PITCH_2 = 0.7f;
 
     public static float RUBY_LIFESTEAL_PARTICLE_SCALE = 1.0f;
-    public static float RUBY_BLOOD_THIRST_PARTICLE_SCALE = 1.0f;
+    public static float RUBY_BLOOD_THIRST_PARTICLE_SCALE = 1.5f;
 
     public static float MIASMA_WAVE_SPEED_PER_TICK = 0.25f;
-    public static int MIASMA_WAVE_STEP_DEGREES = 3;
-    public static float MIASMA_WAVE_PARTICLE_SCALE = 1.25f;
+    public static int MIASMA_WAVE_STEP_DEGREES = 5;
+    public static float MIASMA_WAVE_PARTICLE_SCALE = 1.0f;
     public static int MIASMA_WAVE_PARTICLES_PER_LEVEL = 1;
     public static int MIASMA_WAVE_COUNT = 1;
     public static int MIASMA_WAVE_GAP_TICKS = 20;

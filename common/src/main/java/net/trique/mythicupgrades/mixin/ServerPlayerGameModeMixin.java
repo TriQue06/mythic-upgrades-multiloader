@@ -1,7 +1,6 @@
 package net.trique.mythicupgrades.mixin;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerPlayerGameMode;
@@ -14,7 +13,6 @@ import net.trique.mythicupgrades.MythicState;
 import net.trique.mythicupgrades.MythicStats;
 import net.trique.mythicupgrades.item.MythicItems;
 import net.trique.mythicupgrades.util.MUDamageTypes;
-import org.joml.Vector3f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -44,7 +42,7 @@ public abstract class ServerPlayerGameModeMixin {
             int shockLevel = MythicStats.TOPAZ_TOOL_EFFECTIVE_LEVEL;
             float shockRadius = Math.min(shockLevel * MythicStats.TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL, MythicStats.TOPAZ_ARMOR_SHOCK_MAX_RADIUS);
 
-            emitTopazInstantBurst(serverLevel, cx, cy, cz, shockRadius);
+            MythicState.TOPAZ_PENDING_WAVES.put(player, new float[]{(float)cx, (float)cy, (float)cz, shockRadius});
 
             AABB bb = new AABB(cx - shockRadius, cy - shockRadius, cz - shockRadius, cx + shockRadius, cy + shockRadius, cz + shockRadius);
             float shockDamage = shockLevel * MythicStats.TOPAZ_SHOCK_DAMAGE_PER_LEVEL;
@@ -61,36 +59,6 @@ public abstract class ServerPlayerGameModeMixin {
             serverLevel.playSound(null, cx, cy, cz, MythicAnims.TOPAZ_WAVE_SOUND_2, SoundSource.PLAYERS, MythicAnims.TOPAZ_WAVE_SOUND_VOLUME, MythicAnims.TOPAZ_WAVE_SOUND_PITCH_2);
         } else {
             MythicState.TOPAZ_TOOL_HIT_COUNTS.put(player, count);
-        }
-    }
-
-    @Unique
-    private static void emitTopazInstantBurst(ServerLevel level, double cx, double cy, double cz, float maxRadius) {
-        float spacing = 1.2f;
-        for (float r = spacing; r <= maxRadius; r += spacing) {
-            emitTopazRing(level, cx, cy, cz, r);
-        }
-    }
-
-    @Unique
-    private static Vector3f colorFromHex(int hex) {
-        return new Vector3f((hex >> 16 & 0xFF) / 255f, (hex >> 8 & 0xFF) / 255f, (hex & 0xFF) / 255f);
-    }
-
-    @Unique
-    private static void emitTopazRing(ServerLevel level, double cx, double cy, double cz, float radius) {
-        DustParticleOptions c1 = new DustParticleOptions(colorFromHex(MythicAnims.TOPAZ_COLOR_1), MythicAnims.TOPAZ_TOOL_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c2 = new DustParticleOptions(colorFromHex(MythicAnims.TOPAZ_COLOR_2), MythicAnims.TOPAZ_TOOL_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c3 = new DustParticleOptions(colorFromHex(MythicAnims.TOPAZ_COLOR_3), MythicAnims.TOPAZ_TOOL_WAVE_PARTICLE_SCALE);
-        int step = MythicAnims.TOPAZ_TOOL_WAVE_STEP_DEGREES;
-        int segment = step * 3;
-        for (int angle = 0; angle < 360; angle += step) {
-            double rad = Math.toRadians(angle);
-            double px = cx + radius * Math.cos(rad);
-            double pz = cz + radius * Math.sin(rad);
-            int mod = angle % segment;
-            DustParticleOptions color = mod < step ? c1 : mod < step * 2 ? c2 : c3;
-            level.sendParticles(color, px, cy, pz, MythicAnims.TOPAZ_TOOL_WAVE_PARTICLES_PER_POINT, 0, 0.08, 0, 0);
         }
     }
 

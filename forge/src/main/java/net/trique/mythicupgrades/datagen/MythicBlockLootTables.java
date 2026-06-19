@@ -199,7 +199,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
             LootItem.lootTableItem(shard)
                 .apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F)))
                 .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))
-                .when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ItemTags.CLUSTER_MAX_HARVESTABLES)))
+                .when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ItemTags.PICKAXES)))
                 .otherwise(applyExplosionDecay(block,
                     LootItem.lootTableItem(shard)
                         .apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F))))));
