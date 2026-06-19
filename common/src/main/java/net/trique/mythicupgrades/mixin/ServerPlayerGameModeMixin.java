@@ -6,15 +6,14 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerPlayerGameMode;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.phys.AABB;
 import net.trique.mythicupgrades.MythicAnims;
-import net.trique.mythicupgrades.MythicEffects;
 import net.trique.mythicupgrades.MythicState;
 import net.trique.mythicupgrades.MythicStats;
 import net.trique.mythicupgrades.item.MythicItems;
+import net.trique.mythicupgrades.util.MUDamageTypes;
 import org.joml.Vector3f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -48,10 +47,14 @@ public abstract class ServerPlayerGameModeMixin {
             emitTopazInstantBurst(serverLevel, cx, cy, cz, shockRadius);
 
             AABB bb = new AABB(cx - shockRadius, cy - shockRadius, cz - shockRadius, cx + shockRadius, cy + shockRadius, cz + shockRadius);
+            float shockDamage = shockLevel * MythicStats.TOPAZ_SHOCK_DAMAGE_PER_LEVEL;
+            float knockback = shockLevel * MythicStats.TOPAZ_SHOCK_KNOCKBACK_PER_LEVEL;
             for (LivingEntity entity : serverLevel.getEntitiesOfClass(LivingEntity.class, bb)) {
                 if (entity == player) continue;
-                if (entity.distanceTo(player) <= shockRadius)
-                    entity.addEffect(new MobEffectInstance(MythicEffects.TOPAZ_SHOCK, 1, shockLevel - 1));
+                if (entity.distanceTo(player) <= shockRadius) {
+                    entity.hurt(MUDamageTypes.topazShock(player), shockDamage);
+                    entity.knockback(knockback, cx - entity.getX(), cz - entity.getZ());
+                }
             }
 
             serverLevel.playSound(null, cx, cy, cz, MythicAnims.TOPAZ_WAVE_SOUND_1, SoundSource.PLAYERS, MythicAnims.TOPAZ_WAVE_SOUND_VOLUME, MythicAnims.TOPAZ_WAVE_SOUND_PITCH_1);

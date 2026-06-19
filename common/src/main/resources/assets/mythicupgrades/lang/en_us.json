@@ -281,9 +281,17 @@
   "effect.mythicupgrades.blood_thirst": "Blood Thirst",
   "effect.mythicupgrades.lethal_incubation": "Lethal Incubation",
   "effect.mythicupgrades.miasma": "Miasma",
-  "effect.mythicupgrades.icy_aura": "Icy Aura",
+  "effect.mythicupgrades.freeze": "Freeze",
+  "effect.mythicupgrades.ice_shield_mark": "Ice Shield",
   "effect.mythicupgrades.ice_shield": "Ice Shield",
   "effect.mythicupgrades.topaz_shock": "Topaz Shock",
   "death.attack.topaz_shock": "%1$s was struck by a gem of pure rage",
-  "death.attack.topaz_shock.player": "%1$s learned the hard way that %2$s's pickaxe has feelings"
+  "death.attack.topaz_shock.player": "%1$s learned the hard way that %2$s's pickaxe has feelings",
+  "effect.mythicupgrades.charged": "Charged",
+  "effect.mythicupgrades.static_field": "Static Field",
+  "death.attack.citrine_chain": "%1$s was caught in the chain reaction",
+  "death.attack.citrine_chain.player": "%1$s had the misfortune of standing near %2$s's target",
+  "death.attack.static_field": "%1$s was electrocuted by a static field",
+  "effect.mythicupgrades.bouncer": "Bouncer",
+  "effect.mythicupgrades.jade_aura": "Jade Aura"
 }

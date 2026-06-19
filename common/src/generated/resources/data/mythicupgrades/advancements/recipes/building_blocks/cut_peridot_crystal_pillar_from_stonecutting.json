@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_peridot_crystal_pillar": {
+    "has_peridot_crystal_block": {
       "conditions": {
         "items": [
           {
             "items": [
-              "mythicupgrades:peridot_crystal_pillar"
+              "mythicupgrades:peridot_crystal_block"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_peridot_crystal_pillar",
+      "has_peridot_crystal_block",
       "has_the_recipe"
     ]
   ],

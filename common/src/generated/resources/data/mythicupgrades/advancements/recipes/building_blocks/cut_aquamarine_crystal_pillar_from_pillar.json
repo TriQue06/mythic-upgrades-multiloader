@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_aquamarine_crystal_pillar": {
+    "has_aquamarine_crystal_block": {
       "conditions": {
         "items": [
           {
             "items": [
-              "mythicupgrades:aquamarine_crystal_pillar"
+              "mythicupgrades:aquamarine_crystal_block"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_aquamarine_crystal_pillar",
+      "has_aquamarine_crystal_block",
       "has_the_recipe"
     ]
   ],

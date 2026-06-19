@@ -5,6 +5,8 @@ import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
+import java.util.concurrent.CompletableFuture;
+import net.minecraft.core.HolderLookup;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.trique.mythicupgrades.Constants;
@@ -39,5 +41,8 @@ public class MythicDatagen {
 
         event.getGenerator().addProvider(event.includeServer(),
                 new MythicTrimMaterialProvider(output));
+
+        event.getGenerator().addProvider(event.includeServer(),
+                new MythicBlockTagsProvider(output, event.getLookupProvider(), existingFileHelper));
     }
 }

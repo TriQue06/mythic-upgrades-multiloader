@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_citrine_crystal_pillar": {
+    "has_citrine_crystal_block": {
       "conditions": {
         "items": [
           {
             "items": [
-              "mythicupgrades:citrine_crystal_pillar"
+              "mythicupgrades:citrine_crystal_block"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_citrine_crystal_pillar",
+      "has_citrine_crystal_block",
       "has_the_recipe"
     ]
   ],

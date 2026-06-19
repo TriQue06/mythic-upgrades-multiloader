@@ -1,6 +1,8 @@
 package net.trique.mythicupgrades.datagen;
 
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -9,6 +11,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.trique.mythicupgrades.block.MythicBlocks;
 import net.trique.mythicupgrades.item.MythicItems;
@@ -193,10 +196,13 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
 
     private LootTable.Builder createClusterDrop(Block block, Item shard) {
         return createSilkTouchDispatchTable(block,
-            applyExplosionDecay(block,
-                LootItem.lootTableItem(shard)
-                    .apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F)))
-                    .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
+            LootItem.lootTableItem(shard)
+                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F)))
+                .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))
+                .when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ItemTags.CLUSTER_MAX_HARVESTABLES)))
+                .otherwise(applyExplosionDecay(block,
+                    LootItem.lootTableItem(shard)
+                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F))))));
     }
 
     @Override

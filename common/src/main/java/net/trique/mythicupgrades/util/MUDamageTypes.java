@@ -23,11 +23,17 @@ public class MUDamageTypes {
     public static final ResourceKey<DamageType> PERIDOT_INCUBATION = ResourceKey.create(
         Registries.DAMAGE_TYPE, new ResourceLocation(Constants.MOD_ID, "peridot_incubation_damage_type"));
 
-    public static final ResourceKey<DamageType> ICY_AURA_BURST = ResourceKey.create(
-        Registries.DAMAGE_TYPE, new ResourceLocation(Constants.MOD_ID, "icy_aura_burst_damage_type"));
+    public static final ResourceKey<DamageType> ICE_SHIELD_MARK_BURST = ResourceKey.create(
+        Registries.DAMAGE_TYPE, new ResourceLocation(Constants.MOD_ID, "ice_shield_mark_burst_damage_type"));
 
     public static final ResourceKey<DamageType> ICE_SHIELD_REFLECT = ResourceKey.create(
         Registries.DAMAGE_TYPE, new ResourceLocation(Constants.MOD_ID, "ice_shield_reflect_damage_type"));
+
+    public static final ResourceKey<DamageType> CITRINE_CHAIN = ResourceKey.create(
+        Registries.DAMAGE_TYPE, new ResourceLocation(Constants.MOD_ID, "citrine_chain_damage_type"));
+
+    public static final ResourceKey<DamageType> STATIC_FIELD = ResourceKey.create(
+        Registries.DAMAGE_TYPE, new ResourceLocation(Constants.MOD_ID, "static_field_damage_type"));
 
     public static DamageSource deflecting(LivingEntity source) {
         return build(DEFLECTING, source);
@@ -45,12 +51,20 @@ public class MUDamageTypes {
         return build(PERIDOT_INCUBATION, source);
     }
 
-    public static DamageSource icyAuraBurst(LivingEntity source) {
-        return build(ICY_AURA_BURST, source);
+    public static DamageSource iceShieldMarkBurst(LivingEntity source) {
+        return build(ICE_SHIELD_MARK_BURST, source);
     }
 
     public static DamageSource iceShieldReflect(LivingEntity source) {
         return build(ICE_SHIELD_REFLECT, source);
+    }
+
+    public static DamageSource citrineChain(LivingEntity source) {
+        return build(CITRINE_CHAIN, source);
+    }
+
+    public static DamageSource staticField(LivingEntity source) {
+        return build(STATIC_FIELD, source);
     }
 
     public static DamageSource topazShockEffect(LivingEntity target) {

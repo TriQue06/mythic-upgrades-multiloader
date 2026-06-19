@@ -31,10 +31,11 @@ public class MythicStats {
     public static int TOPAZ_BOOTS_LEVELS = 1;
 
     public static float TOPAZ_SHOCK_DAMAGE_PER_LEVEL = 1.0f;
+    public static float TOPAZ_SHOCK_KNOCKBACK_PER_LEVEL = 0.5f;
     public static float TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL = 1.0f;
     public static float TOPAZ_ARMOR_SHOCK_MAX_RADIUS = 10.0f;
 
-    public static int TOPAZ_TOOL_SHOCK_INTERVAL = 5;
+    public static int TOPAZ_TOOL_SHOCK_INTERVAL = 3;
     public static int TOPAZ_TOOL_EFFECTIVE_LEVEL = 5;
 
     public static int RUBY_HELMET_LEVELS = 2;
@@ -42,8 +43,8 @@ public class MythicStats {
     public static int RUBY_LEGGINGS_LEVELS = 3;
     public static int RUBY_BOOTS_LEVELS = 1;
 
-    public static float RUBY_TOOL_LIFESTEAL_FRACTION = 0.10f;
-    public static int RUBY_TOOL_LIFESTEAL_PARTICLE_COUNT = 15;
+    public static float RUBY_TOOL_LIFESTEAL_FRACTION = 0.05f;
+    public static int RUBY_TOOL_LIFESTEAL_PARTICLE_COUNT = 20;
 
     public static float BLOOD_THIRST_RADIUS_PER_LEVEL = 3.0f;
     public static float BLOOD_THIRST_MAX_RADIUS = 30.0f;
@@ -78,13 +79,53 @@ public class MythicStats {
     public static int AQUAMARINE_TOOL_SLOWNESS_DURATION_TICKS = 60;
     public static int AQUAMARINE_TOOL_SLOWNESS_AMPLIFIER = 0;
 
-    public static int ICY_AURA_DURATION_TICKS = 60;
-    public static float ICY_AURA_BURST_RADIUS = 3.0f;
-    public static float ICY_AURA_BURST_DAMAGE = 3.0f;
-    public static int ICY_AURA_BURST_FREEZE_TICKS = 6;
+    public static int ICE_SHIELD_MARK_DURATION_TICKS = 60;
+    public static float ICE_SHIELD_MARK_BURST_RADIUS = 3.0f;
+    public static float ICE_SHIELD_MARK_BURST_DAMAGE = 3.0f;
+    public static int ICE_SHIELD_MARK_BURST_FREEZE_TICKS = 6;
 
     public static float ICE_SHIELD_MAGIC_DAMAGE_PER_LEVEL = 0.5f;
+
+    public static int CITRINE_HELMET_LEVELS = 2;
+    public static int CITRINE_CHESTPLATE_LEVELS = 4;
+    public static int CITRINE_LEGGINGS_LEVELS = 3;
+    public static int CITRINE_BOOTS_LEVELS = 1;
+
+    public static int CITRINE_TOOL_CHARGED_DURATION_TICKS = 60;
+    public static int CITRINE_TOOL_FREEZE_TICKS = 5;
+    public static float CITRINE_TOOL_CHAIN_FRACTION = 0.333f;
+    public static int CITRINE_TOOL_CHAIN_TARGETS = 3;
+    public static float CITRINE_TOOL_CHAIN_RANGE = 10.0f;
+
+    public static int CITRINE_CHARGED_LIGHTNING_MIN = 1;
+    public static int CITRINE_CHARGED_LIGHTNING_MAX = 3;
+    public static float CITRINE_CHARGED_LIGHTNING_SPREAD = 1.5f;
+
+    public static float STATIC_FIELD_RADIUS_PER_LEVEL = 0.30f;
+    public static float STATIC_FIELD_MAX_RADIUS = 3.0f;
+    public static float STATIC_FIELD_DAMAGE_PER_LEVEL_PER_SECOND = 0.30f;
+    public static float STATIC_FIELD_MAX_DAMAGE_PER_SECOND = 3.0f;
+    public static float STATIC_FIELD_LIGHTNING_CHANCE_PER_LEVEL = 0.01f;
+    public static float STATIC_FIELD_MAX_LIGHTNING_CHANCE = 0.10f;
+
     public static int ICE_SHIELD_SLOWNESS_DURATION_TICKS_PER_LEVEL = 10;
     public static int ICE_SHIELD_SLOWNESS_MAX_DURATION_TICKS = 100;
     public static int ICE_SHIELD_SLOWNESS_MAX_AMPLIFIER = 9;
+
+    public static int JADE_HELMET_LEVELS = 2;
+    public static int JADE_CHESTPLATE_LEVELS = 4;
+    public static int JADE_LEGGINGS_LEVELS = 3;
+    public static int JADE_BOOTS_LEVELS = 1;
+
+    public static int JADE_TOOL_BOUNCER_DURATION_TICKS = 40;
+    public static float JADE_TOOL_BOUNCER_JUMP_BOOST = 0.15f;
+    public static float JADE_TOOL_TELEPORT_CHANCE = 0.05f;
+
+    public static float JADE_AURA_SPEED_PER_LEVEL = 0.10f;
+    public static float JADE_AURA_JUMP_PER_LEVEL = 0.05f;
+
+    public static int JADE_TRAIL_INTERVAL_TICKS = 10;
+    public static float JADE_TRAIL_RADIUS = 1.0f;
+    public static int JADE_TRAIL_DURATION_TICKS = 60;
+    public static int JADE_TRAIL_EFFECT_DURATION_TICKS = 80;
 }

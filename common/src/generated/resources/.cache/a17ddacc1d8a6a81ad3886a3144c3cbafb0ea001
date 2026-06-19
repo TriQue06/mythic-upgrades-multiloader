@@ -1,0 +1,3 @@
+// 1.20.1	2026-06-19T13:23:28.3226027	Tags for minecraft:block mod id mythicupgrades
+7a482805ceb35f57807857bd10aa02c0db24ed29 data/minecraft/tags/blocks/mineable/pickaxe.json
+bea0dd9611a8b583d6478177579839ea6bcd935b data/minecraft/tags/blocks/needs_iron_tool.json

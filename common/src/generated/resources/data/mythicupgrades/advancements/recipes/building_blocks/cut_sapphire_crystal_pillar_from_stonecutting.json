@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_sapphire_crystal_pillar": {
+    "has_sapphire_crystal_block": {
       "conditions": {
         "items": [
           {
             "items": [
-              "mythicupgrades:sapphire_crystal_pillar"
+              "mythicupgrades:sapphire_crystal_block"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_sapphire_crystal_pillar",
+      "has_sapphire_crystal_block",
       "has_the_recipe"
     ]
   ],

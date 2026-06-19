@@ -80,8 +80,11 @@ public class MythicBlocks {
         UniformInt.of(3, 7)));
 
     public static final Block NECOIUM_ORE = defer("necoium_ore", new DropExperienceBlock(
-        BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM)
-            .requiresCorrectToolForDrops().strength(3.0F, 9.0F),
+        BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).mapColor(MapColor.STONE).strength(3.0F, 3.0F),
+        UniformInt.of(3, 7)));
+
+    public static final Block DEEPSLATE_NECOIUM_ORE = defer("deepslate_necoium_ore", new DropExperienceBlock(
+        BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F),
         UniformInt.of(3, 7)));
 
     public static final Block RAW_NECOIUM_BLOCK = defer("raw_necoium_block", new Block(

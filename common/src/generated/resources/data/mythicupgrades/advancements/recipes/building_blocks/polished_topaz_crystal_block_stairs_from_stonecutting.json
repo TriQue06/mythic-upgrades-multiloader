@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_polished_topaz_crystal_block": {
+    "has_topaz_crystal_block": {
       "conditions": {
         "items": [
           {
             "items": [
-              "mythicupgrades:polished_topaz_crystal_block"
+              "mythicupgrades:topaz_crystal_block"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_polished_topaz_crystal_block",
+      "has_topaz_crystal_block",
       "has_the_recipe"
     ]
   ],
