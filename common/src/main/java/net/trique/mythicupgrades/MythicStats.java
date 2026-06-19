@@ -30,8 +30,7 @@ public class MythicStats {
     public static int TOPAZ_LEGGINGS_LEVELS = 3;
     public static int TOPAZ_BOOTS_LEVELS = 1;
 
-    public static float TOPAZ_ARMOR_SHOCK_DAMAGE_PER_LEVEL = 1.0f;
-    public static float TOPAZ_ARMOR_SHOCK_MAX_DAMAGE = 10.0f;
+    public static float TOPAZ_SHOCK_DAMAGE_PER_LEVEL = 1.0f;
     public static float TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL = 1.0f;
     public static float TOPAZ_ARMOR_SHOCK_MAX_RADIUS = 10.0f;
 
@@ -51,4 +50,41 @@ public class MythicStats {
     public static float BLOOD_THIRST_HEAL_FRACTION_PER_LEVEL = 0.05f;
     public static float BLOOD_THIRST_MAX_HEAL_FRACTION = 0.5f;
     public static int BLOOD_THIRST_PARTICLES_PER_LEVEL = 2;
+
+    public static int PERIDOT_HELMET_LEVELS = 2;
+    public static int PERIDOT_CHESTPLATE_LEVELS = 4;
+    public static int PERIDOT_LEGGINGS_LEVELS = 3;
+    public static int PERIDOT_BOOTS_LEVELS = 1;
+
+    public static int LETHAL_INCUBATION_TOOL_LEVEL = 3;
+    public static int LETHAL_INCUBATION_DURATION_TICKS_PER_LEVEL = 20;
+    public static int LETHAL_INCUBATION_POISON_DURATION_TICKS_PER_LEVEL = 20;
+    public static float LETHAL_INCUBATION_SHOCK_DAMAGE = 4.0f;
+    public static float LETHAL_INCUBATION_SHOCK_RADIUS = 5.0f;
+
+    public static float MIASMA_CLOUD_RADIUS_PER_LEVEL = 1.0f;
+    public static float MIASMA_CLOUD_MAX_RADIUS = 10.0f;
+    public static int MIASMA_POISON_MAX_AMPLIFIER = 9;
+    public static int MIASMA_POISON_DURATION_TICKS_PER_LEVEL = 20;
+    public static int MIASMA_CLOUD_DURATION_TICKS_PER_LEVEL = 40;
+    public static int MIASMA_INTERVAL_TICKS = 100;
+
+    public static int AQUAMARINE_HELMET_LEVELS = 2;
+    public static int AQUAMARINE_CHESTPLATE_LEVELS = 4;
+    public static int AQUAMARINE_LEGGINGS_LEVELS = 3;
+    public static int AQUAMARINE_BOOTS_LEVELS = 1;
+
+    public static int AQUAMARINE_TOOL_FREEZE_TICKS = 10;
+    public static int AQUAMARINE_TOOL_SLOWNESS_DURATION_TICKS = 60;
+    public static int AQUAMARINE_TOOL_SLOWNESS_AMPLIFIER = 0;
+
+    public static int ICY_AURA_DURATION_TICKS = 60;
+    public static float ICY_AURA_BURST_RADIUS = 3.0f;
+    public static float ICY_AURA_BURST_DAMAGE = 3.0f;
+    public static int ICY_AURA_BURST_FREEZE_TICKS = 6;
+
+    public static float ICE_SHIELD_MAGIC_DAMAGE_PER_LEVEL = 0.5f;
+    public static int ICE_SHIELD_SLOWNESS_DURATION_TICKS_PER_LEVEL = 10;
+    public static int ICE_SHIELD_SLOWNESS_MAX_DURATION_TICKS = 100;
+    public static int ICE_SHIELD_SLOWNESS_MAX_AMPLIFIER = 9;
 }

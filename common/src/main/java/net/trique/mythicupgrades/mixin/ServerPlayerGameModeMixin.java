@@ -6,14 +6,15 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerPlayerGameMode;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.phys.AABB;
 import net.trique.mythicupgrades.MythicAnims;
+import net.trique.mythicupgrades.MythicEffects;
 import net.trique.mythicupgrades.MythicState;
 import net.trique.mythicupgrades.MythicStats;
 import net.trique.mythicupgrades.item.MythicItems;
-import net.trique.mythicupgrades.util.MUDamageTypes;
 import org.joml.Vector3f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -41,9 +42,8 @@ public abstract class ServerPlayerGameModeMixin {
             double cx = pos.getX() + 0.5;
             double cy = pos.getY() + 0.5;
             double cz = pos.getZ() + 0.5;
-            float effectiveLevel = MythicStats.TOPAZ_TOOL_EFFECTIVE_LEVEL;
-            float shockDamage = Math.min(effectiveLevel * MythicStats.TOPAZ_ARMOR_SHOCK_DAMAGE_PER_LEVEL, MythicStats.TOPAZ_ARMOR_SHOCK_MAX_DAMAGE);
-            float shockRadius = Math.min(effectiveLevel * MythicStats.TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL, MythicStats.TOPAZ_ARMOR_SHOCK_MAX_RADIUS);
+            int shockLevel = MythicStats.TOPAZ_TOOL_EFFECTIVE_LEVEL;
+            float shockRadius = Math.min(shockLevel * MythicStats.TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL, MythicStats.TOPAZ_ARMOR_SHOCK_MAX_RADIUS);
 
             emitTopazInstantBurst(serverLevel, cx, cy, cz, shockRadius);
 
@@ -51,7 +51,7 @@ public abstract class ServerPlayerGameModeMixin {
             for (LivingEntity entity : serverLevel.getEntitiesOfClass(LivingEntity.class, bb)) {
                 if (entity == player) continue;
                 if (entity.distanceTo(player) <= shockRadius)
-                    entity.hurt(MUDamageTypes.topazShock(player), shockDamage);
+                    entity.addEffect(new MobEffectInstance(MythicEffects.TOPAZ_SHOCK, 1, shockLevel - 1));
             }
 
             serverLevel.playSound(null, cx, cy, cz, MythicAnims.TOPAZ_WAVE_SOUND_1, SoundSource.PLAYERS, MythicAnims.TOPAZ_WAVE_SOUND_VOLUME, MythicAnims.TOPAZ_WAVE_SOUND_PITCH_1);
@@ -70,10 +70,15 @@ public abstract class ServerPlayerGameModeMixin {
     }
 
     @Unique
+    private static Vector3f colorFromHex(int hex) {
+        return new Vector3f((hex >> 16 & 0xFF) / 255f, (hex >> 8 & 0xFF) / 255f, (hex & 0xFF) / 255f);
+    }
+
+    @Unique
     private static void emitTopazRing(ServerLevel level, double cx, double cy, double cz, float radius) {
-        DustParticleOptions c1 = new DustParticleOptions(new Vector3f(0.620f, 0.176f, 0.106f), MythicAnims.TOPAZ_TOOL_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c2 = new DustParticleOptions(new Vector3f(0.878f, 0.333f, 0.122f), MythicAnims.TOPAZ_TOOL_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c3 = new DustParticleOptions(new Vector3f(0.976f, 0.616f, 0.235f), MythicAnims.TOPAZ_TOOL_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c1 = new DustParticleOptions(colorFromHex(MythicAnims.TOPAZ_COLOR_1), MythicAnims.TOPAZ_TOOL_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c2 = new DustParticleOptions(colorFromHex(MythicAnims.TOPAZ_COLOR_2), MythicAnims.TOPAZ_TOOL_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c3 = new DustParticleOptions(colorFromHex(MythicAnims.TOPAZ_COLOR_3), MythicAnims.TOPAZ_TOOL_WAVE_PARTICLE_SCALE);
         int step = MythicAnims.TOPAZ_TOOL_WAVE_STEP_DEGREES;
         int segment = step * 3;
         for (int angle = 0; angle < 360; angle += step) {

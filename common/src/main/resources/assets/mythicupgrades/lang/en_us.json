@@ -278,5 +278,12 @@
   "effect.mythicupgrades.damage_deflection": "Damage Deflection",
   "effect.mythicupgrades.arcane_aura": "Arcane Aura",
   "effect.mythicupgrades.topaz_reaction": "Topaz Reaction",
-  "effect.mythicupgrades.blood_thirst": "Blood Thirst"
+  "effect.mythicupgrades.blood_thirst": "Blood Thirst",
+  "effect.mythicupgrades.lethal_incubation": "Lethal Incubation",
+  "effect.mythicupgrades.miasma": "Miasma",
+  "effect.mythicupgrades.icy_aura": "Icy Aura",
+  "effect.mythicupgrades.ice_shield": "Ice Shield",
+  "effect.mythicupgrades.topaz_shock": "Topaz Shock",
+  "death.attack.topaz_shock": "%1$s was struck by a gem of pure rage",
+  "death.attack.topaz_shock.player": "%1$s learned the hard way that %2$s's pickaxe has feelings"
 }

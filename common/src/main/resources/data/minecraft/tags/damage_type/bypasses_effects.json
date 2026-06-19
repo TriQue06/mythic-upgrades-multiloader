@@ -2,6 +2,9 @@
   "values": [
     "mythicupgrades:deflecting_damage_type",
     "mythicupgrades:percentage_damage_type",
-    "mythicupgrades:topaz_shock_damage_type"
+    "mythicupgrades:topaz_shock_damage_type",
+    "mythicupgrades:peridot_incubation_damage_type",
+    "mythicupgrades:icy_aura_burst_damage_type",
+    "mythicupgrades:ice_shield_reflect_damage_type"
   ]
 }

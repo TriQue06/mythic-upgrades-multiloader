@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Palette Swapper</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #1a1a2e; color: #eee; font-family: monospace; padding: 24px; }
+  h1 { margin-bottom: 24px; font-size: 1.4rem; color: #a0c4ff; }
+  .step { background: #16213e; border: 1px solid #0f3460; border-radius: 8px; padding: 20px; margin-bottom: 16px; }
+  .step h2 { font-size: 0.85rem; color: #a0c4ff; margin-bottom: 12px; letter-spacing: 0.05em; text-transform: uppercase; }
+  label.upload-btn {
+    display: inline-block; padding: 8px 16px; background: #0f3460; border: 1px solid #a0c4ff;
+    border-radius: 4px; cursor: pointer; font-size: 0.85rem; transition: background 0.2s;
+  }
+  label.upload-btn:hover { background: #1a4a80; }
+  input[type=file] { display: none; }
+  .palette-preview { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; align-items: center; }
+  .swatch { width: 28px; height: 28px; border: 1px solid #444; border-radius: 3px; position: relative; }
+  .swatch .idx { position: absolute; bottom: 1px; right: 2px; font-size: 9px; color: rgba(255,255,255,0.6); text-shadow: 0 0 2px #000; }
+  .file-list { margin-top: 10px; font-size: 0.8rem; color: #aaa; }
+  .file-list span { display: inline-block; background: #0f3460; border-radius: 3px; padding: 2px 8px; margin: 2px; }
+  button#process {
+    width: 100%; padding: 14px; background: #e94560; border: none; border-radius: 6px;
+    color: #fff; font-size: 1rem; font-family: monospace; cursor: pointer; margin-top: 8px; transition: background 0.2s;
+  }
+  button#process:hover:not(:disabled) { background: #c73652; }
+  button#process:disabled { opacity: 0.4; cursor: default; }
+  #log { margin-top: 16px; font-size: 0.8rem; color: #7ec8a0; min-height: 20px; }
+  #results { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+  .result-card { background: #0f3460; border-radius: 6px; padding: 10px; text-align: center; cursor: pointer; border: 2px solid transparent; transition: border-color 0.15s; }
+  .result-card.selected { border-color: #a0c4ff; }
+  .result-card canvas { display: block; margin-bottom: 6px; image-rendering: pixelated; }
+  .result-card .check { font-size: 0.75rem; color: #aaa; margin-top: 4px; }
+  .result-card.selected .check { color: #a0c4ff; }
+  .arrow { color: #a0c4ff; font-size: 1.2rem; align-self: center; }
+  #download-bar { display:none; margin-top: 12px; gap: 10px; align-items: center; flex-wrap: wrap; }
+  #download-bar.visible { display: flex; }
+  #btn-select-all { padding: 7px 14px; background: #0f3460; border: 1px solid #a0c4ff; border-radius: 4px; color: #eee; font-family: monospace; font-size: 0.8rem; cursor: pointer; }
+  #btn-dl-selected { padding: 7px 18px; background: #e94560; border: none; border-radius: 4px; color: #fff; font-family: monospace; font-size: 0.85rem; cursor: pointer; }
+  #btn-dl-selected:hover { background: #c73652; }
+  #sel-count { font-size: 0.8rem; color: #aaa; }
+</style>
+</head>
+<body>
+<h1>🎨 Palette Swapper</h1>
+
+<div class="step">
+  <h2>1. Eski Renk Paleti (1×N PNG)</h2>
+  <label class="upload-btn">Dosya Seç <input type="file" id="oldPalette" accept="image/*"></label>
+  <div class="palette-preview" id="oldSwatches"></div>
+</div>
+
+<div class="step">
+  <h2>2. Yeni Renk Paleti (aynı boyutta)</h2>
+  <label class="upload-btn">Dosya Seç <input type="file" id="newPalette" accept="image/*"></label>
+  <div class="palette-preview" id="newSwatches"></div>
+</div>
+
+<div class="step">
+  <h2>3. Pixel Art Dosyaları</h2>
+  <label class="upload-btn">Dosyaları Seç <input type="file" id="artFiles" accept="image/*" multiple></label>
+  <div class="file-list" id="fileList"></div>
+</div>
+
+<div class="step">
+  <h2>4. Dosya Adı Değiştir (isteğe bağlı)</h2>
+  <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+    <input id="fnFind" type="text" placeholder="Aranan metin (örn: citrine)" style="background:#0f3460;border:1px solid #a0c4ff;border-radius:4px;padding:6px 10px;color:#eee;font-family:monospace;font-size:0.85rem;flex:1;min-width:140px;">
+    <span style="color:#a0c4ff;">→</span>
+    <input id="fnReplace" type="text" placeholder="Yeni metin (örn: topaz)" style="background:#0f3460;border:1px solid #a0c4ff;border-radius:4px;padding:6px 10px;color:#eee;font-family:monospace;font-size:0.85rem;flex:1;min-width:140px;">
+  </div>
+</div>
+
+<button id="process" disabled>Renkleri Değiştir & İndir</button>
+<div id="log"></div>
+<div id="download-bar">
+  <button id="btn-select-all">Tümünü Seç</button>
+  <button id="btn-dl-selected">Seçilenleri ZIP İndir</button>
+  <span id="sel-count"></span>
+</div>
+<div id="results"></div>
+
+<script>
+let oldColors = null;
+let newColors = null;
+let artFiles = [];
+
+async function loadImageRaw(file) {
+  const url = URL.createObjectURL(file);
+  let bitmap;
+  try {
+    bitmap = await createImageBitmap(file, { colorSpaceConversion: 'none' });
+  } catch {
+    // fallback for browsers that don't support the option
+    bitmap = await createImageBitmap(file);
+  }
+  const c = document.createElement('canvas');
+  c.width = bitmap.width; c.height = bitmap.height;
+  const ctx = c.getContext('2d', { colorSpace: 'srgb' });
+  ctx.drawImage(bitmap, 0, 0);
+  bitmap.close();
+  URL.revokeObjectURL(url);
+  return { canvas: c, ctx };
+}
+
+async function loadPaletteColors(file) {
+  const { ctx, canvas } = await loadImageRaw(file);
+  const colors = [];
+  for (let x = 0; x < canvas.width; x++) {
+    const d = ctx.getImageData(x, 0, 1, 1).data;
+    colors.push([d[0], d[1], d[2], d[3]]);
+  }
+  return colors;
+}
+
+function renderSwatches(colors, containerId) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  colors.forEach((c, i) => {
+    const s = document.createElement('div');
+    s.className = 'swatch';
+    s.style.background = `rgba(${c[0]},${c[1]},${c[2]},${c[3]/255})`;
+    s.title = `#${c[0].toString(16).padStart(2,'0')}${c[1].toString(16).padStart(2,'0')}${c[2].toString(16).padStart(2,'0')} (${i})`;
+    const idx = document.createElement('span');
+    idx.className = 'idx';
+    idx.textContent = i;
+    s.appendChild(idx);
+    el.appendChild(s);
+  });
+}
+
+function colorsMatch(a, b) {
+  return a[0]===b[0] && a[1]===b[1] && a[2]===b[2] && a[3]===b[3];
+}
+
+function checkReady() {
+  document.getElementById('process').disabled = !(oldColors && newColors && artFiles.length > 0);
+}
+
+document.getElementById('oldPalette').addEventListener('change', async e => {
+  if (!e.target.files[0]) return;
+  oldColors = await loadPaletteColors(e.target.files[0]);
+  renderSwatches(oldColors, 'oldSwatches');
+  checkReady();
+});
+
+document.getElementById('newPalette').addEventListener('change', async e => {
+  if (!e.target.files[0]) return;
+  newColors = await loadPaletteColors(e.target.files[0]);
+  renderSwatches(newColors, 'newSwatches');
+  checkReady();
+});
+
+document.getElementById('artFiles').addEventListener('change', e => {
+  artFiles = Array.from(e.target.files);
+  const fl = document.getElementById('fileList');
+  fl.innerHTML = artFiles.map(f => `<span>${f.name}</span>`).join('');
+  checkReady();
+});
+
+document.getElementById('process').addEventListener('click', async () => {
+  const log = document.getElementById('log');
+  const results = document.getElementById('results');
+  results.innerHTML = '';
+  log.textContent = 'İşleniyor...';
+
+  if (oldColors.length !== newColors.length) {
+    log.textContent = `⚠️ Palet boyutları eşleşmiyor! Eski: ${oldColors.length}, Yeni: ${newColors.length}`;
+    return;
+  }
+
+  // Build lookup: stringify old color → new color index
+  const map = new Map();
+  oldColors.forEach((c, i) => {
+    map.set(`${c[0]},${c[1]},${c[2]},${c[3]}`, i);
+  });
+
+  const zip = new JSZip();
+  let done = 0;
+  const fnFind = document.getElementById('fnFind').value;
+  const fnReplace = document.getElementById('fnReplace').value;
+
+  for (const file of artFiles) {
+    const { canvas: c, ctx } = await loadImageRaw(file);
+    const imageData = ctx.getImageData(0, 0, c.width, c.height);
+    const data = imageData.data;
+
+    for (let i = 0; i < data.length; i += 4) {
+      const key = `${data[i]},${data[i+1]},${data[i+2]},${data[i+3]}`;
+      const idx = map.get(key);
+      if (idx !== undefined) {
+        const nc = newColors[idx];
+        data[i] = nc[0]; data[i+1] = nc[1]; data[i+2] = nc[2]; data[i+3] = nc[3];
+      }
+    }
+
+    ctx.putImageData(imageData, 0, 0);
+
+    const blob = await new Promise(res => c.toBlob(res, 'image/png'));
+    const outName = fnFind ? file.name.replaceAll(fnFind, fnReplace) : file.name;
+
+    // Preview card
+    const card = document.createElement('div');
+    card.className = 'result-card selected';
+    card._blob = blob;
+    card._name = outName;
+
+    const preview = document.createElement('canvas');
+    const scale = Math.max(1, Math.min(8, Math.floor(128 / Math.max(c.width, c.height))));
+    preview.width = c.width * scale;
+    preview.height = c.height * scale;
+    preview.style.imageRendering = 'pixelated';
+    const pctx = preview.getContext('2d');
+    pctx.imageSmoothingEnabled = false;
+    pctx.drawImage(c, 0, 0, preview.width, preview.height);
+    card.appendChild(preview);
+
+    const nameLabel = document.createElement('div');
+    nameLabel.style.cssText = 'font-size:0.7rem;color:#aaa;margin-top:4px;word-break:break-all;';
+    nameLabel.textContent = outName;
+    card.appendChild(nameLabel);
+
+    const checkLabel = document.createElement('div');
+    checkLabel.className = 'check';
+    checkLabel.textContent = '✓ seçili';
+    card.appendChild(checkLabel);
+
+    card.addEventListener('click', () => {
+      card.classList.toggle('selected');
+      checkLabel.textContent = card.classList.contains('selected') ? '✓ seçili' : '○ seçilmedi';
+      updateSelCount();
+    });
+
+    results.appendChild(card);
+    done++;
+    log.textContent = `${done}/${artFiles.length} işlendi...`;
+  }
+
+  log.textContent = `✅ ${done} dosya hazır.`;
+  document.getElementById('download-bar').classList.add('visible');
+  updateSelCount();
+});
+
+function updateSelCount() {
+  const n = document.querySelectorAll('.result-card.selected').length;
+  document.getElementById('sel-count').textContent = `${n} dosya seçili`;
+}
+
+document.getElementById('btn-select-all').addEventListener('click', () => {
+  const cards = document.querySelectorAll('.result-card');
+  const allSelected = [...cards].every(c => c.classList.contains('selected'));
+  cards.forEach(card => {
+    card.classList.toggle('selected', !allSelected);
+    card.querySelector('.check').textContent = !allSelected ? '✓ seçili' : '○ seçilmedi';
+  });
+  updateSelCount();
+});
+
+document.getElementById('btn-dl-selected').addEventListener('click', async () => {
+  const selected = document.querySelectorAll('.result-card.selected');
+  if (!selected.length) return;
+  const zip = new JSZip();
+  selected.forEach(card => zip.file(card._name, card._blob));
+  const zipBlob = await zip.generateAsync({ type: 'blob' });
+  const url = URL.createObjectURL(zipBlob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'palette_swapped.zip'; a.click();
+  URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>
