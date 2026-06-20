@@ -2,6 +2,36 @@ plugins {
     id 'multiloader-loader'
     id 'fabric-loom'
 }
+
+// Loom does not auto-extract JiJ dependencies from local fileTree mods.
+// TerraBlender-fabric bundles nightconfig (core + toml) as JiJ. Extract them
+// from the TerraBlender JAR so they appear on the dev-run classpath.
+def tbJiJDir = layout.buildDirectory.dir('terrablender-jij')
+
+def extractTBJiJ = tasks.register('extractTerraBlenderJiJ') {
+    def tbJar = rootProject.fileTree('libs').find {
+        it.name.startsWith('TerraBlender-fabric-') && it.name.endsWith('.jar')
+    }
+    inputs.file(tbJar)
+    outputs.dir(tbJiJDir)
+    doLast {
+        def outDir = tbJiJDir.get().asFile
+        outDir.mkdirs()
+        def zis = new java.util.zip.ZipInputStream(new java.io.FileInputStream(tbJar))
+        try {
+            java.util.zip.ZipEntry entry
+            while ((entry = zis.nextEntry) != null) {
+                if (!entry.directory && entry.name.startsWith('META-INF/jars/') && entry.name.endsWith('.jar')) {
+                    def name = entry.name.substring(entry.name.lastIndexOf('/') + 1)
+                    new File(outDir, name).bytes = zis.readAllBytes()
+                    logger.lifecycle("Extracted TerraBlender JiJ: {}", name)
+                }
+                zis.closeEntry()
+            }
+        } finally { zis.close() }
+    }
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.layered {
@@ -12,6 +42,11 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     implementation project(":common")
+    // modImplementation remaps TerraBlender-fabric (intermediary→Mojmap) via Loom.
+    // fabric.mod.json does not list TerraBlender in 'depends', so it stays optional.
+    modImplementation fileTree(dir: rootProject.file('libs'), include: ['TerraBlender-fabric-*.jar'])
+    // nightconfig JARs extracted from TerraBlender's JiJ bundle — required at runtime
+    runtimeOnly(fileTree(tbJiJDir) { builtBy extractTBJiJ })
 }
 
 loom {

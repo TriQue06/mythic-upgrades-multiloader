@@ -1,3 +1,14 @@
+import org.objectweb.asm.*
+import org.objectweb.asm.commons.*
+
+buildscript {
+    repositories { mavenCentral() }
+    dependencies {
+        classpath 'org.ow2.asm:asm:9.6'
+        classpath 'org.ow2.asm:asm-commons:9.6'
+    }
+}
+
 plugins {
     id 'multiloader-loader'
     id 'net.neoforged.moddev.legacyforge'
@@ -5,16 +16,13 @@ plugins {
 
 mixin {
     add(sourceSets.main, "${mod_id}.refmap.json")
-
     config("${mod_id}.mixins.json")
     config("${mod_id}.forge.mixins.json")
 }
 
 legacyForge {
     version = "${minecraft_version}-${forge_version}"
-
     validateAccessTransformers = true
-
     def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
     if (at.exists()) {
         accessTransformers = ["src/main/resources/META-INF/accesstransformer.cfg"]
@@ -24,9 +32,7 @@ legacyForge {
         mappingsVersion = parchment_version
     }
     runs {
-        client {
-            client()
-        }
+        client { client() }
         data {
             data()
             programArguments.addAll '--mod', project.mod_id, '--all',
@@ -34,28 +40,105 @@ legacyForge {
                 '--existing', file('src/main/resources/').getAbsolutePath(),
                 '--existing', rootProject.file('common/src/main/resources/').getAbsolutePath()
         }
-        server {
-            server()
-        }
+        server { server() }
     }
-
     mods {
-        "${mod_id}" {
-            sourceSet sourceSets.main
-        }
+        "${mod_id}" { sourceSet sourceSets.main }
     }
 }
 
-// Generated resources are in :common's srcDir
+// TerraBlender 3.0.1.10 class files use SRG names (m_XXXXX_, f_XXXXX_) for Minecraft
+// method/field references. In production Forge applies SRG→Mojmap bytecode transformation
+// at class-load time; in the NeoForge moddev dev environment that transformation is absent.
+// This task replicates it using intermediateToNamed.srg so the dev run works identically.
+def patchedTBJar = layout.buildDirectory.file('terrablender/terrablender-forge-patched.jar')
+
+def patchTerraBlender = tasks.register('patchTerraBlender') {
+    def sourceJar = rootProject.fileTree('libs').find {
+        it.name.startsWith('TerraBlender-forge-') && it.name.endsWith('.jar')
+    }
+    def srgFile = layout.buildDirectory.file('moddev/artifacts/intermediateToNamed.srg')
+
+    inputs.file(sourceJar)
+    inputs.file(srgFile)
+    outputs.file(patchedTBJar)
+    dependsOn 'createMinecraftArtifacts'
+
+    doLast {
+        def outputFile = patchedTBJar.get().asFile
+        outputFile.parentFile.mkdirs()
+
+        // Build name-only SRG→Mojmap map. SRG IDs (m_XXXXX_, f_XXXXX_) are globally
+        // unique in MC, so a name-only map (without owner) is unambiguous and safe.
+        def nameMap = [:]
+        srgFile.get().asFile.eachLine { line ->
+            def p = line.trim().split(' ')
+            if (p.length >= 4 && p[0] == 'MD:') {
+                def s = p[1].substring(p[1].lastIndexOf('/') + 1)
+                def m = p[3].substring(p[3].lastIndexOf('/') + 1)
+                nameMap[s] = m
+            } else if (p.length >= 3 && p[0] == 'FD:' && p[2].contains('/')) {
+                def s = p[1].substring(p[1].lastIndexOf('/') + 1)
+                def m = p[2].substring(p[2].lastIndexOf('/') + 1)
+                nameMap[s] = m
+            }
+        }
+
+        def srgRemapper = new Remapper() {
+            @Override String mapMethodName(String owner, String name, String desc) {
+                nameMap.getOrDefault(name, name)
+            }
+            @Override String mapFieldName(String owner, String name, String desc) {
+                nameMap.getOrDefault(name, name)
+            }
+            // ClassRemapper routes INVOKEDYNAMIC interface-method names through this,
+            // NOT mapMethodName. Without overriding it, lambda declarations keep SRG
+            // names and fail at runtime with AbstractMethodError against Mojmap classes.
+            @Override String mapInvokeDynamicMethodName(String name, String desc) {
+                nameMap.getOrDefault(name, name)
+            }
+        }
+
+        def zis = new java.util.zip.ZipInputStream(new java.io.FileInputStream(sourceJar))
+        def zos = new java.util.zip.ZipOutputStream(new java.io.FileOutputStream(outputFile))
+        int patched = 0
+        try {
+            java.util.zip.ZipEntry entry
+            while ((entry = zis.nextEntry) != null) {
+                zos.putNextEntry(new java.util.zip.ZipEntry(entry.name))
+                if (!entry.directory && entry.name.endsWith('.class')) {
+                    def bytes = zis.readAllBytes()
+                    try {
+                        def cr = new ClassReader(bytes)
+                        def cw = new ClassWriter(0)
+                        cr.accept(new ClassRemapper(cw, srgRemapper), 0)
+                        zos.write(cw.toByteArray())
+                        patched++
+                    } catch (Exception e) {
+                        zos.write(bytes)
+                        logger.warn("Could not remap {}: {}", entry.name, e.message)
+                    }
+                } else if (!entry.directory) {
+                    zis.transferTo(zos)
+                }
+                zos.closeEntry()
+            }
+        } finally {
+            zis.close()
+            zos.close()
+        }
+        logger.lifecycle("Patched TerraBlender: SRG→Mojmap applied to {} class files", patched)
+    }
+}
 
 dependencies {
     compileOnly project(":common")
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
+    compileOnly fileTree(dir: rootProject.file('libs'), include: ['TerraBlender-forge-*.jar'])
+    runtimeOnly(files(patchedTBJar) { builtBy patchTerraBlender })
 }
 
 jar {
     finalizedBy('reobfJar')
-    manifest.attributes([
-            "MixinConfigs": "${mod_id}.mixins.json,${mod_id}.forge.mixins.json"
-    ])
+    manifest.attributes(["MixinConfigs": "${mod_id}.mixins.json,${mod_id}.forge.mixins.json"])
 }

@@ -8,8 +8,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -24,6 +26,8 @@ import net.trique.mythicupgrades.menu.MythicUpgradingTableMenu;
 import net.trique.mythicupgrades.registry.MythicBlockEntityTypes;
 import net.trique.mythicupgrades.registry.MythicMenuTypes;
 import net.trique.mythicupgrades.registry.MythicRecipeTypes;
+import net.trique.mythicupgrades.worldgen.MythicFeatures;
+import net.trique.mythicupgrades.worldgen.TerraBlenderCompat;
 
 @Mod(Constants.MOD_ID)
 public class MythicUpgrades {
@@ -100,10 +104,22 @@ public class MythicUpgrades {
                     return effect;
                 })
             );
+        } else if (event.getRegistryKey().equals(Registries.FEATURE)) {
+            event.register(Registries.FEATURE, helper ->
+                MythicFeatures.register((name, feature) -> {
+                    helper.register(new ResourceLocation(Constants.MOD_ID, name), feature);
+                    return feature;
+                })
+            );
         }
     }
 
     private void onCommonSetup(FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            if (ModList.get().isLoaded("terrablender")) {
+                TerraBlenderCompat.init();
+            }
+        });
         CommonClass.init();
     }
 

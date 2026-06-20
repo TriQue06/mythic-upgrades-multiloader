@@ -1,0 +1,53 @@
+{
+  "carvers": {},
+  "creature_spawn_probability": 0.07,
+  "downfall": 0.0,
+  "effects": {
+    "fog_color": 12638463,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
+    "sky_color": 8103167,
+    "water_color": 4159204,
+    "water_fog_color": 329011
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    ["minecraft:monster_room"],
+    [],
+    [
+      "mythicupgrades:citrine_stone_blobs",
+      "mythicupgrades:citrine_ore",
+      "mythicupgrades:citrine_deepslate_ore"
+    ],
+    [
+      "mythicupgrades:citrine_crystal_blobs",
+      "mythicupgrades:citrine_crystal_buds"
+    ],
+    [
+      "minecraft:spring_water",
+      "minecraft:spring_lava"
+    ],
+    [],
+    []
+  ],
+  "has_precipitation": false,
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "spawn_costs": {},
+  "temperature": 1.5
+}

@@ -1,6 +1,9 @@
 # claude
 .claude/
 
+# Local library JARs (not committed, must be downloaded manually)
+libs/
+
 # eclipse
 bin
 *.launch

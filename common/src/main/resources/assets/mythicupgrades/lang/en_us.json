@@ -1,4 +1,9 @@
 {
+  "biome.mythicupgrades.aquamarine_caves": "Aquamarine Caves",
+  "biome.mythicupgrades.citrine_caves": "Citrine Caves",
+  "biome.mythicupgrades.peridot_caves": "Peridot Caves",
+  "biome.mythicupgrades.topaz_caves": "Topaz Caves",
+
   "itemGroup.mythicupgrades.items": "Mythic Upgrades: Items",
   "itemGroup.mythicupgrades.gear": "Mythic Upgrades: Gear",
   "itemGroup.mythicupgrades.blocks": "Mythic Upgrades: Blocks",
