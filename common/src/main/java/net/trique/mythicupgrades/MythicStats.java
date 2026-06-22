@@ -53,7 +53,7 @@ public class MythicStats {
     public static float BLOOD_THIRST_MAX_RADIUS = 30.0f;
     public static float BLOOD_THIRST_HEAL_FRACTION_PER_LEVEL = 0.05f;
     public static float BLOOD_THIRST_MAX_HEAL_FRACTION = 0.5f;
-    public static int BLOOD_THIRST_PARTICLES_PER_LEVEL = 6;
+    public static int BLOOD_THIRST_PARTICLES_PER_LEVEL = 5;
 
     public static int PERIDOT_HELMET_LEVELS = 2;
     public static int PERIDOT_CHESTPLATE_LEVELS = 4;
@@ -69,7 +69,7 @@ public class MythicStats {
     public static float MIASMA_CLOUD_RADIUS_PER_LEVEL = 1.0f;
     public static float MIASMA_CLOUD_MAX_RADIUS = 10.0f;
     public static int MIASMA_POISON_MAX_AMPLIFIER = 9;
-    public static int MIASMA_POISON_DURATION_TICKS_PER_LEVEL = 20;
+    public static int MIASMA_POISON_DURATION_TICKS_PER_LEVEL = 10;
     public static int MIASMA_CLOUD_DURATION_TICKS_PER_LEVEL = 40;
     public static int MIASMA_INTERVAL_TICKS = 100;
 
@@ -86,6 +86,11 @@ public class MythicStats {
     public static float ICE_SHIELD_MARK_BURST_RADIUS = 3.0f;
     public static float ICE_SHIELD_MARK_BURST_DAMAGE = 3.0f;
     public static int ICE_SHIELD_MARK_BURST_FREEZE_TICKS = 6;
+
+    public static int ICE_BOMB_TOOL_DURATION_TICKS = 60;
+    public static float ICE_BOMB_BURST_RADIUS = 5.0f;
+    public static float ICE_BOMB_BURST_DAMAGE = 4.0f;
+    public static int ICE_BOMB_BURST_FREEZE_TICKS = 60;
 
     public static float ICE_SHIELD_MAGIC_DAMAGE_PER_LEVEL = 0.5f;
 

@@ -3,6 +3,10 @@
   "biome.mythicupgrades.citrine_caves": "Citrine Caves",
   "biome.mythicupgrades.peridot_caves": "Peridot Caves",
   "biome.mythicupgrades.topaz_caves": "Topaz Caves",
+  "biome.mythicupgrades.ametrine_barrens": "Ametrine Barrens",
+  "biome.mythicupgrades.jade_barrens": "Jade Barrens",
+  "biome.mythicupgrades.ruby_rift": "Ruby Rift",
+  "biome.mythicupgrades.sapphire_rift": "Sapphire Rift",
 
   "itemGroup.mythicupgrades.items": "Mythic Upgrades: Items",
   "itemGroup.mythicupgrades.gear": "Mythic Upgrades: Gear",
@@ -366,5 +370,6 @@
   "death.attack.static_field": "%1$s was electrocuted by a static field",
   "effect.mythicupgrades.bouncer": "Bouncer",
   "effect.mythicupgrades.jade_aura": "Jade Aura",
-  "effect.mythicupgrades.necoium_share": "Necoium Share"
+  "effect.mythicupgrades.necoium_share": "Necoium Share",
+  "effect.mythicupgrades.ice_bomb": "Ice Bomb"
 }

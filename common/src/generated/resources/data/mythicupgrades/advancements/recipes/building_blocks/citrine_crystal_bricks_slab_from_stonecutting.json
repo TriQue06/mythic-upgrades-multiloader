@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_citrine_crystal_block": {
+    "has_citrine_crystal_bricks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "mythicupgrades:citrine_crystal_block"
+              "mythicupgrades:citrine_crystal_bricks"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_citrine_crystal_block",
+      "has_citrine_crystal_bricks",
       "has_the_recipe"
     ]
   ],

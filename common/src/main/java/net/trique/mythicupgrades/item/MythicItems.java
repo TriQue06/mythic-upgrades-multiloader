@@ -1,5 +1,7 @@
 package net.trique.mythicupgrades.item;
 
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.HoeItem;
@@ -8,12 +10,14 @@ import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SwordItem;
 import net.trique.mythicupgrades.Constants;
+import net.trique.mythicupgrades.MythicEffects;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
+import net.minecraft.world.effect.MobEffect;
 
 public class MythicItems {
 
@@ -22,6 +26,13 @@ public class MythicItems {
     private static <T extends Item> T defer(String name, T item) {
         DEFERRED.add(new AbstractMap.SimpleEntry<>(name, item));
         return item;
+    }
+
+    private static FoodProperties shardFood(MobEffect effect) {
+        return new FoodProperties.Builder()
+            .nutrition(1).saturationMod(0.1f).alwaysEat()
+            .effect(new MobEffectInstance(effect, 1200, 2, false, false, true), 1.0f)
+            .build();
     }
 
     public static final Item AQUAMARINE = defer("aquamarine", new Item(new Item.Properties()));
@@ -126,14 +137,14 @@ public class MythicItems {
     public static final Item AMETRINE_LEGGINGS = defer("ametrine_leggings", new ArmorItem(MythicArmorMaterials.AMETRINE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final Item AMETRINE_BOOTS = defer("ametrine_boots", new ArmorItem(MythicArmorMaterials.AMETRINE, ArmorItem.Type.BOOTS, new Item.Properties()));
 
-    public static final Item AQUAMARINE_CRYSTAL_SHARD = defer("aquamarine_crystal_shard", new Item(new Item.Properties()));
-    public static final Item CITRINE_CRYSTAL_SHARD = defer("citrine_crystal_shard", new Item(new Item.Properties()));
-    public static final Item TOPAZ_CRYSTAL_SHARD = defer("topaz_crystal_shard", new Item(new Item.Properties()));
-    public static final Item PERIDOT_CRYSTAL_SHARD = defer("peridot_crystal_shard", new Item(new Item.Properties()));
-    public static final Item RUBY_CRYSTAL_SHARD = defer("ruby_crystal_shard", new Item(new Item.Properties()));
-    public static final Item SAPPHIRE_CRYSTAL_SHARD = defer("sapphire_crystal_shard", new Item(new Item.Properties()));
-    public static final Item JADE_CRYSTAL_SHARD = defer("jade_crystal_shard", new Item(new Item.Properties()));
-    public static final Item AMETRINE_CRYSTAL_SHARD = defer("ametrine_crystal_shard", new Item(new Item.Properties()));
+    public static final Item AQUAMARINE_CRYSTAL_SHARD = defer("aquamarine_crystal_shard", new Item(new Item.Properties().food(shardFood(MythicEffects.ICE_SHIELD))));
+    public static final Item CITRINE_CRYSTAL_SHARD = defer("citrine_crystal_shard", new Item(new Item.Properties().food(shardFood(MythicEffects.STATIC_FIELD))));
+    public static final Item TOPAZ_CRYSTAL_SHARD = defer("topaz_crystal_shard", new Item(new Item.Properties().food(shardFood(MythicEffects.TOPAZ_REACTION))));
+    public static final Item PERIDOT_CRYSTAL_SHARD = defer("peridot_crystal_shard", new Item(new Item.Properties().food(shardFood(MythicEffects.MIASMA))));
+    public static final Item RUBY_CRYSTAL_SHARD = defer("ruby_crystal_shard", new Item(new Item.Properties().food(shardFood(MythicEffects.BLOOD_THIRST))));
+    public static final Item SAPPHIRE_CRYSTAL_SHARD = defer("sapphire_crystal_shard", new Item(new Item.Properties().food(shardFood(MythicEffects.DAMAGE_DEFLECTION))));
+    public static final Item JADE_CRYSTAL_SHARD = defer("jade_crystal_shard", new Item(new Item.Properties().food(shardFood(MythicEffects.JADE_AURA))));
+    public static final Item AMETRINE_CRYSTAL_SHARD = defer("ametrine_crystal_shard", new Item(new Item.Properties().food(shardFood(MythicEffects.ARCANE_AURA))));
 
     public static void register(BiFunction<String, Item, Item> reg) {
         DEFERRED.forEach(e -> reg.apply(e.getKey(), e.getValue()));

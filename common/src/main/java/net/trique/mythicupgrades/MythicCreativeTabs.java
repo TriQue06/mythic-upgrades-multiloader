@@ -150,6 +150,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.JADE_ORE);
                     output.accept(MythicBlocks.AMETRINE_ORE);
                     output.accept(MythicBlocks.NECOIUM_ORE);
+                    output.accept(MythicBlocks.DEEPSLATE_NECOIUM_ORE);
                     output.accept(MythicBlocks.RAW_NECOIUM_BLOCK);
                     output.accept(MythicBlocks.AQUAMARINE_BLOCK);
                     output.accept(MythicBlocks.CITRINE_BLOCK);

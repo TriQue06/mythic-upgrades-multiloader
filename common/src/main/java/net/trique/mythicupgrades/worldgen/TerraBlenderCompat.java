@@ -6,5 +6,6 @@ public class TerraBlenderCompat {
 
     public static void init() {
         Regions.register(new MythicOverworldRegion());
+        Regions.register(new MythicNetherRegion());
     }
 }

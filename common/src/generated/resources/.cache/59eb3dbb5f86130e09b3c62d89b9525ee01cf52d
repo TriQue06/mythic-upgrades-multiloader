@@ -1,4 +1,4 @@
-// 1.20.1	2026-06-19T21:16:12.6604878	Loot Tables
+// 1.20.1	2026-06-22T15:57:29.663018	Loot Tables
 b22a293d22a83c06380966138ba0cff4e70891e8 data/mythicupgrades/loot_tables/blocks/ametrine_block.json
 8239fd9f826275ab52fd82d3c3d210566fec80b4 data/mythicupgrades/loot_tables/blocks/ametrine_crystal_block.json
 26256bf1bce2af9ef40a1a65e76db47b7124a109 data/mythicupgrades/loot_tables/blocks/ametrine_crystal_block_slab.json
@@ -56,6 +56,7 @@ acd747e512d102d96d01c1f9d562907107b63d6a data/mythicupgrades/loot_tables/blocks/
 9c06eaa8fa6b672551e898b218efe57a3e57e9f6 data/mythicupgrades/loot_tables/blocks/cut_topaz_crystal_pillar.json
 811a0f148e3b7ddfe4cadaea5b1b8db0689c3733 data/mythicupgrades/loot_tables/blocks/deepslate_aquamarine_ore.json
 6e64c65021ed0a0c18f84e9216b3ce186ed419c5 data/mythicupgrades/loot_tables/blocks/deepslate_citrine_ore.json
+117fa04bbb6f13a41b19a2088103160187ee3414 data/mythicupgrades/loot_tables/blocks/deepslate_necoium_ore.json
 330184c1a82aaef95433b843613f32dba754e373 data/mythicupgrades/loot_tables/blocks/deepslate_peridot_ore.json
 0bfb5df9e407900521fc8b63fa28e94d5bfbbdf0 data/mythicupgrades/loot_tables/blocks/deepslate_topaz_ore.json
 b7aa38a58b8f643ccd08a5a8222ab9173dc0cd65 data/mythicupgrades/loot_tables/blocks/jade_block.json

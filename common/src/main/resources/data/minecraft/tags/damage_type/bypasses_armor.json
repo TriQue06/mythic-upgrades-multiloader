@@ -6,7 +6,6 @@
     "mythicupgrades:peridot_incubation_damage_type",
     "mythicupgrades:ice_shield_mark_burst_damage_type",
     "mythicupgrades:ice_shield_reflect_damage_type",
-    "mythicupgrades:citrine_chain_damage_type",
-    "mythicupgrades:static_field_damage_type"
+    "mythicupgrades:citrine_chain_damage_type"
   ]
 }

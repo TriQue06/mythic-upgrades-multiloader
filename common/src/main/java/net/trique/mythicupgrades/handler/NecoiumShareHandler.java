@@ -119,7 +119,7 @@ public class NecoiumShareHandler {
 
             if (maxAmplifier >= 0) {
                 final int amp = maxAmplifier;
-                // Share as infinite if any source is infinite so recipients see the ∞ symbol
+                // Share as infinite if any source is infinite so recipients see the infinity symbol
                 final int shareDuration = anyInfinite ? -1 : SHARE_DURATION;
                 for (LivingEntity entity : network) {
                     MobEffectInstance current = entity.getEffect(effect);

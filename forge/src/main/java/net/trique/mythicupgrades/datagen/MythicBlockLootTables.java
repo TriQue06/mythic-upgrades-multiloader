@@ -40,6 +40,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         add(MythicBlocks.JADE_ORE, block -> createOreDrop(block, MythicItems.JADE.asItem()));
         add(MythicBlocks.AMETRINE_ORE, block -> createOreDrop(block, MythicItems.AMETRINE.asItem()));
         add(MythicBlocks.NECOIUM_ORE, block -> createOreDrop(block, MythicItems.RAW_NECOIUM.asItem()));
+        add(MythicBlocks.DEEPSLATE_NECOIUM_ORE, block -> createOreDrop(block, MythicItems.RAW_NECOIUM.asItem()));
 
         dropSelf(MythicBlocks.RAW_NECOIUM_BLOCK);
         dropSelf(MythicBlocks.AQUAMARINE_BLOCK);
@@ -269,7 +270,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
             MythicBlocks.TOPAZ_ORE, MythicBlocks.DEEPSLATE_TOPAZ_ORE,
             MythicBlocks.PERIDOT_ORE, MythicBlocks.DEEPSLATE_PERIDOT_ORE,
             MythicBlocks.RUBY_ORE, MythicBlocks.SAPPHIRE_ORE,
-            MythicBlocks.JADE_ORE, MythicBlocks.AMETRINE_ORE, MythicBlocks.NECOIUM_ORE,
+            MythicBlocks.JADE_ORE, MythicBlocks.AMETRINE_ORE, MythicBlocks.NECOIUM_ORE, MythicBlocks.DEEPSLATE_NECOIUM_ORE,
             MythicBlocks.RAW_NECOIUM_BLOCK,
             MythicBlocks.AQUAMARINE_BLOCK,
             MythicBlocks.CITRINE_BLOCK, MythicBlocks.TOPAZ_BLOCK,

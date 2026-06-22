@@ -1,4 +1,4 @@
-// 1.20.1	2026-06-19T21:16:12.6737961	Item Models: mythicupgrades
+// 1.20.1	2026-06-22T15:57:29.6662684	Item Models: mythicupgrades
 5f18eae42068ec272f05839d2658458d4dc5a0c4 assets/mythicupgrades/models/item/ametrine.json
 732cf7a1c72f18566680ccfc96bf29a25fa66e51 assets/mythicupgrades/models/item/ametrine_axe.json
 330713c9c844edda04bdfdce4e78a24edbf918af assets/mythicupgrades/models/item/ametrine_block.json
@@ -92,6 +92,7 @@ eed1b4865cc4df45546f35bbb1630826c523ab10 assets/mythicupgrades/models/item/cut_s
 e36c4d6fc5a48dd4a3cbb2713bd19af43ea9f96c assets/mythicupgrades/models/item/cut_topaz_crystal_pillar.json
 6628817acddbda9b7b36461f099215ae5d44bab5 assets/mythicupgrades/models/item/deepslate_aquamarine_ore.json
 9303929069b46ef27ebff5e90e29de5f85d56924 assets/mythicupgrades/models/item/deepslate_citrine_ore.json
+75270bce77a73cc53ce00d749ca18d785dc06e7d assets/mythicupgrades/models/item/deepslate_necoium_ore.json
 6900edefb36cb95e1136fe731e6c19197db6f2bf assets/mythicupgrades/models/item/deepslate_peridot_ore.json
 9b4f8fddd918f0cc17eb42af333e4773c4b97c22 assets/mythicupgrades/models/item/deepslate_topaz_ore.json
 d1d9632a474aaba1bd37a2e882f7ef798fa3faec assets/mythicupgrades/models/item/jade.json
@@ -137,6 +138,7 @@ f2a23caaa41b37643c766dc631c538dd0dc6c54f assets/mythicupgrades/models/item/mediu
 ad7b3af0ff643424bddf0154d3e9f6f3d60ae922 assets/mythicupgrades/models/item/medium_topaz_crystal_bud.json
 f32135b68898ccf1e9157f1d434be8044c21fe42 assets/mythicupgrades/models/item/mythic_upgrading_table.json
 7761d17595f180533da4bf862d7bffb683fcbee9 assets/mythicupgrades/models/item/necoium_block.json
+d30ef0ced2ad644745da4d4cf6f968ceb80047dd assets/mythicupgrades/models/item/necoium_carrot.json
 756dc8222cf77834c6f5598ab70d9528773c007d assets/mythicupgrades/models/item/necoium_ingot.json
 229f30ae9f336351cde930e3ed647209b52a86d4 assets/mythicupgrades/models/item/necoium_ore.json
 6e311313de68644129bc4f5f6a5b320fcd9d7487 assets/mythicupgrades/models/item/peridot.json

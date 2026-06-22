@@ -20,6 +20,9 @@
         ],
         "client": [
             "net.trique.mythicupgrades.FabricClientSetup"
+        ],
+        "terrablender": [
+            "net.trique.mythicupgrades.FabricTerraBlenderAddon"
         ]
     },
     "mixins": [

@@ -33,6 +33,7 @@ public class MythicBlockStateProvider extends BlockStateProvider {
             gemBlocks(gem);
         }
         simpleBlock(MythicBlocks.NECOIUM_ORE);
+        simpleBlock(MythicBlocks.DEEPSLATE_NECOIUM_ORE);
         simpleBlock(MythicBlocks.RAW_NECOIUM_BLOCK);
         simpleBlock(MythicBlocks.NECOIUM_BLOCK);
         simpleBlock(MythicBlocks.MYTHIC_UPGRADING_TABLE,

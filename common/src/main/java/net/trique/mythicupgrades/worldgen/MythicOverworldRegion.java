@@ -7,7 +7,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 import net.trique.mythicupgrades.Constants;
-import terrablender.api.ModifiedVanillaOverworldBuilder;
 import terrablender.api.Region;
 import terrablender.api.RegionType;
 
@@ -15,69 +14,33 @@ import java.util.function.Consumer;
 
 public class MythicOverworldRegion extends Region {
 
-    // Cave biomes are purely underground — depth 0.4-0.9 avoids any surface overlap.
-    // Values above ~0.35 correspond to y levels well below the terrain surface.
-    private static final Climate.Parameter CAVE_DEPTH = Climate.Parameter.span(0.4f, 0.9f);
-
-    // Continentalness: avoid oceans (< -0.19) so caves don't appear under the sea floor.
-    private static final Climate.Parameter INLAND = Climate.Parameter.span(-0.11f, 0.55f);
-
     public MythicOverworldRegion() {
-        super(new ResourceLocation(Constants.MOD_ID, "overworld"), RegionType.OVERWORLD, 4);
+        super(new ResourceLocation(Constants.MOD_ID, "overworld"), RegionType.OVERWORLD, 1);
     }
 
     @Override
     public void addBiomes(Registry<Biome> registry,
                           Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
-        // Fill all vanilla surface biome slots first so TerraBlender never selects a cave
-        // biome for a surface position within our region (would cause surface = cave biome).
-        this.addModifiedVanillaOverworldBiomes(mapper, ModifiedVanillaOverworldBuilder::build);
+        Climate.Parameter full  = Climate.Parameter.span(-1.0f, 1.0f);
+        // Only underground depth (matches Deep Dark approach)
+        Climate.Parameter depth = Climate.Parameter.span(0.2f, 0.9f);
+        // Exclude deep ocean floors — same restriction Deep Dark uses
+        Climate.Parameter cont  = Climate.Parameter.span(0.03f, 1.0f);
 
-        // Cave biomes — each occupies a distinct temperature × humidity × weirdness slice
-        // while sharing the same CAVE_DEPTH (underground only).
+        // Weirdness spans are 0.02 wide (was 0.25) — reduces frequency to ~Deep Dark rarity.
+        // Positioned at four distinct weirdness pockets to avoid mutual overlap.
+        addBiome(mapper, Climate.parameters(full, full, cont, full, depth,
+                Climate.Parameter.span(-1.00f, -0.98f), 0.0f), MythicBiomes.AQUAMARINE_CAVES);
 
-        // Aquamarine Caves: cold + wet + very negative weirdness
-        addBiome(mapper, Climate.parameters(
-            Climate.Parameter.span(-1.0f, -0.45f),
-            Climate.Parameter.span(0.1f,   0.4f),
-            INLAND,
-            Climate.Parameter.span(-0.375f, 0.45f),
-            CAVE_DEPTH,
-            Climate.Parameter.span(-0.93f, -0.56f),
-            0.0f
-        ), MythicBiomes.AQUAMARINE_CAVES);
+        addBiome(mapper, Climate.parameters(full, full, cont, full, depth,
+                Climate.Parameter.span(-0.50f, -0.48f), 0.0f), MythicBiomes.PERIDOT_CAVES);
 
-        // Citrine Caves: hot + dry + very positive weirdness
-        addBiome(mapper, Climate.parameters(
-            Climate.Parameter.span(0.55f, 1.0f),
-            Climate.Parameter.span(-1.0f, -0.35f),
-            INLAND,
-            Climate.Parameter.span(-0.375f, 0.45f),
-            CAVE_DEPTH,
-            Climate.Parameter.span(0.56f, 0.93f),
-            0.0f
-        ), MythicBiomes.CITRINE_CAVES);
+        addBiome(mapper, Climate.parameters(full, full, cont, full, depth,
+                Climate.Parameter.span( 0.00f,  0.02f), 0.0f), MythicBiomes.TOPAZ_CAVES);
 
-        // Peridot Caves: cool-temperate + low erosion (mountain roots) + neutral weirdness
-        addBiome(mapper, Climate.parameters(
-            Climate.Parameter.span(-0.15f, 0.2f),
-            Climate.Parameter.span(-0.35f, 0.1f),
-            INLAND,
-            Climate.Parameter.span(-0.78f, -0.375f),
-            CAVE_DEPTH,
-            Climate.Parameter.span(-0.4f, 0.4f),
-            0.0f
-        ), MythicBiomes.PERIDOT_CAVES);
+        addBiome(mapper, Climate.parameters(full, full, cont, full, depth,
+                Climate.Parameter.span( 0.50f,  0.52f), 0.0f), MythicBiomes.CITRINE_CAVES);
 
-        // Topaz Caves: warm + high erosion (valleys / badlands roots) + neutral weirdness
-        addBiome(mapper, Climate.parameters(
-            Climate.Parameter.span(0.2f, 0.55f),
-            Climate.Parameter.span(-0.35f, 0.1f),
-            INLAND,
-            Climate.Parameter.span(0.45f, 1.0f),
-            CAVE_DEPTH,
-            Climate.Parameter.span(-0.4f, 0.4f),
-            0.0f
-        ), MythicBiomes.TOPAZ_CAVES);
+        this.addModifiedVanillaOverworldBiomes(mapper, builder -> {});
     }
 }

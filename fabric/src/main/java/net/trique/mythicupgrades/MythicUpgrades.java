@@ -5,12 +5,12 @@ import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.trique.mythicupgrades.MythicEffects;
@@ -22,7 +22,7 @@ import net.trique.mythicupgrades.registry.MythicBlockEntityTypes;
 import net.trique.mythicupgrades.registry.MythicMenuTypes;
 import net.trique.mythicupgrades.registry.MythicRecipeTypes;
 import net.trique.mythicupgrades.worldgen.MythicFeatures;
-import net.trique.mythicupgrades.worldgen.TerraBlenderCompat;
+import net.trique.mythicupgrades.worldgen.MythicPlacedFeatures;
 
 public class MythicUpgrades implements ModInitializer {
 
@@ -63,16 +63,40 @@ public class MythicUpgrades implements ModInitializer {
         MythicFeatures.register((name, feature) ->
             Registry.register(BuiltInRegistries.FEATURE, new ResourceLocation(Constants.MOD_ID, name), feature));
 
-        if (FabricLoader.getInstance().isModLoaded("terrablender")) {
-            TerraBlenderCompat.init();
-        }
-
         // Rare crystal buds in all overworld underground areas
         for (String gem : new String[]{"aquamarine", "citrine", "peridot", "topaz"}) {
             ResourceKey<PlacedFeature> key = ResourceKey.create(Registries.PLACED_FEATURE,
                 new ResourceLocation(Constants.MOD_ID, gem + "_crystal_buds_rare"));
             BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
                 GenerationStep.Decoration.UNDERGROUND_DECORATION, key);
+        }
+
+        // Necoium ore in all overworld biomes at diamond rarity
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+            GenerationStep.Decoration.UNDERGROUND_ORES, MythicPlacedFeatures.NECOIUM_ORE_PF);
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+            GenerationStep.Decoration.UNDERGROUND_ORES, MythicPlacedFeatures.DEEPSLATE_NECOIUM_ORE_PF);
+
+        // Metal ores in mythic cave biomes (ore_diamond_medium does not exist in 1.20.1)
+        String[] caveGems = {"aquamarine", "citrine", "peridot", "topaz"};
+        String[] vanillaOres = {
+            "ore_coal_upper", "ore_coal_lower",
+            "ore_iron_upper", "ore_iron_middle", "ore_iron_small",
+            "ore_gold", "ore_gold_lower",
+            "ore_redstone", "ore_redstone_lower",
+            "ore_diamond", "ore_diamond_large", "ore_diamond_buried",
+            "ore_lapis", "ore_lapis_buried",
+            "ore_copper", "ore_copper_large"
+        };
+        for (String gem : caveGems) {
+            ResourceKey<Biome> biomeKey = ResourceKey.create(
+                Registries.BIOME, new ResourceLocation(Constants.MOD_ID, gem + "_caves"));
+            for (String ore : vanillaOres) {
+                ResourceKey<PlacedFeature> oreKey = ResourceKey.create(Registries.PLACED_FEATURE,
+                    new ResourceLocation("minecraft", ore));
+                BiomeModifications.addFeature(ctx -> ctx.getBiomeKey().equals(biomeKey),
+                    GenerationStep.Decoration.UNDERGROUND_ORES, oreKey);
+            }
         }
 
         CommonClass.init();

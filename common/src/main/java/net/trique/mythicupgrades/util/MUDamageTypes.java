@@ -35,6 +35,9 @@ public class MUDamageTypes {
     public static final ResourceKey<DamageType> STATIC_FIELD = ResourceKey.create(
         Registries.DAMAGE_TYPE, new ResourceLocation(Constants.MOD_ID, "static_field_damage_type"));
 
+    public static final ResourceKey<DamageType> ICE_BOMB_BURST = ResourceKey.create(
+        Registries.DAMAGE_TYPE, new ResourceLocation(Constants.MOD_ID, "ice_bomb_burst_damage_type"));
+
     public static DamageSource deflecting(LivingEntity source) {
         return build(DEFLECTING, source);
     }
@@ -65,6 +68,10 @@ public class MUDamageTypes {
 
     public static DamageSource staticField(LivingEntity source) {
         return build(STATIC_FIELD, source);
+    }
+
+    public static DamageSource iceBombBurst(LivingEntity source) {
+        return build(ICE_BOMB_BURST, source);
     }
 
     public static DamageSource topazShockEffect(LivingEntity target) {

@@ -1,0 +1,65 @@
+package net.trique.mythicupgrades.worldgen;
+
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.trique.mythicupgrades.Constants;
+
+public enum EndGemType {
+    AMETRINE("ametrine", 0.5f, 0.0f, false, 10518688),
+    JADE    ("jade",     0.5f, 0.0f, false, 3840830);
+
+    public final String  id;
+    public final float   temperature;
+    public final float   downfall;
+    public final boolean precipitation;
+    public final int     waterColor;
+
+    EndGemType(String id, float temperature, float downfall, boolean precipitation, int waterColor) {
+        this.id            = id;
+        this.temperature   = temperature;
+        this.downfall      = downfall;
+        this.precipitation = precipitation;
+        this.waterColor    = waterColor;
+    }
+
+    public ResourceKey<Block> stoneBlock()   { return block(id + "_stone"); }
+    public ResourceKey<Block> crystalBlock() { return block(id + "_crystal_block"); }
+    public ResourceKey<Block> oreBlock()     { return block(id + "_ore"); }
+    public ResourceKey<Block> smallBud()     { return block("small_" + id + "_crystal_bud"); }
+    public ResourceKey<Block> mediumBud()    { return block("medium_" + id + "_crystal_bud"); }
+    public ResourceKey<Block> largeBud()     { return block("large_" + id + "_crystal_bud"); }
+    public ResourceKey<Block> cluster()      { return block(id + "_crystal_cluster"); }
+
+    private ResourceKey<Block> block(String name) {
+        return ResourceKey.create(Registries.BLOCK, new ResourceLocation(Constants.MOD_ID, name));
+    }
+
+    public ResourceKey<Biome> endBiome() {
+        return ResourceKey.create(Registries.BIOME, new ResourceLocation(Constants.MOD_ID, id + "_barrens"));
+    }
+
+    public ResourceKey<ConfiguredFeature<?, ?>> stoneBlobsCF()      { return cf(id + "_end_stone_blobs"); }
+    public ResourceKey<ConfiguredFeature<?, ?>> crystalBlobsCF()    { return cf(id + "_end_crystal_blobs"); }
+    public ResourceKey<ConfiguredFeature<?, ?>> crystalBudsCF()     { return cf(id + "_end_crystal_buds"); }
+    public ResourceKey<ConfiguredFeature<?, ?>> crystalBudsRareCF() { return cf(id + "_end_crystal_buds_rare"); }
+    public ResourceKey<ConfiguredFeature<?, ?>> oreCF()             { return cf(id + "_end_ore"); }
+
+    private ResourceKey<ConfiguredFeature<?, ?>> cf(String name) {
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(Constants.MOD_ID, name));
+    }
+
+    public ResourceKey<PlacedFeature> stoneBlobsPF()      { return pf(id + "_end_stone_blobs"); }
+    public ResourceKey<PlacedFeature> crystalBlobsPF()    { return pf(id + "_end_crystal_blobs"); }
+    public ResourceKey<PlacedFeature> crystalBudsPF()     { return pf(id + "_end_crystal_buds"); }
+    public ResourceKey<PlacedFeature> crystalBudsRarePF() { return pf(id + "_end_crystal_buds_rare"); }
+    public ResourceKey<PlacedFeature> orePF()             { return pf(id + "_end_ore"); }
+
+    private ResourceKey<PlacedFeature> pf(String name) {
+        return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Constants.MOD_ID, name));
+    }
+}

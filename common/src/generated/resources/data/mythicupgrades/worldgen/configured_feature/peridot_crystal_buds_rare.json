@@ -1,0 +1,43 @@
+{
+  "type": "mythicupgrades:crystal_bud",
+  "config": {
+    "spread_xz": 4,
+    "spread_y": 3,
+    "state": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "mythicupgrades:small_peridot_crystal_bud",
+            "Properties": {
+              "facing": "up",
+              "waterlogged": "false"
+            }
+          },
+          "weight": 3
+        },
+        {
+          "data": {
+            "Name": "mythicupgrades:medium_peridot_crystal_bud",
+            "Properties": {
+              "facing": "up",
+              "waterlogged": "false"
+            }
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "mythicupgrades:large_peridot_crystal_bud",
+            "Properties": {
+              "facing": "up",
+              "waterlogged": "false"
+            }
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "tries": 16
+  }
+}

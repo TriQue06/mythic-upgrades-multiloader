@@ -80,6 +80,10 @@ public abstract class LivingEntityMixin {
     @Unique private double mu_incubationWaveX = 0, mu_incubationWaveY = 0, mu_incubationWaveZ = 0;
     @Unique private int mu_incubationWaveLevel = 0;
 
+    @Unique private int mu_iceBombWaveTick = -1;
+    @Unique private float mu_iceBombWaveMaxRadius = 0f;
+    @Unique private double mu_iceBombWaveX = 0, mu_iceBombWaveY = 0, mu_iceBombWaveZ = 0;
+
     @Inject(method = "tick", at = @At("TAIL"))
     private void checkArmorEffects(CallbackInfo ci) {
         LivingEntity self = (LivingEntity)(Object)this;
@@ -91,7 +95,7 @@ public abstract class LivingEntityMixin {
         if (self.getItemBySlot(EquipmentSlot.CHEST).getItem() == MythicItems.SAPPHIRE_CHESTPLATE) sapphireLevel += MythicStats.SAPPHIRE_CHESTPLATE_LEVELS;
         if (self.getItemBySlot(EquipmentSlot.LEGS).getItem() == MythicItems.SAPPHIRE_LEGGINGS) sapphireLevel += MythicStats.SAPPHIRE_LEGGINGS_LEVELS;
         if (self.getItemBySlot(EquipmentSlot.FEET).getItem() == MythicItems.SAPPHIRE_BOOTS) sapphireLevel += MythicStats.SAPPHIRE_BOOTS_LEVELS;
-        if (sapphireLevel != mu_sapphireLevel) {
+        if (sapphireLevel != mu_sapphireLevel || (sapphireLevel > 0 && self.getEffect(MythicEffects.DAMAGE_DEFLECTION) == null)) {
             mu_sapphireLevel = sapphireLevel;
             self.removeEffect(MythicEffects.DAMAGE_DEFLECTION);
             if (sapphireLevel > 0)
@@ -103,7 +107,7 @@ public abstract class LivingEntityMixin {
         if (self.getItemBySlot(EquipmentSlot.CHEST).getItem() == MythicItems.AMETRINE_CHESTPLATE) ametrineLevel += MythicStats.AMETRINE_CHESTPLATE_LEVELS;
         if (self.getItemBySlot(EquipmentSlot.LEGS).getItem() == MythicItems.AMETRINE_LEGGINGS) ametrineLevel += MythicStats.AMETRINE_LEGGINGS_LEVELS;
         if (self.getItemBySlot(EquipmentSlot.FEET).getItem() == MythicItems.AMETRINE_BOOTS) ametrineLevel += MythicStats.AMETRINE_BOOTS_LEVELS;
-        if (ametrineLevel != mu_ametrineLevel) {
+        if (ametrineLevel != mu_ametrineLevel || (ametrineLevel > 0 && self.getEffect(MythicEffects.ARCANE_AURA) == null)) {
             mu_ametrineLevel = ametrineLevel;
             self.removeEffect(MythicEffects.ARCANE_AURA);
             if (ametrineLevel > 0)
@@ -115,7 +119,7 @@ public abstract class LivingEntityMixin {
         if (self.getItemBySlot(EquipmentSlot.CHEST).getItem() == MythicItems.TOPAZ_CHESTPLATE) topazLevel += MythicStats.TOPAZ_CHESTPLATE_LEVELS;
         if (self.getItemBySlot(EquipmentSlot.LEGS).getItem() == MythicItems.TOPAZ_LEGGINGS) topazLevel += MythicStats.TOPAZ_LEGGINGS_LEVELS;
         if (self.getItemBySlot(EquipmentSlot.FEET).getItem() == MythicItems.TOPAZ_BOOTS) topazLevel += MythicStats.TOPAZ_BOOTS_LEVELS;
-        if (topazLevel != mu_topazLevel) {
+        if (topazLevel != mu_topazLevel || (topazLevel > 0 && self.getEffect(MythicEffects.TOPAZ_REACTION) == null)) {
             mu_topazLevel = topazLevel;
             self.removeEffect(MythicEffects.TOPAZ_REACTION);
             if (topazLevel > 0)
@@ -127,7 +131,7 @@ public abstract class LivingEntityMixin {
         if (self.getItemBySlot(EquipmentSlot.CHEST).getItem() == MythicItems.RUBY_CHESTPLATE) rubyLevel += MythicStats.RUBY_CHESTPLATE_LEVELS;
         if (self.getItemBySlot(EquipmentSlot.LEGS).getItem() == MythicItems.RUBY_LEGGINGS) rubyLevel += MythicStats.RUBY_LEGGINGS_LEVELS;
         if (self.getItemBySlot(EquipmentSlot.FEET).getItem() == MythicItems.RUBY_BOOTS) rubyLevel += MythicStats.RUBY_BOOTS_LEVELS;
-        if (rubyLevel != mu_rubyLevel) {
+        if (rubyLevel != mu_rubyLevel || (rubyLevel > 0 && self.getEffect(MythicEffects.BLOOD_THIRST) == null)) {
             mu_rubyLevel = rubyLevel;
             self.removeEffect(MythicEffects.BLOOD_THIRST);
             if (rubyLevel > 0)
@@ -139,7 +143,7 @@ public abstract class LivingEntityMixin {
         if (self.getItemBySlot(EquipmentSlot.CHEST).getItem() == MythicItems.PERIDOT_CHESTPLATE) peridotLevel += MythicStats.PERIDOT_CHESTPLATE_LEVELS;
         if (self.getItemBySlot(EquipmentSlot.LEGS).getItem() == MythicItems.PERIDOT_LEGGINGS) peridotLevel += MythicStats.PERIDOT_LEGGINGS_LEVELS;
         if (self.getItemBySlot(EquipmentSlot.FEET).getItem() == MythicItems.PERIDOT_BOOTS) peridotLevel += MythicStats.PERIDOT_BOOTS_LEVELS;
-        if (peridotLevel != mu_peridotLevel) {
+        if (peridotLevel != mu_peridotLevel || (peridotLevel > 0 && self.getEffect(MythicEffects.MIASMA) == null)) {
             mu_peridotLevel = peridotLevel;
             self.removeEffect(MythicEffects.MIASMA);
             if (peridotLevel > 0)
@@ -169,7 +173,7 @@ public abstract class LivingEntityMixin {
         if (self.getItemBySlot(EquipmentSlot.CHEST).getItem() == MythicItems.AQUAMARINE_CHESTPLATE) aquamarineLevel += MythicStats.AQUAMARINE_CHESTPLATE_LEVELS;
         if (self.getItemBySlot(EquipmentSlot.LEGS).getItem() == MythicItems.AQUAMARINE_LEGGINGS) aquamarineLevel += MythicStats.AQUAMARINE_LEGGINGS_LEVELS;
         if (self.getItemBySlot(EquipmentSlot.FEET).getItem() == MythicItems.AQUAMARINE_BOOTS) aquamarineLevel += MythicStats.AQUAMARINE_BOOTS_LEVELS;
-        if (aquamarineLevel != mu_aquamarineLevel) {
+        if (aquamarineLevel != mu_aquamarineLevel || (aquamarineLevel > 0 && self.getEffect(MythicEffects.ICE_SHIELD) == null)) {
             mu_aquamarineLevel = aquamarineLevel;
             self.removeEffect(MythicEffects.ICE_SHIELD);
             if (aquamarineLevel > 0)
@@ -181,7 +185,7 @@ public abstract class LivingEntityMixin {
         if (self.getItemBySlot(EquipmentSlot.CHEST).getItem() == MythicItems.CITRINE_CHESTPLATE) citrineLevel += MythicStats.CITRINE_CHESTPLATE_LEVELS;
         if (self.getItemBySlot(EquipmentSlot.LEGS).getItem() == MythicItems.CITRINE_LEGGINGS) citrineLevel += MythicStats.CITRINE_LEGGINGS_LEVELS;
         if (self.getItemBySlot(EquipmentSlot.FEET).getItem() == MythicItems.CITRINE_BOOTS) citrineLevel += MythicStats.CITRINE_BOOTS_LEVELS;
-        if (citrineLevel != mu_citrineLevel) {
+        if (citrineLevel != mu_citrineLevel || (citrineLevel > 0 && self.getEffect(MythicEffects.STATIC_FIELD) == null)) {
             mu_citrineLevel = citrineLevel;
             mu_staticFieldStacks.clear();
             mu_staticFieldLastHitTick.clear();
@@ -194,7 +198,7 @@ public abstract class LivingEntityMixin {
         if (staticFieldEff != null && self.level() instanceof ServerLevel citrineSLevel) {
             int staticLevel = staticFieldEff.getAmplifier() + 1;
             float fieldRadius = Math.min(staticLevel * MythicStats.STATIC_FIELD_RADIUS_PER_LEVEL, MythicStats.STATIC_FIELD_MAX_RADIUS);
-            if (self.tickCount % MythicAnims.CITRINE_STATIC_FIELD_PARTICLE_INTERVAL == 0)
+            if (self.tickCount % MythicAnims.CITRINE_STATIC_FIELD_PARTICLE_INTERVAL == 0 && !self.isCrouching())
                 emitStaticFieldParticles(citrineSLevel, self, fieldRadius, staticLevel);
             if (self.tickCount % 20 == 0) {
                 float fieldDamage = Math.min(staticLevel * MythicStats.STATIC_FIELD_DAMAGE_PER_LEVEL_PER_SECOND, MythicStats.STATIC_FIELD_MAX_DAMAGE_PER_SECOND);
@@ -231,7 +235,7 @@ public abstract class LivingEntityMixin {
         if (self.getItemBySlot(EquipmentSlot.CHEST).getItem() == MythicItems.JADE_CHESTPLATE) jadeLevel += MythicStats.JADE_CHESTPLATE_LEVELS;
         if (self.getItemBySlot(EquipmentSlot.LEGS).getItem() == MythicItems.JADE_LEGGINGS) jadeLevel += MythicStats.JADE_LEGGINGS_LEVELS;
         if (self.getItemBySlot(EquipmentSlot.FEET).getItem() == MythicItems.JADE_BOOTS) jadeLevel += MythicStats.JADE_BOOTS_LEVELS;
-        if (jadeLevel != mu_jadeLevel) {
+        if (jadeLevel != mu_jadeLevel || (jadeLevel > 0 && self.getEffect(MythicEffects.JADE_AURA) == null)) {
             mu_jadeLevel = jadeLevel;
             self.removeEffect(MythicEffects.JADE_AURA);
             if (jadeLevel > 0)
@@ -327,6 +331,17 @@ public abstract class LivingEntityMixin {
             float lastIr = (mu_incubationWaveTick - (MythicAnims.LETHAL_INCUBATION_WAVE_COUNT - 1) * MythicAnims.LETHAL_INCUBATION_WAVE_GAP_TICKS) * MythicAnims.LETHAL_INCUBATION_WAVE_SPEED_PER_TICK;
             if (lastIr > mu_incubationWaveMaxRadius) mu_incubationWaveTick = -1;
         }
+
+        if (mu_iceBombWaveTick >= 0 && self.level() instanceof ServerLevel ibLevel) {
+            for (int i = 0; i < MythicAnims.ICE_BOMB_WAVE_COUNT; i++) {
+                float r = (mu_iceBombWaveTick - i * MythicAnims.ICE_BOMB_WAVE_GAP_TICKS) * MythicAnims.ICE_BOMB_WAVE_SPEED_PER_TICK;
+                if (r > 0 && r <= mu_iceBombWaveMaxRadius)
+                    emitIceBombWaveRing(ibLevel, mu_iceBombWaveX, mu_iceBombWaveY, mu_iceBombWaveZ, r);
+            }
+            mu_iceBombWaveTick++;
+            float lastIbR = (mu_iceBombWaveTick - (MythicAnims.ICE_BOMB_WAVE_COUNT - 1) * MythicAnims.ICE_BOMB_WAVE_GAP_TICKS) * MythicAnims.ICE_BOMB_WAVE_SPEED_PER_TICK;
+            if (lastIbR > mu_iceBombWaveMaxRadius) mu_iceBombWaveTick = -1;
+        }
     }
 
     @Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
@@ -353,7 +368,7 @@ public abstract class LivingEntityMixin {
         String msgId = source.getMsgId();
         if ("deflecting".equals(msgId) || "percentage".equals(msgId) || "topaz_shock".equals(msgId)
             || "peridot_incubation".equals(msgId) || "ice_shield_mark_burst".equals(msgId) || "ice_shield_reflect".equals(msgId)
-            || "citrine_chain".equals(msgId) || "static_field".equals(msgId)) return;
+            || "citrine_chain".equals(msgId) || "static_field".equals(msgId) || "ice_bomb_burst".equals(msgId)) return;
 
         float actualDamage = mu_healthBefore - self.getHealth();
 
@@ -425,7 +440,7 @@ public abstract class LivingEntityMixin {
         }
 
         MobEffectInstance topaz = self.getEffect(MythicEffects.TOPAZ_REACTION);
-        if (topaz != null && self.level() instanceof ServerLevel serverLevel) {
+        if (topaz != null && !topaz.isAmbient() && self.level() instanceof ServerLevel serverLevel) {
             int effectLevel = topaz.getAmplifier() + 1;
             float shockRadius = Math.min(effectLevel * MythicStats.TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL, MythicStats.TOPAZ_ARMOR_SHOCK_MAX_RADIUS);
 
@@ -505,6 +520,7 @@ public abstract class LivingEntityMixin {
                 self.addEffect(new MobEffectInstance(MythicEffects.FREEZE, MythicStats.AQUAMARINE_TOOL_FREEZE_TICKS, 0));
                 self.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, MythicStats.AQUAMARINE_TOOL_SLOWNESS_DURATION_TICKS, MythicStats.AQUAMARINE_TOOL_SLOWNESS_AMPLIFIER));
                 self.addEffect(new MobEffectInstance(MythicEffects.ICE_SHIELD_MARK, MythicStats.ICE_SHIELD_MARK_DURATION_TICKS, 0));
+                self.addEffect(new MobEffectInstance(MythicEffects.ICE_BOMB, MythicStats.ICE_BOMB_TOOL_DURATION_TICKS, 0));
                 MythicState.ICE_SHIELD_SOURCE.put(self, directAttacker);
                 emitAquamarineHitParticles(serverLevel, self);
             }
@@ -588,6 +604,15 @@ public abstract class LivingEntityMixin {
             LivingEntity icySource = MythicState.ICE_SHIELD_SOURCE.get(self);
             applyIceShieldMarkBurst(serverLevel, self, icySource);
             MythicState.ICE_SHIELD_SOURCE.remove(self);
+        }
+
+        if (self.getEffect(MythicEffects.ICE_BOMB) != null) {
+            applyIceBombFreezeBurst(serverLevel, self);
+            mu_iceBombWaveTick = 0;
+            mu_iceBombWaveMaxRadius = MythicStats.ICE_BOMB_BURST_RADIUS;
+            mu_iceBombWaveX = self.getX();
+            mu_iceBombWaveY = self.getY() + 1.0;
+            mu_iceBombWaveZ = self.getZ();
         }
 
         if (self.getEffect(MythicEffects.CHARGED) != null) {
@@ -788,6 +813,36 @@ public abstract class LivingEntityMixin {
             entity.addEffect(new MobEffectInstance(MythicEffects.FREEZE, MythicStats.ICE_SHIELD_MARK_BURST_FREEZE_TICKS, 0));
         }
         emitIceShieldMarkBurst(level, center.getX(), center.getY() + 1.0, center.getZ(), radius);
+    }
+
+    @Unique
+    private static void emitIceBombWaveRing(ServerLevel level, double cx, double cy, double cz, float radius) {
+        DustParticleOptions c1 = new DustParticleOptions(colorFromHex(MythicAnims.ICE_BOMB_COLOR_1), MythicAnims.ICE_BOMB_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c2 = new DustParticleOptions(colorFromHex(MythicAnims.ICE_BOMB_COLOR_2), MythicAnims.ICE_BOMB_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c3 = new DustParticleOptions(colorFromHex(MythicAnims.ICE_BOMB_COLOR_3), MythicAnims.ICE_BOMB_WAVE_PARTICLE_SCALE);
+        int step = MythicAnims.ICE_BOMB_WAVE_STEP_DEGREES;
+        int segment = step * 3;
+        for (int angle = 0; angle < 360; angle += step) {
+            double rad = Math.toRadians(angle);
+            double px = cx + radius * Math.cos(rad);
+            double pz = cz + radius * Math.sin(rad);
+            int mod = angle % segment;
+            DustParticleOptions color = mod < step ? c1 : mod < step * 2 ? c2 : c3;
+            level.sendParticles(color, px, cy, pz, MythicAnims.ICE_BOMB_WAVE_PARTICLES_PER_POINT, 0, 0.08, 0, 0);
+        }
+    }
+
+    @Unique
+    private static void applyIceBombFreezeBurst(ServerLevel level, LivingEntity center) {
+        float radius = MythicStats.ICE_BOMB_BURST_RADIUS;
+        AABB bb = new AABB(center.getX() - radius, center.getY() - radius, center.getZ() - radius,
+            center.getX() + radius, center.getY() + radius, center.getZ() + radius);
+        for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, bb)) {
+            if (entity == center) continue;
+            if (entity.distanceTo(center) > radius) continue;
+            entity.hurt(MUDamageTypes.iceBombBurst(center), MythicStats.ICE_BOMB_BURST_DAMAGE);
+            entity.addEffect(new MobEffectInstance(MythicEffects.FREEZE, MythicStats.ICE_BOMB_BURST_FREEZE_TICKS, 0));
+        }
     }
 
     @Unique

@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_ruby_crystal_block": {
+    "has_ruby_crystal_pillar": {
       "conditions": {
         "items": [
           {
             "items": [
-              "mythicupgrades:ruby_crystal_block"
+              "mythicupgrades:ruby_crystal_pillar"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_ruby_crystal_block",
+      "has_ruby_crystal_pillar",
       "has_the_recipe"
     ]
   ],

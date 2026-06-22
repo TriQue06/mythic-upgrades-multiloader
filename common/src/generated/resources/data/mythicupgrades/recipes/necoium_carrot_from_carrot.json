@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "food",
+  "category": "misc",
   "key": {
-    "N": {
-      "item": "mythicupgrades:necoium_block"
-    },
     "C": {
       "item": "minecraft:carrot"
+    },
+    "N": {
+      "item": "mythicupgrades:necoium_block"
     }
   },
   "pattern": [

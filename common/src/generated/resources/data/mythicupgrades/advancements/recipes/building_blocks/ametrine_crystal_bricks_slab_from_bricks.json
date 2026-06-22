@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_ametrine_crystal_block": {
+    "has_ametrine_crystal_bricks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "mythicupgrades:ametrine_crystal_block"
+              "mythicupgrades:ametrine_crystal_bricks"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_ametrine_crystal_block",
+      "has_ametrine_crystal_bricks",
       "has_the_recipe"
     ]
   ],

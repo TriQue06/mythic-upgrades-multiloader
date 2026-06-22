@@ -13,6 +13,7 @@ import net.trique.mythicupgrades.effect.IceShieldEffect;
 import net.trique.mythicupgrades.effect.IceShieldMarkEffect;
 import net.trique.mythicupgrades.effect.LethalIncubationEffect;
 import net.trique.mythicupgrades.effect.MiasmaEffect;
+import net.trique.mythicupgrades.effect.IceBombEffect;
 import net.trique.mythicupgrades.effect.NecoiumShareEffect;
 import net.trique.mythicupgrades.effect.TopazReactionEffect;
 
@@ -40,6 +41,7 @@ public static final MobEffect FREEZE = defer("freeze", new FreezeEffect());
     public static final MobEffect MIASMA = defer("miasma", new MiasmaEffect());
     public static final MobEffect ICE_SHIELD_MARK = defer("ice_shield_mark", new IceShieldMarkEffect());
     public static final MobEffect ICE_SHIELD = defer("ice_shield", new IceShieldEffect());
+    public static final MobEffect ICE_BOMB = defer("ice_bomb", new IceBombEffect());
     public static final MobEffect CHARGED = defer("charged", new ChargedEffect());
     public static final MobEffect STATIC_FIELD = defer("static_field", new StaticFieldEffect());
     public static final MobEffect BOUNCER = defer("bouncer", new BouncerEffect());

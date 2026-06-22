@@ -1,0 +1,66 @@
+{
+  "carvers": {},
+  "creature_spawn_probability": 0.07,
+  "downfall": 0.2,
+  "effects": {
+    "fog_color": 12638463,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
+    "sky_color": 8103167,
+    "water_color": 4159204,
+    "water_fog_color": 329011
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [
+      "minecraft:monster_room"
+    ],
+    [],
+    [],
+    [
+      "minecraft:ore_granite_upper",
+      "minecraft:ore_granite_lower",
+      "minecraft:ore_diorite_upper",
+      "minecraft:ore_diorite_lower",
+      "minecraft:ore_andesite_upper",
+      "minecraft:ore_andesite_lower",
+      "minecraft:ore_tuff",
+      "minecraft:ore_dirt",
+      "minecraft:ore_gravel",
+      "mythicupgrades:necoium_ore_extra",
+      "mythicupgrades:deepslate_necoium_ore_extra",
+      "mythicupgrades:topaz_stone_blobs",
+      "mythicupgrades:topaz_ore",
+      "mythicupgrades:topaz_deepslate_ore"
+    ],
+    [
+      "minecraft:glow_lichen",
+      "mythicupgrades:topaz_crystal_blobs",
+      "mythicupgrades:topaz_crystal_buds",
+      "mythicupgrades:topaz_crystal_buds_rare"
+    ],
+    [
+      "minecraft:spring_water",
+      "minecraft:spring_lava"
+    ]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.8
+}

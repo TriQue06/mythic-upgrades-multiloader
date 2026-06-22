@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_jade_crystal_block": {
+    "has_polished_jade_crystal_block": {
       "conditions": {
         "items": [
           {
             "items": [
-              "mythicupgrades:jade_crystal_block"
+              "mythicupgrades:polished_jade_crystal_block"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_jade_crystal_block",
+      "has_polished_jade_crystal_block",
       "has_the_recipe"
     ]
   ],

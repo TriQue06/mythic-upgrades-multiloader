@@ -1,0 +1,53 @@
+{
+  "type": "mythicupgrades:crystal_bud",
+  "config": {
+    "spread_xz": 5,
+    "spread_y": 4,
+    "state": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "mythicupgrades:small_ametrine_crystal_bud",
+            "Properties": {
+              "facing": "up",
+              "waterlogged": "false"
+            }
+          },
+          "weight": 4
+        },
+        {
+          "data": {
+            "Name": "mythicupgrades:medium_ametrine_crystal_bud",
+            "Properties": {
+              "facing": "up",
+              "waterlogged": "false"
+            }
+          },
+          "weight": 3
+        },
+        {
+          "data": {
+            "Name": "mythicupgrades:large_ametrine_crystal_bud",
+            "Properties": {
+              "facing": "up",
+              "waterlogged": "false"
+            }
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "mythicupgrades:ametrine_crystal_cluster",
+            "Properties": {
+              "facing": "up",
+              "waterlogged": "false"
+            }
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "tries": 96
+  }
+}
