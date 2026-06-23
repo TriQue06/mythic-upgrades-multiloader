@@ -21,13 +21,21 @@ public class MythicNetherRegion extends Region {
     @Override
     public void addBiomes(Registry<Biome> registry,
                           Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
+        // Nether mod regions are isolated - only registered biomes appear within them.
+        // Pinning to narrow extreme-temperature pockets keeps coverage small.
+
         Climate.Parameter full = Climate.Parameter.span(-1.0f, 1.0f);
-        // Outer quarter of temperature range only (0.25 wide each, was 0.5) — halves area again
+
+        // ruby rift - extreme cold
         addBiome(mapper, Climate.parameters(
-                Climate.Parameter.span(-1.0f, -0.75f), full, full, full, full, full, 0.0f),
+                Climate.Parameter.span(-1.0f, -0.85f),
+                full, full, full, full, full, 0.0f),
                 MythicBiomes.RUBY_RIFT);
+
+        // sapphire rift - extreme heat
         addBiome(mapper, Climate.parameters(
-                Climate.Parameter.span(0.75f, 1.0f), full, full, full, full, full, 0.0f),
+                Climate.Parameter.span(0.85f, 1.0f),
+                full, full, full, full, full, 0.0f),
                 MythicBiomes.SAPPHIRE_RIFT);
     }
 }

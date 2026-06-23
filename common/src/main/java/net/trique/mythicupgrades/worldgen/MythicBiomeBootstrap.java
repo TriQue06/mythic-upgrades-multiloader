@@ -3,10 +3,6 @@ package net.trique.mythicupgrades.worldgen;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
-import net.minecraft.data.worldgen.placement.CavePlacements;
-import net.minecraft.data.worldgen.placement.OrePlacements;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.AmbientMoodSettings;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
@@ -17,11 +13,6 @@ import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class MythicBiomeBootstrap {
-
-    private static final ResourceKey<PlacedFeature> SPRING_WATER = ResourceKey.create(
-            Registries.PLACED_FEATURE, new ResourceLocation("minecraft", "spring_water"));
-    private static final ResourceKey<PlacedFeature> SPRING_LAVA  = ResourceKey.create(
-            Registries.PLACED_FEATURE, new ResourceLocation("minecraft", "spring_lava"));
 
     public static void bootstrap(BootstapContext<Biome> ctx) {
         HolderGetter<PlacedFeature>           features = ctx.lookup(Registries.PLACED_FEATURE);
@@ -38,38 +29,26 @@ public class MythicBiomeBootstrap {
 
         BiomeGenerationSettings.Builder gen = new BiomeGenerationSettings.Builder(features, carvers);
 
-        // Dungeon / monster room (correct step: UNDERGROUND_STRUCTURES)
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_STRUCTURES, features.getOrThrow(CavePlacements.MONSTER_ROOM));
+        // Only features that are 100% unique to this biome belong in the bootstrap.
+        // Any feature shared with vanilla biomes (monster_room, glow_lichen, spring_water,
+        // spring_lava, vanilla ores) must be added via BiomeModifier / BiomeModifications
+        // so that FeatureSorter sees a consistent ordering across all biomes in a chunk region.
 
-        // Stone variants — granite, diorite, andesite, tuff, dirt, gravel veins
-        // Metal ores (coal/iron/gold/diamond/etc.) are added via BiomeModifier / BiomeModifications
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(OrePlacements.ORE_GRANITE_UPPER));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(OrePlacements.ORE_GRANITE_LOWER));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(OrePlacements.ORE_DIORITE_UPPER));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(OrePlacements.ORE_DIORITE_LOWER));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(OrePlacements.ORE_ANDESITE_UPPER));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(OrePlacements.ORE_ANDESITE_LOWER));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(OrePlacements.ORE_TUFF));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(OrePlacements.ORE_DIRT));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(OrePlacements.ORE_GRAVEL));
-
-        // Extra necoium ore density for mythic cave biomes
+        // Extra necoium ore density — unique to mythic cave biomes
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(MythicPlacedFeatures.NECOIUM_ORE_EXTRA_PF));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(MythicPlacedFeatures.DEEPSLATE_NECOIUM_ORE_EXTRA_PF));
 
-        // Gem stone blobs and ore veins
+        // Gem stone blobs and ore veins — unique to each cave biome
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.stoneBlobsPF()));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.orePF()));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.deepslateOrePF()));
 
-        // Cave ambient decoration
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(CavePlacements.GLOW_LICHEN));
+        // Crystal decoration — unique to each cave biome
+        // glow_lichen and crystal_buds_rare are added via BiomeModifier/BiomeModifications
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBlobsPF()));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsPF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsRarePF()));
 
-        gen.addFeature(GenerationStep.Decoration.FLUID_SPRINGS, features.getOrThrow(SPRING_WATER));
-        gen.addFeature(GenerationStep.Decoration.FLUID_SPRINGS, features.getOrThrow(SPRING_LAVA));
+        // spring_water and spring_lava are added via BiomeModifier/BiomeModifications
 
         MobSpawnSettings spawns = new MobSpawnSettings.Builder()
                 .creatureGenerationProbability(0.07f)

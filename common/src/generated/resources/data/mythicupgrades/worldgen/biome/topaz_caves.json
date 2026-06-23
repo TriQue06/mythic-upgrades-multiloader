@@ -18,21 +18,10 @@
     [],
     [],
     [],
-    [
-      "minecraft:monster_room"
-    ],
+    [],
     [],
     [],
     [
-      "minecraft:ore_granite_upper",
-      "minecraft:ore_granite_lower",
-      "minecraft:ore_diorite_upper",
-      "minecraft:ore_diorite_lower",
-      "minecraft:ore_andesite_upper",
-      "minecraft:ore_andesite_lower",
-      "minecraft:ore_tuff",
-      "minecraft:ore_dirt",
-      "minecraft:ore_gravel",
       "mythicupgrades:necoium_ore_extra",
       "mythicupgrades:deepslate_necoium_ore_extra",
       "mythicupgrades:topaz_stone_blobs",
@@ -40,14 +29,8 @@
       "mythicupgrades:topaz_deepslate_ore"
     ],
     [
-      "minecraft:glow_lichen",
       "mythicupgrades:topaz_crystal_blobs",
-      "mythicupgrades:topaz_crystal_buds",
-      "mythicupgrades:topaz_crystal_buds_rare"
-    ],
-    [
-      "minecraft:spring_water",
-      "minecraft:spring_lava"
+      "mythicupgrades:topaz_crystal_buds"
     ]
   ],
   "has_precipitation": true,

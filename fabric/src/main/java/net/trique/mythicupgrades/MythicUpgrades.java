@@ -10,7 +10,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.trique.mythicupgrades.MythicEffects;
@@ -63,7 +62,15 @@ public class MythicUpgrades implements ModInitializer {
         MythicFeatures.register((name, feature) ->
             Registry.register(BuiltInRegistries.FEATURE, new ResourceLocation(Constants.MOD_ID, name), feature));
 
-        // Rare crystal buds in all overworld underground areas
+        // FeatureSorter cycle prevention:
+        // Cave biome JSONs already contain ALL features (glow_lichen, vanilla ores, monster_room,
+        // springs, gem ores) in their bootstrap in vanilla-compatible order.
+        // BiomeModifications only adds features that are ALWAYS appended last across ALL overworld
+        // biomes — so they can never conflict with bootstrap feature ordering.
+
+        // crystal_buds_rare: appended last in UNDERGROUND_DECORATION for all overworld biomes.
+        // In vanilla biomes: bootstrap features come first, then this is appended after.
+        // In cave biomes: same — JSON bootstrap first, then this appended after.
         for (String gem : new String[]{"aquamarine", "citrine", "peridot", "topaz"}) {
             ResourceKey<PlacedFeature> key = ResourceKey.create(Registries.PLACED_FEATURE,
                 new ResourceLocation(Constants.MOD_ID, gem + "_crystal_buds_rare"));
@@ -71,33 +78,11 @@ public class MythicUpgrades implements ModInitializer {
                 GenerationStep.Decoration.UNDERGROUND_DECORATION, key);
         }
 
-        // Necoium ore in all overworld biomes at diamond rarity
+        // necoium: appended last in UNDERGROUND_ORES for all overworld biomes.
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
             GenerationStep.Decoration.UNDERGROUND_ORES, MythicPlacedFeatures.NECOIUM_ORE_PF);
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
             GenerationStep.Decoration.UNDERGROUND_ORES, MythicPlacedFeatures.DEEPSLATE_NECOIUM_ORE_PF);
-
-        // Metal ores in mythic cave biomes (ore_diamond_medium does not exist in 1.20.1)
-        String[] caveGems = {"aquamarine", "citrine", "peridot", "topaz"};
-        String[] vanillaOres = {
-            "ore_coal_upper", "ore_coal_lower",
-            "ore_iron_upper", "ore_iron_middle", "ore_iron_small",
-            "ore_gold", "ore_gold_lower",
-            "ore_redstone", "ore_redstone_lower",
-            "ore_diamond", "ore_diamond_large", "ore_diamond_buried",
-            "ore_lapis", "ore_lapis_buried",
-            "ore_copper", "ore_copper_large"
-        };
-        for (String gem : caveGems) {
-            ResourceKey<Biome> biomeKey = ResourceKey.create(
-                Registries.BIOME, new ResourceLocation(Constants.MOD_ID, gem + "_caves"));
-            for (String ore : vanillaOres) {
-                ResourceKey<PlacedFeature> oreKey = ResourceKey.create(Registries.PLACED_FEATURE,
-                    new ResourceLocation("minecraft", ore));
-                BiomeModifications.addFeature(ctx -> ctx.getBiomeKey().equals(biomeKey),
-                    GenerationStep.Decoration.UNDERGROUND_ORES, oreKey);
-            }
-        }
 
         CommonClass.init();
     }
