@@ -43,7 +43,6 @@ public class MythicBiomeBootstrap {
         // Gem stone blobs and ore veins — unique to each cave biome
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.stoneBlobsPF()));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.orePF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.deepslateOrePF()));
 
         // Crystal decoration — unique to each cave biome
         // glow_lichen, crystal_buds_rare, and geodes are added via BiomeModifier/BiomeModifications

@@ -144,6 +144,16 @@ public class MythicRecipeProvider extends RecipeProvider {
             .unlockedBy("has_netherite_upgrade_smithing_template", has(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
             .save(writer, new ResourceLocation(Constants.MOD_ID, "mythic_upgrade_smithing_template"));
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE, 2)
+            .define('I', MythicItems.NECOIUM_INGOT)
+            .define('T', MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE)
+            .define('B', MythicBlocks.NECOIUM_BLOCK)
+            .pattern("ITI")
+            .pattern("IBI")
+            .pattern("III")
+            .unlockedBy("has_mythic_upgrade_smithing_template", has(MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, "mythic_upgrade_smithing_template_duplicate"));
+
         crystalBlock(writer, MythicItems.AQUAMARINE_CRYSTAL_SHARD, MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK, "aquamarine");
         crystalBlock(writer, MythicItems.CITRINE_CRYSTAL_SHARD, MythicBlocks.CITRINE_CRYSTAL_BLOCK, "citrine");
         crystalBlock(writer, MythicItems.TOPAZ_CRYSTAL_SHARD, MythicBlocks.TOPAZ_CRYSTAL_BLOCK, "topaz");

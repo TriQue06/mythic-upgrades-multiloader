@@ -92,8 +92,6 @@ public class MythicBlockTagsProvider extends BlockTagsProvider {
             .add(MythicBlocks.AMETRINE_CRYSTAL_CLUSTER, MythicBlocks.LARGE_AMETRINE_CRYSTAL_BUD, MythicBlocks.MEDIUM_AMETRINE_CRYSTAL_BUD, MythicBlocks.SMALL_AMETRINE_CRYSTAL_BUD)
             .add(MythicBlocks.BUDDING_AMETRINE_CRYSTAL)
 
-            .add(MythicBlocks.MYTHIC_UPGRADING_TABLE)
-
             // Stone blocks (all gems)
             .add(MythicBlocks.AQUAMARINE_STONE, MythicBlocks.AQUAMARINE_STONE_SLAB, MythicBlocks.AQUAMARINE_STONE_STAIRS)
             .add(MythicBlocks.POLISHED_AQUAMARINE_STONE, MythicBlocks.POLISHED_AQUAMARINE_STONE_SLAB, MythicBlocks.POLISHED_AQUAMARINE_STONE_STAIRS)

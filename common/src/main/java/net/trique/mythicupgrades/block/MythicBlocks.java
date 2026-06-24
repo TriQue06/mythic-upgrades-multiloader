@@ -549,9 +549,6 @@ public class MythicBlocks {
         POLISHED_AMETRINE_STONE.defaultBlockState(),
         BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_PURPLE).strength(1.5F, 6.0F)));
 
-    public static final MythicUpgradingTableBlock MYTHIC_UPGRADING_TABLE = defer("mythic_upgrading_table",
-        new MythicUpgradingTableBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).strength(3.5F)));
-
     public static void register(BiFunction<String, Block, Block> reg) {
         DEFERRED.forEach(e -> reg.apply(e.getKey(), e.getValue()));
         Constants.LOG.info("MythicBlocks registered.");

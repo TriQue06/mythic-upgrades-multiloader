@@ -58,20 +58,20 @@ public class MythicNetherPlacedFeatures {
                 BiomeFilter.biome()
             )));
 
-            // Ore: 20 per chunk, y 10 to 115
+            // Ore: 20 per chunk, y 0 to 128
             ctx.register(gem.orePF(), new PlacedFeature(oreH, List.of(
                 CountPlacement.of(20),
                 InSquarePlacement.spread(),
-                HeightRangePlacement.uniform(VerticalAnchor.absolute(10), VerticalAnchor.absolute(115)),
+                HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(128)),
                 BiomeFilter.biome()
             )));
 
-            // Geode: 1-in-24 chunks (vanilla amethyst rarity), y 5 to 90
+            // Geode: 1-in-24 chunks (vanilla amethyst rarity), y 0 to 64
             var geodeH = features.getOrThrow(gem.geodeCF());
             ctx.register(gem.geodePF(), new PlacedFeature(geodeH, List.of(
                 RarityFilter.onAverageOnceEvery(24),
                 InSquarePlacement.spread(),
-                HeightRangePlacement.uniform(VerticalAnchor.absolute(5), VerticalAnchor.absolute(90)),
+                HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(64)),
                 BiomeFilter.biome()
             )));
 
@@ -79,7 +79,7 @@ public class MythicNetherPlacedFeatures {
             ctx.register(gem.geodeExtraPF(), new PlacedFeature(geodeH, List.of(
                 RarityFilter.onAverageOnceEvery(8),
                 InSquarePlacement.spread(),
-                HeightRangePlacement.uniform(VerticalAnchor.absolute(5), VerticalAnchor.absolute(90)),
+                HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(64)),
                 BiomeFilter.biome()
             )));
         }

@@ -2,17 +2,13 @@ package net.trique.mythicupgrades;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.client.renderer.RenderType;
 import net.trique.mythicupgrades.block.MythicBlocks;
-import net.trique.mythicupgrades.client.screen.MythicUpgradingTableScreen;
-import net.trique.mythicupgrades.registry.MythicMenuTypes;
 
 public class FabricClientSetup implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        ScreenRegistry.register(MythicMenuTypes.UPGRADING_TABLE, MythicUpgradingTableScreen::new);
         registerCutoutRenderLayers();
     }
 

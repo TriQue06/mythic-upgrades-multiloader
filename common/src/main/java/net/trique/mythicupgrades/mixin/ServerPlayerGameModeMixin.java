@@ -5,10 +5,12 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerPlayerGameMode;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.phys.AABB;
 import net.trique.mythicupgrades.MythicAnims;
+import net.trique.mythicupgrades.MythicEffects;
 import net.trique.mythicupgrades.MythicState;
 import net.trique.mythicupgrades.MythicStats;
 import net.trique.mythicupgrades.item.MythicItems;
@@ -31,6 +33,11 @@ public abstract class ServerPlayerGameModeMixin {
         if (!(player.level() instanceof ServerLevel serverLevel)) return;
 
         Item tool = player.getMainHandItem().getItem();
+
+        if (isJadeTool(tool)) {
+            player.addEffect(new MobEffectInstance(MythicEffects.JADE_AURA, MythicStats.JADE_TOOL_AURA_DURATION_TICKS, 4));
+        }
+
         if (!isTopazTool(tool)) return;
 
         int count = MythicState.TOPAZ_TOOL_HIT_COUNTS.getOrDefault(player, 0) + 1;
@@ -67,5 +74,12 @@ public abstract class ServerPlayerGameModeMixin {
         return item == MythicItems.TOPAZ_SWORD || item == MythicItems.TOPAZ_PICKAXE
             || item == MythicItems.TOPAZ_AXE || item == MythicItems.TOPAZ_SHOVEL
             || item == MythicItems.TOPAZ_HOE;
+    }
+
+    @Unique
+    private static boolean isJadeTool(Item item) {
+        return item == MythicItems.JADE_SWORD || item == MythicItems.JADE_PICKAXE
+            || item == MythicItems.JADE_AXE || item == MythicItems.JADE_SHOVEL
+            || item == MythicItems.JADE_HOE;
     }
 }

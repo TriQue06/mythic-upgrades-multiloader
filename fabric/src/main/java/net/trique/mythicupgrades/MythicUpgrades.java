@@ -3,9 +3,9 @@ package net.trique.mythicupgrades;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
-import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
-import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -17,13 +17,10 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.trique.mythicupgrades.MythicEffects;
+import net.trique.mythicupgrades.MythicLegacyMigration;
+import net.trique.mythicupgrades.MythicPotions;
 import net.trique.mythicupgrades.block.MythicBlocks;
-import net.trique.mythicupgrades.block.entity.MythicUpgradingTableBlockEntity;
 import net.trique.mythicupgrades.item.MythicItems;
-import net.trique.mythicupgrades.menu.MythicUpgradingTableMenu;
-import net.trique.mythicupgrades.registry.MythicBlockEntityTypes;
-import net.trique.mythicupgrades.registry.MythicMenuTypes;
-import net.trique.mythicupgrades.registry.MythicRecipeTypes;
 import net.trique.mythicupgrades.worldgen.CaveGemType;
 import net.trique.mythicupgrades.worldgen.EndGemType;
 import net.trique.mythicupgrades.worldgen.MythicFeatures;
@@ -46,25 +43,11 @@ public class MythicUpgrades implements ModInitializer {
         MythicCreativeTabs.register((name, tab) ->
             Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, new ResourceLocation(Constants.MOD_ID, name), tab));
 
-        MythicBlockEntityTypes.UPGRADING_TABLE = Registry.register(
-                BuiltInRegistries.BLOCK_ENTITY_TYPE,
-                new ResourceLocation(Constants.MOD_ID, "mythic_upgrading_table"),
-                FabricBlockEntityTypeBuilder.create(MythicUpgradingTableBlockEntity::new,
-                        MythicBlocks.MYTHIC_UPGRADING_TABLE).build());
-        MythicBlockEntityTypes.onRegistered();
-
-        MythicMenuTypes.UPGRADING_TABLE = ScreenHandlerRegistry.registerSimple(
-                new ResourceLocation(Constants.MOD_ID, "mythic_upgrading_table"),
-                MythicUpgradingTableMenu::createClientMenu);
-
-        MythicRecipeTypes.registerType((name, type) ->
-            Registry.register(BuiltInRegistries.RECIPE_TYPE, new ResourceLocation(Constants.MOD_ID, name), type));
-
-        MythicRecipeTypes.registerSerializer((name, serializer) ->
-            Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, new ResourceLocation(Constants.MOD_ID, name), serializer));
-
         MythicEffects.register((name, effect) ->
             Registry.register(BuiltInRegistries.MOB_EFFECT, new ResourceLocation(Constants.MOD_ID, name), effect));
+
+        MythicPotions.register((name, potion) ->
+            Registry.register(BuiltInRegistries.POTION, new ResourceLocation(Constants.MOD_ID, name), potion));
 
         MythicFeatures.register((name, feature) ->
             Registry.register(BuiltInRegistries.FEATURE, new ResourceLocation(Constants.MOD_ID, name), feature));
@@ -122,6 +105,21 @@ public class MythicUpgrades implements ModInitializer {
                         .add(LootItem.lootTableItem(MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE)
                             .when(LootItemRandomChanceCondition.randomChance(0.25f)))
                 );
+            }
+        });
+
+        MythicPotions.registerBrewingRecipes();
+
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+            MythicLegacyMigration.migratePlayer(handler.player);
+            MythicLegacyMigration.drainPendingChunks();
+        });
+
+        ServerChunkEvents.CHUNK_LOAD.register((world, chunk) -> {
+            if (world.getServer().getTickCount() > 0) {
+                MythicLegacyMigration.migrateChunk(chunk);
+            } else {
+                MythicLegacyMigration.PENDING_CHUNKS.offer(chunk);
             }
         });
 

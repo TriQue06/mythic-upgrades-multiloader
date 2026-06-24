@@ -7,6 +7,8 @@
     "mixins": [
         "ArmorTrimMixin",
         "BlockBehaviourMixin",
+        "ItemUseOnMixin",
+        "LevelChunkMixin",
         "LightningBoltMixin",
         "LivingEntityMixin",
         "MixinOverworldBiomeBuilder",

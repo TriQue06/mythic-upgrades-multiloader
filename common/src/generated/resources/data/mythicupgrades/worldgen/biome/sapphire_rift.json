@@ -34,13 +34,7 @@
       "minecraft:ore_debris_small",
       "mythicupgrades:sapphire_rift_crystal_blobs",
       "mythicupgrades:sapphire_rift_crystal_buds",
-      "mythicupgrades:sapphire_rift_crystal_buds_rare",
-      "minecraft:patch_fire",
-      "minecraft:glowstone_extra",
-      "minecraft:glowstone"
-    ],
-    [
-      "minecraft:spring_open"
+      "mythicupgrades:sapphire_rift_crystal_buds_rare"
     ]
   ],
   "has_precipitation": false,
