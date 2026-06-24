@@ -52,7 +52,6 @@ public enum CaveGemType {
     public ResourceKey<ConfiguredFeature<?, ?>> crystalBudsCF()     { return cf(id + "_crystal_buds"); }
     public ResourceKey<ConfiguredFeature<?, ?>> crystalBudsRareCF() { return cf(id + "_crystal_buds_rare"); }
     public ResourceKey<ConfiguredFeature<?, ?>> oreCF()             { return cf(id + "_ore"); }
-    public ResourceKey<ConfiguredFeature<?, ?>> deepslateOreCF()    { return cf(id + "_deepslate_ore"); }
     public ResourceKey<ConfiguredFeature<?, ?>> geodeCF()           { return cf(id + "_geode"); }
 
     private ResourceKey<ConfiguredFeature<?, ?>> cf(String name) {
@@ -64,7 +63,6 @@ public enum CaveGemType {
     public ResourceKey<PlacedFeature> crystalBudsPF()     { return pf(id + "_crystal_buds"); }
     public ResourceKey<PlacedFeature> crystalBudsRarePF() { return pf(id + "_crystal_buds_rare"); }
     public ResourceKey<PlacedFeature> orePF()             { return pf(id + "_ore"); }
-    public ResourceKey<PlacedFeature> deepslateOrePF()    { return pf(id + "_deepslate_ore"); }
     public ResourceKey<PlacedFeature> geodePF()           { return pf(id + "_geode"); }
     public ResourceKey<PlacedFeature> geodeExtraPF()      { return pf(id + "_geode_extra"); }
 

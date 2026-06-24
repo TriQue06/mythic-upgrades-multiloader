@@ -53,8 +53,6 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         dropSelf(MythicBlocks.AMETRINE_BLOCK);
         dropSelf(MythicBlocks.NECOIUM_BLOCK);
 
-        dropSelf(MythicBlocks.MYTHIC_UPGRADING_TABLE);
-
         dropSelf(MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK);
         dropSelf(MythicBlocks.CITRINE_CRYSTAL_BLOCK);
         dropSelf(MythicBlocks.TOPAZ_CRYSTAL_BLOCK);
@@ -274,7 +272,6 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
             MythicBlocks.RUBY_ORE, MythicBlocks.SAPPHIRE_ORE,
             MythicBlocks.JADE_ORE, MythicBlocks.AMETRINE_ORE, MythicBlocks.NECOIUM_ORE, MythicBlocks.DEEPSLATE_NECOIUM_ORE,
             MythicBlocks.RAW_NECOIUM_BLOCK,
-            MythicBlocks.MYTHIC_UPGRADING_TABLE,
             MythicBlocks.AQUAMARINE_BLOCK,
             MythicBlocks.CITRINE_BLOCK, MythicBlocks.TOPAZ_BLOCK,
             MythicBlocks.PERIDOT_BLOCK, MythicBlocks.RUBY_BLOCK,

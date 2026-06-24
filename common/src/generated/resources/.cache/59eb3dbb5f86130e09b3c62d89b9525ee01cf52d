@@ -1,4 +1,4 @@
-// 1.20.1	2026-06-23T21:07:09.7633702	Loot Tables
+// 1.20.1	2026-06-25T01:34:46.1493043	Loot Tables
 b22a293d22a83c06380966138ba0cff4e70891e8 data/mythicupgrades/loot_tables/blocks/ametrine_block.json
 8239fd9f826275ab52fd82d3c3d210566fec80b4 data/mythicupgrades/loot_tables/blocks/ametrine_crystal_block.json
 26256bf1bce2af9ef40a1a65e76db47b7124a109 data/mythicupgrades/loot_tables/blocks/ametrine_crystal_block_slab.json
@@ -88,7 +88,6 @@ e0d08d53fcf0abbcbbe885bbdd8fdfd1cc2ef650 data/mythicupgrades/loot_tables/blocks/
 cf2c949fe1651076a2358b03f956d640504d994a data/mythicupgrades/loot_tables/blocks/medium_ruby_crystal_bud.json
 fb7a7ce5d6586d580a65d9f4395c2aea1f422f98 data/mythicupgrades/loot_tables/blocks/medium_sapphire_crystal_bud.json
 ad2c8ed3f4b0ecbc6edf8231b6699289e67bfc0b data/mythicupgrades/loot_tables/blocks/medium_topaz_crystal_bud.json
-146c8862459264802518e48ebdf7a2ff2962c035 data/mythicupgrades/loot_tables/blocks/mythic_upgrading_table.json
 52e7a02cbafded8192cd9d5ba437082d458798e8 data/mythicupgrades/loot_tables/blocks/necoium_block.json
 b8e796b022688a326cc0517aa2ac8ed27eb0651a data/mythicupgrades/loot_tables/blocks/necoium_ore.json
 ccf8edfd36b6818491c38eb9f1e854bdaf12f675 data/mythicupgrades/loot_tables/blocks/peridot_block.json

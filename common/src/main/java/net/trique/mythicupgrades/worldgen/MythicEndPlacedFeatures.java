@@ -16,15 +16,13 @@ import java.util.List;
 
 public class MythicEndPlacedFeatures {
 
-    // End islands sit roughly at y=55-75; features generate across y=40-80.
-    private static final int END_MIN_Y = 40;
-    private static final int END_MAX_Y = 80;
+    private static final int END_MIN_Y = 0;
+    private static final int END_MAX_Y = 128;
 
     public static void bootstrap(BootstapContext<PlacedFeature> ctx) {
         HolderGetter<ConfiguredFeature<?, ?>> features = ctx.lookup(Registries.CONFIGURED_FEATURE);
 
         for (EndGemType gem : EndGemType.values()) {
-            // Stone blobs: 30 per chunk, biome-filtered
             ctx.register(gem.stoneBlobsPF(), new PlacedFeature(
                 features.getOrThrow(gem.stoneBlobsCF()), List.of(
                     CountPlacement.of(30),
@@ -69,12 +67,12 @@ public class MythicEndPlacedFeatures {
                     BiomeFilter.biome()
             )));
 
-            // Geode: 1-in-24 chunks (vanilla amethyst rarity), y 40 to 80
+            // Geode: 1-in-24 chunks (vanilla amethyst rarity), y 0 to 64
             var geodeH = features.getOrThrow(gem.geodeCF());
             ctx.register(gem.geodePF(), new PlacedFeature(geodeH, List.of(
                 RarityFilter.onAverageOnceEvery(24),
                 InSquarePlacement.spread(),
-                HeightRangePlacement.uniform(VerticalAnchor.absolute(END_MIN_Y), VerticalAnchor.absolute(END_MAX_Y)),
+                HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(64)),
                 BiomeFilter.biome()
             )));
 
@@ -82,7 +80,7 @@ public class MythicEndPlacedFeatures {
             ctx.register(gem.geodeExtraPF(), new PlacedFeature(geodeH, List.of(
                 RarityFilter.onAverageOnceEvery(8),
                 InSquarePlacement.spread(),
-                HeightRangePlacement.uniform(VerticalAnchor.absolute(END_MIN_Y), VerticalAnchor.absolute(END_MAX_Y)),
+                HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(64)),
                 BiomeFilter.biome()
             )));
         }

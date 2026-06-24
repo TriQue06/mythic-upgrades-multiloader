@@ -53,9 +53,6 @@ public class MythicDatagen {
                 new MythicRecipeProvider(output));
 
         event.getGenerator().addProvider(event.includeServer(),
-                new MythicUpgradingRecipeProvider(output));
-
-        event.getGenerator().addProvider(event.includeServer(),
                 new MythicTrimMaterialProvider(output));
 
         MythicBlockTagsProvider blockTags = new MythicBlockTagsProvider(output, lookupProvider, existingFileHelper);

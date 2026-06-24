@@ -36,8 +36,6 @@ public class MythicBlockStateProvider extends BlockStateProvider {
         simpleBlock(MythicBlocks.DEEPSLATE_NECOIUM_ORE);
         simpleBlock(MythicBlocks.RAW_NECOIUM_BLOCK);
         simpleBlock(MythicBlocks.NECOIUM_BLOCK);
-        simpleBlock(MythicBlocks.MYTHIC_UPGRADING_TABLE,
-            models().getExistingFile(modLoc("block/mythic_upgrading_table")));
     }
 
     private void gemBlocks(String gem) {

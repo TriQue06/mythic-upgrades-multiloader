@@ -12,8 +12,7 @@
   "itemGroup.mythicupgrades.gear": "Mythic Upgrades: Gear",
   "itemGroup.mythicupgrades.blocks": "Mythic Upgrades: Blocks",
 
-  "block.mythicupgrades.mythic_upgrading_table": "Mythic Upgrading Table",
-  "container.mythicupgrades.upgrading_table": "Mythic Upgrading Table",
+
 
   "item.mythicupgrades.aquamarine": "Aquamarine",
   "item.mythicupgrades.aquamarine_ingot": "Aquamarine Ingot",
@@ -377,5 +376,45 @@
   "item.mythicupgrades.mythic_upgrade_smithing_template.ingredients": "Mythic Ingots",
   "item.mythicupgrades.mythic_upgrade_smithing_template.base_slot_description": "Add Netherite Armor, Weapon or Tool",
   "item.mythicupgrades.mythic_upgrade_smithing_template.additions_slot_description": "Add Mythic Ingot",
-  "upgrade.mythicupgrades.mythic_upgrade": "Mythic Upgrade"
+  "upgrade.mythicupgrades.mythic_upgrade": "Mythic Upgrade",
+
+  "item.minecraft.potion.effect.ice_shield": "Potion of Ice Shield",
+  "item.minecraft.splash_potion.effect.ice_shield": "Splash Potion of Ice Shield",
+  "item.minecraft.lingering_potion.effect.ice_shield": "Lingering Potion of Ice Shield",
+  "item.minecraft.tipped_arrow.effect.ice_shield": "Arrow of Ice Shield",
+
+  "item.minecraft.potion.effect.static_field": "Potion of Static Field",
+  "item.minecraft.splash_potion.effect.static_field": "Splash Potion of Static Field",
+  "item.minecraft.lingering_potion.effect.static_field": "Lingering Potion of Static Field",
+  "item.minecraft.tipped_arrow.effect.static_field": "Arrow of Static Field",
+
+  "item.minecraft.potion.effect.topaz_reaction": "Potion of Topaz Reaction",
+  "item.minecraft.splash_potion.effect.topaz_reaction": "Splash Potion of Topaz Reaction",
+  "item.minecraft.lingering_potion.effect.topaz_reaction": "Lingering Potion of Topaz Reaction",
+  "item.minecraft.tipped_arrow.effect.topaz_reaction": "Arrow of Topaz Reaction",
+
+  "item.minecraft.potion.effect.miasma": "Potion of Miasma",
+  "item.minecraft.splash_potion.effect.miasma": "Splash Potion of Miasma",
+  "item.minecraft.lingering_potion.effect.miasma": "Lingering Potion of Miasma",
+  "item.minecraft.tipped_arrow.effect.miasma": "Arrow of Miasma",
+
+  "item.minecraft.potion.effect.blood_thirst": "Potion of Blood Thirst",
+  "item.minecraft.splash_potion.effect.blood_thirst": "Splash Potion of Blood Thirst",
+  "item.minecraft.lingering_potion.effect.blood_thirst": "Lingering Potion of Blood Thirst",
+  "item.minecraft.tipped_arrow.effect.blood_thirst": "Arrow of Blood Thirst",
+
+  "item.minecraft.potion.effect.damage_deflection": "Potion of Damage Deflection",
+  "item.minecraft.splash_potion.effect.damage_deflection": "Splash Potion of Damage Deflection",
+  "item.minecraft.lingering_potion.effect.damage_deflection": "Lingering Potion of Damage Deflection",
+  "item.minecraft.tipped_arrow.effect.damage_deflection": "Arrow of Damage Deflection",
+
+  "item.minecraft.potion.effect.jade_aura": "Potion of Jade Aura",
+  "item.minecraft.splash_potion.effect.jade_aura": "Splash Potion of Jade Aura",
+  "item.minecraft.lingering_potion.effect.jade_aura": "Lingering Potion of Jade Aura",
+  "item.minecraft.tipped_arrow.effect.jade_aura": "Arrow of Jade Aura",
+
+  "item.minecraft.potion.effect.arcane_aura": "Potion of Arcane Aura",
+  "item.minecraft.splash_potion.effect.arcane_aura": "Splash Potion of Arcane Aura",
+  "item.minecraft.lingering_potion.effect.arcane_aura": "Lingering Potion of Arcane Aura",
+  "item.minecraft.tipped_arrow.effect.arcane_aura": "Arrow of Arcane Aura"
 }

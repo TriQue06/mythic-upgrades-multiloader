@@ -1,6 +1,5 @@
 package net.trique.mythicupgrades;
 
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
@@ -8,12 +7,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
-import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.LootTableLoadEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.level.ChunkEvent;
+import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
@@ -23,14 +22,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegisterEvent;
 import net.trique.mythicupgrades.MythicEffects;
+import net.trique.mythicupgrades.MythicLegacyMigration;
+import net.trique.mythicupgrades.MythicPotions;
 import net.trique.mythicupgrades.block.MythicBlocks;
-import net.trique.mythicupgrades.block.entity.MythicUpgradingTableBlockEntity;
-import net.trique.mythicupgrades.client.screen.MythicUpgradingTableScreen;
 import net.trique.mythicupgrades.item.MythicItems;
-import net.trique.mythicupgrades.menu.MythicUpgradingTableMenu;
-import net.trique.mythicupgrades.registry.MythicBlockEntityTypes;
-import net.trique.mythicupgrades.registry.MythicMenuTypes;
-import net.trique.mythicupgrades.registry.MythicRecipeTypes;
 import net.trique.mythicupgrades.worldgen.MythicFeatures;
 import net.trique.mythicupgrades.worldgen.TerraBlenderCompat;
 
@@ -70,43 +65,18 @@ public class MythicUpgrades {
                     return tab;
                 })
             );
-        } else if (event.getRegistryKey().equals(Registries.BLOCK_ENTITY_TYPE)) {
-            event.register(Registries.BLOCK_ENTITY_TYPE, helper -> {
-                BlockEntityType<MythicUpgradingTableBlockEntity> type =
-                        BlockEntityType.Builder.of(
-                                MythicUpgradingTableBlockEntity::new,
-                                MythicBlocks.MYTHIC_UPGRADING_TABLE
-                        ).build(null);
-                helper.register(new ResourceLocation(Constants.MOD_ID, "mythic_upgrading_table"), type);
-                MythicBlockEntityTypes.UPGRADING_TABLE = type;
-                MythicBlockEntityTypes.onRegistered();
-            });
-        } else if (event.getRegistryKey().equals(Registries.MENU)) {
-            event.register(Registries.MENU, helper -> {
-                MenuType<MythicUpgradingTableMenu> type =
-                        new MenuType<>(MythicUpgradingTableMenu::createClientMenu, FeatureFlags.VANILLA_SET);
-                helper.register(new ResourceLocation(Constants.MOD_ID, "mythic_upgrading_table"), type);
-                MythicMenuTypes.UPGRADING_TABLE = type;
-            });
-        } else if (event.getRegistryKey().equals(Registries.RECIPE_TYPE)) {
-            event.register(Registries.RECIPE_TYPE, helper ->
-                MythicRecipeTypes.registerType((name, type) -> {
-                    helper.register(new ResourceLocation(Constants.MOD_ID, name), type);
-                    return type;
-                })
-            );
-        } else if (event.getRegistryKey().equals(Registries.RECIPE_SERIALIZER)) {
-            event.register(Registries.RECIPE_SERIALIZER, helper ->
-                MythicRecipeTypes.registerSerializer((name, serializer) -> {
-                    helper.register(new ResourceLocation(Constants.MOD_ID, name), serializer);
-                    return serializer;
-                })
-            );
         } else if (event.getRegistryKey().equals(Registries.MOB_EFFECT)) {
             event.register(Registries.MOB_EFFECT, helper ->
                 MythicEffects.register((name, effect) -> {
                     helper.register(new ResourceLocation(Constants.MOD_ID, name), effect);
                     return effect;
+                })
+            );
+        } else if (event.getRegistryKey().equals(Registries.POTION)) {
+            event.register(Registries.POTION, helper ->
+                MythicPotions.register((name, potion) -> {
+                    helper.register(new ResourceLocation(Constants.MOD_ID, name), potion);
+                    return potion;
                 })
             );
         } else if (event.getRegistryKey().equals(Registries.FEATURE)) {
@@ -124,19 +94,31 @@ public class MythicUpgrades {
             if (ModList.get().isLoaded("terrablender")) {
                 TerraBlenderCompat.init();
             }
+            MythicPotions.registerBrewingRecipes();
         });
         CommonClass.init();
     }
 
     private void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            MenuScreens.register(MythicMenuTypes.UPGRADING_TABLE, MythicUpgradingTableScreen::new);
             registerCutoutRenderLayers();
         });
     }
 
     @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static class ForgeEvents {
+        @SubscribeEvent
+        public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
+            MythicLegacyMigration.migratePlayer(event.getEntity());
+        }
+
+        @SubscribeEvent
+        public static void onChunkLoad(ChunkEvent.Load event) {
+            if (!event.getLevel().isClientSide() && event.getChunk() instanceof LevelChunk levelChunk) {
+                MythicLegacyMigration.migrateChunk(levelChunk);
+            }
+        }
+
         @SubscribeEvent
         public static void onLootTableLoad(LootTableLoadEvent event) {
             if (event.getName().equals(new ResourceLocation("chests/end_city_treasure"))) {

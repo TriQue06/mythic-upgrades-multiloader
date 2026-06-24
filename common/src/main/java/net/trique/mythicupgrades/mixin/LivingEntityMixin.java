@@ -242,6 +242,13 @@ public abstract class LivingEntityMixin {
             if (jadeLevel > 0)
                 self.addEffect(new MobEffectInstance(MythicEffects.JADE_AURA, -1, jadeLevel - 1, false, false, true));
         }
+        // Passive bouncer icon while holding a jade tool (duration=3 refreshed each tick; won't override real bouncer)
+        if (isJadeTool(self.getMainHandItem().getItem())) {
+            MobEffectInstance curBouncer = self.getEffect(MythicEffects.BOUNCER);
+            if (curBouncer == null || curBouncer.getDuration() <= 3) {
+                self.addEffect(new MobEffectInstance(MythicEffects.BOUNCER, 3, 0, false, false, true));
+            }
+        }
         // Linger trail processing runs regardless of current effect state so laid trail persists
         if (!mu_jadeLingerTrail.isEmpty() && self.level() instanceof ServerLevel jadeLingerLevel) {
             mu_jadeLingerTrail.removeIf(p -> self.tickCount - p[0] >= p[4]);
@@ -532,7 +539,7 @@ public abstract class LivingEntityMixin {
             }
 
             if (isJadeTool(weapon)) {
-                directAttacker.addEffect(new MobEffectInstance(MythicEffects.JADE_AURA, MythicStats.JADE_TOOL_BOUNCER_DURATION_TICKS, 4));
+                directAttacker.addEffect(new MobEffectInstance(MythicEffects.JADE_AURA, MythicStats.JADE_TOOL_AURA_DURATION_TICKS, 4));
                 if (self.getRandom().nextFloat() < MythicStats.JADE_TOOL_TELEPORT_CHANCE)
                     randomTeleportNear(self);
                 if (self.level() instanceof ServerLevel jadeSLevel)

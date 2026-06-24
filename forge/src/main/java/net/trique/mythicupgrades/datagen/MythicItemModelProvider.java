@@ -32,7 +32,6 @@ public class MythicItemModelProvider extends ItemModelProvider {
         blockItem("deepslate_necoium_ore");
         blockItem("raw_necoium_block");
         blockItem("necoium_block");
-        withExistingParent("mythic_upgrading_table", modLoc("block/mythic_upgrading_table"));
     }
 
     private void gemItems(String gem) {

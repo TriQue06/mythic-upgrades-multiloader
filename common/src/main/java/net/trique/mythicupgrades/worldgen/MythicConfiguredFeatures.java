@@ -87,16 +87,11 @@ public class MythicConfiguredFeatures {
                 )
             ));
 
-            // Stone ore — replaces stone_ore_replaceables at y 0–30 (size 7)
+            // Ore — replaces stone_ore_replaceables with stone variant, deepslate_ore_replaceables
+            // and gem stone with deepslate variant; one generation covers the full y -64 to 30 range
             ctx.register(gem.oreCF(), new ConfiguredFeature<>(Feature.ORE,
                 new OreConfiguration(List.of(
-                    OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), ore.defaultBlockState())
-                ), 7)
-            ));
-
-            // Deepslate ore — replaces deepslate and gem stone at y -64–8 (size 7)
-            ctx.register(gem.deepslateOreCF(), new ConfiguredFeature<>(Feature.ORE,
-                new OreConfiguration(List.of(
+                    OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES),     ore.defaultBlockState()),
                     OreConfiguration.target(new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES), dsOre.defaultBlockState()),
                     OreConfiguration.target(new BlockMatchTest(stone),                               dsOre.defaultBlockState())
                 ), 7)

@@ -38,7 +38,6 @@ public class MythicPlacedFeatures {
             var crystalBudsH   = features.getOrThrow(gem.crystalBudsCF());
             var crystalBudsRH  = features.getOrThrow(gem.crystalBudsRareCF());
             var oreH           = features.getOrThrow(gem.oreCF());
-            var deepslateOreH  = features.getOrThrow(gem.deepslateOreCF());
 
             // Stone blobs: 30 per chunk, y -64 to 30, biome-filtered
             ctx.register(gem.stoneBlobsPF(), new PlacedFeature(stoneBlobsH, List.of(
@@ -72,19 +71,12 @@ public class MythicPlacedFeatures {
                 BiomeFilter.biome()
             )));
 
-            // Stone ore: 8 per chunk, y 0 to 30, biome-filtered
+            // Ore: 10 per chunk, y -64 to 32, biome-filtered
+            // Block targets in the CF handle stone vs deepslate variant selection
             ctx.register(gem.orePF(), new PlacedFeature(oreH, List.of(
-                CountPlacement.of(8),
-                InSquarePlacement.spread(),
-                HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(30)),
-                BiomeFilter.biome()
-            )));
-
-            // Deepslate ore: 10 per chunk, y -64 to 8 (trapezoid), biome-filtered
-            ctx.register(gem.deepslateOrePF(), new PlacedFeature(deepslateOreH, List.of(
                 CountPlacement.of(10),
                 InSquarePlacement.spread(),
-                HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(8)),
+                HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(32)),
                 BiomeFilter.biome()
             )));
 

@@ -10,9 +10,9 @@ public enum MythicToolMaterials implements Tier {
     CITRINE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.CITRINE)),
     TOPAZ(4, 4062, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.TOPAZ)),
     PERIDOT(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.PERIDOT)),
-    RUBY(4, 2031, 14.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.RUBY)),
+    RUBY(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.RUBY)),
     SAPPHIRE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.SAPPHIRE)),
-    JADE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.JADE)),
+    JADE(4, 2031, 14.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.JADE)),
     AMETRINE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.AMETRINE));
 
     private final int level;

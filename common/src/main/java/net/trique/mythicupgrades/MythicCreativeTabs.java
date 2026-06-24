@@ -162,7 +162,6 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.JADE_BLOCK);
                     output.accept(MythicBlocks.AMETRINE_BLOCK);
                     output.accept(MythicBlocks.NECOIUM_BLOCK);
-                    output.accept(MythicBlocks.MYTHIC_UPGRADING_TABLE);
                     output.accept(MythicBlocks.AQUAMARINE_STONE);
                     output.accept(MythicBlocks.AQUAMARINE_STONE_SLAB);
                     output.accept(MythicBlocks.AQUAMARINE_STONE_STAIRS);

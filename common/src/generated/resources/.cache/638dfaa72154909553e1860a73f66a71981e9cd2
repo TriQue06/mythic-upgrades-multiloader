@@ -1,4 +1,4 @@
-// 1.20.1	2026-06-23T21:07:09.7834056	Block States: mythicupgrades
+// 1.20.1	2026-06-25T01:34:46.2020354	Block States: mythicupgrades
 43c833c1d3d2a27c091d72309673699ad2104e38 assets/mythicupgrades/blockstates/ametrine_block.json
 75628aa488e37f544901bc16d02ee1ae51f1909f assets/mythicupgrades/blockstates/ametrine_crystal_block.json
 0eefba4f5456939d0822bf4ebcee569f36615fc0 assets/mythicupgrades/blockstates/ametrine_crystal_block_slab.json
@@ -88,7 +88,6 @@ aa2168389a9ed9c68cf6d51932735455b9cba068 assets/mythicupgrades/blockstates/mediu
 93c26d3096b8ab652ee281f9c2c2edf1d23d85fc assets/mythicupgrades/blockstates/medium_ruby_crystal_bud.json
 01f30c6e000c4a9b873af4c08e36e01fb2ae7acb assets/mythicupgrades/blockstates/medium_sapphire_crystal_bud.json
 befd1eaacb6026e6d2129c5da1b9aedcb1abc912 assets/mythicupgrades/blockstates/medium_topaz_crystal_bud.json
-a62e55914969058bc6d894b4a52a692d12d675cb assets/mythicupgrades/blockstates/mythic_upgrading_table.json
 d2120028420e0273a6d91bb9ca400bf0b19cc8a7 assets/mythicupgrades/blockstates/necoium_block.json
 ead5b6922114422b61d944fff26fa04c34df2992 assets/mythicupgrades/blockstates/necoium_ore.json
 d254d367357af7abf357e46722b4b446438c430b assets/mythicupgrades/blockstates/peridot_block.json

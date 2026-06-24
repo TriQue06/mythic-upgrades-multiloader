@@ -99,11 +99,11 @@ public class MythicItems {
     public static final Item PERIDOT_LEGGINGS = defer("peridot_leggings", new ArmorItem(MythicArmorMaterials.PERIDOT, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final Item PERIDOT_BOOTS = defer("peridot_boots", new ArmorItem(MythicArmorMaterials.PERIDOT, ArmorItem.Type.BOOTS, new Item.Properties()));
 
-    public static final Item RUBY_SWORD = defer("ruby_sword", new SwordItem(MythicToolMaterials.RUBY, 3, -1.6F, new Item.Properties()));
-    public static final Item RUBY_PICKAXE = defer("ruby_pickaxe", new PickaxeItem(MythicToolMaterials.RUBY, 1, -2.0F, new Item.Properties()) {});
-    public static final Item RUBY_AXE = defer("ruby_axe", new AxeItem(MythicToolMaterials.RUBY, 5.0F, -2.2F, new Item.Properties()) {});
-    public static final Item RUBY_SHOVEL = defer("ruby_shovel", new ShovelItem(MythicToolMaterials.RUBY, 1.5F, -2.2F, new Item.Properties()));
-    public static final Item RUBY_HOE = defer("ruby_hoe", new HoeItem(MythicToolMaterials.RUBY, -4, 0.8F, new Item.Properties()) {});
+    public static final Item RUBY_SWORD = defer("ruby_sword", new SwordItem(MythicToolMaterials.RUBY, 3, -2.4F, new Item.Properties()));
+    public static final Item RUBY_PICKAXE = defer("ruby_pickaxe", new PickaxeItem(MythicToolMaterials.RUBY, 1, -2.8F, new Item.Properties()) {});
+    public static final Item RUBY_AXE = defer("ruby_axe", new AxeItem(MythicToolMaterials.RUBY, 5.0F, -3.0F, new Item.Properties()) {});
+    public static final Item RUBY_SHOVEL = defer("ruby_shovel", new ShovelItem(MythicToolMaterials.RUBY, 1.5F, -3.0F, new Item.Properties()));
+    public static final Item RUBY_HOE = defer("ruby_hoe", new HoeItem(MythicToolMaterials.RUBY, -4, 0.0F, new Item.Properties()) {});
     public static final Item RUBY_HELMET = defer("ruby_helmet", new ArmorItem(MythicArmorMaterials.RUBY, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final Item RUBY_CHESTPLATE = defer("ruby_chestplate", new ArmorItem(MythicArmorMaterials.RUBY, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final Item RUBY_LEGGINGS = defer("ruby_leggings", new ArmorItem(MythicArmorMaterials.RUBY, ArmorItem.Type.LEGGINGS, new Item.Properties()));
@@ -119,11 +119,11 @@ public class MythicItems {
     public static final Item SAPPHIRE_LEGGINGS = defer("sapphire_leggings", new ArmorItem(MythicArmorMaterials.SAPPHIRE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final Item SAPPHIRE_BOOTS = defer("sapphire_boots", new ArmorItem(MythicArmorMaterials.SAPPHIRE, ArmorItem.Type.BOOTS, new Item.Properties()));
 
-    public static final Item JADE_SWORD = defer("jade_sword", new SwordItem(MythicToolMaterials.JADE, 3, -2.4F, new Item.Properties()));
-    public static final Item JADE_PICKAXE = defer("jade_pickaxe", new PickaxeItem(MythicToolMaterials.JADE, 1, -2.8F, new Item.Properties()) {});
-    public static final Item JADE_AXE = defer("jade_axe", new AxeItem(MythicToolMaterials.JADE, 5.0F, -3.0F, new Item.Properties()) {});
-    public static final Item JADE_SHOVEL = defer("jade_shovel", new ShovelItem(MythicToolMaterials.JADE, 1.5F, -3.0F, new Item.Properties()));
-    public static final Item JADE_HOE = defer("jade_hoe", new HoeItem(MythicToolMaterials.JADE, -4, 0.0F, new Item.Properties()) {});
+    public static final Item JADE_SWORD = defer("jade_sword", new SwordItem(MythicToolMaterials.JADE, 3, -1.6F, new Item.Properties()));
+    public static final Item JADE_PICKAXE = defer("jade_pickaxe", new PickaxeItem(MythicToolMaterials.JADE, 1, -2.0F, new Item.Properties()) {});
+    public static final Item JADE_AXE = defer("jade_axe", new AxeItem(MythicToolMaterials.JADE, 5.0F, -2.2F, new Item.Properties()) {});
+    public static final Item JADE_SHOVEL = defer("jade_shovel", new ShovelItem(MythicToolMaterials.JADE, 1.5F, -2.2F, new Item.Properties()));
+    public static final Item JADE_HOE = defer("jade_hoe", new HoeItem(MythicToolMaterials.JADE, -4, 0.8F, new Item.Properties()) {});
     public static final Item JADE_HELMET = defer("jade_helmet", new ArmorItem(MythicArmorMaterials.JADE, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final Item JADE_CHESTPLATE = defer("jade_chestplate", new ArmorItem(MythicArmorMaterials.JADE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final Item JADE_LEGGINGS = defer("jade_leggings", new ArmorItem(MythicArmorMaterials.JADE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
@@ -147,6 +147,27 @@ public class MythicItems {
     public static final Item SAPPHIRE_CRYSTAL_SHARD = defer("sapphire_crystal_shard", new Item(new Item.Properties().food(shardFood(MythicEffects.DAMAGE_DEFLECTION))));
     public static final Item JADE_CRYSTAL_SHARD = defer("jade_crystal_shard", new Item(new Item.Properties().food(shardFood(MythicEffects.JADE_AURA))));
     public static final Item AMETRINE_CRYSTAL_SHARD = defer("ametrine_crystal_shard", new Item(new Item.Properties().food(shardFood(MythicEffects.ARCANE_AURA))));
+
+    // Legacy potion items — kept registered so old inventories don't lose them as "unknown items".
+    // A join-time migration converts these to the new vanilla-style potions. Remove in the next update.
+    public static final Item LEGACY_AQUAMARINE_POTION = defer("aquamarine_potion", new Item(new Item.Properties()));
+    public static final Item LEGACY_CITRINE_POTION    = defer("citrine_potion",    new Item(new Item.Properties()));
+    public static final Item LEGACY_TOPAZ_POTION      = defer("topaz_potion",      new Item(new Item.Properties()));
+    public static final Item LEGACY_PERIDOT_POTION    = defer("peridot_potion",    new Item(new Item.Properties()));
+    public static final Item LEGACY_RUBY_POTION       = defer("ruby_potion",       new Item(new Item.Properties()));
+    public static final Item LEGACY_SAPPHIRE_POTION   = defer("sapphire_potion",   new Item(new Item.Properties()));
+    public static final Item LEGACY_JADE_POTION       = defer("jade_potion",       new Item(new Item.Properties()));
+    public static final Item LEGACY_AMETRINE_POTION   = defer("ametrine_potion",   new Item(new Item.Properties()));
+
+    // Legacy per-gem smithing templates — unified into one universal template. Remove in the next update.
+    public static final Item LEGACY_AQUAMARINE_TEMPLATE = defer("aquamarine_upgrade_smithing_template", new Item(new Item.Properties()));
+    public static final Item LEGACY_CITRINE_TEMPLATE    = defer("citrine_upgrade_smithing_template",    new Item(new Item.Properties()));
+    public static final Item LEGACY_TOPAZ_TEMPLATE      = defer("topaz_upgrade_smithing_template",      new Item(new Item.Properties()));
+    public static final Item LEGACY_PERIDOT_TEMPLATE    = defer("peridot_upgrade_smithing_template",    new Item(new Item.Properties()));
+    public static final Item LEGACY_RUBY_TEMPLATE       = defer("ruby_upgrade_smithing_template",       new Item(new Item.Properties()));
+    public static final Item LEGACY_SAPPHIRE_TEMPLATE   = defer("sapphire_upgrade_smithing_template",   new Item(new Item.Properties()));
+    public static final Item LEGACY_JADE_TEMPLATE       = defer("jade_upgrade_smithing_template",       new Item(new Item.Properties()));
+    public static final Item LEGACY_AMETRINE_TEMPLATE   = defer("ametrine_upgrade_smithing_template",   new Item(new Item.Properties()));
 
     public static void register(BiFunction<String, Item, Item> reg) {
         DEFERRED.forEach(e -> reg.apply(e.getKey(), e.getValue()));

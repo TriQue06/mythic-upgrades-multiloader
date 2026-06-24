@@ -4,7 +4,6 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstapContext;
-import net.minecraft.data.worldgen.placement.NetherPlacements;
 import net.minecraft.world.level.biome.AmbientMoodSettings;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
@@ -39,10 +38,6 @@ public class MythicNetherBiomeBootstrap {
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBlobsPF()));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsPF()));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsRarePF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(NetherPlacements.PATCH_FIRE));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(NetherPlacements.GLOWSTONE_EXTRA));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(NetherPlacements.GLOWSTONE));
-        gen.addFeature(GenerationStep.Decoration.FLUID_SPRINGS,          features.getOrThrow(NetherPlacements.SPRING_OPEN));
 
         MobSpawnSettings spawns = new MobSpawnSettings.Builder()
                 .creatureGenerationProbability(0.0f)
