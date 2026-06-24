@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mythic Upgrades Wiki</title>
+  <style>
+    :root {
+      --bg:      #0f1117;
+      --sur:     #1a1d27;
+      --sur2:    #20242f;
+      --brd:     #2d3245;
+      --txt:     #dde2f0;
+      --muted:   #7a8099;
+      --link:    #7cb4f5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--txt);
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    /* ── header ── */
+    header {
+      background: var(--sur);
+      border-bottom: 1px solid var(--brd);
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      height: 52px;
+    }
+    header .site-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      font-family: system-ui, -apple-system, sans-serif;
+      color: var(--txt);
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    nav { display: flex; gap: 2px; }
+    nav button {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 16px 14px 14px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color .15s, border-color .15s;
+    }
+    nav button:hover { color: var(--txt); }
+    nav button.active { color: var(--txt); border-bottom-color: var(--link); }
+
+    /* ── layout ── */
+    main { max-width: 1280px; margin: 0 auto; padding: 32px 28px 80px; }
+
+    .section { display: none; }
+    .section.active { display: block; }
+
+    h2 {
+      font-family: Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--txt);
+      border-bottom: 1px solid var(--brd);
+      padding-bottom: 6px;
+      margin: 36px 0 18px;
+    }
+    h2:first-child { margin-top: 0; }
+
+    p.intro {
+      color: var(--muted);
+      font-size: .92rem;
+      margin-bottom: 24px;
+      max-width: 720px;
+    }
+
+    /* ── ORE GRID ── */
+    .ore-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 14px;
+    }
+
+    .ore-card {
+      background: var(--sur);
+      border: 1px solid var(--brd);
+      border-radius: 6px;
+      padding: 20px 12px 14px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: border-color .15s;
+    }
+    .ore-card:hover {
+      border-color: var(--card-color, #555);
+    }
+    .ore-card img {
+      width: 96px;
+      height: 96px;
+      image-rendering: pixelated;
+      display: block;
+      margin: 0 auto 10px;
+    }
+    .ore-card .ore-name {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    /* hover overlay */
+    .ore-tooltip {
+      position: absolute;
+      inset: 0;
+      background: var(--sur2);
+      border: 1px solid var(--card-color, var(--brd));
+      border-radius: 6px;
+      padding: 10px 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+    }
+    .ore-card:hover .ore-tooltip { opacity: 1; }
+
+    .dim-badge {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: .65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      padding: 2px 7px;
+      border-radius: 3px;
+      display: inline-block;
+      align-self: flex-start;
+    }
+    .dim-ow  { background: #1b3a1b; color: #6dbf6d; }
+    .dim-ne  { background: #3a1b1b; color: #e07070; }
+    .dim-end { background: #1a1b3a; color: #9090e0; }
+
+    .ore-tooltip .tt-name {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--card-color, var(--txt));
+      line-height: 1.2;
+    }
+    .ore-tooltip .tt-biome {
+      font-size: .78rem;
+      color: var(--muted);
+    }
+    .ore-tooltip .tt-y {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: .72rem;
+      color: var(--muted);
+      border-top: 1px solid var(--brd);
+      padding-top: 4px;
+      margin-top: 2px;
+    }
+
+    /* ── BLOCKS ── */
+    .gem-section { margin-bottom: 40px; }
+    .gem-section-header {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--gem-color, var(--muted));
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .gem-section-header img {
+      width: 20px; height: 20px;
+      image-rendering: pixelated;
+    }
+
+    .block-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 10px;
+    }
+    .block-tile {
+      background: var(--sur);
+      border: 1px solid var(--brd);
+      border-radius: 5px;
+      padding: 12px 8px 10px;
+      text-align: center;
+      transition: border-color .12s;
+    }
+    .block-tile:hover { border-color: var(--gem-color, var(--brd)); }
+    .block-tile img {
+      width: 64px; height: 64px;
+      image-rendering: pixelated;
+      display: block; margin: 0 auto 6px;
+    }
+    .block-tile span {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: .72rem;
+      color: var(--muted);
+      display: block;
+      line-height: 1.25;
+    }
+
+    /* ── EQUIPMENT ── */
+    .equip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 16px;
+    }
+    .equip-card {
+      background: var(--sur);
+      border: 1px solid var(--brd);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .equip-header {
+      background: var(--sur2);
+      border-bottom: 1px solid var(--brd);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .equip-header img { width: 36px; height: 36px; image-rendering: pixelated; }
+    .equip-header .equip-gem-name {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--gem-color, var(--txt));
+    }
+    .equip-body { padding: 12px 14px; }
+
+    .item-row {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--brd);
+    }
+    .item-row img {
+      width: 36px; height: 36px;
+      image-rendering: pixelated;
+      opacity: .75;
+      transition: opacity .12s, transform .12s;
+    }
+    .item-row img:hover { opacity: 1; transform: scale(1.35); }
+
+    .ability-label {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: .68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--gem-color, var(--muted));
+      margin: 8px 0 4px;
+    }
+    .stat-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .8rem;
+    }
+    .stat-table td {
+      padding: 3px 0;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      vertical-align: top;
+    }
+    .stat-table td:last-child { border-bottom: none; }
+    .stat-table .sk { color: var(--muted); padding-right: 12px; }
+    .stat-table .sv { color: var(--txt); text-align: right; font-family: system-ui, -apple-system, sans-serif; font-size: .78rem; }
+
+    /* ── EFFECTS ── */
+    .effect-list { display: flex; flex-direction: column; gap: 16px; }
+    .effect-card {
+      background: var(--sur);
+      border: 1px solid var(--brd);
+      border-radius: 6px;
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      overflow: hidden;
+    }
+    .effect-icon-col {
+      background: var(--sur2);
+      border-right: 1px solid var(--brd);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+    .effect-icon-col img {
+      width: 72px; height: 72px;
+      image-rendering: pixelated;
+    }
+    .effect-content { padding: 12px 16px; }
+    .effect-name-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+    .effect-name {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--gem-color, var(--txt));
+    }
+    .source-tag {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: .63rem;
+      padding: 2px 7px;
+      border-radius: 3px;
+      border: 1px solid var(--brd);
+      color: var(--muted);
+    }
+    .effect-desc {
+      font-size: .82rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    /* scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--brd); border-radius: 3px; }
+
+    footer {
+      border-top: 1px solid var(--brd);
+      padding: 20px 28px;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: .78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    footer a { color: var(--link); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="site-title" href="#">Mythic Upgrades Wiki</a>
+  <nav>
+    <button class="active" onclick="show('ores',this)">Ores</button>
+    <button onclick="show('blocks',this)">Blocks</button>
+    <button onclick="show('equipment',this)">Equipment</button>
+    <button onclick="show('effects',this)">Status Effects</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- ═══════════════════ ORES ═══════════════════ -->
+<section id="ores" class="section active">
+  <h2>Ores</h2>
+  <p class="intro">Hover over an ore to see where it spawns. Each gem requires finding its biome in the correct dimension.</p>
+  <div class="ore-grid" id="oreGrid"></div>
+</section>
+
+<!-- ═══════════════════ BLOCKS ═══════════════════ -->
+<section id="blocks" class="section">
+  <h2>Blocks</h2>
+  <p class="intro">All placeable blocks added by Mythic Upgrades, organised by gem. Block names match the in-game lang file.</p>
+  <div id="blockContent"></div>
+</section>
+
+<!-- ═══════════════════ EQUIPMENT ═══════════════════ -->
+<section id="equipment" class="section">
+  <h2>Armor &amp; Tools</h2>
+  <p class="intro">Each gem provides a full set of tools and armor. Armor pieces unlock an ability whose power scales with how many pieces of that set you wear.</p>
+  <div class="equip-grid" id="equipGrid"></div>
+</section>
+
+<!-- ═══════════════════ EFFECTS ═══════════════════ -->
+<section id="effects" class="section">
+  <h2>Status Effects</h2>
+  <p class="intro">Custom effects applied by Mythic Upgrades armor and tools. All numeric values are sourced from <code>MythicStats.java</code>.</p>
+  <div class="effect-list" id="effectList"></div>
+</section>
+
+</main>
+
+<footer>
+  Mythic Upgrades by <a href="https://github.com/TriQue06/mythic-upgrades-multiloader" target="_blank">trique</a>
+  &mdash; <a href="https://github.com/TriQue06/mythic-upgrades-multiloader" target="_blank">GitHub</a>
+</footer>
+
+<script>
+// ─── RAW BASE URL ───────────────────────────────────────────────────
+const RAW = 'https://raw.githubusercontent.com/TriQue06/mythic-upgrades-multiloader/main/common/src/main/resources/assets/mythicupgrades/textures/';
+
+// ─── GEM COLORS ─────────────────────────────────────────────────────
+const COLOR = {
+  aquamarine: '#10c8e0',
+  citrine:    '#f2a030',
+  topaz:      '#f5761b',
+  peridot:    '#b9e815',
+  ruby:       '#ef3547',
+  sapphire:   '#1995ec',
+  jade:       '#58cf3e',
+  ametrine:   '#d040bf',
+  necoium:    '#f04a9a',
+};
+
+// ─── STATS (mirrors MythicStats.java) ───────────────────────────────
+// Update these when MythicStats.java changes.
+const S = {
+  AQUAMARINE_HELMET_LEVELS:2, AQUAMARINE_CHESTPLATE_LEVELS:4, AQUAMARINE_LEGGINGS_LEVELS:3, AQUAMARINE_BOOTS_LEVELS:1,
+  AQUAMARINE_TOOL_FREEZE_TICKS:18, AQUAMARINE_TOOL_SLOWNESS_DURATION_TICKS:60, AQUAMARINE_TOOL_SLOWNESS_AMPLIFIER:0,
+  ICE_SHIELD_MARK_DURATION_TICKS:60, ICE_SHIELD_MARK_BURST_RADIUS:3.0, ICE_SHIELD_MARK_BURST_DAMAGE:3.0, ICE_SHIELD_MARK_BURST_FREEZE_TICKS:6,
+  ICE_SHIELD_MAGIC_DAMAGE_PER_LEVEL:0.5,
+  ICE_SHIELD_FREEZE_TICKS_PER_LEVEL:6, ICE_SHIELD_FREEZE_MIN_TICKS:6, ICE_SHIELD_FREEZE_MAX_TICKS:60,
+  ICE_SHIELD_SLOWNESS_DURATION_TICKS_PER_LEVEL:10, ICE_SHIELD_SLOWNESS_MAX_DURATION_TICKS:100, ICE_SHIELD_SLOWNESS_MAX_AMPLIFIER:9,
+  ICE_BOMB_TOOL_DURATION_TICKS:60, ICE_BOMB_BURST_RADIUS:5.0, ICE_BOMB_BURST_DAMAGE:4.0, ICE_BOMB_BURST_FREEZE_TICKS:18,
+
+  CITRINE_HELMET_LEVELS:2, CITRINE_CHESTPLATE_LEVELS:4, CITRINE_LEGGINGS_LEVELS:3, CITRINE_BOOTS_LEVELS:1,
+  CITRINE_TOOL_CHARGED_DURATION_TICKS:60, CITRINE_TOOL_CHAIN_FRACTION:0.333, CITRINE_TOOL_CHAIN_TARGETS:3, CITRINE_TOOL_CHAIN_RANGE:10.0,
+  CITRINE_CHARGED_LIGHTNING_MIN:1, CITRINE_CHARGED_LIGHTNING_MAX:3, CITRINE_CHARGED_LIGHTNING_SPREAD:1.5,
+  STATIC_FIELD_RADIUS_PER_LEVEL:0.40, STATIC_FIELD_MAX_RADIUS:4.0,
+  STATIC_FIELD_DAMAGE_PER_LEVEL_PER_SECOND:0.20, STATIC_FIELD_MAX_DAMAGE_PER_SECOND:2.0,
+  STATIC_FIELD_MAX_STACKS:5, STATIC_FIELD_STACK_DAMAGE_INCREASE:0.10, STATIC_FIELD_STACK_RESET_TICKS:60,
+
+  TOPAZ_HELMET_LEVELS:2, TOPAZ_CHESTPLATE_LEVELS:4, TOPAZ_LEGGINGS_LEVELS:3, TOPAZ_BOOTS_LEVELS:1,
+  TOPAZ_SHOCK_DAMAGE_PER_LEVEL:1.0, TOPAZ_SHOCK_KNOCKBACK_PER_LEVEL:0.5,
+  TOPAZ_FALL_REDUCTION_PER_LEVEL:0.05, TOPAZ_FALL_MAX_REDUCTION:0.50,
+  TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL:1.0, TOPAZ_ARMOR_SHOCK_MAX_RADIUS:10.0,
+  TOPAZ_TOOL_SHOCK_INTERVAL:3, TOPAZ_TOOL_EFFECTIVE_LEVEL:5,
+
+  RUBY_HELMET_LEVELS:2, RUBY_CHESTPLATE_LEVELS:4, RUBY_LEGGINGS_LEVELS:3, RUBY_BOOTS_LEVELS:1,
+  RUBY_TOOL_LIFESTEAL_FRACTION:0.30,
+  BLOOD_THIRST_RADIUS_PER_LEVEL:3.0, BLOOD_THIRST_MAX_RADIUS:30.0,
+  BLOOD_THIRST_HEAL_FRACTION_PER_LEVEL:0.03, BLOOD_THIRST_MAX_HEAL_FRACTION:0.30,
+
+  PERIDOT_HELMET_LEVELS:2, PERIDOT_CHESTPLATE_LEVELS:4, PERIDOT_LEGGINGS_LEVELS:3, PERIDOT_BOOTS_LEVELS:1,
+  LETHAL_INCUBATION_SHOCK_DAMAGE:4.0, LETHAL_INCUBATION_SHOCK_RADIUS:5.0,
+  MIASMA_CLOUD_RADIUS_PER_LEVEL:1.0, MIASMA_CLOUD_MAX_RADIUS:10.0,
+  MIASMA_POISON_MAX_AMPLIFIER:9,
+  MIASMA_CLOUD_DURATION_TICKS_PER_LEVEL:40,
+  MIASMA_INTERVAL_TICKS:200,
+
+  SAPPHIRE_HELMET_LEVELS:2, SAPPHIRE_CHESTPLATE_LEVELS:4, SAPPHIRE_LEGGINGS_LEVELS:3, SAPPHIRE_BOOTS_LEVELS:1,
+  DEFLECT_PER_LEVEL:0.05,
+  SAPPHIRE_TOOL_PERCENT_DAMAGE:0.05, SAPPHIRE_TOOL_PERCENT_DAMAGE_CAP:15.0,
+
+  AMETRINE_HELMET_LEVELS:2, AMETRINE_CHESTPLATE_LEVELS:4, AMETRINE_LEGGINGS_LEVELS:3, AMETRINE_BOOTS_LEVELS:1,
+  ARCANE_AURA_RADIUS_PER_LEVEL:1.0, ARCANE_AURA_MAX_RADIUS:10,
+  ARCANE_AURA_LEVITATION_AMP_PER_LEVEL:1, ARCANE_AURA_LEVITATION_DURATION_TICKS_PER_LEVEL:20,
+  AMETRINE_TOOL_LEVITATION_AMPLIFIER:2, AMETRINE_TOOL_LEVITATION_DURATION_TICKS:20,
+  AMETRINE_TOOL_TELEPORT_CHANCE:0.05,
+
+  JADE_HELMET_LEVELS:2, JADE_CHESTPLATE_LEVELS:4, JADE_LEGGINGS_LEVELS:3, JADE_BOOTS_LEVELS:1,
+  JADE_TOOL_BOUNCER_DURATION_TICKS:30, JADE_TOOL_BOUNCER_JADE_AURA_LEVEL:5, JADE_TOOL_TELEPORT_CHANCE:0.05,
+  JADE_AURA_SPEED_PER_LEVEL:0.10, JADE_AURA_JUMP_PER_LEVEL:0.05,
+  JADE_TRAIL_RADIUS:1.0, JADE_TRAIL_DURATION_TICKS:60,
+  JADE_TRAIL_LINGER_TICKS_PER_LEVEL:10, JADE_TRAIL_LINGER_MAX_TICKS:100,
+};
+
+// helpers
+const t  = tk => tk % 20 === 0 ? `${tk/20}s` : `${(tk/20).toFixed(1)}s`;
+const p  = f  => `${Math.round(f*100)}%`;
+const n  = v  => Number.isInteger(v) ? String(v) : parseFloat(v.toFixed(3)).toString();
+
+// ─── ORE DATA ───────────────────────────────────────────────────────
+const ORES = [
+  // Overworld cave gems (have deepslate variant, spawn in mythic cave biomes)
+  { id:'aquamarine', name:'Aquamarine Ore',          ds:true,  dim:'overworld', biome:'Aquamarine Caves', yMain:'Y 0 to 30', yDeep:'Y −64 to 8 (deepslate)' },
+  { id:'citrine',    name:'Citrine Ore',             ds:true,  dim:'overworld', biome:'Citrine Caves',    yMain:'Y 0 to 30', yDeep:'Y −64 to 8 (deepslate)' },
+  { id:'topaz',      name:'Topaz Ore',               ds:true,  dim:'overworld', biome:'Topaz Caves',      yMain:'Y 0 to 30', yDeep:'Y −64 to 8 (deepslate)' },
+  { id:'peridot',    name:'Peridot Ore',             ds:true,  dim:'overworld', biome:'Peridot Caves',    yMain:'Y 0 to 30', yDeep:'Y −64 to 8 (deepslate)' },
+  // Nether gems (no deepslate)
+  { id:'ruby',       name:'Ruby Ore',                ds:false, dim:'nether',    biome:'Ruby Rift',        yMain:'Y 10 to 115', yDeep:null },
+  { id:'sapphire',   name:'Sapphire Ore',            ds:false, dim:'nether',    biome:'Sapphire Rift',    yMain:'Y 10 to 115', yDeep:null },
+  // End gems (no deepslate)
+  { id:'ametrine',   name:'Ametrine Ore',            ds:false, dim:'end',       biome:'Ametrine Barrens', yMain:'Y 40 to 80', yDeep:null },
+  { id:'jade',       name:'Jade Ore',                ds:false, dim:'end',       biome:'Jade Barrens',     yMain:'Y 40 to 80', yDeep:null },
+  // Necoium — all overworld
+  { id:'necoium',    name:'Necoium Ore',             ds:true,  dim:'overworld', biome:'All Overworld Biomes', yMain:'Y −64 to 16', yDeep:'Y −64 to −16 (deepslate)' },
+];
+
+const DIM_CLS  = { overworld:'dim-ow', nether:'dim-ne', end:'dim-end' };
+const DIM_LABEL = { overworld:'Overworld', nether:'Nether', end:'The End' };
+
+function oreCard(ore) {
+  const c   = COLOR[ore.id] || '#888';
+  const img = `${RAW}block/${ore.id}_ore.png`;
+  const y2  = ore.yDeep ? `<div>${ore.yDeep}</div>` : '';
+  return `
+  <div class="ore-card" style="--card-color:${c}">
+    <img src="${img}" alt="${ore.name}" onerror="this.style.opacity='.15'">
+    <div class="ore-name">${ore.name}</div>
+    <div class="ore-tooltip">
+      <span class="dim-badge ${DIM_CLS[ore.dim]}">${DIM_LABEL[ore.dim]}</span>
+      <div class="tt-name" style="color:${c}">${ore.name.replace(' Ore','')}</div>
+      <div class="tt-biome">${ore.biome}</div>
+      <div class="tt-y">${ore.yMain}${ore.yDeep ? '<br>'+ore.yDeep : ''}</div>
+    </div>
+  </div>`;
+}
+
+document.getElementById('oreGrid').innerHTML = ORES.map(oreCard).join('');
+
+// ─── BLOCKS ─────────────────────────────────────────────────────────
+// Lang-sourced block names → texture filename (strip prefix, replace dots becomes the filename)
+// Only include blocks that have a plausible matching texture.
+const BLOCK_DEF = [
+  { id:'aquamarine' }, { id:'citrine' }, { id:'topaz' }, { id:'peridot' },
+  { id:'ruby' }, { id:'sapphire' }, { id:'jade' }, { id:'ametrine' }, { id:'necoium' },
+];
+
+// block key → texture file (relative to block/)
+function blockTex(key) {
+  // e.g. "aquamarine_crystal_block" → "aquamarine_crystal_block.png"
+  return key + '.png';
+}
+
+// Block entries per gem: [lang_key_suffix, display_name]
+function gemBlocks(id) {
+  const cap = id.charAt(0).toUpperCase() + id.slice(1);
+  const rows = [];
+
+  // storage block
+  if (id === 'necoium') {
+    rows.push(['necoium_block', 'Block of Necoium']);
+    rows.push(['raw_necoium_block', 'Block of Raw Necoium']);
+    rows.push(['necoium_ore', 'Necoium Ore']);
+    rows.push(['deepslate_necoium_ore', 'Deepslate Necoium Ore']);
+  } else {
+    rows.push([id + '_block', `Block of ${cap}`]);
+    // ores
+    if (['aquamarine','citrine','topaz','peridot'].includes(id)) {
+      rows.push([id + '_ore', `${cap} Ore`]);
+      rows.push(['deepslate_' + id + '_ore', `Deepslate ${cap} Ore`]);
+    } else {
+      rows.push([id + '_ore', `${cap} Ore`]);
+    }
+    // crystal blocks
+    rows.push([id + '_crystal_block',   `Block of ${cap} Crystal`]);
+    rows.push(['budding_' + id + '_crystal', `Budding ${cap} Crystal`]);
+    rows.push([id + '_crystal_bricks',  `${cap} Crystal Bricks`]);
+    rows.push([id + '_crystal_pillar',  `${cap} Crystal Pillar`]);
+    // stone
+    rows.push([id + '_stone',           `${cap} Stone`]);
+    rows.push(['polished_' + id + '_stone', `Polished ${cap} Stone`]);
+  }
+  return rows;
+}
+
+function blockSection(id) {
+  const color = COLOR[id] || '#888';
+  const gemImg = `${RAW}item/${id}.png`;
+  const tiles = gemBlocks(id).map(([key, label]) => {
+    const tex = `${RAW}block/${blockTex(key)}`;
+    return `<div class="block-tile" style="--gem-color:${color}">
+      <img src="${tex}" alt="${label}" onerror="this.parentElement.style.display='none'">
+      <span>${label}</span>
+    </div>`;
+  }).join('');
+
+  return `<div class="gem-section" style="--gem-color:${color}">
+    <div class="gem-section-header" style="color:${color}">
+      <img src="${gemImg}" onerror="this.style.display='none'"> ${id.charAt(0).toUpperCase()+id.slice(1)}
+    </div>
+    <div class="block-row">${tiles}</div>
+  </div>`;
+}
+
+document.getElementById('blockContent').innerHTML = BLOCK_DEF.map(g => blockSection(g.id)).join('');
+
+// ─── EQUIPMENT ──────────────────────────────────────────────────────
+const GEMS_EQUIP = [
+  {
+    id:'aquamarine', name:'Aquamarine',
+    levels:[S.AQUAMARINE_HELMET_LEVELS, S.AQUAMARINE_CHESTPLATE_LEVELS, S.AQUAMARINE_LEGGINGS_LEVELS, S.AQUAMARINE_BOOTS_LEVELS],
+    armorAbility:'Ice Shield',
+    armorStats:[
+      ['Magic damage / level', `+${n(S.ICE_SHIELD_MAGIC_DAMAGE_PER_LEVEL)} ♥`],
+      ['Attacker freeze / level', `+${t(S.ICE_SHIELD_FREEZE_TICKS_PER_LEVEL)} (min ${t(S.ICE_SHIELD_FREEZE_MIN_TICKS)}, max ${t(S.ICE_SHIELD_FREEZE_MAX_TICKS)})`],
+      ['Slowness duration / level', t(S.ICE_SHIELD_SLOWNESS_DURATION_TICKS_PER_LEVEL)],
+      ['Max slowness duration', t(S.ICE_SHIELD_SLOWNESS_MAX_DURATION_TICKS)],
+      ['Max slowness amplifier', S.ICE_SHIELD_SLOWNESS_MAX_AMPLIFIER],
+    ],
+    toolAbility:'Ice Bomb',
+    toolStats:[
+      ['Hit: freeze duration', t(S.AQUAMARINE_TOOL_FREEZE_TICKS)],
+      ['Bomb duration', t(S.ICE_BOMB_TOOL_DURATION_TICKS)],
+      ['Bomb burst radius', `${S.ICE_BOMB_BURST_RADIUS} blocks`],
+      ['Bomb burst damage', `${S.ICE_BOMB_BURST_DAMAGE} ♥`],
+      ['Bomb freeze duration', t(S.ICE_BOMB_BURST_FREEZE_TICKS)],
+      ['Bomb: explosion knockback', 'yes (no block damage)'],
+    ],
+  },
+  {
+    id:'citrine', name:'Citrine',
+    levels:[S.CITRINE_HELMET_LEVELS,S.CITRINE_CHESTPLATE_LEVELS,S.CITRINE_LEGGINGS_LEVELS,S.CITRINE_BOOTS_LEVELS],
+    armorAbility:'Static Field',
+    armorStats:[
+      ['Field radius / level', `+${S.STATIC_FIELD_RADIUS_PER_LEVEL} blocks (max ${S.STATIC_FIELD_MAX_RADIUS})`],
+      ['Damage / level / s', `+${n(S.STATIC_FIELD_DAMAGE_PER_LEVEL_PER_SECOND)} ♥ (max ${S.STATIC_FIELD_MAX_DAMAGE_PER_SECOND} ♥/s)`],
+      ['Max stacks', `${S.STATIC_FIELD_MAX_STACKS} (+${p(S.STATIC_FIELD_STACK_DAMAGE_INCREASE)} dmg each)`],
+      ['Stack reset', t(S.STATIC_FIELD_STACK_RESET_TICKS)],
+    ],
+    toolAbility:'Chain Lightning',
+    toolStats:[
+      ['Chain targets', S.CITRINE_TOOL_CHAIN_TARGETS],
+      ['Chain damage', `${p(S.CITRINE_TOOL_CHAIN_FRACTION)} of hit damage`],
+      ['Chain range', `${S.CITRINE_TOOL_CHAIN_RANGE} blocks`],
+      ['Charged duration', t(S.CITRINE_TOOL_CHARGED_DURATION_TICKS)],
+      ['Bolts on death', `${S.CITRINE_CHARGED_LIGHTNING_MIN}–${S.CITRINE_CHARGED_LIGHTNING_MAX} (spread ${S.CITRINE_CHARGED_LIGHTNING_SPREAD} blocks)`],
+    ],
+  },
+  {
+    id:'topaz', name:'Topaz',
+    levels:[S.TOPAZ_HELMET_LEVELS,S.TOPAZ_CHESTPLATE_LEVELS,S.TOPAZ_LEGGINGS_LEVELS,S.TOPAZ_BOOTS_LEVELS],
+    armorAbility:'Topaz Reaction',
+    armorStats:[
+      ['Shock damage / level', `+${S.TOPAZ_SHOCK_DAMAGE_PER_LEVEL} ♥`],
+      ['Knockback / level', `+${S.TOPAZ_SHOCK_KNOCKBACK_PER_LEVEL}`],
+      ['Fall damage reduction / level', `${p(S.TOPAZ_FALL_REDUCTION_PER_LEVEL)} (max ${p(S.TOPAZ_FALL_MAX_REDUCTION)})`],
+      ['Shock radius / level', `+${S.TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL} (max ${S.TOPAZ_ARMOR_SHOCK_MAX_RADIUS} blocks)`],
+    ],
+    toolAbility:'Topaz Interaction',
+    toolStats:[
+      ['Wave level', `${S.TOPAZ_TOOL_EFFECTIVE_LEVEL}`],
+      ['Wave interval', `every ${S.TOPAZ_TOOL_SHOCK_INTERVAL} hits`],
+    ],
+  },
+  {
+    id:'ruby', name:'Ruby',
+    levels:[S.RUBY_HELMET_LEVELS,S.RUBY_CHESTPLATE_LEVELS,S.RUBY_LEGGINGS_LEVELS,S.RUBY_BOOTS_LEVELS],
+    armorAbility:'Blood Thirst',
+    armorStats:[
+      ['Aura radius / level', `+${S.BLOOD_THIRST_RADIUS_PER_LEVEL} blocks (max ${S.BLOOD_THIRST_MAX_RADIUS})`],
+      ['Heal / nearby damage / level', `${p(S.BLOOD_THIRST_HEAL_FRACTION_PER_LEVEL)} (max ${p(S.BLOOD_THIRST_MAX_HEAL_FRACTION)})`],
+    ],
+    toolAbility:'Life Steal',
+    toolStats:[
+      ['Lifesteal on hit', `${p(S.RUBY_TOOL_LIFESTEAL_FRACTION)} of net damage dealt`],
+    ],
+  },
+  {
+    id:'peridot', name:'Peridot',
+    levels:[S.PERIDOT_HELMET_LEVELS,S.PERIDOT_CHESTPLATE_LEVELS,S.PERIDOT_LEGGINGS_LEVELS,S.PERIDOT_BOOTS_LEVELS],
+    armorAbility:'Miasma',
+    armorStats:[
+      ['Cloud radius / level', `+${S.MIASMA_CLOUD_RADIUS_PER_LEVEL} blocks (max ${S.MIASMA_CLOUD_MAX_RADIUS})`],
+      ['Max poison level', S.MIASMA_POISON_MAX_AMPLIFIER + 1],
+      ['Pulse interval', t(S.MIASMA_INTERVAL_TICKS)],
+    ],
+    toolAbility:'Lethal Incubation',
+    toolStats:[
+      ['Applies on', 'any hit (all peridot tools)'],
+      ['Incubation duration', '5s'],
+      ['On-kill: miasma wave', 'level 3 radius (3 blocks)'],
+      ['On-kill: explosion damage', `${S.LETHAL_INCUBATION_SHOCK_DAMAGE} ♥`],
+      ['On-kill: explosion radius', `${S.LETHAL_INCUBATION_SHOCK_RADIUS} blocks`],
+      ['On-kill: explosion knockback', 'yes (no block damage)'],
+    ],
+  },
+  {
+    id:'sapphire', name:'Sapphire',
+    levels:[S.SAPPHIRE_HELMET_LEVELS,S.SAPPHIRE_CHESTPLATE_LEVELS,S.SAPPHIRE_LEGGINGS_LEVELS,S.SAPPHIRE_BOOTS_LEVELS],
+    armorAbility:'Damage Deflection',
+    armorStats:[
+      ['Deflection / level', `${p(S.DEFLECT_PER_LEVEL)} of incoming damage`],
+    ],
+    toolAbility:'Percent Damage',
+    toolStats:[
+      ['Bonus damage', `${p(S.SAPPHIRE_TOOL_PERCENT_DAMAGE)} of target current HP`],
+      ['Damage cap', `${S.SAPPHIRE_TOOL_PERCENT_DAMAGE_CAP} ♥`],
+    ],
+  },
+  {
+    id:'ametrine', name:'Ametrine',
+    levels:[S.AMETRINE_HELMET_LEVELS,S.AMETRINE_CHESTPLATE_LEVELS,S.AMETRINE_LEGGINGS_LEVELS,S.AMETRINE_BOOTS_LEVELS],
+    armorAbility:'Arcane Aura',
+    armorStats:[
+      ['Aura radius / level', `+${S.ARCANE_AURA_RADIUS_PER_LEVEL} (max ${S.ARCANE_AURA_MAX_RADIUS} blocks)`],
+      ['Levitation amplifier / level', `+${S.ARCANE_AURA_LEVITATION_AMP_PER_LEVEL}`],
+      ['Levitation duration / level', t(S.ARCANE_AURA_LEVITATION_DURATION_TICKS_PER_LEVEL)],
+    ],
+    toolAbility:'Gravity Strike',
+    toolStats:[
+      ['Levitation amplifier', S.AMETRINE_TOOL_LEVITATION_AMPLIFIER],
+      ['Levitation duration', t(S.AMETRINE_TOOL_LEVITATION_DURATION_TICKS)],
+      ['Teleport chance', p(S.AMETRINE_TOOL_TELEPORT_CHANCE)],
+    ],
+  },
+  {
+    id:'jade', name:'Jade',
+    levels:[S.JADE_HELMET_LEVELS,S.JADE_CHESTPLATE_LEVELS,S.JADE_LEGGINGS_LEVELS,S.JADE_BOOTS_LEVELS],
+    armorAbility:'Jade Aura',
+    armorStats:[
+      ['Speed boost / level', p(S.JADE_AURA_SPEED_PER_LEVEL)],
+      ['Jump height / level', p(S.JADE_AURA_JUMP_PER_LEVEL)],
+      ['Trail radius', `${S.JADE_TRAIL_RADIUS} blocks`],
+      ['Trail duration', t(S.JADE_TRAIL_DURATION_TICKS)],
+      ['Trail linger / level', t(S.JADE_TRAIL_LINGER_TICKS_PER_LEVEL)],
+      ['Max trail linger', t(S.JADE_TRAIL_LINGER_MAX_TICKS)],
+    ],
+    toolAbility:'Jade Rush',
+    toolStats:[
+      ['Grants', `Jade Aura level ${S.JADE_TOOL_BOUNCER_JADE_AURA_LEVEL}`],
+      ['Duration', t(S.JADE_TOOL_BOUNCER_DURATION_TICKS)],
+      ['Teleport chance', p(S.JADE_TOOL_TELEPORT_CHANCE)],
+    ],
+  },
+];
+
+const ARMOR_SLOTS  = ['helmet','chestplate','leggings','boots'];
+const ARMOR_LABELS = ['Helmet','Chestplate','Leggings','Boots'];
+const TOOL_TYPES   = ['sword','pickaxe','axe','shovel','hoe'];
+
+function statRows(pairs) {
+  return pairs.map(([k,v]) =>
+    `<tr><td class="sk">${k}</td><td class="sv">${v}</td></tr>`
+  ).join('');
+}
+
+function equipCard(g) {
+  const c    = COLOR[g.id] || '#888';
+  const base = RAW + 'item/' + g.id;
+  const lvls = ARMOR_SLOTS.map((s,i) =>
+    `<img src="${base}_${s}.png" title="${ARMOR_LABELS[i]} — Level ${g.levels[i]}" onerror="this.style.opacity='.1'">`
+  ).join('');
+  const tools = TOOL_TYPES.map(t =>
+    `<img src="${base}_${t}.png" title="${g.name} ${t.charAt(0).toUpperCase()+t.slice(1)}" onerror="this.style.opacity='.1'">`
+  ).join('');
+  const lvlDesc = ARMOR_SLOTS.map((s,i) => `${ARMOR_LABELS[i]} Lv ${g.levels[i]}`).join(' · ');
+
+  return `<div class="equip-card" style="--gem-color:${c}">
+    <div class="equip-header">
+      <img src="${base}.png" onerror="this.style.opacity='.1'">
+      <div>
+        <div class="equip-gem-name">${g.name}</div>
+        <div style="font-family:system-ui,sans-serif;font-size:.68rem;color:var(--muted)">${lvlDesc}</div>
+      </div>
+    </div>
+    <div class="equip-body">
+      <div class="item-row">${lvls}${tools}</div>
+      <div class="ability-label">Armor — ${g.armorAbility}</div>
+      <table class="stat-table"><tbody>${statRows(g.armorStats)}</tbody></table>
+      <div class="ability-label" style="margin-top:10px">Tool — ${g.toolAbility}</div>
+      <table class="stat-table"><tbody>${statRows(g.toolStats)}</tbody></table>
+    </div>
+  </div>`;
+}
+
+document.getElementById('equipGrid').innerHTML = GEMS_EQUIP.map(equipCard).join('');
+
+// ─── EFFECTS ────────────────────────────────────────────────────────
+const EFF_BASE = RAW + 'mob_effect/';
+
+const EFFECTS = [
+  {
+    id:'ice_shield', name:'Ice Shield', gem:'aquamarine', source:'Armor',
+    desc:'Freezes and slows attackers when the wearer is hit. Freeze duration scales with armor level (minimum 0.3s, maximum 3s).',
+    stats:[
+      ['Magic damage per armor level', `+${n(S.ICE_SHIELD_MAGIC_DAMAGE_PER_LEVEL)} ♥`],
+      ['Freeze per level', `+${t(S.ICE_SHIELD_FREEZE_TICKS_PER_LEVEL)} (min ${t(S.ICE_SHIELD_FREEZE_MIN_TICKS)}, max ${t(S.ICE_SHIELD_FREEZE_MAX_TICKS)})`],
+      ['Slowness duration per level', t(S.ICE_SHIELD_SLOWNESS_DURATION_TICKS_PER_LEVEL)],
+      ['Max slowness duration', t(S.ICE_SHIELD_SLOWNESS_MAX_DURATION_TICKS)],
+      ['Max slowness amplifier', S.ICE_SHIELD_SLOWNESS_MAX_AMPLIFIER],
+    ],
+  },
+  {
+    id:'freeze', name:'Freeze', gem:'aquamarine', source:'Tool',
+    desc:'Temporarily immobilizes the target. Applied on hit by Aquamarine tools.',
+    stats:[
+      ['Freeze duration (tool hit)', t(S.AQUAMARINE_TOOL_FREEZE_TICKS)],
+      ['Slowness duration (tool hit)', t(S.AQUAMARINE_TOOL_SLOWNESS_DURATION_TICKS)],
+    ],
+  },
+  {
+    id:'ice_bomb', name:'Ice Bomb', gem:'aquamarine', source:'Tool',
+    desc:'Marks the target with a delayed ice charge. If the target dies while marked, it detonates in an ice wave that freezes and knocks back everyone nearby. Creates an explosion (no block damage).',
+    stats:[
+      ['Charge duration', t(S.ICE_BOMB_TOOL_DURATION_TICKS)],
+      ['Burst radius', `${S.ICE_BOMB_BURST_RADIUS} blocks`],
+      ['Burst damage', `${S.ICE_BOMB_BURST_DAMAGE} ♥`],
+      ['Burst freeze duration', t(S.ICE_BOMB_BURST_FREEZE_TICKS)],
+      ['Burst knockback', 'yes'],
+    ],
+  },
+  {
+    id:'static_field', name:'Static Field', gem:'citrine', source:'Armor',
+    desc:'Creates an electric field around the wearer that continuously deals static damage to nearby enemies. Damage stacks as enemies stay inside the field.',
+    stats:[
+      ['Field radius per level', `+${S.STATIC_FIELD_RADIUS_PER_LEVEL} blocks (max ${S.STATIC_FIELD_MAX_RADIUS})`],
+      ['Damage per level per second', `+${n(S.STATIC_FIELD_DAMAGE_PER_LEVEL_PER_SECOND)} ♥ (max ${S.STATIC_FIELD_MAX_DAMAGE_PER_SECOND} ♥/s)`],
+      ['Max stacks', `${S.STATIC_FIELD_MAX_STACKS} (each adds ${p(S.STATIC_FIELD_STACK_DAMAGE_INCREASE)} damage)`],
+      ['Stack reset time', t(S.STATIC_FIELD_STACK_RESET_TICKS)],
+    ],
+  },
+  {
+    id:'charged', name:'Charged', gem:'citrine', source:'Tool',
+    desc:'Ready state for the chain lightning strike. The next attack while Charged will chain to multiple nearby targets.',
+    stats:[
+      ['Duration', t(S.CITRINE_TOOL_CHARGED_DURATION_TICKS)],
+      ['Chain targets', S.CITRINE_TOOL_CHAIN_TARGETS],
+      ['Chain damage', `${p(S.CITRINE_TOOL_CHAIN_FRACTION)} of hit damage`],
+      ['Chain range', `${S.CITRINE_TOOL_CHAIN_RANGE} blocks`],
+      ['Bolts on charged strike', `${S.CITRINE_CHARGED_LIGHTNING_MIN}–${S.CITRINE_CHARGED_LIGHTNING_MAX} (spread ${S.CITRINE_CHARGED_LIGHTNING_SPREAD} blocks)`],
+    ],
+  },
+  {
+    id:'topaz_reaction', name:'Topaz Reaction', gem:'topaz', source:'Armor',
+    desc:'Strikes back attackers with a shock when the wearer takes damage.',
+    stats:[
+      ['Shock damage per level', `+${S.TOPAZ_SHOCK_DAMAGE_PER_LEVEL} ♥`],
+      ['Knockback per level', `+${S.TOPAZ_SHOCK_KNOCKBACK_PER_LEVEL}`],
+      ['Fall damage reduction per level', `${p(S.TOPAZ_FALL_REDUCTION_PER_LEVEL)} (max ${p(S.TOPAZ_FALL_MAX_REDUCTION)})`],
+      ['Shock radius per level', `+${S.TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL} blocks (max ${S.TOPAZ_ARMOR_SHOCK_MAX_RADIUS})`],
+    ],
+  },
+  {
+    id:'blood_thirst', name:'Blood Thirst', gem:'ruby', source:'Armor',
+    desc:'Heals the wearer whenever a nearby entity takes damage. The heal is a fraction of the actual damage dealt. Scales with number of Ruby armor pieces worn.',
+    stats:[
+      ['Aura radius per level', `+${S.BLOOD_THIRST_RADIUS_PER_LEVEL} blocks (max ${S.BLOOD_THIRST_MAX_RADIUS})`],
+      ['Heal per level (of damage dealt)', `${p(S.BLOOD_THIRST_HEAL_FRACTION_PER_LEVEL)}`],
+      ['Max heal fraction', `${p(S.BLOOD_THIRST_MAX_HEAL_FRACTION)} of damage dealt`],
+    ],
+  },
+  {
+    id:'miasma', name:'Miasma', gem:'peridot', source:'Armor',
+    desc:'Emits a toxic cloud around the wearer, poisoning nearby enemies every 10 seconds.',
+    stats:[
+      ['Cloud radius per level', `+${S.MIASMA_CLOUD_RADIUS_PER_LEVEL} blocks (max ${S.MIASMA_CLOUD_MAX_RADIUS})`],
+      ['Max poison level', S.MIASMA_POISON_MAX_AMPLIFIER + 1],
+      ['Pulse interval', t(S.MIASMA_INTERVAL_TICKS)],
+    ],
+  },
+  {
+    id:'lethal_incubation', name:'Lethal Incubation', gem:'peridot', source:'Tool',
+    desc:'Applied by any Peridot tool hit. If the target dies while incubated, it detonates: releases a miasma wave (equivalent to level 3) and a physical explosion that deals damage and knockback (no block damage).',
+    stats:[
+      ['Applies on', 'any hit (all peridot tools)'],
+      ['Duration', '5s'],
+      ['On-kill wave radius', `${3 * S.MIASMA_CLOUD_RADIUS_PER_LEVEL} blocks (miasma level 3)`],
+      ['On-kill explosion damage', `${S.LETHAL_INCUBATION_SHOCK_DAMAGE} ♥`],
+      ['On-kill explosion radius', `${S.LETHAL_INCUBATION_SHOCK_RADIUS} blocks`],
+    ],
+  },
+  {
+    id:'damage_deflection', name:'Damage Deflection', gem:'sapphire', source:'Armor',
+    desc:'Redirects a percentage of incoming damage back to the attacker. Scales with number of Sapphire armor pieces worn.',
+    stats:[
+      ['Deflection per level', `${p(S.DEFLECT_PER_LEVEL)} of incoming damage`],
+    ],
+  },
+  {
+    id:'arcane_aura', name:'Arcane Aura', gem:'ametrine', source:'Armor',
+    desc:'Projects a gravitational field that periodically lifts nearby enemies with levitation.',
+    stats:[
+      ['Aura radius per level', `+${S.ARCANE_AURA_RADIUS_PER_LEVEL} blocks (max ${S.ARCANE_AURA_MAX_RADIUS})`],
+      ['Levitation amplifier per level', `+${S.ARCANE_AURA_LEVITATION_AMP_PER_LEVEL}`],
+      ['Levitation duration per level', t(S.ARCANE_AURA_LEVITATION_DURATION_TICKS_PER_LEVEL)],
+    ],
+  },
+  {
+    id:'jade_aura', name:'Jade Aura', gem:'jade', source:'Armor',
+    desc:'Enhances the wearer\'s movement and leaves behind a trail cloud that slows enemies passing through it.',
+    stats:[
+      ['Speed boost per level', p(S.JADE_AURA_SPEED_PER_LEVEL)],
+      ['Jump height per level', p(S.JADE_AURA_JUMP_PER_LEVEL)],
+      ['Trail cloud radius', `${S.JADE_TRAIL_RADIUS} blocks`],
+      ['Trail cloud duration', t(S.JADE_TRAIL_DURATION_TICKS)],
+      ['Trail linger per level', t(S.JADE_TRAIL_LINGER_TICKS_PER_LEVEL)],
+      ['Max trail linger', t(S.JADE_TRAIL_LINGER_MAX_TICKS)],
+    ],
+  },
+  {
+    id:'necoium_share', name:'Necoium Share', gem:'necoium', source:'Armor',
+    desc:'Links nearby entities wearing Necoium armor into a network. The highest-level Mythic effect active on any network member is shared to all others within 30 blocks, as long as they stay connected.',
+    stats:[],
+  },
+];
+
+document.getElementById('effectList').innerHTML = EFFECTS.map(e => {
+  const c     = COLOR[e.gem] || '#888';
+  const rows  = e.stats.map(([k,v]) =>
+    `<tr><td class="sk">${k}</td><td class="sv">${v}</td></tr>`
+  ).join('');
+  const table = rows ? `<table class="stat-table" style="margin-top:6px"><tbody>${rows}</tbody></table>` : '';
+  return `<div class="effect-card" style="--gem-color:${c}">
+    <div class="effect-icon-col">
+      <img src="${EFF_BASE}${e.id}.png" alt="${e.name}" onerror="this.style.opacity='.15'">
+    </div>
+    <div class="effect-content">
+      <div class="effect-name-row">
+        <span class="effect-name" style="color:${c}">${e.name}</span>
+        <span class="source-tag">${e.source}</span>
+        <span class="source-tag" style="border-color:${c};color:${c}">${e.gem.charAt(0).toUpperCase()+e.gem.slice(1)}</span>
+      </div>
+      <div class="effect-desc">${e.desc}</div>
+      ${table}
+    </div>
+  </div>`;
+}).join('');
+
+// ─── TAB SWITCHING ───────────────────────────────────────────────────
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

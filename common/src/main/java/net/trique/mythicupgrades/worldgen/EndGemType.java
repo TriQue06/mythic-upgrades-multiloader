@@ -27,13 +27,14 @@ public enum EndGemType {
         this.waterColor    = waterColor;
     }
 
-    public ResourceKey<Block> stoneBlock()   { return block(id + "_stone"); }
-    public ResourceKey<Block> crystalBlock() { return block(id + "_crystal_block"); }
-    public ResourceKey<Block> oreBlock()     { return block(id + "_ore"); }
-    public ResourceKey<Block> smallBud()     { return block("small_" + id + "_crystal_bud"); }
-    public ResourceKey<Block> mediumBud()    { return block("medium_" + id + "_crystal_bud"); }
-    public ResourceKey<Block> largeBud()     { return block("large_" + id + "_crystal_bud"); }
-    public ResourceKey<Block> cluster()      { return block(id + "_crystal_cluster"); }
+    public ResourceKey<Block> stoneBlock()      { return block(id + "_stone"); }
+    public ResourceKey<Block> crystalBlock()   { return block(id + "_crystal_block"); }
+    public ResourceKey<Block> buddingCrystal() { return block("budding_" + id + "_crystal"); }
+    public ResourceKey<Block> oreBlock()       { return block(id + "_ore"); }
+    public ResourceKey<Block> smallBud()       { return block("small_" + id + "_crystal_bud"); }
+    public ResourceKey<Block> mediumBud()      { return block("medium_" + id + "_crystal_bud"); }
+    public ResourceKey<Block> largeBud()       { return block("large_" + id + "_crystal_bud"); }
+    public ResourceKey<Block> cluster()        { return block(id + "_crystal_cluster"); }
 
     private ResourceKey<Block> block(String name) {
         return ResourceKey.create(Registries.BLOCK, new ResourceLocation(Constants.MOD_ID, name));
@@ -48,6 +49,7 @@ public enum EndGemType {
     public ResourceKey<ConfiguredFeature<?, ?>> crystalBudsCF()     { return cf(id + "_end_crystal_buds"); }
     public ResourceKey<ConfiguredFeature<?, ?>> crystalBudsRareCF() { return cf(id + "_end_crystal_buds_rare"); }
     public ResourceKey<ConfiguredFeature<?, ?>> oreCF()             { return cf(id + "_end_ore"); }
+    public ResourceKey<ConfiguredFeature<?, ?>> geodeCF()           { return cf(id + "_end_geode"); }
 
     private ResourceKey<ConfiguredFeature<?, ?>> cf(String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(Constants.MOD_ID, name));
@@ -58,6 +60,8 @@ public enum EndGemType {
     public ResourceKey<PlacedFeature> crystalBudsPF()     { return pf(id + "_end_crystal_buds"); }
     public ResourceKey<PlacedFeature> crystalBudsRarePF() { return pf(id + "_end_crystal_buds_rare"); }
     public ResourceKey<PlacedFeature> orePF()             { return pf(id + "_end_ore"); }
+    public ResourceKey<PlacedFeature> geodePF()           { return pf(id + "_end_geode"); }
+    public ResourceKey<PlacedFeature> geodeExtraPF()      { return pf(id + "_end_geode_extra"); }
 
     private ResourceKey<PlacedFeature> pf(String name) {
         return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Constants.MOD_ID, name));

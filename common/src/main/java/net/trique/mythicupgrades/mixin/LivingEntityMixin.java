@@ -30,6 +30,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -511,9 +512,7 @@ public abstract class LivingEntityMixin {
             }
 
             if (isPeridotTool(weapon)) {
-                int toolLevel = MythicStats.LETHAL_INCUBATION_TOOL_LEVEL;
-                int duration = toolLevel * MythicStats.LETHAL_INCUBATION_DURATION_TICKS_PER_LEVEL;
-                self.addEffect(new MobEffectInstance(MythicEffects.LETHAL_INCUBATION, duration, toolLevel - 1));
+                self.addEffect(new MobEffectInstance(MythicEffects.LETHAL_INCUBATION, 100, 0));
             }
 
             if (isAquamarineTool(weapon) && self.level() instanceof ServerLevel serverLevel) {
@@ -533,7 +532,7 @@ public abstract class LivingEntityMixin {
             }
 
             if (isJadeTool(weapon)) {
-                directAttacker.addEffect(new MobEffectInstance(MythicEffects.BOUNCER, MythicStats.JADE_TOOL_BOUNCER_DURATION_TICKS, 0));
+                directAttacker.addEffect(new MobEffectInstance(MythicEffects.JADE_AURA, MythicStats.JADE_TOOL_BOUNCER_DURATION_TICKS, 4));
                 if (self.getRandom().nextFloat() < MythicStats.JADE_TOOL_TELEPORT_CHANCE)
                     randomTeleportNear(self);
                 if (self.level() instanceof ServerLevel jadeSLevel)
@@ -546,24 +545,13 @@ public abstract class LivingEntityMixin {
                 directAttacker.hurt(MUDamageTypes.iceShieldReflect(self), level * MythicStats.ICE_SHIELD_MAGIC_DAMAGE_PER_LEVEL);
                 int slownessDur = Math.min(level * MythicStats.ICE_SHIELD_SLOWNESS_DURATION_TICKS_PER_LEVEL, MythicStats.ICE_SHIELD_SLOWNESS_MAX_DURATION_TICKS);
                 int slownessAmp = Math.min(level - 1, MythicStats.ICE_SHIELD_SLOWNESS_MAX_AMPLIFIER);
+                int freezeDur = Math.max(MythicStats.ICE_SHIELD_FREEZE_MIN_TICKS, Math.min(level * MythicStats.ICE_SHIELD_FREEZE_TICKS_PER_LEVEL, MythicStats.ICE_SHIELD_FREEZE_MAX_TICKS));
                 directAttacker.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, slownessDur, slownessAmp));
-                directAttacker.addEffect(new MobEffectInstance(MythicEffects.FREEZE, slownessDur, 0));
+                directAttacker.addEffect(new MobEffectInstance(MythicEffects.FREEZE, freezeDur, 0));
                 if (self.level() instanceof ServerLevel iceLevel)
                     emitIceShieldStreamParticles(iceLevel, self, directAttacker);
             }
 
-            MobEffectInstance staticField = self.getEffect(MythicEffects.STATIC_FIELD);
-            if (staticField != null && self.level() instanceof ServerLevel sfLevel) {
-                int sfEffectLevel = staticField.getAmplifier() + 1;
-                float lightningChance = Math.min(sfEffectLevel * MythicStats.STATIC_FIELD_LIGHTNING_CHANCE_PER_LEVEL, MythicStats.STATIC_FIELD_MAX_LIGHTNING_CHANCE);
-                if (self.getRandom().nextFloat() < lightningChance) {
-                    LightningBolt bolt = EntityType.LIGHTNING_BOLT.create(sfLevel);
-                    if (bolt != null) {
-                        bolt.moveTo(directAttacker.getX(), directAttacker.getY(), directAttacker.getZ());
-                        sfLevel.addFreshEntity(bolt);
-                    }
-                }
-            }
         }
     }
 
@@ -574,8 +562,6 @@ public abstract class LivingEntityMixin {
         MobEffectInstance jadeAura = self.getEffect(MythicEffects.JADE_AURA);
         if (jadeAura != null)
             extra += (jadeAura.getAmplifier() + 1) * MythicStats.JADE_AURA_JUMP_PER_LEVEL;
-        if (self.getEffect(MythicEffects.BOUNCER) != null)
-            extra += MythicStats.JADE_TOOL_BOUNCER_JUMP_BOOST;
         if (extra > 0) {
             Vec3 v = self.getDeltaMovement();
             self.setDeltaMovement(v.x, v.y + extra, v.z);
@@ -590,14 +576,13 @@ public abstract class LivingEntityMixin {
 
         MobEffectInstance incub = self.getEffect(MythicEffects.LETHAL_INCUBATION);
         if (incub != null) {
-            int effectLevel = incub.getAmplifier() + 1;
-            applyLethalIncubationBurst(serverLevel, self, effectLevel);
+            applyLethalIncubationBurst(serverLevel, self);
             mu_incubationWaveTick = 0;
-            mu_incubationWaveMaxRadius = MythicStats.LETHAL_INCUBATION_SHOCK_RADIUS;
+            mu_incubationWaveMaxRadius = 3.0f * MythicStats.MIASMA_CLOUD_RADIUS_PER_LEVEL;
             mu_incubationWaveX = self.getX();
             mu_incubationWaveY = self.getY() + 1.0;
             mu_incubationWaveZ = self.getZ();
-            mu_incubationWaveLevel = effectLevel;
+            mu_incubationWaveLevel = 3;
         }
 
         if (self.getEffect(MythicEffects.ICE_SHIELD_MARK) != null) {
@@ -786,18 +771,17 @@ public abstract class LivingEntityMixin {
     }
 
     @Unique
-    private static void applyLethalIncubationBurst(ServerLevel level, LivingEntity center, int effectLevel) {
+    private static void applyLethalIncubationBurst(ServerLevel level, LivingEntity center) {
         float radius = MythicStats.LETHAL_INCUBATION_SHOCK_RADIUS;
-        int poisonAmplifier = effectLevel - 1;
-        int poisonDuration = effectLevel * MythicStats.LETHAL_INCUBATION_POISON_DURATION_TICKS_PER_LEVEL;
         AABB bb = new AABB(center.getX() - radius, center.getY() - radius, center.getZ() - radius,
             center.getX() + radius, center.getY() + radius, center.getZ() + radius);
         for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, bb)) {
             if (entity == center) continue;
             if (entity.distanceTo(center) > radius) continue;
             entity.hurt(MUDamageTypes.peridotIncubation(center), MythicStats.LETHAL_INCUBATION_SHOCK_DAMAGE);
-            entity.addEffect(new MobEffectInstance(MobEffects.POISON, poisonDuration, poisonAmplifier));
+            entity.knockback(1.0, center.getX() - entity.getX(), center.getZ() - entity.getZ());
         }
+        level.explode(null, center.getX(), center.getY(), center.getZ(), 2.0f, Level.ExplosionInteraction.NONE);
     }
 
     @Unique
@@ -842,7 +826,9 @@ public abstract class LivingEntityMixin {
             if (entity.distanceTo(center) > radius) continue;
             entity.hurt(MUDamageTypes.iceBombBurst(center), MythicStats.ICE_BOMB_BURST_DAMAGE);
             entity.addEffect(new MobEffectInstance(MythicEffects.FREEZE, MythicStats.ICE_BOMB_BURST_FREEZE_TICKS, 0));
+            entity.knockback(1.0, center.getX() - entity.getX(), center.getZ() - entity.getZ());
         }
+        level.explode(null, center.getX(), center.getY(), center.getZ(), 2.0f, Level.ExplosionInteraction.NONE);
     }
 
     @Unique

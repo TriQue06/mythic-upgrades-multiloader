@@ -29,14 +29,15 @@ public enum CaveGemType {
         this.waterColor    = waterColor;
     }
 
-    public ResourceKey<Block> stoneBlock()   { return block(id + "_stone"); }
-    public ResourceKey<Block> crystalBlock() { return block(id + "_crystal_block"); }
-    public ResourceKey<Block> oreBlock()     { return block(id + "_ore"); }
-    public ResourceKey<Block> deepslateOre() { return block("deepslate_" + id + "_ore"); }
-    public ResourceKey<Block> smallBud()     { return block("small_" + id + "_crystal_bud"); }
-    public ResourceKey<Block> mediumBud()    { return block("medium_" + id + "_crystal_bud"); }
-    public ResourceKey<Block> largeBud()     { return block("large_" + id + "_crystal_bud"); }
-    public ResourceKey<Block> cluster()      { return block(id + "_crystal_cluster"); }
+    public ResourceKey<Block> stoneBlock()      { return block(id + "_stone"); }
+    public ResourceKey<Block> crystalBlock()   { return block(id + "_crystal_block"); }
+    public ResourceKey<Block> buddingCrystal() { return block("budding_" + id + "_crystal"); }
+    public ResourceKey<Block> oreBlock()       { return block(id + "_ore"); }
+    public ResourceKey<Block> deepslateOre()   { return block("deepslate_" + id + "_ore"); }
+    public ResourceKey<Block> smallBud()       { return block("small_" + id + "_crystal_bud"); }
+    public ResourceKey<Block> mediumBud()      { return block("medium_" + id + "_crystal_bud"); }
+    public ResourceKey<Block> largeBud()       { return block("large_" + id + "_crystal_bud"); }
+    public ResourceKey<Block> cluster()        { return block(id + "_crystal_cluster"); }
 
     private ResourceKey<Block> block(String name) {
         return ResourceKey.create(Registries.BLOCK, new ResourceLocation(Constants.MOD_ID, name));
@@ -52,6 +53,7 @@ public enum CaveGemType {
     public ResourceKey<ConfiguredFeature<?, ?>> crystalBudsRareCF() { return cf(id + "_crystal_buds_rare"); }
     public ResourceKey<ConfiguredFeature<?, ?>> oreCF()             { return cf(id + "_ore"); }
     public ResourceKey<ConfiguredFeature<?, ?>> deepslateOreCF()    { return cf(id + "_deepslate_ore"); }
+    public ResourceKey<ConfiguredFeature<?, ?>> geodeCF()           { return cf(id + "_geode"); }
 
     private ResourceKey<ConfiguredFeature<?, ?>> cf(String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(Constants.MOD_ID, name));
@@ -63,6 +65,8 @@ public enum CaveGemType {
     public ResourceKey<PlacedFeature> crystalBudsRarePF() { return pf(id + "_crystal_buds_rare"); }
     public ResourceKey<PlacedFeature> orePF()             { return pf(id + "_ore"); }
     public ResourceKey<PlacedFeature> deepslateOrePF()    { return pf(id + "_deepslate_ore"); }
+    public ResourceKey<PlacedFeature> geodePF()           { return pf(id + "_geode"); }
+    public ResourceKey<PlacedFeature> geodeExtraPF()      { return pf(id + "_geode_extra"); }
 
     private ResourceKey<PlacedFeature> pf(String name) {
         return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Constants.MOD_ID, name));

@@ -65,6 +65,23 @@ public class MythicNetherPlacedFeatures {
                 HeightRangePlacement.uniform(VerticalAnchor.absolute(10), VerticalAnchor.absolute(115)),
                 BiomeFilter.biome()
             )));
+
+            // Geode: 1-in-24 chunks (vanilla amethyst rarity), y 5 to 90
+            var geodeH = features.getOrThrow(gem.geodeCF());
+            ctx.register(gem.geodePF(), new PlacedFeature(geodeH, List.of(
+                RarityFilter.onAverageOnceEvery(24),
+                InSquarePlacement.spread(),
+                HeightRangePlacement.uniform(VerticalAnchor.absolute(5), VerticalAnchor.absolute(90)),
+                BiomeFilter.biome()
+            )));
+
+            // Geode extra: 1-in-8 chunks in the matching gem rift biome
+            ctx.register(gem.geodeExtraPF(), new PlacedFeature(geodeH, List.of(
+                RarityFilter.onAverageOnceEvery(8),
+                InSquarePlacement.spread(),
+                HeightRangePlacement.uniform(VerticalAnchor.absolute(5), VerticalAnchor.absolute(90)),
+                BiomeFilter.biome()
+            )));
         }
     }
 }

@@ -2,6 +2,7 @@ package net.trique.mythicupgrades.worldgen;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.placement.NetherPlacements;
 import net.minecraft.world.level.biome.AmbientMoodSettings;
@@ -29,6 +30,10 @@ public class MythicNetherBiomeBootstrap {
                                     HolderGetter<ConfiguredWorldCarver<?>> carvers) {
 
         BiomeGenerationSettings.Builder gen = new BiomeGenerationSettings.Builder(features, carvers);
+
+        // Vanilla nether ores (quartz, gold, ancient debris) — first for consistent FeatureSorter ordering
+        BiomeDefaultFeatures.addNetherDefaultOres(gen);
+
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES,       features.getOrThrow(gem.stoneBlobsPF()));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES,       features.getOrThrow(gem.orePF()));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBlobsPF()));

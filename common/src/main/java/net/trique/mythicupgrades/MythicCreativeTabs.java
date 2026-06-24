@@ -47,6 +47,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicItems.RAW_NECOIUM);
                     output.accept(MythicItems.NECOIUM_INGOT);
                     output.accept(MythicItems.NECOIUM_CARROT);
+                    output.accept(MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
                 })
                 .build()
         );

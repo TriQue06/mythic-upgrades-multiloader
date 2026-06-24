@@ -22,6 +22,31 @@
     [],
     [],
     [
+      "minecraft:ore_dirt",
+      "minecraft:ore_gravel",
+      "minecraft:ore_granite_upper",
+      "minecraft:ore_granite_lower",
+      "minecraft:ore_diorite_upper",
+      "minecraft:ore_diorite_lower",
+      "minecraft:ore_andesite_upper",
+      "minecraft:ore_andesite_lower",
+      "minecraft:ore_tuff",
+      "minecraft:ore_coal_upper",
+      "minecraft:ore_coal_lower",
+      "minecraft:ore_iron_upper",
+      "minecraft:ore_iron_middle",
+      "minecraft:ore_iron_small",
+      "minecraft:ore_gold",
+      "minecraft:ore_gold_lower",
+      "minecraft:ore_redstone",
+      "minecraft:ore_redstone_lower",
+      "minecraft:ore_diamond",
+      "minecraft:ore_diamond_large",
+      "minecraft:ore_diamond_buried",
+      "minecraft:ore_lapis",
+      "minecraft:ore_lapis_buried",
+      "minecraft:ore_copper",
+      "minecraft:underwater_magma",
       "mythicupgrades:necoium_ore_extra",
       "mythicupgrades:deepslate_necoium_ore_extra",
       "mythicupgrades:topaz_stone_blobs",
@@ -31,6 +56,10 @@
     [
       "mythicupgrades:topaz_crystal_blobs",
       "mythicupgrades:topaz_crystal_buds"
+    ],
+    [],
+    [
+      "minecraft:glow_lichen"
     ]
   ],
   "has_precipitation": true,

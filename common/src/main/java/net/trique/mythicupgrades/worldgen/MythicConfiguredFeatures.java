@@ -8,12 +8,19 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.levelgen.GeodeBlockSettings;
+import net.minecraft.world.level.levelgen.GeodeCrackSettings;
+import net.minecraft.world.level.levelgen.GeodeLayerSettings;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
@@ -93,6 +100,41 @@ public class MythicConfiguredFeatures {
                     OreConfiguration.target(new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES), dsOre.defaultBlockState()),
                     OreConfiguration.target(new BlockMatchTest(stone),                               dsOre.defaultBlockState())
                 ), 7)
+            ));
+        }
+
+        // Geodes — hollow crystal-lined caves matching amethyst geode rarity and structure
+        for (CaveGemType gem : CaveGemType.values()) {
+            Block crystalBlock = blocks.getOrThrow(gem.crystalBlock()).value();
+            Block buddingBlock = blocks.getOrThrow(gem.buddingCrystal()).value();
+            Block smallBud     = blocks.getOrThrow(gem.smallBud()).value();
+            Block mediumBud    = blocks.getOrThrow(gem.mediumBud()).value();
+            Block largeBud     = blocks.getOrThrow(gem.largeBud()).value();
+            Block clusterBlock = blocks.getOrThrow(gem.cluster()).value();
+
+            ctx.register(gem.geodeCF(), new ConfiguredFeature<>(Feature.GEODE,
+                new GeodeConfiguration(
+                    new GeodeBlockSettings(
+                        BlockStateProvider.simple(Blocks.AIR),
+                        BlockStateProvider.simple(crystalBlock),
+                        BlockStateProvider.simple(buddingBlock),
+                        BlockStateProvider.simple(Blocks.CALCITE),
+                        BlockStateProvider.simple(Blocks.SMOOTH_BASALT),
+                        List.of(
+                            smallBud.defaultBlockState(),
+                            mediumBud.defaultBlockState(),
+                            largeBud.defaultBlockState(),
+                            clusterBlock.defaultBlockState()
+                        ),
+                        BlockTags.FEATURES_CANNOT_REPLACE,
+                        BlockTags.GEODE_INVALID_BLOCKS
+                    ),
+                    new GeodeLayerSettings(1.7, 2.2, 3.2, 4.2),
+                    new GeodeCrackSettings(0.95, 2.0, 2),
+                    0.35, 0.083, true,
+                    UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2),
+                    -16, 16, 0.05, 1
+                )
             ));
         }
 

@@ -1,4 +1,4 @@
-// 1.20.1	2026-06-23T11:54:46.9503845	Item Models: mythicupgrades
+// 1.20.1	2026-06-23T21:07:09.7673499	Item Models: mythicupgrades
 5f18eae42068ec272f05839d2658458d4dc5a0c4 assets/mythicupgrades/models/item/ametrine.json
 732cf7a1c72f18566680ccfc96bf29a25fa66e51 assets/mythicupgrades/models/item/ametrine_axe.json
 330713c9c844edda04bdfdce4e78a24edbf918af assets/mythicupgrades/models/item/ametrine_block.json
@@ -136,6 +136,7 @@ dba5783f8aef8573ac4ad962192ccd5ad046b8b8 assets/mythicupgrades/models/item/mediu
 f2a23caaa41b37643c766dc631c538dd0dc6c54f assets/mythicupgrades/models/item/medium_ruby_crystal_bud.json
 1ec1f3bf35476e39635b1a5fb68065a6507c5c83 assets/mythicupgrades/models/item/medium_sapphire_crystal_bud.json
 ad7b3af0ff643424bddf0154d3e9f6f3d60ae922 assets/mythicupgrades/models/item/medium_topaz_crystal_bud.json
+5e4a8e6d3c5d7be5ef60c1e9c4b61729fe70daf4 assets/mythicupgrades/models/item/mythic_upgrade_smithing_template.json
 f32135b68898ccf1e9157f1d434be8044c21fe42 assets/mythicupgrades/models/item/mythic_upgrading_table.json
 7761d17595f180533da4bf862d7bffb683fcbee9 assets/mythicupgrades/models/item/necoium_block.json
 d30ef0ced2ad644745da4d4cf6f968ceb80047dd assets/mythicupgrades/models/item/necoium_carrot.json

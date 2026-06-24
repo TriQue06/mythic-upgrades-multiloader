@@ -87,6 +87,23 @@ public class MythicPlacedFeatures {
                 HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(8)),
                 BiomeFilter.biome()
             )));
+
+            // Geode: 1-in-24 chunks (vanilla amethyst rarity), y 6 to 30
+            var geodeH = features.getOrThrow(gem.geodeCF());
+            ctx.register(gem.geodePF(), new PlacedFeature(geodeH, List.of(
+                RarityFilter.onAverageOnceEvery(24),
+                InSquarePlacement.spread(),
+                HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(30)),
+                BiomeFilter.biome()
+            )));
+
+            // Geode extra: 1-in-8 chunks in the matching gem biome
+            ctx.register(gem.geodeExtraPF(), new PlacedFeature(geodeH, List.of(
+                RarityFilter.onAverageOnceEvery(8),
+                InSquarePlacement.spread(),
+                HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(30)),
+                BiomeFilter.biome()
+            )));
         }
 
         // Necoium ore — diamond-level rarity in all overworld biomes (via BiomeModifier)

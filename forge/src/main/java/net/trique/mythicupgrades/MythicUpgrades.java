@@ -5,12 +5,17 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -128,6 +133,21 @@ public class MythicUpgrades {
             MenuScreens.register(MythicMenuTypes.UPGRADING_TABLE, MythicUpgradingTableScreen::new);
             registerCutoutRenderLayers();
         });
+    }
+
+    @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+    public static class ForgeEvents {
+        @SubscribeEvent
+        public static void onLootTableLoad(LootTableLoadEvent event) {
+            if (event.getName().equals(new ResourceLocation("chests/end_city_treasure"))) {
+                event.getTable().addPool(
+                    LootPool.lootPool()
+                        .add(LootItem.lootTableItem(MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE)
+                            .when(LootItemRandomChanceCondition.randomChance(0.25f)))
+                        .build()
+                );
+            }
+        }
     }
 
     private static void registerCutoutRenderLayers() {

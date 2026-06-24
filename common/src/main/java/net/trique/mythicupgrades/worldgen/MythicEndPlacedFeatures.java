@@ -68,6 +68,23 @@ public class MythicEndPlacedFeatures {
                     HeightRangePlacement.uniform(VerticalAnchor.absolute(END_MIN_Y), VerticalAnchor.absolute(END_MAX_Y)),
                     BiomeFilter.biome()
             )));
+
+            // Geode: 1-in-24 chunks (vanilla amethyst rarity), y 40 to 80
+            var geodeH = features.getOrThrow(gem.geodeCF());
+            ctx.register(gem.geodePF(), new PlacedFeature(geodeH, List.of(
+                RarityFilter.onAverageOnceEvery(24),
+                InSquarePlacement.spread(),
+                HeightRangePlacement.uniform(VerticalAnchor.absolute(END_MIN_Y), VerticalAnchor.absolute(END_MAX_Y)),
+                BiomeFilter.biome()
+            )));
+
+            // Geode extra: 1-in-8 chunks in the matching gem barren biome
+            ctx.register(gem.geodeExtraPF(), new PlacedFeature(geodeH, List.of(
+                RarityFilter.onAverageOnceEvery(8),
+                InSquarePlacement.spread(),
+                HeightRangePlacement.uniform(VerticalAnchor.absolute(END_MIN_Y), VerticalAnchor.absolute(END_MAX_Y)),
+                BiomeFilter.biome()
+            )));
         }
     }
 }

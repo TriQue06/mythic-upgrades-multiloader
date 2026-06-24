@@ -46,13 +46,13 @@ public class MythicStats {
     public static int RUBY_LEGGINGS_LEVELS = 3;
     public static int RUBY_BOOTS_LEVELS = 1;
 
-    public static float RUBY_TOOL_LIFESTEAL_FRACTION = 0.05f;
+    public static float RUBY_TOOL_LIFESTEAL_FRACTION = 0.30f;
     public static int RUBY_TOOL_LIFESTEAL_PARTICLE_COUNT = 20;
 
     public static float BLOOD_THIRST_RADIUS_PER_LEVEL = 3.0f;
     public static float BLOOD_THIRST_MAX_RADIUS = 30.0f;
-    public static float BLOOD_THIRST_HEAL_FRACTION_PER_LEVEL = 0.05f;
-    public static float BLOOD_THIRST_MAX_HEAL_FRACTION = 0.5f;
+    public static float BLOOD_THIRST_HEAL_FRACTION_PER_LEVEL = 0.03f;
+    public static float BLOOD_THIRST_MAX_HEAL_FRACTION = 0.30f;
     public static int BLOOD_THIRST_PARTICLES_PER_LEVEL = 5;
 
     public static int PERIDOT_HELMET_LEVELS = 2;
@@ -71,14 +71,14 @@ public class MythicStats {
     public static int MIASMA_POISON_MAX_AMPLIFIER = 9;
     public static int MIASMA_POISON_DURATION_TICKS_PER_LEVEL = 10;
     public static int MIASMA_CLOUD_DURATION_TICKS_PER_LEVEL = 40;
-    public static int MIASMA_INTERVAL_TICKS = 100;
+    public static int MIASMA_INTERVAL_TICKS = 200;
 
     public static int AQUAMARINE_HELMET_LEVELS = 2;
     public static int AQUAMARINE_CHESTPLATE_LEVELS = 4;
     public static int AQUAMARINE_LEGGINGS_LEVELS = 3;
     public static int AQUAMARINE_BOOTS_LEVELS = 1;
 
-    public static int AQUAMARINE_TOOL_FREEZE_TICKS = 10;
+    public static int AQUAMARINE_TOOL_FREEZE_TICKS = 18;
     public static int AQUAMARINE_TOOL_SLOWNESS_DURATION_TICKS = 60;
     public static int AQUAMARINE_TOOL_SLOWNESS_AMPLIFIER = 0;
 
@@ -86,11 +86,14 @@ public class MythicStats {
     public static float ICE_SHIELD_MARK_BURST_RADIUS = 3.0f;
     public static float ICE_SHIELD_MARK_BURST_DAMAGE = 3.0f;
     public static int ICE_SHIELD_MARK_BURST_FREEZE_TICKS = 6;
+    public static int ICE_SHIELD_FREEZE_TICKS_PER_LEVEL = 6;
+    public static int ICE_SHIELD_FREEZE_MIN_TICKS = 6;
+    public static int ICE_SHIELD_FREEZE_MAX_TICKS = 60;
 
     public static int ICE_BOMB_TOOL_DURATION_TICKS = 60;
     public static float ICE_BOMB_BURST_RADIUS = 5.0f;
     public static float ICE_BOMB_BURST_DAMAGE = 4.0f;
-    public static int ICE_BOMB_BURST_FREEZE_TICKS = 60;
+    public static int ICE_BOMB_BURST_FREEZE_TICKS = 18;
 
     public static float ICE_SHIELD_MAGIC_DAMAGE_PER_LEVEL = 0.5f;
 
@@ -109,10 +112,10 @@ public class MythicStats {
     public static int CITRINE_CHARGED_LIGHTNING_MAX = 3;
     public static float CITRINE_CHARGED_LIGHTNING_SPREAD = 1.5f;
 
-    public static float STATIC_FIELD_RADIUS_PER_LEVEL = 0.45f;
-    public static float STATIC_FIELD_MAX_RADIUS = 4.5f;
-    public static float STATIC_FIELD_DAMAGE_PER_LEVEL_PER_SECOND = 0.30f;
-    public static float STATIC_FIELD_MAX_DAMAGE_PER_SECOND = 3.0f;
+    public static float STATIC_FIELD_RADIUS_PER_LEVEL = 0.40f;
+    public static float STATIC_FIELD_MAX_RADIUS = 4.0f;
+    public static float STATIC_FIELD_DAMAGE_PER_LEVEL_PER_SECOND = 0.20f;
+    public static float STATIC_FIELD_MAX_DAMAGE_PER_SECOND = 2.0f;
     public static float STATIC_FIELD_LIGHTNING_CHANCE_PER_LEVEL = 0.01f;
     public static float STATIC_FIELD_MAX_LIGHTNING_CHANCE = 0.10f;
     public static double CITRINE_LIGHTNING_REDIRECT_DISTANCE = 7.0;
@@ -129,7 +132,7 @@ public class MythicStats {
     public static int JADE_LEGGINGS_LEVELS = 3;
     public static int JADE_BOOTS_LEVELS = 1;
 
-    public static int JADE_TOOL_BOUNCER_DURATION_TICKS = 40;
+    public static int JADE_TOOL_BOUNCER_DURATION_TICKS = 30;
     public static float JADE_TOOL_BOUNCER_JUMP_BOOST = 0.15f;
     public static float JADE_TOOL_TELEPORT_CHANCE = 0.05f;
 

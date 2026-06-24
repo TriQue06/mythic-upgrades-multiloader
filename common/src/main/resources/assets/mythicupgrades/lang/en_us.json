@@ -371,5 +371,11 @@
   "effect.mythicupgrades.bouncer": "Bouncer",
   "effect.mythicupgrades.jade_aura": "Jade Aura",
   "effect.mythicupgrades.necoium_share": "Necoium Share",
-  "effect.mythicupgrades.ice_bomb": "Ice Bomb"
+  "effect.mythicupgrades.ice_bomb": "Ice Bomb",
+  "item.mythicupgrades.mythic_upgrade_smithing_template": "Smithing Template",
+  "item.mythicupgrades.mythic_upgrade_smithing_template.applies_to": "Netherite Equipment",
+  "item.mythicupgrades.mythic_upgrade_smithing_template.ingredients": "Mythic Ingots",
+  "item.mythicupgrades.mythic_upgrade_smithing_template.base_slot_description": "Add Netherite Armor, Weapon or Tool",
+  "item.mythicupgrades.mythic_upgrade_smithing_template.additions_slot_description": "Add Mythic Ingot",
+  "upgrade.mythicupgrades.mythic_upgrade": "Mythic Upgrade"
 }

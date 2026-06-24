@@ -27,6 +27,7 @@ public class MythicItemModelProvider extends ItemModelProvider {
         generated("raw_necoium", modLoc("item/raw_necoium"));
         generated("necoium_ingot", modLoc("item/necoium_ingot"));
         generated("necoium_carrot", modLoc("item/necoium_carrot"));
+        generated("mythic_upgrade_smithing_template", modLoc("item/mythic_upgrade_smithing_template"));
         blockItem("necoium_ore");
         blockItem("deepslate_necoium_ore");
         blockItem("raw_necoium_block");

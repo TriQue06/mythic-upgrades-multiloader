@@ -3,6 +3,7 @@ package net.trique.mythicupgrades;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.core.Registry;
@@ -12,6 +13,9 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.trique.mythicupgrades.MythicEffects;
 import net.trique.mythicupgrades.block.MythicBlocks;
 import net.trique.mythicupgrades.block.entity.MythicUpgradingTableBlockEntity;
@@ -20,8 +24,11 @@ import net.trique.mythicupgrades.menu.MythicUpgradingTableMenu;
 import net.trique.mythicupgrades.registry.MythicBlockEntityTypes;
 import net.trique.mythicupgrades.registry.MythicMenuTypes;
 import net.trique.mythicupgrades.registry.MythicRecipeTypes;
+import net.trique.mythicupgrades.worldgen.CaveGemType;
+import net.trique.mythicupgrades.worldgen.EndGemType;
 import net.trique.mythicupgrades.worldgen.MythicFeatures;
 import net.trique.mythicupgrades.worldgen.MythicPlacedFeatures;
+import net.trique.mythicupgrades.worldgen.NetherGemType;
 
 public class MythicUpgrades implements ModInitializer {
 
@@ -83,6 +90,40 @@ public class MythicUpgrades implements ModInitializer {
             GenerationStep.Decoration.UNDERGROUND_ORES, MythicPlacedFeatures.NECOIUM_ORE_PF);
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
             GenerationStep.Decoration.UNDERGROUND_ORES, MythicPlacedFeatures.DEEPSLATE_NECOIUM_ORE_PF);
+
+        // overworld geodes: global (all overworld) + extra in home cave biome
+        for (CaveGemType gem : CaveGemType.values()) {
+            BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Decoration.UNDERGROUND_ORES, gem.geodePF());
+            BiomeModifications.addFeature(BiomeSelectors.includeByKey(gem.biome()),
+                GenerationStep.Decoration.UNDERGROUND_DECORATION, gem.geodeExtraPF());
+        }
+
+        // nether geodes: global (all nether) + extra in home rift biome
+        for (NetherGemType gem : NetherGemType.values()) {
+            BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(),
+                GenerationStep.Decoration.UNDERGROUND_ORES, gem.geodePF());
+            BiomeModifications.addFeature(BiomeSelectors.includeByKey(gem.netherBiome()),
+                GenerationStep.Decoration.UNDERGROUND_DECORATION, gem.geodeExtraPF());
+        }
+
+        // end geodes: global (all end) + extra in home barren biome
+        for (EndGemType gem : EndGemType.values()) {
+            BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
+                GenerationStep.Decoration.UNDERGROUND_ORES, gem.geodePF());
+            BiomeModifications.addFeature(BiomeSelectors.includeByKey(gem.endBiome()),
+                GenerationStep.Decoration.UNDERGROUND_DECORATION, gem.geodeExtraPF());
+        }
+
+        LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
+            if (id.equals(new ResourceLocation("minecraft", "chests/end_city_treasure"))) {
+                tableBuilder.withPool(
+                    LootPool.lootPool()
+                        .add(LootItem.lootTableItem(MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE)
+                            .when(LootItemRandomChanceCondition.randomChance(0.25f)))
+                );
+            }
+        });
 
         CommonClass.init();
     }

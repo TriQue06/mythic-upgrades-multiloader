@@ -2,6 +2,7 @@ package net.trique.mythicupgrades.worldgen;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.world.level.biome.AmbientMoodSettings;
 import net.minecraft.world.level.biome.Biome;
@@ -29,10 +30,11 @@ public class MythicBiomeBootstrap {
 
         BiomeGenerationSettings.Builder gen = new BiomeGenerationSettings.Builder(features, carvers);
 
-        // Only features that are 100% unique to this biome belong in the bootstrap.
-        // Any feature shared with vanilla biomes (monster_room, glow_lichen, spring_water,
-        // spring_lava, vanilla ores) must be added via BiomeModifier / BiomeModifications
-        // so that FeatureSorter sees a consistent ordering across all biomes in a chunk region.
+        // Vanilla underground variety (andesite, granite, diorite, tuff, calcite, gravel)
+        // and vanilla ores — must come FIRST so FeatureSorter sees the same ordering
+        // as vanilla cave biomes that share chunk columns with these biomes.
+        BiomeDefaultFeatures.addDefaultUndergroundVariety(gen);
+        BiomeDefaultFeatures.addDefaultOres(gen);
 
         // Extra necoium ore density — unique to mythic cave biomes
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(MythicPlacedFeatures.NECOIUM_ORE_EXTRA_PF));
@@ -44,7 +46,7 @@ public class MythicBiomeBootstrap {
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.deepslateOrePF()));
 
         // Crystal decoration — unique to each cave biome
-        // glow_lichen and crystal_buds_rare are added via BiomeModifier/BiomeModifications
+        // glow_lichen, crystal_buds_rare, and geodes are added via BiomeModifier/BiomeModifications
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBlobsPF()));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsPF()));
 

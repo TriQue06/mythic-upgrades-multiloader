@@ -64,6 +64,7 @@ public class MythicDatagen {
         event.getGenerator().addProvider(event.includeServer(),
                 new MythicItemTagsProvider(output, lookupProvider, blockTags.contentsGetter()));
 
+
         event.getGenerator().addProvider(event.includeServer(),
                 new DatapackBuiltinEntriesProvider(output, lookupProvider,
                         new RegistrySetBuilder()

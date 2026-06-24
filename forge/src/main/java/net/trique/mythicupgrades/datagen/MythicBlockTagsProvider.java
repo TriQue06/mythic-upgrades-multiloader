@@ -94,7 +94,15 @@ public class MythicBlockTagsProvider extends BlockTagsProvider {
 
             .add(MythicBlocks.MYTHIC_UPGRADING_TABLE)
 
-            // Nether/end biome stone blocks
+            // Stone blocks (all gems)
+            .add(MythicBlocks.AQUAMARINE_STONE, MythicBlocks.AQUAMARINE_STONE_SLAB, MythicBlocks.AQUAMARINE_STONE_STAIRS)
+            .add(MythicBlocks.POLISHED_AQUAMARINE_STONE, MythicBlocks.POLISHED_AQUAMARINE_STONE_SLAB, MythicBlocks.POLISHED_AQUAMARINE_STONE_STAIRS)
+            .add(MythicBlocks.CITRINE_STONE, MythicBlocks.CITRINE_STONE_SLAB, MythicBlocks.CITRINE_STONE_STAIRS)
+            .add(MythicBlocks.POLISHED_CITRINE_STONE, MythicBlocks.POLISHED_CITRINE_STONE_SLAB, MythicBlocks.POLISHED_CITRINE_STONE_STAIRS)
+            .add(MythicBlocks.TOPAZ_STONE, MythicBlocks.TOPAZ_STONE_SLAB, MythicBlocks.TOPAZ_STONE_STAIRS)
+            .add(MythicBlocks.POLISHED_TOPAZ_STONE, MythicBlocks.POLISHED_TOPAZ_STONE_SLAB, MythicBlocks.POLISHED_TOPAZ_STONE_STAIRS)
+            .add(MythicBlocks.PERIDOT_STONE, MythicBlocks.PERIDOT_STONE_SLAB, MythicBlocks.PERIDOT_STONE_STAIRS)
+            .add(MythicBlocks.POLISHED_PERIDOT_STONE, MythicBlocks.POLISHED_PERIDOT_STONE_SLAB, MythicBlocks.POLISHED_PERIDOT_STONE_STAIRS)
             .add(MythicBlocks.RUBY_STONE, MythicBlocks.RUBY_STONE_SLAB, MythicBlocks.RUBY_STONE_STAIRS)
             .add(MythicBlocks.POLISHED_RUBY_STONE, MythicBlocks.POLISHED_RUBY_STONE_SLAB, MythicBlocks.POLISHED_RUBY_STONE_STAIRS)
             .add(MythicBlocks.SAPPHIRE_STONE, MythicBlocks.SAPPHIRE_STONE_SLAB, MythicBlocks.SAPPHIRE_STONE_STAIRS)

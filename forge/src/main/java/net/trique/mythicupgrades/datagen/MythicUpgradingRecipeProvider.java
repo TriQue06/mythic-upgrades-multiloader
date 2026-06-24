@@ -51,7 +51,59 @@ public class MythicUpgradingRecipeProvider implements DataProvider {
             }
         }
 
+        for (String gem : GEMS) {
+            for (String equip : EQUIPMENT) {
+                String netherite = "minecraft:netherite_" + equip;
+                String ingot = "mythicupgrades:" + gem + "_ingot";
+                String result = "mythicupgrades:" + gem + "_" + equip;
+                String id = "smithing_upgrade/" + gem + "_" + equip;
+
+                JsonObject json = buildSmithingTransformJson(netherite, ingot, result);
+                Path filePath = recipePath.resolve(id + ".json");
+                futures.add(DataProvider.saveStable(cache, json, filePath));
+            }
+        }
+
+        // Cross-gem conversions: mythic gear → another gem's gear via template + target ingot
+        for (String fromGem : GEMS) {
+            for (String toGem : GEMS) {
+                if (fromGem.equals(toGem)) continue;
+                for (String equip : EQUIPMENT) {
+                    String base   = "mythicupgrades:" + fromGem + "_" + equip;
+                    String ingot  = "mythicupgrades:" + toGem + "_ingot";
+                    String result = "mythicupgrades:" + toGem + "_" + equip;
+                    String id     = "smithing_upgrade/" + fromGem + "_to_" + toGem + "_" + equip;
+
+                    JsonObject json = buildSmithingTransformJson(base, ingot, result);
+                    futures.add(DataProvider.saveStable(cache, json, recipePath.resolve(id + ".json")));
+                }
+            }
+        }
+
         return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
+    }
+
+    private JsonObject buildSmithingTransformJson(String base, String addition, String result) {
+        JsonObject json = new JsonObject();
+        json.addProperty("type", "minecraft:smithing_transform");
+
+        JsonObject templateObj = new JsonObject();
+        templateObj.addProperty("item", "mythicupgrades:mythic_upgrade_smithing_template");
+        json.add("template", templateObj);
+
+        JsonObject baseObj = new JsonObject();
+        baseObj.addProperty("item", base);
+        json.add("base", baseObj);
+
+        JsonObject addObj = new JsonObject();
+        addObj.addProperty("item", addition);
+        json.add("addition", addObj);
+
+        JsonObject resultObj = new JsonObject();
+        resultObj.addProperty("item", result);
+        json.add("result", resultObj);
+
+        return json;
     }
 
     private JsonObject buildRecipeJson(String base, String addition, String crystal, String result) {
