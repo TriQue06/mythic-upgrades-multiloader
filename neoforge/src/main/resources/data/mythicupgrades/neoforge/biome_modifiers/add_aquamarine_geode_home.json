@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "mythicupgrades:aquamarine_caves",
+  "features": "mythicupgrades:aquamarine_geode_extra",
+  "step": "underground_decoration"
+}

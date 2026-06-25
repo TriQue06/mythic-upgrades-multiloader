@@ -3,7 +3,7 @@ package net.trique.mythicupgrades.worldgen;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.world.level.biome.AmbientMoodSettings;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
@@ -15,7 +15,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class MythicNetherBiomeBootstrap {
 
-    public static void bootstrap(BootstapContext<Biome> ctx) {
+    public static void bootstrap(BootstrapContext<Biome> ctx) {
         HolderGetter<PlacedFeature>           features = ctx.lookup(Registries.PLACED_FEATURE);
         HolderGetter<ConfiguredWorldCarver<?>> carvers  = ctx.lookup(Registries.CONFIGURED_CARVER);
 

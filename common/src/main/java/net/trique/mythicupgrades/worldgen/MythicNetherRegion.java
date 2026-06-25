@@ -15,7 +15,7 @@ import java.util.function.Consumer;
 public class MythicNetherRegion extends Region {
 
     public MythicNetherRegion() {
-        super(new ResourceLocation(Constants.MOD_ID, "nether"), RegionType.NETHER, 1);
+        super(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "nether"), RegionType.NETHER, 1);
     }
 
     @Override

@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "mythicupgrades:topaz_caves",
+  "features": "mythicupgrades:topaz_geode_extra",
+  "step": "underground_decoration"
+}

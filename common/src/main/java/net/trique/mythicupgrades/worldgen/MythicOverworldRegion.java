@@ -15,7 +15,7 @@ import java.util.function.Consumer;
 public class MythicOverworldRegion extends Region {
 
     public MythicOverworldRegion() {
-        super(new ResourceLocation(Constants.MOD_ID, "overworld"), RegionType.OVERWORLD, 1);
+        super(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "overworld"), RegionType.OVERWORLD, 1);
     }
 
     @Override

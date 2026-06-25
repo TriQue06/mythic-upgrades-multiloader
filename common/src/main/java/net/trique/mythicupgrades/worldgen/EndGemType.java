@@ -37,11 +37,11 @@ public enum EndGemType {
     public ResourceKey<Block> cluster()        { return block(id + "_crystal_cluster"); }
 
     private ResourceKey<Block> block(String name) {
-        return ResourceKey.create(Registries.BLOCK, new ResourceLocation(Constants.MOD_ID, name));
+        return ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
     }
 
     public ResourceKey<Biome> endBiome() {
-        return ResourceKey.create(Registries.BIOME, new ResourceLocation(Constants.MOD_ID, id + "_barrens"));
+        return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, id + "_barrens"));
     }
 
     public ResourceKey<ConfiguredFeature<?, ?>> stoneBlobsCF()      { return cf(id + "_end_stone_blobs"); }
@@ -52,7 +52,7 @@ public enum EndGemType {
     public ResourceKey<ConfiguredFeature<?, ?>> geodeCF()           { return cf(id + "_end_geode"); }
 
     private ResourceKey<ConfiguredFeature<?, ?>> cf(String name) {
-        return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(Constants.MOD_ID, name));
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
     }
 
     public ResourceKey<PlacedFeature> stoneBlobsPF()      { return pf(id + "_end_stone_blobs"); }
@@ -64,6 +64,6 @@ public enum EndGemType {
     public ResourceKey<PlacedFeature> geodeExtraPF()      { return pf(id + "_end_geode_extra"); }
 
     private ResourceKey<PlacedFeature> pf(String name) {
-        return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Constants.MOD_ID, name));
+        return ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
     }
 }

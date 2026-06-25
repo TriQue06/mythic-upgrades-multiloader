@@ -1,8 +1,10 @@
 package net.trique.mythicupgrades.mixin;
 
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.armortrim.ArmorTrim;
+import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.trique.mythicupgrades.Constants;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -14,24 +16,24 @@ import java.util.Set;
 @Mixin(ArmorTrim.class)
 public class ArmorTrimMixin {
 
-    // Trim material names that have a _darker palette variant for matching modded armor
     private static final Set<String> DARKER_TRIM_ASSET_NAMES = Set.of(
         "aquamarine", "topaz", "peridot", "ruby", "sapphire", "jade", "ametrine"
     );
 
     @Inject(method = "getColorPaletteSuffix", at = @At("HEAD"), cancellable = true)
-    private void mu_injectDarkerTrimForModdedArmor(ArmorMaterial armorMaterial, CallbackInfoReturnable<String> cir) {
-        // Vanilla already handles ArmorMaterials enum values; only act on modded armors
-        if (armorMaterial instanceof ArmorMaterials) return;
+    private static void mu_injectDarkerTrimForModdedArmor(Holder<TrimMaterial> trimMaterialHolder, Holder<ArmorMaterial> armorMaterialHolder, CallbackInfoReturnable<String> cir) {
+        ArmorMaterial armorMaterial = armorMaterialHolder.value();
+        if (armorMaterial.layers().isEmpty()) return;
+        ResourceLocation tex = armorMaterial.layers().get(0).texture(true);
+        if (!tex.getNamespace().equals(Constants.MOD_ID)) return;
 
-        ArmorTrim self = (ArmorTrim) (Object) this;
-        String trimAssetName = self.material().value().assetName();
-
+        String trimAssetName = trimMaterialHolder.value().assetName();
         if (!DARKER_TRIM_ASSET_NAMES.contains(trimAssetName)) return;
 
-        // Check if the armor material is ours and matches the trim material
-        String armorName = armorMaterial.getName();
-        if (armorName.equals(Constants.MOD_ID + ":" + trimAssetName)) {
+        String armorName = tex.getPath()
+            .replace("textures/models/armor/", "")
+            .replace("_layer_1.png", "");
+        if (armorName.equals(trimAssetName)) {
             cir.setReturnValue(trimAssetName + "_darker");
         }
     }

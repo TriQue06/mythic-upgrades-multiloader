@@ -12,14 +12,15 @@ public class NecoiumShareEffect extends MobEffect {
     }
 
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return duration % 10 == 0;
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         if (entity.level() instanceof ServerLevel serverLevel) {
             NecoiumShareHandler.onTick(serverLevel, entity);
         }
+        return true;
     }
 }

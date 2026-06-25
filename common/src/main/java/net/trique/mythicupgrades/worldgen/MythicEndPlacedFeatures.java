@@ -2,7 +2,7 @@ package net.trique.mythicupgrades.worldgen;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
@@ -19,7 +19,7 @@ public class MythicEndPlacedFeatures {
     private static final int END_MIN_Y = 0;
     private static final int END_MAX_Y = 128;
 
-    public static void bootstrap(BootstapContext<PlacedFeature> ctx) {
+    public static void bootstrap(BootstrapContext<PlacedFeature> ctx) {
         HolderGetter<ConfiguredFeature<?, ?>> features = ctx.lookup(Registries.CONFIGURED_FEATURE);
 
         for (EndGemType gem : EndGemType.values()) {

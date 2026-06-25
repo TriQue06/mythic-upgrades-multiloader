@@ -3,7 +3,7 @@ package net.trique.mythicupgrades.worldgen;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -32,11 +32,11 @@ import java.util.List;
 public class MythicConfiguredFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> NECOIUM_ORE_CF = ResourceKey.create(
-            Registries.CONFIGURED_FEATURE, new ResourceLocation(Constants.MOD_ID, "necoium_ore"));
+            Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "necoium_ore"));
     public static final ResourceKey<ConfiguredFeature<?, ?>> DEEPSLATE_NECOIUM_ORE_CF = ResourceKey.create(
-            Registries.CONFIGURED_FEATURE, new ResourceLocation(Constants.MOD_ID, "deepslate_necoium_ore"));
+            Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "deepslate_necoium_ore"));
 
-    public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> ctx) {
+    public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> ctx) {
         HolderGetter<Block> blocks = ctx.lookup(Registries.BLOCK);
 
         for (CaveGemType gem : CaveGemType.values()) {
@@ -135,9 +135,9 @@ public class MythicConfiguredFeatures {
 
         // Necoium ores — diamond-level rarity, no biome restriction
         ResourceKey<Block> necoiumOreKey = ResourceKey.create(Registries.BLOCK,
-                new ResourceLocation(Constants.MOD_ID, "necoium_ore"));
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "necoium_ore"));
         ResourceKey<Block> deepslateNecoiumKey = ResourceKey.create(Registries.BLOCK,
-                new ResourceLocation(Constants.MOD_ID, "deepslate_necoium_ore"));
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "deepslate_necoium_ore"));
         Block necoiumOre        = blocks.getOrThrow(necoiumOreKey).value();
         Block deepslateNecoiumOre = blocks.getOrThrow(deepslateNecoiumKey).value();
 

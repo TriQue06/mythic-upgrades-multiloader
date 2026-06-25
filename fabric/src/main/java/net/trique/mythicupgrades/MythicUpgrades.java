@@ -32,25 +32,25 @@ public class MythicUpgrades implements ModInitializer {
     @Override
     public void onInitialize() {
         MythicBlocks.register((name, block) ->
-            Registry.register(BuiltInRegistries.BLOCK, new ResourceLocation(Constants.MOD_ID, name), block));
+            Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), block));
 
         MythicBlocks.registerItems((name, item) ->
-            Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(Constants.MOD_ID, name), item));
+            Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), item));
 
         MythicItems.register((name, item) ->
-            Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(Constants.MOD_ID, name), item));
+            Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), item));
 
         MythicCreativeTabs.register((name, tab) ->
-            Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, new ResourceLocation(Constants.MOD_ID, name), tab));
+            Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), tab));
 
         MythicEffects.register((name, effect) ->
-            Registry.register(BuiltInRegistries.MOB_EFFECT, new ResourceLocation(Constants.MOD_ID, name), effect));
+            Registry.register(BuiltInRegistries.MOB_EFFECT, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), effect));
 
         MythicPotions.register((name, potion) ->
-            Registry.register(BuiltInRegistries.POTION, new ResourceLocation(Constants.MOD_ID, name), potion));
+            Registry.register(BuiltInRegistries.POTION, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), potion));
 
         MythicFeatures.register((name, feature) ->
-            Registry.register(BuiltInRegistries.FEATURE, new ResourceLocation(Constants.MOD_ID, name), feature));
+            Registry.register(BuiltInRegistries.FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), feature));
 
         // FeatureSorter cycle prevention:
         // Cave biome JSONs already contain ALL features (glow_lichen, vanilla ores, monster_room,
@@ -63,7 +63,7 @@ public class MythicUpgrades implements ModInitializer {
         // In cave biomes: same — JSON bootstrap first, then this appended after.
         for (String gem : new String[]{"aquamarine", "citrine", "peridot", "topaz"}) {
             ResourceKey<PlacedFeature> key = ResourceKey.create(Registries.PLACED_FEATURE,
-                new ResourceLocation(Constants.MOD_ID, gem + "_crystal_buds_rare"));
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, gem + "_crystal_buds_rare"));
             BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
                 GenerationStep.Decoration.UNDERGROUND_DECORATION, key);
         }
@@ -98,8 +98,8 @@ public class MythicUpgrades implements ModInitializer {
                 GenerationStep.Decoration.UNDERGROUND_DECORATION, gem.geodeExtraPF());
         }
 
-        LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
-            if (id.equals(new ResourceLocation("minecraft", "chests/end_city_treasure"))) {
+        LootTableEvents.MODIFY.register((key, tableBuilder, source) -> {
+            if (key.location().equals(ResourceLocation.withDefaultNamespace("chests/end_city_treasure"))) {
                 tableBuilder.withPool(
                     LootPool.lootPool()
                         .add(LootItem.lootTableItem(MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE)

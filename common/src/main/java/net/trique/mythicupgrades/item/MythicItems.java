@@ -1,6 +1,13 @@
 package net.trique.mythicupgrades.item;
 
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.AxeItem;
@@ -9,6 +16,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tier;
 import net.trique.mythicupgrades.Constants;
 import net.trique.mythicupgrades.MythicEffects;
 
@@ -17,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
-import net.minecraft.world.effect.MobEffect;
 
 public class MythicItems {
 
@@ -28,9 +35,26 @@ public class MythicItems {
         return item;
     }
 
-    private static FoodProperties shardFood(MobEffect effect) {
+    private static final ResourceLocation DMG_ID = ResourceLocation.withDefaultNamespace("base_attack_damage");
+    private static final ResourceLocation SPD_ID = ResourceLocation.withDefaultNamespace("base_attack_speed");
+
+    private static Item.Properties weapon(Tier tier, int bonusDmg, float speed) {
+        return new Item.Properties().attributes(SwordItem.createAttributes(tier, bonusDmg, speed));
+    }
+
+    private static Item.Properties tool(Tier tier, float bonusDmg, float speed) {
+        return new Item.Properties().attributes(
+            ItemAttributeModifiers.builder()
+                .add(Attributes.ATTACK_DAMAGE, new AttributeModifier(DMG_ID,
+                    tier.getAttackDamageBonus() + bonusDmg, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                .add(Attributes.ATTACK_SPEED, new AttributeModifier(SPD_ID,
+                    speed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                .build());
+    }
+
+    private static FoodProperties shardFood(Holder<MobEffect> effect) {
         return new FoodProperties.Builder()
-            .nutrition(1).saturationMod(0.1f).alwaysEat()
+            .nutrition(1).saturationModifier(0.1f).alwaysEdible()
             .effect(new MobEffectInstance(effect, 1200, 2, false, false, true), 1.0f)
             .build();
     }
@@ -59,81 +83,81 @@ public class MythicItems {
 
     public static final Item MYTHIC_UPGRADE_SMITHING_TEMPLATE = defer("mythic_upgrade_smithing_template", MythicUpgradeTemplateItem.create());
 
-    public static final Item AQUAMARINE_SWORD = defer("aquamarine_sword", new SwordItem(MythicToolMaterials.AQUAMARINE, 3, -2.4F, new Item.Properties()));
-    public static final Item AQUAMARINE_PICKAXE = defer("aquamarine_pickaxe", new PickaxeItem(MythicToolMaterials.AQUAMARINE, 1, -2.8F, new Item.Properties()) {});
-    public static final Item AQUAMARINE_AXE = defer("aquamarine_axe", new AxeItem(MythicToolMaterials.AQUAMARINE, 5.0F, -3.0F, new Item.Properties()) {});
-    public static final Item AQUAMARINE_SHOVEL = defer("aquamarine_shovel", new ShovelItem(MythicToolMaterials.AQUAMARINE, 1.5F, -3.0F, new Item.Properties()));
-    public static final Item AQUAMARINE_HOE = defer("aquamarine_hoe", new HoeItem(MythicToolMaterials.AQUAMARINE, -4, 0.0F, new Item.Properties()) {});
+    public static final Item AQUAMARINE_SWORD = defer("aquamarine_sword", new SwordItem(MythicToolMaterials.AQUAMARINE, weapon(MythicToolMaterials.AQUAMARINE, 3, -2.4F)));
+    public static final Item AQUAMARINE_PICKAXE = defer("aquamarine_pickaxe", new PickaxeItem(MythicToolMaterials.AQUAMARINE, tool(MythicToolMaterials.AQUAMARINE, 1.0F, -2.8F)) {});
+    public static final Item AQUAMARINE_AXE = defer("aquamarine_axe", new AxeItem(MythicToolMaterials.AQUAMARINE, tool(MythicToolMaterials.AQUAMARINE, 5.0F, -3.0F)) {});
+    public static final Item AQUAMARINE_SHOVEL = defer("aquamarine_shovel", new ShovelItem(MythicToolMaterials.AQUAMARINE, tool(MythicToolMaterials.AQUAMARINE, 1.5F, -3.0F)));
+    public static final Item AQUAMARINE_HOE = defer("aquamarine_hoe", new HoeItem(MythicToolMaterials.AQUAMARINE, tool(MythicToolMaterials.AQUAMARINE, -4.0F, 0.0F)) {});
     public static final Item AQUAMARINE_HELMET = defer("aquamarine_helmet", new ArmorItem(MythicArmorMaterials.AQUAMARINE, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final Item AQUAMARINE_CHESTPLATE = defer("aquamarine_chestplate", new ArmorItem(MythicArmorMaterials.AQUAMARINE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final Item AQUAMARINE_LEGGINGS = defer("aquamarine_leggings", new ArmorItem(MythicArmorMaterials.AQUAMARINE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final Item AQUAMARINE_BOOTS = defer("aquamarine_boots", new ArmorItem(MythicArmorMaterials.AQUAMARINE, ArmorItem.Type.BOOTS, new Item.Properties()));
 
-    public static final Item CITRINE_SWORD = defer("citrine_sword", new SwordItem(MythicToolMaterials.CITRINE, 3, -2.4F, new Item.Properties()));
-    public static final Item CITRINE_PICKAXE = defer("citrine_pickaxe", new PickaxeItem(MythicToolMaterials.CITRINE, 1, -2.8F, new Item.Properties()) {});
-    public static final Item CITRINE_AXE = defer("citrine_axe", new AxeItem(MythicToolMaterials.CITRINE, 5.0F, -3.0F, new Item.Properties()) {});
-    public static final Item CITRINE_SHOVEL = defer("citrine_shovel", new ShovelItem(MythicToolMaterials.CITRINE, 1.5F, -3.0F, new Item.Properties()));
-    public static final Item CITRINE_HOE = defer("citrine_hoe", new HoeItem(MythicToolMaterials.CITRINE, -4, 0.0F, new Item.Properties()) {});
+    public static final Item CITRINE_SWORD = defer("citrine_sword", new SwordItem(MythicToolMaterials.CITRINE, weapon(MythicToolMaterials.CITRINE, 3, -2.4F)));
+    public static final Item CITRINE_PICKAXE = defer("citrine_pickaxe", new PickaxeItem(MythicToolMaterials.CITRINE, tool(MythicToolMaterials.CITRINE, 1.0F, -2.8F)) {});
+    public static final Item CITRINE_AXE = defer("citrine_axe", new AxeItem(MythicToolMaterials.CITRINE, tool(MythicToolMaterials.CITRINE, 5.0F, -3.0F)) {});
+    public static final Item CITRINE_SHOVEL = defer("citrine_shovel", new ShovelItem(MythicToolMaterials.CITRINE, tool(MythicToolMaterials.CITRINE, 1.5F, -3.0F)));
+    public static final Item CITRINE_HOE = defer("citrine_hoe", new HoeItem(MythicToolMaterials.CITRINE, tool(MythicToolMaterials.CITRINE, -4.0F, 0.0F)) {});
     public static final Item CITRINE_HELMET = defer("citrine_helmet", new ArmorItem(MythicArmorMaterials.CITRINE, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final Item CITRINE_CHESTPLATE = defer("citrine_chestplate", new ArmorItem(MythicArmorMaterials.CITRINE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final Item CITRINE_LEGGINGS = defer("citrine_leggings", new ArmorItem(MythicArmorMaterials.CITRINE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final Item CITRINE_BOOTS = defer("citrine_boots", new ArmorItem(MythicArmorMaterials.CITRINE, ArmorItem.Type.BOOTS, new Item.Properties()));
 
-    public static final Item TOPAZ_SWORD = defer("topaz_sword", new SwordItem(MythicToolMaterials.TOPAZ, 3, -2.4F, new Item.Properties()));
-    public static final Item TOPAZ_PICKAXE = defer("topaz_pickaxe", new PickaxeItem(MythicToolMaterials.TOPAZ, 1, -2.8F, new Item.Properties()) {});
-    public static final Item TOPAZ_AXE = defer("topaz_axe", new AxeItem(MythicToolMaterials.TOPAZ, 5.0F, -3.0F, new Item.Properties()) {});
-    public static final Item TOPAZ_SHOVEL = defer("topaz_shovel", new ShovelItem(MythicToolMaterials.TOPAZ, 1.5F, -3.0F, new Item.Properties()));
-    public static final Item TOPAZ_HOE = defer("topaz_hoe", new HoeItem(MythicToolMaterials.TOPAZ, -4, 0.0F, new Item.Properties()) {});
+    public static final Item TOPAZ_SWORD = defer("topaz_sword", new SwordItem(MythicToolMaterials.TOPAZ, weapon(MythicToolMaterials.TOPAZ, 3, -2.4F)));
+    public static final Item TOPAZ_PICKAXE = defer("topaz_pickaxe", new PickaxeItem(MythicToolMaterials.TOPAZ, tool(MythicToolMaterials.TOPAZ, 1.0F, -2.8F)) {});
+    public static final Item TOPAZ_AXE = defer("topaz_axe", new AxeItem(MythicToolMaterials.TOPAZ, tool(MythicToolMaterials.TOPAZ, 5.0F, -3.0F)) {});
+    public static final Item TOPAZ_SHOVEL = defer("topaz_shovel", new ShovelItem(MythicToolMaterials.TOPAZ, tool(MythicToolMaterials.TOPAZ, 1.5F, -3.0F)));
+    public static final Item TOPAZ_HOE = defer("topaz_hoe", new HoeItem(MythicToolMaterials.TOPAZ, tool(MythicToolMaterials.TOPAZ, -4.0F, 0.0F)) {});
     public static final Item TOPAZ_HELMET = defer("topaz_helmet", new ArmorItem(MythicArmorMaterials.TOPAZ, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final Item TOPAZ_CHESTPLATE = defer("topaz_chestplate", new ArmorItem(MythicArmorMaterials.TOPAZ, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final Item TOPAZ_LEGGINGS = defer("topaz_leggings", new ArmorItem(MythicArmorMaterials.TOPAZ, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final Item TOPAZ_BOOTS = defer("topaz_boots", new ArmorItem(MythicArmorMaterials.TOPAZ, ArmorItem.Type.BOOTS, new Item.Properties()));
 
-    public static final Item PERIDOT_SWORD = defer("peridot_sword", new SwordItem(MythicToolMaterials.PERIDOT, 3, -2.4F, new Item.Properties()));
-    public static final Item PERIDOT_PICKAXE = defer("peridot_pickaxe", new PickaxeItem(MythicToolMaterials.PERIDOT, 1, -2.8F, new Item.Properties()) {});
-    public static final Item PERIDOT_AXE = defer("peridot_axe", new AxeItem(MythicToolMaterials.PERIDOT, 5.0F, -3.0F, new Item.Properties()) {});
-    public static final Item PERIDOT_SHOVEL = defer("peridot_shovel", new ShovelItem(MythicToolMaterials.PERIDOT, 1.5F, -3.0F, new Item.Properties()));
-    public static final Item PERIDOT_HOE = defer("peridot_hoe", new HoeItem(MythicToolMaterials.PERIDOT, -4, 0.0F, new Item.Properties()) {});
+    public static final Item PERIDOT_SWORD = defer("peridot_sword", new SwordItem(MythicToolMaterials.PERIDOT, weapon(MythicToolMaterials.PERIDOT, 3, -2.4F)));
+    public static final Item PERIDOT_PICKAXE = defer("peridot_pickaxe", new PickaxeItem(MythicToolMaterials.PERIDOT, tool(MythicToolMaterials.PERIDOT, 1.0F, -2.8F)) {});
+    public static final Item PERIDOT_AXE = defer("peridot_axe", new AxeItem(MythicToolMaterials.PERIDOT, tool(MythicToolMaterials.PERIDOT, 5.0F, -3.0F)) {});
+    public static final Item PERIDOT_SHOVEL = defer("peridot_shovel", new ShovelItem(MythicToolMaterials.PERIDOT, tool(MythicToolMaterials.PERIDOT, 1.5F, -3.0F)));
+    public static final Item PERIDOT_HOE = defer("peridot_hoe", new HoeItem(MythicToolMaterials.PERIDOT, tool(MythicToolMaterials.PERIDOT, -4.0F, 0.0F)) {});
     public static final Item PERIDOT_HELMET = defer("peridot_helmet", new ArmorItem(MythicArmorMaterials.PERIDOT, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final Item PERIDOT_CHESTPLATE = defer("peridot_chestplate", new ArmorItem(MythicArmorMaterials.PERIDOT, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final Item PERIDOT_LEGGINGS = defer("peridot_leggings", new ArmorItem(MythicArmorMaterials.PERIDOT, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final Item PERIDOT_BOOTS = defer("peridot_boots", new ArmorItem(MythicArmorMaterials.PERIDOT, ArmorItem.Type.BOOTS, new Item.Properties()));
 
-    public static final Item RUBY_SWORD = defer("ruby_sword", new SwordItem(MythicToolMaterials.RUBY, 3, -2.4F, new Item.Properties()));
-    public static final Item RUBY_PICKAXE = defer("ruby_pickaxe", new PickaxeItem(MythicToolMaterials.RUBY, 1, -2.8F, new Item.Properties()) {});
-    public static final Item RUBY_AXE = defer("ruby_axe", new AxeItem(MythicToolMaterials.RUBY, 5.0F, -3.0F, new Item.Properties()) {});
-    public static final Item RUBY_SHOVEL = defer("ruby_shovel", new ShovelItem(MythicToolMaterials.RUBY, 1.5F, -3.0F, new Item.Properties()));
-    public static final Item RUBY_HOE = defer("ruby_hoe", new HoeItem(MythicToolMaterials.RUBY, -4, 0.0F, new Item.Properties()) {});
+    public static final Item RUBY_SWORD = defer("ruby_sword", new SwordItem(MythicToolMaterials.RUBY, weapon(MythicToolMaterials.RUBY, 3, -2.4F)));
+    public static final Item RUBY_PICKAXE = defer("ruby_pickaxe", new PickaxeItem(MythicToolMaterials.RUBY, tool(MythicToolMaterials.RUBY, 1.0F, -2.8F)) {});
+    public static final Item RUBY_AXE = defer("ruby_axe", new AxeItem(MythicToolMaterials.RUBY, tool(MythicToolMaterials.RUBY, 5.0F, -3.0F)) {});
+    public static final Item RUBY_SHOVEL = defer("ruby_shovel", new ShovelItem(MythicToolMaterials.RUBY, tool(MythicToolMaterials.RUBY, 1.5F, -3.0F)));
+    public static final Item RUBY_HOE = defer("ruby_hoe", new HoeItem(MythicToolMaterials.RUBY, tool(MythicToolMaterials.RUBY, -4.0F, 0.0F)) {});
     public static final Item RUBY_HELMET = defer("ruby_helmet", new ArmorItem(MythicArmorMaterials.RUBY, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final Item RUBY_CHESTPLATE = defer("ruby_chestplate", new ArmorItem(MythicArmorMaterials.RUBY, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final Item RUBY_LEGGINGS = defer("ruby_leggings", new ArmorItem(MythicArmorMaterials.RUBY, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final Item RUBY_BOOTS = defer("ruby_boots", new ArmorItem(MythicArmorMaterials.RUBY, ArmorItem.Type.BOOTS, new Item.Properties()));
 
-    public static final Item SAPPHIRE_SWORD = defer("sapphire_sword", new SwordItem(MythicToolMaterials.SAPPHIRE, 4, -2.4F, new Item.Properties()));
-    public static final Item SAPPHIRE_PICKAXE = defer("sapphire_pickaxe", new PickaxeItem(MythicToolMaterials.SAPPHIRE, 2, -2.8F, new Item.Properties()) {});
-    public static final Item SAPPHIRE_AXE = defer("sapphire_axe", new AxeItem(MythicToolMaterials.SAPPHIRE, 6.0F, -3.0F, new Item.Properties()) {});
-    public static final Item SAPPHIRE_SHOVEL = defer("sapphire_shovel", new ShovelItem(MythicToolMaterials.SAPPHIRE, 2.5F, -3.0F, new Item.Properties()));
-    public static final Item SAPPHIRE_HOE = defer("sapphire_hoe", new HoeItem(MythicToolMaterials.SAPPHIRE, -3, 0.0F, new Item.Properties()) {});
+    public static final Item SAPPHIRE_SWORD = defer("sapphire_sword", new SwordItem(MythicToolMaterials.SAPPHIRE, weapon(MythicToolMaterials.SAPPHIRE, 4, -2.4F)));
+    public static final Item SAPPHIRE_PICKAXE = defer("sapphire_pickaxe", new PickaxeItem(MythicToolMaterials.SAPPHIRE, tool(MythicToolMaterials.SAPPHIRE, 2.0F, -2.8F)) {});
+    public static final Item SAPPHIRE_AXE = defer("sapphire_axe", new AxeItem(MythicToolMaterials.SAPPHIRE, tool(MythicToolMaterials.SAPPHIRE, 6.0F, -3.0F)) {});
+    public static final Item SAPPHIRE_SHOVEL = defer("sapphire_shovel", new ShovelItem(MythicToolMaterials.SAPPHIRE, tool(MythicToolMaterials.SAPPHIRE, 2.5F, -3.0F)));
+    public static final Item SAPPHIRE_HOE = defer("sapphire_hoe", new HoeItem(MythicToolMaterials.SAPPHIRE, tool(MythicToolMaterials.SAPPHIRE, -3.0F, 0.0F)) {});
     public static final Item SAPPHIRE_HELMET = defer("sapphire_helmet", new ArmorItem(MythicArmorMaterials.SAPPHIRE, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final Item SAPPHIRE_CHESTPLATE = defer("sapphire_chestplate", new ArmorItem(MythicArmorMaterials.SAPPHIRE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final Item SAPPHIRE_LEGGINGS = defer("sapphire_leggings", new ArmorItem(MythicArmorMaterials.SAPPHIRE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final Item SAPPHIRE_BOOTS = defer("sapphire_boots", new ArmorItem(MythicArmorMaterials.SAPPHIRE, ArmorItem.Type.BOOTS, new Item.Properties()));
 
-    public static final Item JADE_SWORD = defer("jade_sword", new SwordItem(MythicToolMaterials.JADE, 3, -1.6F, new Item.Properties()));
-    public static final Item JADE_PICKAXE = defer("jade_pickaxe", new PickaxeItem(MythicToolMaterials.JADE, 1, -2.0F, new Item.Properties()) {});
-    public static final Item JADE_AXE = defer("jade_axe", new AxeItem(MythicToolMaterials.JADE, 5.0F, -2.2F, new Item.Properties()) {});
-    public static final Item JADE_SHOVEL = defer("jade_shovel", new ShovelItem(MythicToolMaterials.JADE, 1.5F, -2.2F, new Item.Properties()));
-    public static final Item JADE_HOE = defer("jade_hoe", new HoeItem(MythicToolMaterials.JADE, -4, 0.8F, new Item.Properties()) {});
+    public static final Item JADE_SWORD = defer("jade_sword", new SwordItem(MythicToolMaterials.JADE, weapon(MythicToolMaterials.JADE, 3, -1.6F)));
+    public static final Item JADE_PICKAXE = defer("jade_pickaxe", new PickaxeItem(MythicToolMaterials.JADE, tool(MythicToolMaterials.JADE, 1.0F, -2.0F)) {});
+    public static final Item JADE_AXE = defer("jade_axe", new AxeItem(MythicToolMaterials.JADE, tool(MythicToolMaterials.JADE, 5.0F, -2.2F)) {});
+    public static final Item JADE_SHOVEL = defer("jade_shovel", new ShovelItem(MythicToolMaterials.JADE, tool(MythicToolMaterials.JADE, 1.5F, -2.2F)));
+    public static final Item JADE_HOE = defer("jade_hoe", new HoeItem(MythicToolMaterials.JADE, tool(MythicToolMaterials.JADE, -4.0F, 0.8F)) {});
     public static final Item JADE_HELMET = defer("jade_helmet", new ArmorItem(MythicArmorMaterials.JADE, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final Item JADE_CHESTPLATE = defer("jade_chestplate", new ArmorItem(MythicArmorMaterials.JADE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final Item JADE_LEGGINGS = defer("jade_leggings", new ArmorItem(MythicArmorMaterials.JADE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final Item JADE_BOOTS = defer("jade_boots", new ArmorItem(MythicArmorMaterials.JADE, ArmorItem.Type.BOOTS, new Item.Properties()));
 
-    public static final Item AMETRINE_SWORD = defer("ametrine_sword", new SwordItem(MythicToolMaterials.AMETRINE, 3, -2.4F, new Item.Properties()));
-    public static final Item AMETRINE_PICKAXE = defer("ametrine_pickaxe", new PickaxeItem(MythicToolMaterials.AMETRINE, 1, -2.8F, new Item.Properties()) {});
-    public static final Item AMETRINE_AXE = defer("ametrine_axe", new AxeItem(MythicToolMaterials.AMETRINE, 5.0F, -3.0F, new Item.Properties()) {});
-    public static final Item AMETRINE_SHOVEL = defer("ametrine_shovel", new ShovelItem(MythicToolMaterials.AMETRINE, 1.5F, -3.0F, new Item.Properties()));
-    public static final Item AMETRINE_HOE = defer("ametrine_hoe", new HoeItem(MythicToolMaterials.AMETRINE, -4, 0.0F, new Item.Properties()) {});
+    public static final Item AMETRINE_SWORD = defer("ametrine_sword", new SwordItem(MythicToolMaterials.AMETRINE, weapon(MythicToolMaterials.AMETRINE, 3, -2.4F)));
+    public static final Item AMETRINE_PICKAXE = defer("ametrine_pickaxe", new PickaxeItem(MythicToolMaterials.AMETRINE, tool(MythicToolMaterials.AMETRINE, 1.0F, -2.8F)) {});
+    public static final Item AMETRINE_AXE = defer("ametrine_axe", new AxeItem(MythicToolMaterials.AMETRINE, tool(MythicToolMaterials.AMETRINE, 5.0F, -3.0F)) {});
+    public static final Item AMETRINE_SHOVEL = defer("ametrine_shovel", new ShovelItem(MythicToolMaterials.AMETRINE, tool(MythicToolMaterials.AMETRINE, 1.5F, -3.0F)));
+    public static final Item AMETRINE_HOE = defer("ametrine_hoe", new HoeItem(MythicToolMaterials.AMETRINE, tool(MythicToolMaterials.AMETRINE, -4.0F, 0.0F)) {});
     public static final Item AMETRINE_HELMET = defer("ametrine_helmet", new ArmorItem(MythicArmorMaterials.AMETRINE, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final Item AMETRINE_CHESTPLATE = defer("ametrine_chestplate", new ArmorItem(MythicArmorMaterials.AMETRINE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final Item AMETRINE_LEGGINGS = defer("ametrine_leggings", new ArmorItem(MythicArmorMaterials.AMETRINE, ArmorItem.Type.LEGGINGS, new Item.Properties()));

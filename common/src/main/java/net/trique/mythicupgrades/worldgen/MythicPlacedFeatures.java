@@ -2,7 +2,7 @@ package net.trique.mythicupgrades.worldgen;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -21,15 +21,15 @@ public class MythicPlacedFeatures {
 
     // Necoium ore placed feature keys, referenced from MythicBiomeBootstrap and BiomeModifier
     public static final ResourceKey<PlacedFeature> NECOIUM_ORE_PF = ResourceKey.create(
-            Registries.PLACED_FEATURE, new ResourceLocation(Constants.MOD_ID, "necoium_ore"));
+            Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "necoium_ore"));
     public static final ResourceKey<PlacedFeature> DEEPSLATE_NECOIUM_ORE_PF = ResourceKey.create(
-            Registries.PLACED_FEATURE, new ResourceLocation(Constants.MOD_ID, "deepslate_necoium_ore"));
+            Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "deepslate_necoium_ore"));
     public static final ResourceKey<PlacedFeature> NECOIUM_ORE_EXTRA_PF = ResourceKey.create(
-            Registries.PLACED_FEATURE, new ResourceLocation(Constants.MOD_ID, "necoium_ore_extra"));
+            Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "necoium_ore_extra"));
     public static final ResourceKey<PlacedFeature> DEEPSLATE_NECOIUM_ORE_EXTRA_PF = ResourceKey.create(
-            Registries.PLACED_FEATURE, new ResourceLocation(Constants.MOD_ID, "deepslate_necoium_ore_extra"));
+            Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "deepslate_necoium_ore_extra"));
 
-    public static void bootstrap(BootstapContext<PlacedFeature> ctx) {
+    public static void bootstrap(BootstrapContext<PlacedFeature> ctx) {
         HolderGetter<ConfiguredFeature<?, ?>> features = ctx.lookup(Registries.CONFIGURED_FEATURE);
 
         for (CaveGemType gem : CaveGemType.values()) {

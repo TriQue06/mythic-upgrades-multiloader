@@ -1,5 +1,6 @@
 package net.trique.mythicupgrades;
 
+import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
 import net.trique.mythicupgrades.effect.ArcaneAuraEffect;
 import net.trique.mythicupgrades.effect.BloodThirstEffect;
@@ -27,26 +28,26 @@ public class MythicEffects {
 
     private static final List<Map.Entry<String, MobEffect>> DEFERRED = new ArrayList<>();
 
-    private static <T extends MobEffect> T defer(String name, T effect) {
+    private static Holder<MobEffect> defer(String name, MobEffect effect) {
         DEFERRED.add(new AbstractMap.SimpleEntry<>(name, effect));
-        return effect;
+        return Holder.direct(effect);
     }
 
-    public static final MobEffect DAMAGE_DEFLECTION = defer("damage_deflection", new DamageDeflectionEffect());
-    public static final MobEffect ARCANE_AURA = defer("arcane_aura", new ArcaneAuraEffect());
-    public static final MobEffect TOPAZ_REACTION = defer("topaz_reaction", new TopazReactionEffect());
-public static final MobEffect FREEZE = defer("freeze", new FreezeEffect());
-    public static final MobEffect BLOOD_THIRST = defer("blood_thirst", new BloodThirstEffect());
-    public static final MobEffect LETHAL_INCUBATION = defer("lethal_incubation", new LethalIncubationEffect());
-    public static final MobEffect MIASMA = defer("miasma", new MiasmaEffect());
-    public static final MobEffect ICE_SHIELD_MARK = defer("ice_shield_mark", new IceShieldMarkEffect());
-    public static final MobEffect ICE_SHIELD = defer("ice_shield", new IceShieldEffect());
-    public static final MobEffect ICE_BOMB = defer("ice_bomb", new IceBombEffect());
-    public static final MobEffect CHARGED = defer("charged", new ChargedEffect());
-    public static final MobEffect STATIC_FIELD = defer("static_field", new StaticFieldEffect());
-    public static final MobEffect BOUNCER = defer("bouncer", new BouncerEffect());
-    public static final MobEffect JADE_AURA = defer("jade_aura", new JadeAuraEffect());
-    public static final MobEffect NECOIUM_SHARE = defer("necoium_share", new NecoiumShareEffect());
+    public static final Holder<MobEffect> DAMAGE_DEFLECTION = defer("damage_deflection", new DamageDeflectionEffect());
+    public static final Holder<MobEffect> ARCANE_AURA = defer("arcane_aura", new ArcaneAuraEffect());
+    public static final Holder<MobEffect> TOPAZ_REACTION = defer("topaz_reaction", new TopazReactionEffect());
+    public static final Holder<MobEffect> FREEZE = defer("freeze", new FreezeEffect());
+    public static final Holder<MobEffect> BLOOD_THIRST = defer("blood_thirst", new BloodThirstEffect());
+    public static final Holder<MobEffect> LETHAL_INCUBATION = defer("lethal_incubation", new LethalIncubationEffect());
+    public static final Holder<MobEffect> MIASMA = defer("miasma", new MiasmaEffect());
+    public static final Holder<MobEffect> ICE_SHIELD_MARK = defer("ice_shield_mark", new IceShieldMarkEffect());
+    public static final Holder<MobEffect> ICE_SHIELD = defer("ice_shield", new IceShieldEffect());
+    public static final Holder<MobEffect> ICE_BOMB = defer("ice_bomb", new IceBombEffect());
+    public static final Holder<MobEffect> CHARGED = defer("charged", new ChargedEffect());
+    public static final Holder<MobEffect> STATIC_FIELD = defer("static_field", new StaticFieldEffect());
+    public static final Holder<MobEffect> BOUNCER = defer("bouncer", new BouncerEffect());
+    public static final Holder<MobEffect> JADE_AURA = defer("jade_aura", new JadeAuraEffect());
+    public static final Holder<MobEffect> NECOIUM_SHARE = defer("necoium_share", new NecoiumShareEffect());
 
     public static void register(BiFunction<String, MobEffect, MobEffect> reg) {
         DEFERRED.forEach(e -> reg.apply(e.getKey(), e.getValue()));
