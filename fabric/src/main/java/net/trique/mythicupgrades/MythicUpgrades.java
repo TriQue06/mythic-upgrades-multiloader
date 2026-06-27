@@ -19,6 +19,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCon
 import net.trique.mythicupgrades.MythicEffects;
 import net.trique.mythicupgrades.MythicLegacyMigration;
 import net.trique.mythicupgrades.MythicPotions;
+import net.trique.mythicupgrades.MythicSounds;
 import net.trique.mythicupgrades.block.MythicBlocks;
 import net.trique.mythicupgrades.item.MythicItems;
 import net.trique.mythicupgrades.worldgen.CaveGemType;
@@ -51,6 +52,9 @@ public class MythicUpgrades implements ModInitializer {
 
         MythicFeatures.register((name, feature) ->
             Registry.register(BuiltInRegistries.FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), feature));
+
+        MythicSounds.register((name, sound) ->
+            Registry.register(BuiltInRegistries.SOUND_EVENT, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), sound));
 
         // FeatureSorter cycle prevention:
         // Cave biome JSONs already contain ALL features (glow_lichen, vanilla ores, monster_room,
@@ -108,7 +112,7 @@ public class MythicUpgrades implements ModInitializer {
             }
         });
 
-        MythicPotions.registerBrewingRecipes();
+        FabricBrewingHelper.register();
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             MythicLegacyMigration.migratePlayer(handler.player);

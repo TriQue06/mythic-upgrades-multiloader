@@ -1,10 +1,13 @@
 package net.trique.mythicupgrades.worldgen;
 
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.world.level.biome.AmbientAdditionsSettings;
 import net.minecraft.world.level.biome.AmbientMoodSettings;
+import net.trique.mythicupgrades.MythicSounds;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
@@ -61,6 +64,8 @@ public class MythicBiomeBootstrap {
                 .waterColor(gem.waterColor)
                 .waterFogColor(329011)
                 .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                .ambientAdditionsSound(new AmbientAdditionsSettings(
+                    BuiltInRegistries.SOUND_EVENT.wrapAsHolder(MythicSounds.AMBIENT_MYTHIC_CHIME), 0.0111))
                 .build();
 
         return new Biome.BiomeBuilder()

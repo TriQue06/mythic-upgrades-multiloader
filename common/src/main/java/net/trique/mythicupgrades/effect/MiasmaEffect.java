@@ -1,5 +1,6 @@
 package net.trique.mythicupgrades.effect;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffects;
@@ -11,9 +12,8 @@ public class MiasmaEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
+    public void applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
         entity.removeEffect(MobEffects.POISON);
-        return true;
     }
 
     @Override

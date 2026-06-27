@@ -1,0 +1,7 @@
+{
+  "ambient.mythic_chime": {
+    "sounds": [
+      {"name": "minecraft:block.amethyst_block.chime", "type": "event", "pitch": 0.3}
+    ]
+  }
+}

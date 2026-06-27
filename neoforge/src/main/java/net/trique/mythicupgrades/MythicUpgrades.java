@@ -1,7 +1,11 @@
 package net.trique.mythicupgrades;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -10,6 +14,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.ChunkEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
@@ -74,6 +79,13 @@ public class MythicUpgrades {
                     return feature;
                 })
             );
+        } else if (event.getRegistryKey().equals(Registries.SOUND_EVENT)) {
+            event.register(Registries.SOUND_EVENT, helper ->
+                MythicSounds.register((name, sound) -> {
+                    helper.register(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), sound);
+                    return sound;
+                })
+            );
         }
     }
 
@@ -82,14 +94,66 @@ public class MythicUpgrades {
             if (ModList.get().isLoaded("terrablender")) {
                 TerraBlenderCompat.init();
             }
-            MythicPotions.registerBrewingRecipes();
         });
         CommonClass.init();
     }
 
     private void onClientSetup(FMLClientSetupEvent event) {
-        // TODO phase 2: crystal cluster/bud render types — add "render_type": "minecraft:cutout"
-        // to each block model JSON (ItemBlockRenderTypes was removed in NeoForge 1.21.1)
+        // Crystal cluster/bud render types are set via "render_type": "minecraft:cutout"
+        // in each block model JSON (ItemBlockRenderTypes was removed in NeoForge 1.21.1)
+    }
+
+    @EventBusSubscriber(modid = Constants.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+    public static class ModBusEvents {
+
+        @SubscribeEvent
+        public static void onBrewingRecipes(RegisterBrewingRecipesEvent event) {
+            var builder = event.getBuilder();
+
+            // Aquamarine → Ice Shield
+            builder.addMix(Potions.AWKWARD,                                             Ingredient.of(MythicItems.AQUAMARINE),    BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.ICE_SHIELD));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.ICE_SHIELD),          Ingredient.of(Items.REDSTONE),          BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.ICE_SHIELD_LONG));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.ICE_SHIELD),          Ingredient.of(Items.GLOWSTONE_DUST),    BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.ICE_SHIELD_STRONG));
+
+            // Citrine → Static Field
+            builder.addMix(Potions.AWKWARD,                                             Ingredient.of(MythicItems.CITRINE),       BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.STATIC_FIELD));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.STATIC_FIELD),        Ingredient.of(Items.REDSTONE),          BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.STATIC_FIELD_LONG));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.STATIC_FIELD),        Ingredient.of(Items.GLOWSTONE_DUST),    BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.STATIC_FIELD_STRONG));
+
+            // Topaz → Topaz Reaction
+            builder.addMix(Potions.AWKWARD,                                             Ingredient.of(MythicItems.TOPAZ),         BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.TOPAZ_REACTION));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.TOPAZ_REACTION),      Ingredient.of(Items.REDSTONE),          BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.TOPAZ_REACTION_LONG));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.TOPAZ_REACTION),      Ingredient.of(Items.GLOWSTONE_DUST),    BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.TOPAZ_REACTION_STRONG));
+
+            // Peridot → Miasma
+            builder.addMix(Potions.AWKWARD,                                             Ingredient.of(MythicItems.PERIDOT),       BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.MIASMA));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.MIASMA),              Ingredient.of(Items.REDSTONE),          BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.MIASMA_LONG));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.MIASMA),              Ingredient.of(Items.GLOWSTONE_DUST),    BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.MIASMA_STRONG));
+
+            // Ruby → Blood Thirst
+            builder.addMix(Potions.AWKWARD,                                             Ingredient.of(MythicItems.RUBY),          BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.BLOOD_THIRST));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.BLOOD_THIRST),        Ingredient.of(Items.REDSTONE),          BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.BLOOD_THIRST_LONG));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.BLOOD_THIRST),        Ingredient.of(Items.GLOWSTONE_DUST),    BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.BLOOD_THIRST_STRONG));
+
+            // Sapphire → Damage Deflection
+            builder.addMix(Potions.AWKWARD,                                             Ingredient.of(MythicItems.SAPPHIRE),      BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.DAMAGE_DEFLECTION));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.DAMAGE_DEFLECTION),   Ingredient.of(Items.REDSTONE),          BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.DAMAGE_DEFLECTION_LONG));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.DAMAGE_DEFLECTION),   Ingredient.of(Items.GLOWSTONE_DUST),    BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.DAMAGE_DEFLECTION_STRONG));
+
+            // Jade → Jade Aura
+            builder.addMix(Potions.AWKWARD,                                             Ingredient.of(MythicItems.JADE),          BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.JADE_AURA));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.JADE_AURA),           Ingredient.of(Items.REDSTONE),          BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.JADE_AURA_LONG));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.JADE_AURA),           Ingredient.of(Items.GLOWSTONE_DUST),    BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.JADE_AURA_STRONG));
+
+            // Ametrine → Arcane Aura
+            builder.addMix(Potions.AWKWARD,                                             Ingredient.of(MythicItems.AMETRINE),      BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.ARCANE_AURA));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.ARCANE_AURA),         Ingredient.of(Items.REDSTONE),          BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.ARCANE_AURA_LONG));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.ARCANE_AURA),         Ingredient.of(Items.GLOWSTONE_DUST),    BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.ARCANE_AURA_STRONG));
+
+            // Necoium → Necoium Share
+            builder.addMix(Potions.AWKWARD,                                             Ingredient.of(MythicItems.NECOIUM_INGOT), BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.NECOIUM_SHARE));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.NECOIUM_SHARE),       Ingredient.of(Items.REDSTONE),          BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.NECOIUM_SHARE_LONG));
+        }
     }
 
     @EventBusSubscriber(modid = Constants.MOD_ID, bus = EventBusSubscriber.Bus.GAME)

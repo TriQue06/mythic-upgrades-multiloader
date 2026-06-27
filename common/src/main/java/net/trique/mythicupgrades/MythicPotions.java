@@ -3,10 +3,7 @@ package net.trique.mythicupgrades;
 import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.alchemy.Potions;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -64,12 +61,16 @@ public class MythicPotions {
     public static final Potion ARCANE_AURA_LONG   = def("long_arcane_aura",   "arcane_aura", MythicEffects.ARCANE_AURA, 9600, 2);
     public static final Potion ARCANE_AURA_STRONG = def("strong_arcane_aura", "arcane_aura", MythicEffects.ARCANE_AURA, 1800, 4);
 
+    // Necoium → Necoium Share (3:00 / 8:00)
+    public static final Potion NECOIUM_SHARE      = def("necoium_share",      "necoium_share", MythicEffects.NECOIUM_SHARE, 3600, 0);
+    public static final Potion NECOIUM_SHARE_LONG = def("long_necoium_share", "necoium_share", MythicEffects.NECOIUM_SHARE, 9600, 0);
+
     public static void register(BiFunction<String, Potion, Potion> reg) {
         DEFERRED.forEach(e -> reg.apply(e.getKey(), e.getValue()));
         Constants.LOG.info("MythicPotions registered.");
     }
 
     public static void registerBrewingRecipes() {
-        // TODO: register via platform-specific brewing API
+        // Implemented per-platform: FabricBrewingHelper (Fabric) and RegisterBrewingRecipesEvent (NeoForge)
     }
 }

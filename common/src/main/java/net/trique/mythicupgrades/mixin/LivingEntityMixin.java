@@ -265,7 +265,7 @@ public abstract class LivingEntityMixin {
                     int spAmp = Math.min(aLvl - 1, 9);
                     int jpAmp = Math.min(aLvl / 2, 9);
                     touched.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, dur, spAmp, false, true, false));
-                    touched.addEffect(new MobEffectInstance(MobEffects.JUMP, dur, jpAmp, false, true, false));
+                    touched.addEffect(new MobEffectInstance(MobEffects.JUMP_BOOST, dur, jpAmp, false, true, false));
                 }
             }
         }
@@ -357,7 +357,7 @@ public abstract class LivingEntityMixin {
         LivingEntity self = (LivingEntity)(Object)this;
         if (self.level().isClientSide()) return;
         mu_topazFallBlocked = 0f;
-        if ("fall".equals(source.getMsgId())) {
+        if ("fall".equals(source.type().msgId())) {
             MobEffectInstance topazEff = self.getEffect(MythicEffects.TOPAZ_REACTION);
             if (topazEff != null) {
                 int topazLvl = topazEff.getAmplifier() + 1;
@@ -373,7 +373,7 @@ public abstract class LivingEntityMixin {
         LivingEntity self = (LivingEntity)(Object)this;
         if (self.level().isClientSide() || !cir.getReturnValue()) return;
 
-        String msgId = source.getMsgId();
+        String msgId = source.type().msgId();
         if ("deflecting".equals(msgId) || "percentage".equals(msgId) || "topaz_shock".equals(msgId)
             || "peridot_incubation".equals(msgId) || "ice_shield_mark_burst".equals(msgId) || "ice_shield_reflect".equals(msgId)
             || "citrine_chain".equals(msgId) || "static_field".equals(msgId) || "ice_bomb_burst".equals(msgId)) return;
