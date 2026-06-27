@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "mythicupgrades:ametrine_barrens",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:jade_barrens",
+      "required": false
+    }
+  ]
+}

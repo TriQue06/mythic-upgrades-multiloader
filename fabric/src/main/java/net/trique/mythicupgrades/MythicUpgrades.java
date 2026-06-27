@@ -3,7 +3,10 @@ package net.trique.mythicupgrades;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
+import net.minecraft.world.level.biome.Biomes;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.core.Registry;
@@ -17,11 +20,12 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.trique.mythicupgrades.MythicEffects;
+import net.trique.mythicupgrades.MythicSounds;
 import net.trique.mythicupgrades.MythicLegacyMigration;
-import net.trique.mythicupgrades.MythicPotions;
 import net.trique.mythicupgrades.block.MythicBlocks;
 import net.trique.mythicupgrades.item.MythicItems;
 import net.trique.mythicupgrades.worldgen.CaveGemType;
+import net.trique.mythicupgrades.worldgen.MythicBiomes;
 import net.trique.mythicupgrades.worldgen.EndGemType;
 import net.trique.mythicupgrades.worldgen.MythicFeatures;
 import net.trique.mythicupgrades.worldgen.MythicPlacedFeatures;
@@ -45,6 +49,8 @@ public class MythicUpgrades implements ModInitializer {
 
         MythicEffects.register((name, effect) ->
             Registry.register(BuiltInRegistries.MOB_EFFECT, new ResourceLocation(Constants.MOD_ID, name), effect));
+
+        MythicSounds.register();
 
         MythicPotions.register((name, potion) ->
             Registry.register(BuiltInRegistries.POTION, new ResourceLocation(Constants.MOD_ID, name), potion));
@@ -90,6 +96,11 @@ public class MythicUpgrades implements ModInitializer {
                 GenerationStep.Decoration.UNDERGROUND_DECORATION, gem.geodeExtraPF());
         }
 
+        // end biomes: register ametrine as a highlands biome, jade as midlands next to vanilla highlands
+        TheEndBiomes.addHighlandsBiome(MythicBiomes.AMETRINE_BARRENS, 1.0);
+        TheEndBiomes.addMidlandsBiome(Biomes.END_HIGHLANDS, MythicBiomes.JADE_BARRENS, 1.0);
+        TheEndBiomes.addMidlandsBiome(MythicBiomes.AMETRINE_BARRENS, MythicBiomes.JADE_BARRENS, 1.0);
+
         // end geodes: global (all end) + extra in home barren biome
         for (EndGemType gem : EndGemType.values()) {
             BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
@@ -108,20 +119,20 @@ public class MythicUpgrades implements ModInitializer {
             }
         });
 
-        MythicPotions.registerBrewingRecipes();
+        FabricBrewingHelper.register();
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             MythicLegacyMigration.migratePlayer(handler.player);
-            MythicLegacyMigration.drainPendingChunks();
         });
 
-        ServerChunkEvents.CHUNK_LOAD.register((world, chunk) -> {
-            if (world.getServer().getTickCount() > 0) {
-                MythicLegacyMigration.migrateChunk(chunk);
-            } else {
-                MythicLegacyMigration.PENDING_CHUNKS.offer(chunk);
-            }
-        });
+        // Always queue — migrateChunk() is never safe to call during chunk promotion.
+        // Calling container.getItem() triggers loot table unpacking → setChanged() →
+        // getChunkAt() → deadlock on the server thread, regardless of tickCount.
+        ServerChunkEvents.CHUNK_LOAD.register((world, chunk) ->
+            MythicLegacyMigration.PENDING_CHUNKS.offer(chunk));
+
+        ServerTickEvents.END_SERVER_TICK.register(server ->
+            MythicLegacyMigration.drainPendingChunks());
 
         CommonClass.init();
     }

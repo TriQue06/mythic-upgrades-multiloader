@@ -3,6 +3,8 @@ package net.trique.mythicupgrades;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.trique.mythicupgrades.block.MythicBlocks;
 import net.trique.mythicupgrades.item.MythicItems;
 
@@ -48,6 +50,26 @@ public class MythicCreativeTabs {
                     output.accept(MythicItems.NECOIUM_INGOT);
                     output.accept(MythicItems.NECOIUM_CARROT);
                     output.accept(MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
+                    // Potions
+                    for (var entry : new Object[][]{
+                        {MythicPotions.ICE_SHIELD,             MythicPotions.ICE_SHIELD_LONG,             MythicPotions.ICE_SHIELD_STRONG},
+                        {MythicPotions.STATIC_FIELD,           MythicPotions.STATIC_FIELD_LONG,           MythicPotions.STATIC_FIELD_STRONG},
+                        {MythicPotions.TOPAZ_REACTION,         MythicPotions.TOPAZ_REACTION_LONG,         MythicPotions.TOPAZ_REACTION_STRONG},
+                        {MythicPotions.MIASMA,                 MythicPotions.MIASMA_LONG,                 MythicPotions.MIASMA_STRONG},
+                        {MythicPotions.BLOOD_THIRST,           MythicPotions.BLOOD_THIRST_LONG,           MythicPotions.BLOOD_THIRST_STRONG},
+                        {MythicPotions.DAMAGE_DEFLECTION,      MythicPotions.DAMAGE_DEFLECTION_LONG,      MythicPotions.DAMAGE_DEFLECTION_STRONG},
+                        {MythicPotions.JADE_AURA,              MythicPotions.JADE_AURA_LONG,              MythicPotions.JADE_AURA_STRONG},
+                        {MythicPotions.ARCANE_AURA,            MythicPotions.ARCANE_AURA_LONG,            MythicPotions.ARCANE_AURA_STRONG},
+                        {MythicPotions.NECOIUM_SHARE,          MythicPotions.NECOIUM_SHARE_LONG,          null},
+                    }) {
+                        for (var potion : entry) {
+                            if (potion == null) continue;
+                            var p = (net.minecraft.world.item.alchemy.Potion) potion;
+                            output.accept(PotionUtils.setPotion(new ItemStack(Items.POTION), p));
+                            output.accept(PotionUtils.setPotion(new ItemStack(Items.SPLASH_POTION), p));
+                            output.accept(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), p));
+                        }
+                    }
                 })
                 .build()
         );

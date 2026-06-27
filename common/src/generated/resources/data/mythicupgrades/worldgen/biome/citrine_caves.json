@@ -3,6 +3,10 @@
   "creature_spawn_probability": 0.07,
   "downfall": 0.0,
   "effects": {
+    "additions_sound": {
+      "sound": "mythicupgrades:ambient.mythic_chime",
+      "tick_chance": 0.0222
+    },
     "fog_color": 12638463,
     "mood_sound": {
       "block_search_extent": 8,

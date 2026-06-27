@@ -1,0 +1,11 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "mythicupgrades:aquamarine_crystal_buds_rare",
+    "mythicupgrades:citrine_crystal_buds_rare",
+    "mythicupgrades:peridot_crystal_buds_rare",
+    "mythicupgrades:topaz_crystal_buds_rare"
+  ],
+  "step": "underground_decoration"
+}

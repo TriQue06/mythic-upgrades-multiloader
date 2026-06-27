@@ -31,7 +31,7 @@ public class MythicItems {
     private static FoodProperties shardFood(MobEffect effect) {
         return new FoodProperties.Builder()
             .nutrition(1).saturationMod(0.1f).alwaysEat()
-            .effect(new MobEffectInstance(effect, 1200, 2, false, false, true), 1.0f)
+            .effect(new MobEffectInstance(effect, 600, 2, false, false, true), 1.0f)
             .build();
     }
 

@@ -132,11 +132,8 @@ public class MythicStats {
     public static int JADE_LEGGINGS_LEVELS = 3;
     public static int JADE_BOOTS_LEVELS = 1;
 
-    public static int JADE_TOOL_BOUNCER_DURATION_TICKS = 30;
-    public static float JADE_TOOL_BOUNCER_JUMP_BOOST = 0.15f;
     public static float JADE_TOOL_TELEPORT_CHANCE = 0.05f;
     public static int JADE_TOOL_AURA_DURATION_TICKS = 20;
-    public static int JADE_TOOL_USE_BOUNCER_DURATION_TICKS = 60;
 
     public static float JADE_AURA_SPEED_PER_LEVEL = 0.10f;
     public static float JADE_AURA_JUMP_PER_LEVEL = 0.05f;

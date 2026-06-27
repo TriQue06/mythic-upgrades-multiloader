@@ -6,6 +6,6 @@ import net.minecraft.world.effect.MobEffectCategory;
 public class TopazReactionEffect extends MobEffect {
 
     public TopazReactionEffect() {
-        super(MobEffectCategory.BENEFICIAL, 0xE0551F);
+        super(MobEffectCategory.BENEFICIAL, 0xf5761b);
     }
 }

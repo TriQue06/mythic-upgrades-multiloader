@@ -20,6 +20,10 @@ import net.trique.mythicupgrades.worldgen.MythicEndPlacedFeatures;
 import net.trique.mythicupgrades.worldgen.MythicNetherBiomeBootstrap;
 import net.trique.mythicupgrades.worldgen.MythicNetherConfiguredFeatures;
 import net.trique.mythicupgrades.worldgen.MythicNetherPlacedFeatures;
+import net.minecraftforge.common.world.BiomeModifier;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.trique.mythicupgrades.worldgen.MythicBiomeModifierBootstrap;
+import net.trique.mythicupgrades.worldgen.MythicDamageTypeBootstrap;
 import net.trique.mythicupgrades.worldgen.MythicPlacedFeatures;
 
 import java.util.List;
@@ -61,10 +65,16 @@ public class MythicDatagen {
         event.getGenerator().addProvider(event.includeServer(),
                 new MythicItemTagsProvider(output, lookupProvider, blockTags.contentsGetter()));
 
+        event.getGenerator().addProvider(event.includeServer(),
+                new MythicBiomeTagsProvider(output, lookupProvider));
+
+        event.getGenerator().addProvider(event.includeServer(),
+                new MythicDamageTypeTagsProvider(output, lookupProvider));
 
         event.getGenerator().addProvider(event.includeServer(),
                 new DatapackBuiltinEntriesProvider(output, lookupProvider,
                         new RegistrySetBuilder()
+                                .add(Registries.DAMAGE_TYPE, MythicDamageTypeBootstrap::bootstrap)
                                 .add(Registries.CONFIGURED_FEATURE, ctx -> {
                                     MythicConfiguredFeatures.bootstrap(ctx);
                                     MythicEndConfiguredFeatures.bootstrap(ctx);
@@ -79,7 +89,8 @@ public class MythicDatagen {
                                     MythicBiomeBootstrap.bootstrap(ctx);
                                     MythicEndBiomeBootstrap.bootstrap(ctx);
                                     MythicNetherBiomeBootstrap.bootstrap(ctx);
-                                }),
+                                })
+                                .add(ForgeRegistries.Keys.BIOME_MODIFIERS, MythicBiomeModifierBootstrap::bootstrap),
                         Set.of(Constants.MOD_ID)));
     }
 }

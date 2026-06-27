@@ -24,7 +24,6 @@ public class ItemUseOnMixin {
         if (player == null || player.level().isClientSide()) return;
         if (!isJadeTool((Item)(Object)this)) return;
         player.addEffect(new MobEffectInstance(MythicEffects.JADE_AURA, MythicStats.JADE_TOOL_AURA_DURATION_TICKS, 4));
-        player.addEffect(new MobEffectInstance(MythicEffects.BOUNCER, MythicStats.JADE_TOOL_USE_BOUNCER_DURATION_TICKS, 0));
     }
 
     @Unique

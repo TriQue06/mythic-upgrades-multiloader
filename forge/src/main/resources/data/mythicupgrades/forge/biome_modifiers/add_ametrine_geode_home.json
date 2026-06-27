@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "mythicupgrades:ametrine_barrens",
-  "features": "mythicupgrades:ametrine_end_geode_extra",
-  "step": "underground_decoration"
-}

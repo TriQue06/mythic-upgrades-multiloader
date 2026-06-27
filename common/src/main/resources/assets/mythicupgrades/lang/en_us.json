@@ -127,6 +127,7 @@
   "block.mythicupgrades.jade_ore": "Jade Ore",
   "block.mythicupgrades.ametrine_ore": "Ametrine Ore",
   "block.mythicupgrades.necoium_ore": "Necoium Ore",
+  "block.mythicupgrades.deepslate_necoium_ore": "Deepslate Necoium Ore",
 
   "block.mythicupgrades.raw_necoium_block": "Block of Raw Necoium",
   "block.mythicupgrades.aquamarine_block": "Block of Aquamarine",
@@ -367,7 +368,6 @@
   "death.attack.citrine_chain": "%1$s was caught in the chain reaction",
   "death.attack.citrine_chain.player": "%1$s had the misfortune of standing near %2$s's target",
   "death.attack.static_field": "%1$s was electrocuted by a static field",
-  "effect.mythicupgrades.bouncer": "Bouncer",
   "effect.mythicupgrades.jade_aura": "Jade Aura",
   "effect.mythicupgrades.necoium_share": "Necoium Share",
   "effect.mythicupgrades.ice_bomb": "Ice Bomb",
@@ -416,5 +416,9 @@
   "item.minecraft.potion.effect.arcane_aura": "Potion of Arcane Aura",
   "item.minecraft.splash_potion.effect.arcane_aura": "Splash Potion of Arcane Aura",
   "item.minecraft.lingering_potion.effect.arcane_aura": "Lingering Potion of Arcane Aura",
-  "item.minecraft.tipped_arrow.effect.arcane_aura": "Arrow of Arcane Aura"
+  "item.minecraft.tipped_arrow.effect.arcane_aura": "Arrow of Arcane Aura",
+
+  "item.minecraft.potion.effect.necoium_share": "Potion of Necoium Share",
+  "item.minecraft.splash_potion.effect.necoium_share": "Splash Potion of Necoium Share",
+  "item.minecraft.lingering_potion.effect.necoium_share": "Lingering Potion of Necoium Share"
 }

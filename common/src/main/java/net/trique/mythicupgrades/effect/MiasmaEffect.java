@@ -7,7 +7,7 @@ import net.minecraft.world.entity.LivingEntity;
 
 public class MiasmaEffect extends MobEffect {
     public MiasmaEffect() {
-        super(MobEffectCategory.BENEFICIAL, 0x8ED614);
+        super(MobEffectCategory.BENEFICIAL, 0xb9e815);
     }
 
     @Override

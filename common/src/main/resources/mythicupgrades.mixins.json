@@ -8,11 +8,9 @@
         "ArmorTrimMixin",
         "BlockBehaviourMixin",
         "ItemUseOnMixin",
-        "LevelChunkMixin",
         "LightningBoltMixin",
         "LivingEntityMixin",
         "MixinOverworldBiomeBuilder",
-        "MixinTheEndBiomeSource",
         "ServerPlayerGameModeMixin"
     ],
     "client": [

@@ -1,0 +1,4 @@
+// 1.20.1	2026-06-27T16:48:49.3147341	Tags for minecraft:damage_type mod id vanilla
+eb1ba09dea1381401ae6574d341047abc8efb3b9 data/minecraft/tags/damage_type/bypasses_armor.json
+9a08a571ae0783d4da27ee3a04d0bcbbc8fbed02 data/minecraft/tags/damage_type/bypasses_cooldown.json
+1c6072bd3e18c7269f8611f9a94c8c0b4fd6cad1 data/minecraft/tags/damage_type/bypasses_effects.json

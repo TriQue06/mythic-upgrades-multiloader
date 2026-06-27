@@ -5,6 +5,6 @@ import net.minecraft.world.effect.MobEffectCategory;
 
 public class StaticFieldEffect extends MobEffect {
     public StaticFieldEffect() {
-        super(MobEffectCategory.BENEFICIAL, 0xEA741F);
+        super(MobEffectCategory.BENEFICIAL, 0xf2a030);
     }
 }

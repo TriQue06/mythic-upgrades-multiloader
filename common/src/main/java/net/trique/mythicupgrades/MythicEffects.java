@@ -3,7 +3,6 @@ package net.trique.mythicupgrades;
 import net.minecraft.world.effect.MobEffect;
 import net.trique.mythicupgrades.effect.ArcaneAuraEffect;
 import net.trique.mythicupgrades.effect.BloodThirstEffect;
-import net.trique.mythicupgrades.effect.BouncerEffect;
 import net.trique.mythicupgrades.effect.ChargedEffect;
 import net.trique.mythicupgrades.effect.JadeAuraEffect;
 import net.trique.mythicupgrades.effect.StaticFieldEffect;
@@ -44,7 +43,6 @@ public static final MobEffect FREEZE = defer("freeze", new FreezeEffect());
     public static final MobEffect ICE_BOMB = defer("ice_bomb", new IceBombEffect());
     public static final MobEffect CHARGED = defer("charged", new ChargedEffect());
     public static final MobEffect STATIC_FIELD = defer("static_field", new StaticFieldEffect());
-    public static final MobEffect BOUNCER = defer("bouncer", new BouncerEffect());
     public static final MobEffect JADE_AURA = defer("jade_aura", new JadeAuraEffect());
     public static final MobEffect NECOIUM_SHARE = defer("necoium_share", new NecoiumShareEffect());
 

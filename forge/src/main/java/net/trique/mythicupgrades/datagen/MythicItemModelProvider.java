@@ -38,6 +38,8 @@ public class MythicItemModelProvider extends ItemModelProvider {
         generated(gem, modLoc("item/" + gem));
         generated(gem + "_ingot", modLoc("item/" + gem + "_ingot"));
         generated(gem + "_crystal_shard", modLoc("item/" + gem + "_crystal_shard"));
+        generated(gem + "_potion", modLoc("item/" + gem + "_potion"));
+        generated(gem + "_upgrade_smithing_template", modLoc("item/mythic_upgrade_smithing_template"));
         for (String tool : TOOLS) {
             handheld(gem + "_" + tool, modLoc("item/" + gem + "_" + tool));
         }
