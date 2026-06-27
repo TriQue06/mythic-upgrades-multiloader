@@ -265,7 +265,7 @@ public abstract class LivingEntityMixin {
                     int spAmp = Math.min(aLvl - 1, 9);
                     int jpAmp = Math.min(aLvl / 2, 9);
                     touched.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, dur, spAmp, false, true, false));
-                    touched.addEffect(new MobEffectInstance(MobEffects.JUMP_BOOST, dur, jpAmp, false, true, false));
+                    touched.addEffect(new MobEffectInstance(MobEffects.JUMP, dur, jpAmp, false, true, false));
                 }
             }
         }

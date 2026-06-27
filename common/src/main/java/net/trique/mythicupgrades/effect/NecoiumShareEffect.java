@@ -17,7 +17,10 @@ public class NecoiumShareEffect extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
-        NecoiumShareHandler.onTick(level, entity);
+    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
+        if (entity.level() instanceof ServerLevel serverLevel) {
+            NecoiumShareHandler.onTick(serverLevel, entity);
+        }
+        return true;
     }
 }

@@ -11,7 +11,7 @@ dependencies {
     }
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
-    modImplementation fileTree(dir: rootProject.file('libs'), include: ['TerraBlender-fabric-*.jar'])
+    modImplementation fileTree(dir: rootProject.file('libs'), include: ["TerraBlender-fabric-${minecraft_version}-*.jar"])
 }
 
 loom {

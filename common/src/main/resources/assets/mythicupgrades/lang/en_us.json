@@ -463,5 +463,10 @@
   "item.minecraft.potion.effect.arcane_aura": "Potion of Arcane Aura",
   "item.minecraft.splash_potion.effect.arcane_aura": "Splash Potion of Arcane Aura",
   "item.minecraft.lingering_potion.effect.arcane_aura": "Lingering Potion of Arcane Aura",
-  "item.minecraft.tipped_arrow.effect.arcane_aura": "Arrow of Arcane Aura"
+  "item.minecraft.tipped_arrow.effect.arcane_aura": "Arrow of Arcane Aura",
+
+  "item.minecraft.potion.effect.necoium_share": "Potion of Necoium Share",
+  "item.minecraft.splash_potion.effect.necoium_share": "Splash Potion of Necoium Share",
+  "item.minecraft.lingering_potion.effect.necoium_share": "Lingering Potion of Necoium Share",
+  "item.minecraft.tipped_arrow.effect.necoium_share": "Arrow of Necoium Share"
 }

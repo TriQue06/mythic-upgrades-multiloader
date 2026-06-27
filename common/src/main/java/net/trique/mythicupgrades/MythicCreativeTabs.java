@@ -28,7 +28,7 @@ public class MythicCreativeTabs {
 
     public static void register(BiFunction<String, CreativeModeTab, CreativeModeTab> reg) {
         ITEMS_TAB = reg.apply("items",
-            CreativeModeTab.builder()
+            CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                 .title(Component.translatable("itemGroup.mythicupgrades.items"))
                 .icon(() -> new ItemStack(MythicItems.AQUAMARINE))
                 .displayItems((params, output) -> {
@@ -65,7 +65,7 @@ public class MythicCreativeTabs {
         );
 
         GEAR_TAB = reg.apply("gear",
-            CreativeModeTab.builder()
+            CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                 .title(Component.translatable("itemGroup.mythicupgrades.gear"))
                 .icon(() -> new ItemStack(MythicItems.AQUAMARINE_SWORD))
                 .displayItems((params, output) -> {
@@ -146,7 +146,7 @@ public class MythicCreativeTabs {
         );
 
         BLOCKS_TAB = reg.apply("blocks",
-            CreativeModeTab.builder()
+            CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                 .title(Component.translatable("itemGroup.mythicupgrades.blocks"))
                 .icon(() -> new ItemStack(MythicBlocks.AQUAMARINE_BLOCK))
                 .displayItems((params, output) -> {
@@ -355,7 +355,7 @@ public class MythicCreativeTabs {
         );
 
         POTIONS_TAB = reg.apply("potions",
-            CreativeModeTab.builder()
+            CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                 .title(Component.translatable("itemGroup.mythicupgrades.potions"))
                 .icon(() -> potion(MythicPotions.ICE_SHIELD))
                 .displayItems((params, output) -> {
