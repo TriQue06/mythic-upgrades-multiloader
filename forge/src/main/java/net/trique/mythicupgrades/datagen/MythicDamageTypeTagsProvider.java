@@ -23,7 +23,6 @@ public class MythicDamageTypeTagsProvider extends TagsProvider<DamageType> {
             .addOptional(MythicDamageTypeBootstrap.PERCENTAGE.location())
             .addOptional(MythicDamageTypeBootstrap.TOPAZ_SHOCK.location())
             .addOptional(MythicDamageTypeBootstrap.PERIDOT_INCUBATION.location())
-            .addOptional(MythicDamageTypeBootstrap.ICE_SHIELD_MARK_BURST.location())
             .addOptional(MythicDamageTypeBootstrap.ICE_SHIELD_REFLECT.location())
             .addOptional(MythicDamageTypeBootstrap.CITRINE_CHAIN.location());
 
@@ -35,7 +34,6 @@ public class MythicDamageTypeTagsProvider extends TagsProvider<DamageType> {
             .addOptional(MythicDamageTypeBootstrap.PERCENTAGE.location())
             .addOptional(MythicDamageTypeBootstrap.TOPAZ_SHOCK.location())
             .addOptional(MythicDamageTypeBootstrap.PERIDOT_INCUBATION.location())
-            .addOptional(MythicDamageTypeBootstrap.ICE_SHIELD_MARK_BURST.location())
             .addOptional(MythicDamageTypeBootstrap.ICE_SHIELD_REFLECT.location())
             .addOptional(MythicDamageTypeBootstrap.CITRINE_CHAIN.location())
             .addOptional(MythicDamageTypeBootstrap.STATIC_FIELD.location());

@@ -366,12 +366,10 @@ public abstract class LivingEntityMixin {
             }
         }
         mu_healthBefore = self.getHealth();
-        // Save death-triggered effect state before vanilla potentially clears effects
-        if (self.getHealth() - amount <= 0 && !self.isDeadOrDying()) {
-            mu_deathHadLethalIncubation = self.getEffect(MythicEffects.LETHAL_INCUBATION) != null;
-            mu_deathHadIceBomb          = self.getEffect(MythicEffects.ICE_BOMB) != null;
-            mu_deathHadCharged          = self.getEffect(MythicEffects.CHARGED) != null;
-        }
+        // Accumulate flags on every hit so multi-tick (lava/void) damage can't miss the window.
+        if (self.getEffect(MythicEffects.LETHAL_INCUBATION) != null) mu_deathHadLethalIncubation = true;
+        if (self.getEffect(MythicEffects.ICE_BOMB) != null)          mu_deathHadIceBomb = true;
+        if (self.getEffect(MythicEffects.CHARGED) != null)           mu_deathHadCharged = true;
     }
 
     @Inject(method = "hurt", at = @At("TAIL"))
@@ -562,6 +560,13 @@ public abstract class LivingEntityMixin {
             }
 
         }
+
+        // Fire death-on-hit effects here instead of in die() — more reliable across Forge/Fabric
+        // since hurt() is the one place guaranteed to run before any respawn/effect-clear logic.
+        if (self.isDeadOrDying() && self.level() instanceof ServerLevel deathLevel
+                && (mu_deathHadLethalIncubation || mu_deathHadIceBomb || mu_deathHadCharged)) {
+            triggerDeathEffects(self, deathLevel);
+        }
     }
 
     @Inject(method = "jumpFromGround", at = @At("TAIL"))
@@ -590,18 +595,12 @@ public abstract class LivingEntityMixin {
         return fallDistance;
     }
 
-    @Inject(method = "die", at = @At("HEAD"))
-    private void onDeath(DamageSource source, CallbackInfo ci) {
-        LivingEntity self = (LivingEntity)(Object)this;
-        if (self.level().isClientSide()) return;
-        if (!(self.level() instanceof ServerLevel serverLevel)) return;
+    @Unique
+    private void triggerDeathEffects(LivingEntity self, ServerLevel serverLevel) {
+        boolean hadIncub   = mu_deathHadLethalIncubation;
+        boolean hadIceBomb = mu_deathHadIceBomb;
+        boolean hadCharged = mu_deathHadCharged;
 
-        // Use pre-saved flags so player respawn effect clearing doesn't prevent triggers
-        boolean hadIncub   = mu_deathHadLethalIncubation || self.getEffect(MythicEffects.LETHAL_INCUBATION) != null;
-        boolean hadIceBomb = mu_deathHadIceBomb          || self.getEffect(MythicEffects.ICE_BOMB) != null;
-        boolean hadCharged = mu_deathHadCharged          || self.getEffect(MythicEffects.CHARGED) != null;
-
-        // Reset saved flags
         mu_deathHadLethalIncubation = false;
         mu_deathHadIceBomb          = false;
         mu_deathHadCharged          = false;

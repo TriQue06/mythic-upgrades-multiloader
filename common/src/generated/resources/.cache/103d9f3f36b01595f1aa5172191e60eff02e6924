@@ -1,8 +1,7 @@
-// 1.20.1	2026-06-28T21:50:11.340602	Registries
+// 1.20.1	2026-06-29T01:49:17.4659171	Registries
 a4e230f4335ebc027773f707bccbe6eb31977efc data/mythicupgrades/damage_type/citrine_chain_damage_type.json
 0be6004b3047b051d04ac3aa9163e8eae58b214f data/mythicupgrades/damage_type/deflecting_damage_type.json
 9cc983f387328774ba94c29c5c2bdd93485b8d7b data/mythicupgrades/damage_type/ice_bomb_burst_damage_type.json
-f130a7c7c358058d8424249bf822467840db4a28 data/mythicupgrades/damage_type/ice_shield_mark_burst_damage_type.json
 2f3f87471e376ef4c19085b1c07fc313c9b354ba data/mythicupgrades/damage_type/ice_shield_reflect_damage_type.json
 f68ec6b3382942c112070ea9fcbe30d74557cf4c data/mythicupgrades/damage_type/percentage_damage_type.json
 a25bf3b1c3b500dd71b409f8bf95ecc2ac113584 data/mythicupgrades/damage_type/peridot_incubation_damage_type.json

@@ -17,10 +17,6 @@
       "required": false
     },
     {
-      "id": "mythicupgrades:ice_shield_mark_burst_damage_type",
-      "required": false
-    },
-    {
       "id": "mythicupgrades:ice_shield_reflect_damage_type",
       "required": false
     },
