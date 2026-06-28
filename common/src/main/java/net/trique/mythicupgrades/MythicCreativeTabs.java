@@ -40,7 +40,7 @@ public class MythicCreativeTabs {
         ITEMS_TAB = reg.apply("items",
             CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                 .title(Component.translatable("itemGroup.mythicupgrades.items"))
-                .icon(() -> new ItemStack(MythicItems.AQUAMARINE))
+                .icon(() -> new ItemStack(MythicItems.AMETRINE_INGOT))
                 .displayItems((params, output) -> {
                     output.accept(MythicItems.AQUAMARINE);
                     output.accept(MythicItems.AQUAMARINE_INGOT);
@@ -92,7 +92,7 @@ public class MythicCreativeTabs {
         GEAR_TAB = reg.apply("gear",
             CreativeModeTab.builder(CreativeModeTab.Row.TOP, 2)
                 .title(Component.translatable("itemGroup.mythicupgrades.gear"))
-                .icon(() -> new ItemStack(MythicItems.AQUAMARINE_SWORD))
+                .icon(() -> new ItemStack(MythicItems.AMETRINE_AXE))
                 .displayItems((params, output) -> {
                     output.accept(MythicItems.AQUAMARINE_SWORD);
                     output.accept(MythicItems.AQUAMARINE_PICKAXE);
@@ -173,7 +173,7 @@ public class MythicCreativeTabs {
         BLOCKS_TAB = reg.apply("blocks",
             CreativeModeTab.builder(CreativeModeTab.Row.TOP, 3)
                 .title(Component.translatable("itemGroup.mythicupgrades.blocks"))
-                .icon(() -> new ItemStack(MythicBlocks.AQUAMARINE_BLOCK))
+                .icon(() -> new ItemStack(MythicBlocks.AMETRINE_CRYSTAL_BRICKS))
                 .displayItems((params, output) -> {
                     output.accept(MythicBlocks.AQUAMARINE_ORE);
                     output.accept(MythicBlocks.DEEPSLATE_AQUAMARINE_ORE);
