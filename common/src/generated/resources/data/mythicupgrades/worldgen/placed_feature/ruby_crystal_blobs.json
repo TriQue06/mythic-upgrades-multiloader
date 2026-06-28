@@ -1,9 +1,9 @@
 {
-  "feature": "mythicupgrades:sapphire_rift_stone_blobs",
+  "feature": "mythicupgrades:ruby_crystal_blobs",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 30
+      "count": 8
     },
     {
       "type": "minecraft:in_square"

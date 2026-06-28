@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
   "biomes": "mythicupgrades:jade_barrens",
-  "features": "mythicupgrades:jade_end_geode_extra",
+  "features": "mythicupgrades:jade_geode_extra",
   "step": "underground_decoration"
 }

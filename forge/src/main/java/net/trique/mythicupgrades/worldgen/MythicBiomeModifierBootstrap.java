@@ -70,8 +70,8 @@ public class MythicBiomeModifierBootstrap {
         ctx.register(key("add_end_geodes"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
             end,
             HolderSet.direct(
-                pfLookup.getOrThrow(pf("ametrine_end_geode")),
-                pfLookup.getOrThrow(pf("jade_end_geode"))
+                pfLookup.getOrThrow(pf("ametrine_geode")),
+                pfLookup.getOrThrow(pf("jade_geode"))
             ),
             GenerationStep.Decoration.UNDERGROUND_ORES
         ));
@@ -79,8 +79,8 @@ public class MythicBiomeModifierBootstrap {
         ctx.register(key("add_nether_geodes"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
             nether,
             HolderSet.direct(
-                pfLookup.getOrThrow(pf("ruby_rift_geode")),
-                pfLookup.getOrThrow(pf("sapphire_rift_geode"))
+                pfLookup.getOrThrow(pf("ruby_geode")),
+                pfLookup.getOrThrow(pf("sapphire_geode"))
             ),
             GenerationStep.Decoration.UNDERGROUND_ORES
         ));
@@ -111,25 +111,25 @@ public class MythicBiomeModifierBootstrap {
 
         ctx.register(key("add_ruby_geode_home"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
             HolderSet.direct(biomeLookup.getOrThrow(biome("ruby_rift"))),
-            HolderSet.direct(pfLookup.getOrThrow(pf("ruby_rift_geode_extra"))),
+            HolderSet.direct(pfLookup.getOrThrow(pf("ruby_geode_extra"))),
             GenerationStep.Decoration.UNDERGROUND_DECORATION
         ));
 
         ctx.register(key("add_sapphire_geode_home"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
             HolderSet.direct(biomeLookup.getOrThrow(biome("sapphire_rift"))),
-            HolderSet.direct(pfLookup.getOrThrow(pf("sapphire_rift_geode_extra"))),
+            HolderSet.direct(pfLookup.getOrThrow(pf("sapphire_geode_extra"))),
             GenerationStep.Decoration.UNDERGROUND_DECORATION
         ));
 
         ctx.register(key("add_ametrine_geode_home"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
             HolderSet.direct(biomeLookup.getOrThrow(biome("ametrine_barrens"))),
-            HolderSet.direct(pfLookup.getOrThrow(pf("ametrine_end_geode_extra"))),
+            HolderSet.direct(pfLookup.getOrThrow(pf("ametrine_geode_extra"))),
             GenerationStep.Decoration.UNDERGROUND_DECORATION
         ));
 
         ctx.register(key("add_jade_geode_home"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
             HolderSet.direct(biomeLookup.getOrThrow(biome("jade_barrens"))),
-            HolderSet.direct(pfLookup.getOrThrow(pf("jade_end_geode_extra"))),
+            HolderSet.direct(pfLookup.getOrThrow(pf("jade_geode_extra"))),
             GenerationStep.Decoration.UNDERGROUND_DECORATION
         ));
     }

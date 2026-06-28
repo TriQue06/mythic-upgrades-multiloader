@@ -26,13 +26,13 @@
     [],
     [],
     [
-      "mythicupgrades:ametrine_end_stone_blobs",
-      "mythicupgrades:ametrine_end_ore"
+      "mythicupgrades:ametrine_stone_blobs",
+      "mythicupgrades:ametrine_ore"
     ],
     [
-      "mythicupgrades:ametrine_end_crystal_blobs",
-      "mythicupgrades:ametrine_end_crystal_buds",
-      "mythicupgrades:ametrine_end_crystal_buds_rare"
+      "mythicupgrades:ametrine_crystal_blobs",
+      "mythicupgrades:ametrine_crystal_buds",
+      "mythicupgrades:ametrine_crystal_buds_rare"
     ]
   ],
   "has_precipitation": false,

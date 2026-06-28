@@ -1,9 +1,9 @@
 {
-  "feature": "mythicupgrades:ametrine_end_crystal_buds_rare",
+  "feature": "mythicupgrades:ametrine_ore",
   "placement": [
     {
-      "type": "minecraft:rarity_filter",
-      "chance": 15
+      "type": "minecraft:count",
+      "count": 11
     },
     {
       "type": "minecraft:in_square"

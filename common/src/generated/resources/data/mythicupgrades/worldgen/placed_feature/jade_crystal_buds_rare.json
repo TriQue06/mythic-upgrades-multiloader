@@ -1,9 +1,9 @@
 {
-  "feature": "mythicupgrades:ruby_rift_crystal_blobs",
+  "feature": "mythicupgrades:jade_crystal_buds_rare",
   "placement": [
     {
-      "type": "minecraft:count",
-      "count": 8
+      "type": "minecraft:rarity_filter",
+      "chance": 15
     },
     {
       "type": "minecraft:in_square"
@@ -13,10 +13,10 @@
       "height": {
         "type": "minecraft:uniform",
         "max_inclusive": {
-          "absolute": 120
+          "absolute": 128
         },
         "min_inclusive": {
-          "absolute": 5
+          "absolute": 0
         }
       }
     },
