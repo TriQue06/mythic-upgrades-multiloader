@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mythicupgrades:sapphire_crystal_block"
-  },
-  "result": {
-    "id": "mythicupgrades:sapphire_crystal_pillar"
-  }
-}

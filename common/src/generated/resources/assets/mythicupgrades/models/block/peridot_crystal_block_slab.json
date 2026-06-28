@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "mythicupgrades:block/peridot_crystal_block",
-    "side": "mythicupgrades:block/peridot_crystal_block",
-    "top": "mythicupgrades:block/peridot_crystal_block"
-  }
-}

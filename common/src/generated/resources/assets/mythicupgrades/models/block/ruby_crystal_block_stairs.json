@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "mythicupgrades:block/ruby_crystal_block",
-    "side": "mythicupgrades:block/ruby_crystal_block",
-    "top": "mythicupgrades:block/ruby_crystal_block"
-  }
-}

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mythicupgrades:citrine_crystal_bricks"
-  },
-  "result": {
-    "id": "mythicupgrades:citrine_crystal_bricks_stairs"
-  }
-}

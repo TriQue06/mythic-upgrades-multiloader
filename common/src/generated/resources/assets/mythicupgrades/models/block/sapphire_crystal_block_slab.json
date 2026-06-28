@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "mythicupgrades:block/sapphire_crystal_block",
-    "side": "mythicupgrades:block/sapphire_crystal_block",
-    "top": "mythicupgrades:block/sapphire_crystal_block"
-  }
-}

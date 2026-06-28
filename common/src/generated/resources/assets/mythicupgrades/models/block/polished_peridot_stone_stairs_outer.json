@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "mythicupgrades:block/polished_peridot_stone",
-    "side": "mythicupgrades:block/polished_peridot_stone",
-    "top": "mythicupgrades:block/polished_peridot_stone"
-  }
-}

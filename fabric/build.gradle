@@ -12,6 +12,9 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     modImplementation fileTree(dir: rootProject.file('libs'), include: ["TerraBlender-fabric-${minecraft_version}-*.jar"])
+    // TerraBlender bundles NightConfig as JiJ but Loom doesn't unpack it from local file deps
+    modRuntimeOnly "com.electronwill.night-config:core:3.6.7"
+    modRuntimeOnly "com.electronwill.night-config:toml:3.6.7"
 }
 
 loom {

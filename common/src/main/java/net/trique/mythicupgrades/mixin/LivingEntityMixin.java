@@ -24,6 +24,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -51,6 +52,7 @@ public abstract class LivingEntityMixin {
     @Unique private int mu_aquamarineLevel = -1;
     @Unique private int mu_citrineLevel = -1;
     @Unique private int mu_jadeLevel = -1;
+    @Unique private float mu_jadeJumpFallCredit = 0f;
     @Unique private int mu_miasmaTick = 0;
     @Unique private float mu_healthBefore = 0f;
     @Unique private float mu_topazFallBlocked = 0f;
@@ -572,7 +574,18 @@ public abstract class LivingEntityMixin {
         if (extra > 0) {
             Vec3 v = self.getDeltaMovement();
             self.setDeltaMovement(v.x, v.y + extra, v.z);
+            mu_jadeJumpFallCredit = extra * 7f;
         }
+    }
+
+    @ModifyVariable(method = "causeFallDamage", at = @At("HEAD"), argsOnly = true, ordinal = 0)
+    private float reduceJadeJumpFallDamage(float fallDistance) {
+        if (mu_jadeJumpFallCredit > 0) {
+            float credit = mu_jadeJumpFallCredit;
+            mu_jadeJumpFallCredit = 0f;
+            return Math.max(0f, fallDistance - credit);
+        }
+        return fallDistance;
     }
 
     @Inject(method = "die", at = @At("HEAD"))

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mythicupgrades:polished_ruby_stone"
-  },
-  "result": {
-    "id": "mythicupgrades:polished_ruby_stone_stairs"
-  }
-}

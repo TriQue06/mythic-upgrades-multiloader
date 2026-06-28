@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mythicupgrades:jade_stone"
-  },
-  "result": {
-    "id": "mythicupgrades:jade_stone_stairs"
-  }
-}

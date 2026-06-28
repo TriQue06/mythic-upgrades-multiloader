@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.core.Registry;
@@ -119,13 +120,14 @@ public class MythicUpgrades implements ModInitializer {
             MythicLegacyMigration.drainPendingChunks();
         });
 
-        ServerChunkEvents.CHUNK_LOAD.register((world, chunk) -> {
-            if (world.getServer().getTickCount() > 0) {
-                MythicLegacyMigration.migrateChunk(chunk);
-            } else {
-                MythicLegacyMigration.PENDING_CHUNKS.offer(chunk);
-            }
-        });
+        // Always queue — never call migrateChunk() directly from CHUNK_LOAD.
+        // Accessing container items unpacks loot tables → setChanged() → getChunkAt()
+        // → deadlock while the chunk is still being registered. Drain safely on tick end.
+        ServerChunkEvents.CHUNK_LOAD.register((world, chunk) ->
+            MythicLegacyMigration.PENDING_CHUNKS.offer(chunk));
+
+        ServerTickEvents.END_SERVER_TICK.register(server ->
+            MythicLegacyMigration.drainPendingChunks());
 
         CommonClass.init();
     }

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "mythicupgrades:block/aquamarine_stone",
-    "side": "mythicupgrades:block/aquamarine_stone",
-    "top": "mythicupgrades:block/aquamarine_stone"
-  }
-}

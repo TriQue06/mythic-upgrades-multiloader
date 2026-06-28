@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mythicupgrades:peridot_crystal_block"
-  },
-  "result": {
-    "id": "mythicupgrades:polished_peridot_crystal_block"
-  }
-}

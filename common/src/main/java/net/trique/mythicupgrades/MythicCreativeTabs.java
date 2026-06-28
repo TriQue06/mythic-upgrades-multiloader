@@ -4,6 +4,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
@@ -18,12 +19,20 @@ public class MythicCreativeTabs {
     public static CreativeModeTab ITEMS_TAB;
     public static CreativeModeTab BLOCKS_TAB;
     public static CreativeModeTab GEAR_TAB;
-    public static CreativeModeTab POTIONS_TAB;
 
-    private static ItemStack potion(Potion p) {
-        ItemStack s = new ItemStack(Items.POTION);
+    private static ItemStack potion(Item potionItem, Potion p) {
+        ItemStack s = new ItemStack(potionItem);
         s.set(DataComponents.POTION_CONTENTS, new PotionContents(BuiltInRegistries.POTION.wrapAsHolder(p)));
         return s;
+    }
+
+    private static void addPotionGroup(CreativeModeTab.Output output, Potion normal, Potion extended, Potion strong) {
+        for (Potion p : new Potion[]{normal, extended, strong}) {
+            if (p == null) continue;
+            output.accept(potion(Items.POTION, p));
+            output.accept(potion(Items.SPLASH_POTION, p));
+            output.accept(potion(Items.LINGERING_POTION, p));
+        }
     }
 
     public static void register(BiFunction<String, CreativeModeTab, CreativeModeTab> reg) {
@@ -60,12 +69,22 @@ public class MythicCreativeTabs {
                     output.accept(MythicItems.NECOIUM_INGOT);
                     output.accept(MythicItems.NECOIUM_CARROT);
                     output.accept(MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
+                    // Potions — regular, splash, lingering for each type (matches 1.20.1)
+                    addPotionGroup(output, MythicPotions.ICE_SHIELD,        MythicPotions.ICE_SHIELD_LONG,        MythicPotions.ICE_SHIELD_STRONG);
+                    addPotionGroup(output, MythicPotions.STATIC_FIELD,      MythicPotions.STATIC_FIELD_LONG,      MythicPotions.STATIC_FIELD_STRONG);
+                    addPotionGroup(output, MythicPotions.TOPAZ_REACTION,    MythicPotions.TOPAZ_REACTION_LONG,    MythicPotions.TOPAZ_REACTION_STRONG);
+                    addPotionGroup(output, MythicPotions.MIASMA,            MythicPotions.MIASMA_LONG,            MythicPotions.MIASMA_STRONG);
+                    addPotionGroup(output, MythicPotions.BLOOD_THIRST,      MythicPotions.BLOOD_THIRST_LONG,      MythicPotions.BLOOD_THIRST_STRONG);
+                    addPotionGroup(output, MythicPotions.DAMAGE_DEFLECTION, MythicPotions.DAMAGE_DEFLECTION_LONG, MythicPotions.DAMAGE_DEFLECTION_STRONG);
+                    addPotionGroup(output, MythicPotions.JADE_AURA,         MythicPotions.JADE_AURA_LONG,         MythicPotions.JADE_AURA_STRONG);
+                    addPotionGroup(output, MythicPotions.ARCANE_AURA,       MythicPotions.ARCANE_AURA_LONG,       MythicPotions.ARCANE_AURA_STRONG);
+                    addPotionGroup(output, MythicPotions.NECOIUM_SHARE,     MythicPotions.NECOIUM_SHARE_LONG,     null);
                 })
                 .build()
         );
 
         GEAR_TAB = reg.apply("gear",
-            CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
+            CreativeModeTab.builder(CreativeModeTab.Row.TOP, 2)
                 .title(Component.translatable("itemGroup.mythicupgrades.gear"))
                 .icon(() -> new ItemStack(MythicItems.AQUAMARINE_SWORD))
                 .displayItems((params, output) -> {
@@ -146,7 +165,7 @@ public class MythicCreativeTabs {
         );
 
         BLOCKS_TAB = reg.apply("blocks",
-            CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
+            CreativeModeTab.builder(CreativeModeTab.Row.TOP, 3)
                 .title(Component.translatable("itemGroup.mythicupgrades.blocks"))
                 .icon(() -> new ItemStack(MythicBlocks.AQUAMARINE_BLOCK))
                 .displayItems((params, output) -> {
@@ -350,41 +369,6 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.LARGE_AMETRINE_CRYSTAL_BUD);
                     output.accept(MythicBlocks.MEDIUM_AMETRINE_CRYSTAL_BUD);
                     output.accept(MythicBlocks.SMALL_AMETRINE_CRYSTAL_BUD);
-                })
-                .build()
-        );
-
-        POTIONS_TAB = reg.apply("potions",
-            CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
-                .title(Component.translatable("itemGroup.mythicupgrades.potions"))
-                .icon(() -> potion(MythicPotions.ICE_SHIELD))
-                .displayItems((params, output) -> {
-                    output.accept(potion(MythicPotions.ICE_SHIELD));
-                    output.accept(potion(MythicPotions.ICE_SHIELD_LONG));
-                    output.accept(potion(MythicPotions.ICE_SHIELD_STRONG));
-                    output.accept(potion(MythicPotions.STATIC_FIELD));
-                    output.accept(potion(MythicPotions.STATIC_FIELD_LONG));
-                    output.accept(potion(MythicPotions.STATIC_FIELD_STRONG));
-                    output.accept(potion(MythicPotions.TOPAZ_REACTION));
-                    output.accept(potion(MythicPotions.TOPAZ_REACTION_LONG));
-                    output.accept(potion(MythicPotions.TOPAZ_REACTION_STRONG));
-                    output.accept(potion(MythicPotions.MIASMA));
-                    output.accept(potion(MythicPotions.MIASMA_LONG));
-                    output.accept(potion(MythicPotions.MIASMA_STRONG));
-                    output.accept(potion(MythicPotions.BLOOD_THIRST));
-                    output.accept(potion(MythicPotions.BLOOD_THIRST_LONG));
-                    output.accept(potion(MythicPotions.BLOOD_THIRST_STRONG));
-                    output.accept(potion(MythicPotions.DAMAGE_DEFLECTION));
-                    output.accept(potion(MythicPotions.DAMAGE_DEFLECTION_LONG));
-                    output.accept(potion(MythicPotions.DAMAGE_DEFLECTION_STRONG));
-                    output.accept(potion(MythicPotions.JADE_AURA));
-                    output.accept(potion(MythicPotions.JADE_AURA_LONG));
-                    output.accept(potion(MythicPotions.JADE_AURA_STRONG));
-                    output.accept(potion(MythicPotions.ARCANE_AURA));
-                    output.accept(potion(MythicPotions.ARCANE_AURA_LONG));
-                    output.accept(potion(MythicPotions.ARCANE_AURA_STRONG));
-                    output.accept(potion(MythicPotions.NECOIUM_SHARE));
-                    output.accept(potion(MythicPotions.NECOIUM_SHARE_LONG));
                 })
                 .build()
         );

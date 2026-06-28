@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "mythicupgrades:block/ametrine_crystal_bricks",
-    "side": "mythicupgrades:block/ametrine_crystal_bricks",
-    "top": "mythicupgrades:block/ametrine_crystal_bricks"
-  }
-}

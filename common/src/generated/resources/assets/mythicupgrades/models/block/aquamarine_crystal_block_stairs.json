@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "mythicupgrades:block/aquamarine_crystal_block",
-    "side": "mythicupgrades:block/aquamarine_crystal_block",
-    "top": "mythicupgrades:block/aquamarine_crystal_block"
-  }
-}

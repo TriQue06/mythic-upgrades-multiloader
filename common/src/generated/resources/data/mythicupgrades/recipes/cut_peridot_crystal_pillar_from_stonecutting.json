@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mythicupgrades:peridot_crystal_pillar"
-  },
-  "result": {
-    "id": "mythicupgrades:cut_peridot_crystal_pillar"
-  }
-}

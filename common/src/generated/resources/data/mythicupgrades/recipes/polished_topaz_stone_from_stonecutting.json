@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mythicupgrades:topaz_stone"
-  },
-  "result": {
-    "id": "mythicupgrades:polished_topaz_stone"
-  }
-}

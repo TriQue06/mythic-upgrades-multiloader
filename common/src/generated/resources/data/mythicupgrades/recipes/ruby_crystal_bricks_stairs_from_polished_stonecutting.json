@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mythicupgrades:polished_ruby_crystal_block"
-  },
-  "result": {
-    "id": "mythicupgrades:ruby_crystal_bricks_stairs"
-  }
-}

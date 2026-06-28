@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "mythicupgrades:aquamarine_stone"
-  },
-  "result": {
-    "id": "mythicupgrades:aquamarine_stone_stairs"
-  }
-}
