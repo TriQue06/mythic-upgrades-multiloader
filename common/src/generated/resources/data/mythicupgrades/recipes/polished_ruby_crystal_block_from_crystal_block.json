@@ -12,7 +12,7 @@
   ],
   "result": {
     "count": 4,
-    "item": "mythicupgrades:polished_ruby_crystal_block"
+    "id": "mythicupgrades:polished_ruby_crystal_block"
   },
   "show_notification": true
 }

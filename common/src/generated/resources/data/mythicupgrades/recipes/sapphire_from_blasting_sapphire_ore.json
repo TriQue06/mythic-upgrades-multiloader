@@ -6,5 +6,7 @@
   "ingredient": {
     "item": "mythicupgrades:sapphire_ore"
   },
-  "result": "mythicupgrades:sapphire"
+  "result": {
+    "id": "mythicupgrades:sapphire"
+  }
 }

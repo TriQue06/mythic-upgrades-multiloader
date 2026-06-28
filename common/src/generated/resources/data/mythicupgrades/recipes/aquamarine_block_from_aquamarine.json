@@ -12,7 +12,7 @@
     "###"
   ],
   "result": {
-    "item": "mythicupgrades:aquamarine_block"
+    "id": "mythicupgrades:aquamarine_block"
   },
   "show_notification": true
 }

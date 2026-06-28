@@ -12,7 +12,7 @@
     "GGG"
   ],
   "result": {
-    "item": "mythicupgrades:topaz_chestplate"
+    "id": "mythicupgrades:topaz_chestplate"
   },
   "show_notification": true
 }

@@ -12,7 +12,7 @@
     "GGG"
   ],
   "result": {
-    "item": "mythicupgrades:sapphire_chestplate"
+    "id": "mythicupgrades:sapphire_chestplate"
   },
   "show_notification": true
 }

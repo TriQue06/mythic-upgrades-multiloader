@@ -11,7 +11,7 @@
     "G G"
   ],
   "result": {
-    "item": "mythicupgrades:ruby_boots"
+    "id": "mythicupgrades:ruby_boots"
   },
   "show_notification": true
 }

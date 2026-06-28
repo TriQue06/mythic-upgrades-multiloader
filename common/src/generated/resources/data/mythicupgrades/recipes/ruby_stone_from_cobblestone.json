@@ -15,7 +15,7 @@
   ],
   "result": {
     "count": 4,
-    "item": "mythicupgrades:ruby_stone"
+    "id": "mythicupgrades:ruby_stone"
   },
   "show_notification": true
 }

@@ -102,8 +102,8 @@ public class MythicUpgrades {
         // in each block model JSON (ItemBlockRenderTypes was removed in NeoForge 1.21.1)
     }
 
-    @EventBusSubscriber(modid = Constants.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
-    public static class ModBusEvents {
+    @EventBusSubscriber(modid = Constants.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
+    public static class NeoForgeEvents {
 
         @SubscribeEvent
         public static void onBrewingRecipes(RegisterBrewingRecipesEvent event) {
@@ -153,10 +153,6 @@ public class MythicUpgrades {
             builder.addMix(Potions.AWKWARD,                                             MythicItems.NECOIUM_INGOT, BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.NECOIUM_SHARE));
             builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.NECOIUM_SHARE),       Items.REDSTONE,          BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.NECOIUM_SHARE_LONG));
         }
-    }
-
-    @EventBusSubscriber(modid = Constants.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
-    public static class NeoForgeEvents {
 
         @SubscribeEvent
         public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {

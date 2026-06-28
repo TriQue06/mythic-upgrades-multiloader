@@ -11,7 +11,7 @@
     "G G"
   ],
   "result": {
-    "item": "mythicupgrades:peridot_helmet"
+    "id": "mythicupgrades:peridot_helmet"
   },
   "show_notification": true
 }

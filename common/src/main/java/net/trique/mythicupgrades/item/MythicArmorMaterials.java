@@ -24,14 +24,18 @@ public class MythicArmorMaterials {
         return map;
     }
 
+    private static final java.util.IdentityHashMap<Holder<ArmorMaterial>, Integer> DUR_MULTS = new java.util.IdentityHashMap<>();
+
+    public static int getDurability(Holder<ArmorMaterial> material, ArmorItem.Type type) {
+        int mult = DUR_MULTS.getOrDefault(material, 37);
+        int idx = type.getSlot().getIndex();
+        return (idx >= 0 && idx < HEALTH_PER_SLOT.length) ? HEALTH_PER_SLOT[idx] * mult : mult * 13;
+    }
+
     private static Holder<ArmorMaterial> make(String name, int durMult, int[] protection, int enchant, float toughness, float kbRes, Ingredient repair) {
-        Map<ArmorItem.Type, Integer> durability = new EnumMap<>(ArmorItem.Type.class);
-        for (ArmorItem.Type type : ArmorItem.Type.values()) {
-            durability.put(type, HEALTH_PER_SLOT[type.getSlot().getIndex()] * durMult);
-        }
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath("mythicupgrades", name);
-        return Holder.direct(new ArmorMaterial(
-            durability,
+        Holder<ArmorMaterial> holder = Holder.direct(new ArmorMaterial(
+            defense(protection),
             enchant,
             SoundEvents.ARMOR_EQUIP_NETHERITE,
             () -> repair,
@@ -39,6 +43,8 @@ public class MythicArmorMaterials {
             toughness,
             kbRes
         ));
+        DUR_MULTS.put(holder, durMult);
+        return holder;
     }
 
     public static final Holder<ArmorMaterial> AQUAMARINE = make("aquamarine", 37, new int[]{3, 6, 8, 3}, 15, 3.0F, 0.1F, Ingredient.of(MythicItems.AQUAMARINE));

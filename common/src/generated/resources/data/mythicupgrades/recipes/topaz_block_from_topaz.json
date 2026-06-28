@@ -12,7 +12,7 @@
     "###"
   ],
   "result": {
-    "item": "mythicupgrades:topaz_block"
+    "id": "mythicupgrades:topaz_block"
   },
   "show_notification": true
 }

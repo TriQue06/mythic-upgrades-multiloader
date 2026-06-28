@@ -6,5 +6,7 @@
   "ingredient": {
     "item": "mythicupgrades:raw_necoium"
   },
-  "result": "mythicupgrades:necoium_ingot"
+  "result": {
+    "id": "mythicupgrades:necoium_ingot"
+  }
 }

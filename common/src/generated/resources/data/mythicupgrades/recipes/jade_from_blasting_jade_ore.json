@@ -6,5 +6,7 @@
   "ingredient": {
     "item": "mythicupgrades:jade_ore"
   },
-  "result": "mythicupgrades:jade"
+  "result": {
+    "id": "mythicupgrades:jade"
+  }
 }

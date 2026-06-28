@@ -15,7 +15,7 @@
   ],
   "result": {
     "count": 4,
-    "item": "mythicupgrades:topaz_stone"
+    "id": "mythicupgrades:topaz_stone"
   },
   "show_notification": true
 }

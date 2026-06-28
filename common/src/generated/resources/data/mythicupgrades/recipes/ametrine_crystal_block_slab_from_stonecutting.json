@@ -1,8 +1,10 @@
 {
   "type": "minecraft:stonecutting",
-  "count": 2,
   "ingredient": {
     "item": "mythicupgrades:ametrine_crystal_block"
   },
-  "result": "mythicupgrades:ametrine_crystal_block_slab"
+  "result": {
+    "id": "mythicupgrades:ametrine_crystal_block_slab",
+    "count": 2
+  }
 }

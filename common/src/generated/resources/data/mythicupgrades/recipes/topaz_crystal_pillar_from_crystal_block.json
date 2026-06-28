@@ -12,7 +12,7 @@
   ],
   "result": {
     "count": 2,
-    "item": "mythicupgrades:topaz_crystal_pillar"
+    "id": "mythicupgrades:topaz_crystal_pillar"
   },
   "show_notification": true
 }

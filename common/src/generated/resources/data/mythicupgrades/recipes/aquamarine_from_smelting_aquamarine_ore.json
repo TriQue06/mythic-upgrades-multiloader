@@ -6,5 +6,7 @@
   "ingredient": {
     "item": "mythicupgrades:aquamarine_ore"
   },
-  "result": "mythicupgrades:aquamarine"
+  "result": {
+    "id": "mythicupgrades:aquamarine"
+  }
 }

@@ -1,8 +1,10 @@
 {
   "type": "minecraft:stonecutting",
-  "count": 2,
   "ingredient": {
     "item": "mythicupgrades:topaz_stone"
   },
-  "result": "mythicupgrades:topaz_stone_slab"
+  "result": {
+    "id": "mythicupgrades:topaz_stone_slab",
+    "count": 2
+  }
 }

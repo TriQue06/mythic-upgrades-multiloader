@@ -36,6 +36,15 @@ public class MixinTheEndBiomeSource {
             Holder<Biome> end, Holder<Biome> highlands, Holder<Biome> midlands,
             Holder<Biome> islands, Holder<Biome> barrens, CallbackInfo ci) {
 
+        // TerraBlender 4.x handles End biomes via EndBiomeRegistry — skip mixin fallback.
+        // Use initialize=false to avoid triggering EndBiomeRegistry's static initializer
+        // before TerraBlender's config is loaded (would NPE at bootstrap time).
+        try {
+            Class.forName("terrablender.api.EndBiomeRegistry", false,
+                    Thread.currentThread().getContextClassLoader());
+            return;
+        } catch (ClassNotFoundException ignored) {}
+
         // Skip during Forge datagen
         try {
             boolean isDatagen = (boolean) Class
@@ -45,8 +54,7 @@ public class MixinTheEndBiomeSource {
             if (isDatagen) return;
         } catch (Throwable ignored) {}
 
-        // MappedRegistry$1 is the anonymous HolderOwner stored in Holder.Reference.owner.
-        // Walk its enclosing fields to reach the actual Registry<Biome>.
+        // Walk Holder.Reference fields to locate the Registry<Biome>.
         Registry<Biome> biomeReg = mythicupgrades$findRegistry(highlands);
         if (biomeReg == null) {
             LOGGER.warn("Could not locate biome Registry — End biomes will not generate");
@@ -69,9 +77,11 @@ public class MixinTheEndBiomeSource {
                 if (val instanceof Registry<?> r) return (Registry<Biome>) r;
                 // Anonymous inner class wrapping the registry (MappedRegistry$1)
                 for (Field inner : val.getClass().getDeclaredFields()) {
-                    inner.setAccessible(true);
-                    Object innerVal = inner.get(val);
-                    if (innerVal instanceof Registry<?> r) return (Registry<Biome>) r;
+                    try {
+                        inner.setAccessible(true);
+                        Object innerVal = inner.get(val);
+                        if (innerVal instanceof Registry<?> r) return (Registry<Biome>) r;
+                    } catch (Exception ignored) {}
                 }
             }
         } catch (Throwable e) {

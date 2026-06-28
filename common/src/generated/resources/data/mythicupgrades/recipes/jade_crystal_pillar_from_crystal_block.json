@@ -12,7 +12,7 @@
   ],
   "result": {
     "count": 2,
-    "item": "mythicupgrades:jade_crystal_pillar"
+    "id": "mythicupgrades:jade_crystal_pillar"
   },
   "show_notification": true
 }

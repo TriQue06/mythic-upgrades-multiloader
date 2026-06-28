@@ -1,8 +1,9 @@
 {
   "type": "minecraft:stonecutting",
-  "count": 1,
   "ingredient": {
     "item": "mythicupgrades:jade_crystal_bricks"
   },
-  "result": "mythicupgrades:jade_crystal_bricks_stairs"
+  "result": {
+    "id": "mythicupgrades:jade_crystal_bricks_stairs"
+  }
 }

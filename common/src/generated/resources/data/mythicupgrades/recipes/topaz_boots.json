@@ -11,7 +11,7 @@
     "G G"
   ],
   "result": {
-    "item": "mythicupgrades:topaz_boots"
+    "id": "mythicupgrades:topaz_boots"
   },
   "show_notification": true
 }

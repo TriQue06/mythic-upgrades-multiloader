@@ -11,7 +11,7 @@
     "G G"
   ],
   "result": {
-    "item": "mythicupgrades:sapphire_helmet"
+    "id": "mythicupgrades:sapphire_helmet"
   },
   "show_notification": true
 }

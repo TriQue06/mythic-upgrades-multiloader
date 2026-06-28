@@ -1,8 +1,9 @@
 {
   "type": "minecraft:stonecutting",
-  "count": 1,
   "ingredient": {
     "item": "mythicupgrades:jade_crystal_pillar"
   },
-  "result": "mythicupgrades:cut_jade_crystal_pillar"
+  "result": {
+    "id": "mythicupgrades:cut_jade_crystal_pillar"
+  }
 }

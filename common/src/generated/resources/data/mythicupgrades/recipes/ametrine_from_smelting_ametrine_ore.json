@@ -6,5 +6,7 @@
   "ingredient": {
     "item": "mythicupgrades:ametrine_ore"
   },
-  "result": "mythicupgrades:ametrine"
+  "result": {
+    "id": "mythicupgrades:ametrine"
+  }
 }

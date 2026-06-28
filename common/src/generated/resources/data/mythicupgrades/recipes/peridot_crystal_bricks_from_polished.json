@@ -12,7 +12,7 @@
   ],
   "result": {
     "count": 4,
-    "item": "mythicupgrades:peridot_crystal_bricks"
+    "id": "mythicupgrades:peridot_crystal_bricks"
   },
   "show_notification": true
 }

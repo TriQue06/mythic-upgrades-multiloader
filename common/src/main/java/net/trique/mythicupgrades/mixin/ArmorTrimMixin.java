@@ -24,7 +24,7 @@ public class ArmorTrimMixin {
     private static void mu_injectDarkerTrimForModdedArmor(Holder<TrimMaterial> trimMaterialHolder, Holder<ArmorMaterial> armorMaterialHolder, CallbackInfoReturnable<String> cir) {
         ArmorMaterial armorMaterial = armorMaterialHolder.value();
         if (armorMaterial.layers().isEmpty()) return;
-        ResourceLocation tex = armorMaterial.layers().get(0).texture(true);
+        ResourceLocation tex = armorMaterial.layers().get(0).texture(false);
         if (!tex.getNamespace().equals(Constants.MOD_ID)) return;
 
         String trimAssetName = trimMaterialHolder.value().assetName();

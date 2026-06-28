@@ -1,8 +1,9 @@
 {
   "type": "minecraft:stonecutting",
-  "count": 1,
   "ingredient": {
     "item": "mythicupgrades:polished_jade_crystal_block"
   },
-  "result": "mythicupgrades:jade_crystal_bricks"
+  "result": {
+    "id": "mythicupgrades:jade_crystal_bricks"
+  }
 }

@@ -12,7 +12,7 @@
     "###"
   ],
   "result": {
-    "item": "mythicupgrades:sapphire_block"
+    "id": "mythicupgrades:sapphire_block"
   },
   "show_notification": true
 }

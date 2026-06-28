@@ -12,7 +12,7 @@
   ],
   "result": {
     "count": 4,
-    "item": "mythicupgrades:polished_ruby_stone"
+    "id": "mythicupgrades:polished_ruby_stone"
   },
   "show_notification": true
 }

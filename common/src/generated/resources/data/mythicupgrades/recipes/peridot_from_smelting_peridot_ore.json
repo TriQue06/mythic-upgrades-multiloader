@@ -6,5 +6,7 @@
   "ingredient": {
     "item": "mythicupgrades:peridot_ore"
   },
-  "result": "mythicupgrades:peridot"
+  "result": {
+    "id": "mythicupgrades:peridot"
+  }
 }

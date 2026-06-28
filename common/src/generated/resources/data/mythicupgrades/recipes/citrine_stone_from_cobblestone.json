@@ -15,7 +15,7 @@
   ],
   "result": {
     "count": 4,
-    "item": "mythicupgrades:citrine_stone"
+    "id": "mythicupgrades:citrine_stone"
   },
   "show_notification": true
 }

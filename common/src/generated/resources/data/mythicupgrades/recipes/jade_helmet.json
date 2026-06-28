@@ -11,7 +11,7 @@
     "G G"
   ],
   "result": {
-    "item": "mythicupgrades:jade_helmet"
+    "id": "mythicupgrades:jade_helmet"
   },
   "show_notification": true
 }

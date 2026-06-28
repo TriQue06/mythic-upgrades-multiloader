@@ -15,7 +15,7 @@
   ],
   "result": {
     "count": 4,
-    "item": "mythicupgrades:jade_stone"
+    "id": "mythicupgrades:jade_stone"
   },
   "show_notification": true
 }

@@ -1,8 +1,10 @@
 {
   "type": "minecraft:stonecutting",
-  "count": 2,
   "ingredient": {
     "item": "mythicupgrades:polished_jade_crystal_block"
   },
-  "result": "mythicupgrades:polished_jade_crystal_block_slab"
+  "result": {
+    "id": "mythicupgrades:polished_jade_crystal_block_slab",
+    "count": 2
+  }
 }

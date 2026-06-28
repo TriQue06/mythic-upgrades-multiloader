@@ -12,7 +12,7 @@
     "###"
   ],
   "result": {
-    "item": "mythicupgrades:jade_block"
+    "id": "mythicupgrades:jade_block"
   },
   "show_notification": true
 }

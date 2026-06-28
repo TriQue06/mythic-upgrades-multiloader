@@ -12,7 +12,7 @@
     "GGG"
   ],
   "result": {
-    "item": "mythicupgrades:ruby_chestplate"
+    "id": "mythicupgrades:ruby_chestplate"
   },
   "show_notification": true
 }

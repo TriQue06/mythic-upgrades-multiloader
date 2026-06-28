@@ -6,5 +6,7 @@
   "ingredient": {
     "item": "mythicupgrades:deepslate_citrine_ore"
   },
-  "result": "mythicupgrades:citrine"
+  "result": {
+    "id": "mythicupgrades:citrine"
+  }
 }

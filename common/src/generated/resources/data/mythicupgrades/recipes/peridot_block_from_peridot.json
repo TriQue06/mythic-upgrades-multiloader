@@ -12,7 +12,7 @@
     "###"
   ],
   "result": {
-    "item": "mythicupgrades:peridot_block"
+    "id": "mythicupgrades:peridot_block"
   },
   "show_notification": true
 }

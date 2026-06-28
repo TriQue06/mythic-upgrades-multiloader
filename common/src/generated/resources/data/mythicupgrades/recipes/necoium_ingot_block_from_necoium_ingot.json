@@ -12,7 +12,7 @@
     "###"
   ],
   "result": {
-    "item": "mythicupgrades:necoium_block"
+    "id": "mythicupgrades:necoium_block"
   },
   "show_notification": true
 }

@@ -1,8 +1,9 @@
 {
   "type": "minecraft:stonecutting",
-  "count": 1,
   "ingredient": {
     "item": "mythicupgrades:ruby_crystal_block"
   },
-  "result": "mythicupgrades:ruby_crystal_bricks"
+  "result": {
+    "id": "mythicupgrades:ruby_crystal_bricks"
+  }
 }

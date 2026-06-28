@@ -1,8 +1,9 @@
 {
   "type": "minecraft:stonecutting",
-  "count": 1,
   "ingredient": {
     "item": "mythicupgrades:aquamarine_crystal_block"
   },
-  "result": "mythicupgrades:polished_aquamarine_crystal_block"
+  "result": {
+    "id": "mythicupgrades:polished_aquamarine_crystal_block"
+  }
 }

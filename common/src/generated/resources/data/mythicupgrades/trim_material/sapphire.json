@@ -6,9 +6,5 @@
   },
   "ingredient": "mythicupgrades:sapphire_crystal_shard",
   "item_model_index": 1.7,
-  "override_armor_materials": {
-    "mythicupgrades:sapphire": {
-      "asset_name": "sapphire_darker"
-    }
-  }
+  "override_armor_materials": {}
 }

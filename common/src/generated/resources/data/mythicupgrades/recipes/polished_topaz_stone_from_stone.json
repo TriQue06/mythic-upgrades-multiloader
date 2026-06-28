@@ -12,7 +12,7 @@
   ],
   "result": {
     "count": 4,
-    "item": "mythicupgrades:polished_topaz_stone"
+    "id": "mythicupgrades:polished_topaz_stone"
   },
   "show_notification": true
 }
