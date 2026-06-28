@@ -1,0 +1,56 @@
+{
+    "schema_version": 1,
+    "quilt_loader": {
+        "group": "net.trique",
+        "id": "mythicupgrades",
+        "version": "${version}",
+        "metadata": {
+            "name": "${mod_name}",
+            "description": "${description}",
+            "authors": [
+                "${mod_author}"
+            ],
+            "contact": {
+                "homepage": "https://fabricmc.net/",
+                "sources": "https://github.com/FabricMC/fabric-example-mod"
+            },
+            "license": "${license}",
+            "icon": "assets/modid/${mod_id}.png"
+        },
+        "intermediate_mappings": "net.fabricmc:intermediary",
+        "entrypoints": {
+            "init": [
+                "net.trique.mythicupgrades.MythicUpgrades"
+            ],
+            "client_init": [
+                "net.trique.mythicupgrades.FabricClientSetup"
+            ],
+            "terrablender": [
+                "net.trique.mythicupgrades.FabricTerraBlenderAddon"
+            ]
+        },
+        "depends": [
+            {
+                "id": "quilt_loader",
+                "versions": ">=0.26"
+            },
+            {
+                "id": "quilted_fabric_api",
+                "versions": "*"
+            },
+            {
+                "id": "minecraft",
+                "versions": "${minecraft_version_range}"
+            },
+            {
+                "id": "java",
+                "versions": ">=21"
+            }
+        ]
+    },
+    "mixin": [
+        "${mod_id}.mixins.json",
+        "${mod_id}.fabric.mixins.json"
+    ],
+    "access_widener": "${mod_id}.accesswidener"
+}
