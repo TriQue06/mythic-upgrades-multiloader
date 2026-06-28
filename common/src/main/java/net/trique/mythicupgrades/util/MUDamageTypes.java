@@ -23,9 +23,6 @@ public class MUDamageTypes {
     public static final ResourceKey<DamageType> PERIDOT_INCUBATION = ResourceKey.create(
         Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "peridot_incubation_damage_type"));
 
-    public static final ResourceKey<DamageType> ICE_SHIELD_MARK_BURST = ResourceKey.create(
-        Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "ice_shield_mark_burst_damage_type"));
-
     public static final ResourceKey<DamageType> ICE_SHIELD_REFLECT = ResourceKey.create(
         Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "ice_shield_reflect_damage_type"));
 
@@ -52,10 +49,6 @@ public class MUDamageTypes {
 
     public static DamageSource peridotIncubation(LivingEntity source) {
         return build(PERIDOT_INCUBATION, source);
-    }
-
-    public static DamageSource iceShieldMarkBurst(LivingEntity source) {
-        return build(ICE_SHIELD_MARK_BURST, source);
     }
 
     public static DamageSource iceShieldReflect(LivingEntity source) {

@@ -152,6 +152,23 @@ public class MythicUpgrades {
             // Necoium → Necoium Share
             builder.addMix(Potions.AWKWARD,                                             MythicItems.NECOIUM_INGOT,            BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.NECOIUM_SHARE));
             builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.NECOIUM_SHARE),       Items.REDSTONE,          BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.NECOIUM_SHARE_LONG));
+
+            // Negative potions (fermented spider eye)
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.ICE_SHIELD),        Items.FERMENTED_SPIDER_EYE, BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.ICE_BOMB));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.ICE_BOMB),          Items.REDSTONE,             BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.ICE_BOMB_LONG));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.ICE_BOMB),          Items.GLOWSTONE_DUST,       BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.ICE_BOMB_STRONG));
+
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.ICE_BOMB),          Items.FERMENTED_SPIDER_EYE, BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.FREEZE));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.FREEZE),            Items.REDSTONE,             BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.FREEZE_LONG));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.FREEZE),            Items.GLOWSTONE_DUST,       BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.FREEZE_STRONG));
+
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.STATIC_FIELD),      Items.FERMENTED_SPIDER_EYE, BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.CHARGED));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.CHARGED),           Items.REDSTONE,             BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.CHARGED_LONG));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.CHARGED),           Items.GLOWSTONE_DUST,       BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.CHARGED_STRONG));
+
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.MIASMA),            Items.FERMENTED_SPIDER_EYE, BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.LETHAL_INCUBATION));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.LETHAL_INCUBATION), Items.REDSTONE,             BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.LETHAL_INCUBATION_LONG));
+            builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.LETHAL_INCUBATION), Items.GLOWSTONE_DUST,       BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.LETHAL_INCUBATION_STRONG));
         }
 
         @SubscribeEvent

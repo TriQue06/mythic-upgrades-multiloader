@@ -11,7 +11,6 @@ import net.trique.mythicupgrades.effect.StaticFieldEffect;
 import net.trique.mythicupgrades.effect.FreezeEffect;
 import net.trique.mythicupgrades.effect.DamageDeflectionEffect;
 import net.trique.mythicupgrades.effect.IceShieldEffect;
-import net.trique.mythicupgrades.effect.IceShieldMarkEffect;
 import net.trique.mythicupgrades.effect.LethalIncubationEffect;
 import net.trique.mythicupgrades.effect.MiasmaEffect;
 import net.trique.mythicupgrades.effect.IceBombEffect;
@@ -40,7 +39,6 @@ public class MythicEffects {
     public static Holder<MobEffect> BLOOD_THIRST = defer("blood_thirst", new BloodThirstEffect());
     public static Holder<MobEffect> LETHAL_INCUBATION = defer("lethal_incubation", new LethalIncubationEffect());
     public static Holder<MobEffect> MIASMA = defer("miasma", new MiasmaEffect());
-    public static Holder<MobEffect> ICE_SHIELD_MARK = defer("ice_shield_mark", new IceShieldMarkEffect());
     public static Holder<MobEffect> ICE_SHIELD = defer("ice_shield", new IceShieldEffect());
     public static Holder<MobEffect> ICE_BOMB = defer("ice_bomb", new IceBombEffect());
     public static Holder<MobEffect> CHARGED = defer("charged", new ChargedEffect());
@@ -59,7 +57,6 @@ public class MythicEffects {
         BLOOD_THIRST       = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(BLOOD_THIRST.value());
         LETHAL_INCUBATION  = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(LETHAL_INCUBATION.value());
         MIASMA             = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(MIASMA.value());
-        ICE_SHIELD_MARK    = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(ICE_SHIELD_MARK.value());
         ICE_SHIELD         = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(ICE_SHIELD.value());
         ICE_BOMB           = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(ICE_BOMB.value());
         CHARGED            = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(CHARGED.value());

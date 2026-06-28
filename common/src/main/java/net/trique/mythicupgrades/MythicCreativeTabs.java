@@ -32,6 +32,7 @@ public class MythicCreativeTabs {
             output.accept(potion(Items.POTION, p));
             output.accept(potion(Items.SPLASH_POTION, p));
             output.accept(potion(Items.LINGERING_POTION, p));
+            output.accept(potion(Items.TIPPED_ARROW, p));
         }
     }
 
@@ -79,6 +80,11 @@ public class MythicCreativeTabs {
                     addPotionGroup(output, MythicPotions.JADE_AURA,         MythicPotions.JADE_AURA_LONG,         MythicPotions.JADE_AURA_STRONG);
                     addPotionGroup(output, MythicPotions.ARCANE_AURA,       MythicPotions.ARCANE_AURA_LONG,       MythicPotions.ARCANE_AURA_STRONG);
                     addPotionGroup(output, MythicPotions.NECOIUM_SHARE,     MythicPotions.NECOIUM_SHARE_LONG,     null);
+                    // Negative potions
+                    addPotionGroup(output, MythicPotions.ICE_BOMB,          MythicPotions.ICE_BOMB_LONG,          MythicPotions.ICE_BOMB_STRONG);
+                    addPotionGroup(output, MythicPotions.FREEZE,            MythicPotions.FREEZE_LONG,            MythicPotions.FREEZE_STRONG);
+                    addPotionGroup(output, MythicPotions.CHARGED,           MythicPotions.CHARGED_LONG,           MythicPotions.CHARGED_STRONG);
+                    addPotionGroup(output, MythicPotions.LETHAL_INCUBATION, MythicPotions.LETHAL_INCUBATION_LONG, MythicPotions.LETHAL_INCUBATION_STRONG);
                 })
                 .build()
         );
