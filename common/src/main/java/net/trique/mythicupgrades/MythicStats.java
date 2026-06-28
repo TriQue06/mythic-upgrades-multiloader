@@ -31,8 +31,8 @@ public class MythicStats {
     public static int TOPAZ_LEGGINGS_LEVELS = 3;
     public static int TOPAZ_BOOTS_LEVELS = 2;
 
-    public static float TOPAZ_SHOCK_DAMAGE_PER_LEVEL = 0.5f;
-    public static float TOPAZ_SHOCK_KNOCKBACK_PER_LEVEL = 0.5f;
+    public static float TOPAZ_SHOCK_DAMAGE_PER_LEVEL = 0.25f;
+    public static float TOPAZ_SHOCK_KNOCKBACK_PER_LEVEL = 0.25f;
     public static float TOPAZ_FALL_REDUCTION_PER_LEVEL = 0.05f;
     public static float TOPAZ_FALL_MAX_REDUCTION = 0.50f;
     public static float TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL = 1.0f;
@@ -64,7 +64,7 @@ public class MythicStats {
     public static int LETHAL_INCUBATION_TOOL_LEVEL = 3;
     public static int LETHAL_INCUBATION_DURATION_TICKS_PER_LEVEL = 20;
     public static int LETHAL_INCUBATION_POISON_DURATION_TICKS_PER_LEVEL = 20;
-    public static float LETHAL_INCUBATION_SHOCK_DAMAGE = 4.0f;
+    public static float LETHAL_INCUBATION_SHOCK_DAMAGE = 3.0f;
     public static float LETHAL_INCUBATION_SHOCK_RADIUS = 5.0f;
 
     public static float MIASMA_CLOUD_RADIUS_PER_LEVEL = 1.0f;
@@ -75,7 +75,7 @@ public class MythicStats {
     public static int MIASMA_INTERVAL_TICKS = 200;
 
     public static int AQUAMARINE_HELMET_LEVELS = 2;
-    public static int AQUAMARINE_CHESTPLATE_LEVELS = 4;
+    public static int AQUAMARINE_CHESTPLATE_LEVELS = 3;
     public static int AQUAMARINE_LEGGINGS_LEVELS = 3;
     public static int AQUAMARINE_BOOTS_LEVELS = 2;
 
@@ -83,10 +83,6 @@ public class MythicStats {
     public static int AQUAMARINE_TOOL_SLOWNESS_DURATION_TICKS = 60;
     public static int AQUAMARINE_TOOL_SLOWNESS_AMPLIFIER = 0;
 
-    public static int ICE_SHIELD_MARK_DURATION_TICKS = 60;
-    public static float ICE_SHIELD_MARK_BURST_RADIUS = 3.0f;
-    public static float ICE_SHIELD_MARK_BURST_DAMAGE = 3.0f;
-    public static int ICE_SHIELD_MARK_BURST_FREEZE_TICKS = 6;
     public static int ICE_SHIELD_FREEZE_TICKS_PER_LEVEL = 6;
     public static int ICE_SHIELD_FREEZE_MIN_TICKS = 6;
     public static int ICE_SHIELD_FREEZE_MAX_TICKS = 60;

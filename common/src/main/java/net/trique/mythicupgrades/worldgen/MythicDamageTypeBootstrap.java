@@ -14,7 +14,6 @@ public class MythicDamageTypeBootstrap {
     public static final ResourceKey<DamageType> PERCENTAGE            = key("percentage_damage_type");
     public static final ResourceKey<DamageType> TOPAZ_SHOCK           = key("topaz_shock_damage_type");
     public static final ResourceKey<DamageType> PERIDOT_INCUBATION    = key("peridot_incubation_damage_type");
-    public static final ResourceKey<DamageType> ICE_SHIELD_MARK_BURST = key("ice_shield_mark_burst_damage_type");
     public static final ResourceKey<DamageType> ICE_SHIELD_REFLECT    = key("ice_shield_reflect_damage_type");
     public static final ResourceKey<DamageType> CITRINE_CHAIN         = key("citrine_chain_damage_type");
     public static final ResourceKey<DamageType> STATIC_FIELD          = key("static_field_damage_type");
@@ -25,7 +24,6 @@ public class MythicDamageTypeBootstrap {
         ctx.register(PERCENTAGE,            new DamageType("percentage",          DamageScaling.NEVER, 0.0f));
         ctx.register(TOPAZ_SHOCK,           new DamageType("topaz_shock",        DamageScaling.NEVER, 0.0f));
         ctx.register(PERIDOT_INCUBATION,    new DamageType("peridot_incubation", DamageScaling.NEVER, 0.0f));
-        ctx.register(ICE_SHIELD_MARK_BURST, new DamageType("icy_aura_burst",     DamageScaling.NEVER, 0.0f));
         ctx.register(ICE_SHIELD_REFLECT,    new DamageType("ice_shield_reflect", DamageScaling.NEVER, 0.0f));
         ctx.register(CITRINE_CHAIN,         new DamageType("citrine_chain",      DamageScaling.NEVER, 0.0f));
         ctx.register(STATIC_FIELD,          new DamageType("static_field",       DamageScaling.NEVER, 0.0f));
