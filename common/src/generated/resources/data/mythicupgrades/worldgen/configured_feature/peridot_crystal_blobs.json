@@ -18,7 +18,7 @@
           "Name": "mythicupgrades:peridot_crystal_block"
         },
         "target": {
-          "block": "mythicupgrades:peridot_stone",
+          "block": "mythicupgrades:peridot_schist",
           "predicate_type": "minecraft:block_match"
         }
       },

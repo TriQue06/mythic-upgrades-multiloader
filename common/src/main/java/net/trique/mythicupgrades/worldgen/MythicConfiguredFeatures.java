@@ -35,6 +35,8 @@ public class MythicConfiguredFeatures {
             Registries.CONFIGURED_FEATURE, new ResourceLocation(Constants.MOD_ID, "necoium_ore"));
     public static final ResourceKey<ConfiguredFeature<?, ?>> DEEPSLATE_NECOIUM_ORE_CF = ResourceKey.create(
             Registries.CONFIGURED_FEATURE, new ResourceLocation(Constants.MOD_ID, "deepslate_necoium_ore"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> RAW_NECOIUM_BLOCK_IN_CAVES_CF = ResourceKey.create(
+            Registries.CONFIGURED_FEATURE, new ResourceLocation(Constants.MOD_ID, "raw_necoium_block_in_caves"));
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> ctx) {
         HolderGetter<Block> blocks = ctx.lookup(Registries.BLOCK);
@@ -150,6 +152,16 @@ public class MythicConfiguredFeatures {
             new OreConfiguration(List.of(
                 OreConfiguration.target(new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES), deepslateNecoiumOre.defaultBlockState())
             ), 5)
+        ));
+
+        ResourceKey<Block> rawNecoiumBlockKey = ResourceKey.create(Registries.BLOCK,
+                new ResourceLocation(Constants.MOD_ID, "raw_necoium_block"));
+        Block rawNecoiumBlock = blocks.getOrThrow(rawNecoiumBlockKey).value();
+        ctx.register(RAW_NECOIUM_BLOCK_IN_CAVES_CF, new ConfiguredFeature<>(Feature.ORE,
+            new OreConfiguration(List.of(
+                OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), rawNecoiumBlock.defaultBlockState()),
+                OreConfiguration.target(new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES), rawNecoiumBlock.defaultBlockState())
+            ), 4)
         ));
     }
 

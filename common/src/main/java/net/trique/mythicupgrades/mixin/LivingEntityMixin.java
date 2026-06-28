@@ -496,7 +496,7 @@ public abstract class LivingEntityMixin {
             }
 
             if (isRubyTool(weapon) && actualDamage > 0) {
-                directAttacker.heal(actualDamage * MythicStats.RUBY_TOOL_LIFESTEAL_FRACTION);
+                directAttacker.heal(actualDamage * MythicStats.RUBY_TOOL_LIFESTEAL_FRACTION + 1.0f);
                 if (self.level() instanceof ServerLevel serverLevel) {
                     emitLifestealParticles(serverLevel, self, directAttacker);
                 }

@@ -27,7 +27,7 @@
           "Name": "mythicupgrades:deepslate_citrine_ore"
         },
         "target": {
-          "block": "mythicupgrades:citrine_stone",
+          "block": "mythicupgrades:citrine_schist",
           "predicate_type": "minecraft:block_match"
         }
       }

@@ -3,7 +3,7 @@
   "category": "building",
   "key": {
     "B": {
-      "item": "mythicupgrades:aquamarine_stone"
+      "item": "mythicupgrades:aquamarine_schist"
     }
   },
   "pattern": [
@@ -12,7 +12,7 @@
   ],
   "result": {
     "count": 4,
-    "item": "mythicupgrades:polished_aquamarine_stone"
+    "item": "mythicupgrades:polished_aquamarine_schist"
   },
   "show_notification": true
 }

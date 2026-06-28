@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "mythicupgrades:block/topaz_crystal_bricks"
+  }
+}

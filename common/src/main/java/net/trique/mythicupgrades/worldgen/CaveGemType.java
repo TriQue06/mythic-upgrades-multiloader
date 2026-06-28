@@ -29,7 +29,7 @@ public enum CaveGemType {
         this.waterColor    = waterColor;
     }
 
-    public ResourceKey<Block> stoneBlock()      { return block(id + "_stone"); }
+    public ResourceKey<Block> stoneBlock()      { return block(id + "_schist"); }
     public ResourceKey<Block> crystalBlock()   { return block(id + "_crystal_block"); }
     public ResourceKey<Block> buddingCrystal() { return block("budding_" + id + "_crystal"); }
     public ResourceKey<Block> oreBlock()       { return block(id + "_ore"); }

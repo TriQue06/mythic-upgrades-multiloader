@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "mythicupgrades:block/polished_jade_stone",
-    "side": "mythicupgrades:block/polished_jade_stone",
-    "top": "mythicupgrades:block/polished_jade_stone"
-  }
-}

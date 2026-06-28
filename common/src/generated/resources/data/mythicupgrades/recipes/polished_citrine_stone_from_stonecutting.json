@@ -2,7 +2,7 @@
   "type": "minecraft:stonecutting",
   "count": 1,
   "ingredient": {
-    "item": "mythicupgrades:citrine_stone"
+    "item": "mythicupgrades:citrine_schist"
   },
-  "result": "mythicupgrades:polished_citrine_stone"
+  "result": "mythicupgrades:polished_citrine_schist"
 }

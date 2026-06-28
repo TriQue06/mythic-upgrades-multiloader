@@ -6,14 +6,14 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.function.Supplier;
 
 public enum MythicToolMaterials implements Tier {
-    AQUAMARINE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.AQUAMARINE)),
-    CITRINE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.CITRINE)),
-    TOPAZ(4, 4062, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.TOPAZ)),
-    PERIDOT(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.PERIDOT)),
-    RUBY(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.RUBY)),
-    SAPPHIRE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.SAPPHIRE)),
-    JADE(4, 2031, 14.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.JADE)),
-    AMETRINE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.AMETRINE));
+    AQUAMARINE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.AQUAMARINE_INGOT)),
+    CITRINE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.CITRINE_INGOT)),
+    TOPAZ(4, 4062, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.TOPAZ_INGOT)),
+    PERIDOT(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.PERIDOT_INGOT)),
+    RUBY(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.RUBY_INGOT)),
+    SAPPHIRE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.SAPPHIRE_INGOT)),
+    JADE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.JADE_INGOT)),
+    AMETRINE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.AMETRINE_INGOT));
 
     private final int level;
     private final int uses;

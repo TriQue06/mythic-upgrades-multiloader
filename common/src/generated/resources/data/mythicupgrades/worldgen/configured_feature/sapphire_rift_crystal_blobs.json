@@ -18,7 +18,7 @@
           "Name": "mythicupgrades:sapphire_crystal_block"
         },
         "target": {
-          "block": "mythicupgrades:sapphire_stone",
+          "block": "mythicupgrades:sapphire_schist",
           "predicate_type": "minecraft:block_match"
         }
       }

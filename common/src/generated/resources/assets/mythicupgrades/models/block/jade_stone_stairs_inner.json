@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "mythicupgrades:block/jade_stone",
-    "side": "mythicupgrades:block/jade_stone",
-    "top": "mythicupgrades:block/jade_stone"
-  }
-}

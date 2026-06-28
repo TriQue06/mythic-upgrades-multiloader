@@ -27,7 +27,7 @@
           "Name": "mythicupgrades:deepslate_topaz_ore"
         },
         "target": {
-          "block": "mythicupgrades:topaz_stone",
+          "block": "mythicupgrades:topaz_schist",
           "predicate_type": "minecraft:block_match"
         }
       }

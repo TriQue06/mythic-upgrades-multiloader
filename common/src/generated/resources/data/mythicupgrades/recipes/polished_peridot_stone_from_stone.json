@@ -3,7 +3,7 @@
   "category": "building",
   "key": {
     "B": {
-      "item": "mythicupgrades:peridot_stone"
+      "item": "mythicupgrades:peridot_schist"
     }
   },
   "pattern": [
@@ -12,7 +12,7 @@
   ],
   "result": {
     "count": 4,
-    "item": "mythicupgrades:polished_peridot_stone"
+    "item": "mythicupgrades:polished_peridot_schist"
   },
   "show_notification": true
 }

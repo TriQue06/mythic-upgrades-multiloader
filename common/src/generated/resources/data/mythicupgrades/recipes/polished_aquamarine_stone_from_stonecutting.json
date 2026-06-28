@@ -2,7 +2,7 @@
   "type": "minecraft:stonecutting",
   "count": 1,
   "ingredient": {
-    "item": "mythicupgrades:aquamarine_stone"
+    "item": "mythicupgrades:aquamarine_schist"
   },
-  "result": "mythicupgrades:polished_aquamarine_stone"
+  "result": "mythicupgrades:polished_aquamarine_schist"
 }

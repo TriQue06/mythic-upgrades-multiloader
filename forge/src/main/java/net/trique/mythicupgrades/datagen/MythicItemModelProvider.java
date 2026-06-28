@@ -38,7 +38,6 @@ public class MythicItemModelProvider extends ItemModelProvider {
         generated(gem, modLoc("item/" + gem));
         generated(gem + "_ingot", modLoc("item/" + gem + "_ingot"));
         generated(gem + "_crystal_shard", modLoc("item/" + gem + "_crystal_shard"));
-        generated(gem + "_potion", modLoc("item/" + gem + "_potion"));
         generated(gem + "_upgrade_smithing_template", modLoc("item/mythic_upgrade_smithing_template"));
         for (String tool : TOOLS) {
             handheld(gem + "_" + tool, modLoc("item/" + gem + "_" + tool));
@@ -65,14 +64,16 @@ public class MythicItemModelProvider extends ItemModelProvider {
         blockItem(gem + "_crystal_bricks");
         blockItem(gem + "_crystal_bricks_slab");
         blockItem(gem + "_crystal_bricks_stairs");
+        wallItem(gem + "_crystal_bricks_wall", gem + "_crystal_bricks");
         blockItem(gem + "_crystal_pillar");
         blockItem("cut_" + gem + "_crystal_pillar");
-        blockItem(gem + "_stone");
-        blockItem(gem + "_stone_slab");
-        blockItem(gem + "_stone_stairs");
-        blockItem("polished_" + gem + "_stone");
-        blockItem("polished_" + gem + "_stone_slab");
-        blockItem("polished_" + gem + "_stone_stairs");
+        blockItem(gem + "_schist");
+        blockItem(gem + "_schist_slab");
+        blockItem(gem + "_schist_stairs");
+        wallItem(gem + "_schist_wall", gem + "_schist");
+        blockItem("polished_" + gem + "_schist");
+        blockItem("polished_" + gem + "_schist_slab");
+        blockItem("polished_" + gem + "_schist_stairs");
     }
 
     private void generated(String name, ResourceLocation texture) {
@@ -86,6 +87,11 @@ public class MythicItemModelProvider extends ItemModelProvider {
     private void blockItem(String name) {
         getBuilder(name).parent(new ModelFile.UncheckedModelFile(
             new ResourceLocation(Constants.MOD_ID, "block/" + name)));
+    }
+
+    private void wallItem(String name, String texture) {
+        withExistingParent(name, mcLoc("block/wall_inventory"))
+            .texture("wall", modLoc("block/" + texture));
     }
 
     private void clusterItem(String name) {

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 2,
-  "ingredient": {
-    "item": "mythicupgrades:polished_ametrine_stone"
-  },
-  "result": "mythicupgrades:polished_ametrine_stone_slab"
-}

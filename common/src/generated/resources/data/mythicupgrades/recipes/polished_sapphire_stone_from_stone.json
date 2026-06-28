@@ -3,7 +3,7 @@
   "category": "building",
   "key": {
     "B": {
-      "item": "mythicupgrades:sapphire_stone"
+      "item": "mythicupgrades:sapphire_schist"
     }
   },
   "pattern": [
@@ -12,7 +12,7 @@
   ],
   "result": {
     "count": 4,
-    "item": "mythicupgrades:polished_sapphire_stone"
+    "item": "mythicupgrades:polished_sapphire_schist"
   },
   "show_notification": true
 }

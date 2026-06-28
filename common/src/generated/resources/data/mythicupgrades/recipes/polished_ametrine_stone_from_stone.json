@@ -3,7 +3,7 @@
   "category": "building",
   "key": {
     "B": {
-      "item": "mythicupgrades:ametrine_stone"
+      "item": "mythicupgrades:ametrine_schist"
     }
   },
   "pattern": [
@@ -12,7 +12,7 @@
   ],
   "result": {
     "count": 4,
-    "item": "mythicupgrades:polished_ametrine_stone"
+    "item": "mythicupgrades:polished_ametrine_schist"
   },
   "show_notification": true
 }

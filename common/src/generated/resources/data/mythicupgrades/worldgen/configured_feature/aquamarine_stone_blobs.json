@@ -6,7 +6,7 @@
     "targets": [
       {
         "state": {
-          "Name": "mythicupgrades:aquamarine_stone"
+          "Name": "mythicupgrades:aquamarine_schist"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -15,7 +15,7 @@
       },
       {
         "state": {
-          "Name": "mythicupgrades:aquamarine_stone"
+          "Name": "mythicupgrades:aquamarine_schist"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

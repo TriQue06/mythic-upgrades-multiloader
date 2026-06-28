@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -57,6 +58,7 @@ public class MythicBlockStateProvider extends BlockStateProvider {
         slabAndStairs(gem + "_crystal_block", modLoc("block/" + gem + "_crystal_block"));
         slabAndStairs("polished_" + gem + "_crystal_block", modLoc("block/polished_" + gem + "_crystal_block"));
         slabAndStairs(gem + "_crystal_bricks", modLoc("block/" + gem + "_crystal_bricks"));
+        wallBlock((WallBlock) block(gem + "_crystal_bricks_wall"), modLoc("block/" + gem + "_crystal_bricks"));
 
         axisBlock((RotatedPillarBlock) block(gem + "_crystal_pillar"),
             modLoc("block/" + gem + "_crystal_pillar"),
@@ -65,10 +67,11 @@ public class MythicBlockStateProvider extends BlockStateProvider {
             modLoc("block/cut_" + gem + "_crystal_pillar"),
             modLoc("block/" + gem + "_crystal_pillar_top"));
 
-        simpleBlock(block(gem + "_stone"));
-        simpleBlock(block("polished_" + gem + "_stone"));
-        slabAndStairs(gem + "_stone", modLoc("block/" + gem + "_stone"));
-        slabAndStairs("polished_" + gem + "_stone", modLoc("block/polished_" + gem + "_stone"));
+        simpleBlock(block(gem + "_schist"));
+        simpleBlock(block("polished_" + gem + "_schist"));
+        slabAndStairs(gem + "_schist", modLoc("block/" + gem + "_schist"));
+        slabAndStairs("polished_" + gem + "_schist", modLoc("block/polished_" + gem + "_schist"));
+        wallBlock((WallBlock) block(gem + "_schist_wall"), modLoc("block/" + gem + "_schist"));
     }
 
     private void slabAndStairs(String baseName, ResourceLocation texture) {

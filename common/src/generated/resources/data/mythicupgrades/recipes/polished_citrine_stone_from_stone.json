@@ -3,7 +3,7 @@
   "category": "building",
   "key": {
     "B": {
-      "item": "mythicupgrades:citrine_stone"
+      "item": "mythicupgrades:citrine_schist"
     }
   },
   "pattern": [
@@ -12,7 +12,7 @@
   ],
   "result": {
     "count": 4,
-    "item": "mythicupgrades:polished_citrine_stone"
+    "item": "mythicupgrades:polished_citrine_schist"
   },
   "show_notification": true
 }

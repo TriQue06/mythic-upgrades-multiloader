@@ -3,7 +3,7 @@
   "category": "building",
   "key": {
     "B": {
-      "item": "mythicupgrades:jade_stone"
+      "item": "mythicupgrades:jade_schist"
     }
   },
   "pattern": [
@@ -12,7 +12,7 @@
   ],
   "result": {
     "count": 4,
-    "item": "mythicupgrades:polished_jade_stone"
+    "item": "mythicupgrades:polished_jade_schist"
   },
   "show_notification": true
 }

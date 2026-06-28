@@ -6,7 +6,7 @@
     "targets": [
       {
         "state": {
-          "Name": "mythicupgrades:jade_stone"
+          "Name": "mythicupgrades:jade_schist"
         },
         "target": {
           "block": "minecraft:end_stone",

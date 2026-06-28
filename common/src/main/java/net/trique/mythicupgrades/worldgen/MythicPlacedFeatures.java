@@ -28,6 +28,8 @@ public class MythicPlacedFeatures {
             Registries.PLACED_FEATURE, new ResourceLocation(Constants.MOD_ID, "necoium_ore_extra"));
     public static final ResourceKey<PlacedFeature> DEEPSLATE_NECOIUM_ORE_EXTRA_PF = ResourceKey.create(
             Registries.PLACED_FEATURE, new ResourceLocation(Constants.MOD_ID, "deepslate_necoium_ore_extra"));
+    public static final ResourceKey<PlacedFeature> RAW_NECOIUM_BLOCK_CAVES_PF = ResourceKey.create(
+            Registries.PLACED_FEATURE, new ResourceLocation(Constants.MOD_ID, "raw_necoium_block_caves"));
 
     public static void bootstrap(BootstapContext<PlacedFeature> ctx) {
         HolderGetter<ConfiguredFeature<?, ?>> features = ctx.lookup(Registries.CONFIGURED_FEATURE);
@@ -103,29 +105,38 @@ public class MythicPlacedFeatures {
         var deepslateNecoiumCF = features.getOrThrow(MythicConfiguredFeatures.DEEPSLATE_NECOIUM_ORE_CF);
 
         ctx.register(NECOIUM_ORE_PF, new PlacedFeature(necoiumCF, List.of(
-            CountPlacement.of(10),
+            CountPlacement.of(4),
             InSquarePlacement.spread(),
             HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(16)),
             BiomeFilter.biome()
         )));
         ctx.register(DEEPSLATE_NECOIUM_ORE_PF, new PlacedFeature(deepslateNecoiumCF, List.of(
-            CountPlacement.of(10),
+            CountPlacement.of(4),
             InSquarePlacement.spread(),
             HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-16)),
             BiomeFilter.biome()
         )));
 
-        // Extra necoium ore for mythic cave biomes (added via MythicBiomeBootstrap)
+        // Extra necoium ore for mythic cave biomes — 2x normal rarity
         ctx.register(NECOIUM_ORE_EXTRA_PF, new PlacedFeature(necoiumCF, List.of(
-            CountPlacement.of(20),
+            CountPlacement.of(7),
             InSquarePlacement.spread(),
             HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(16)),
             BiomeFilter.biome()
         )));
         ctx.register(DEEPSLATE_NECOIUM_ORE_EXTRA_PF, new PlacedFeature(deepslateNecoiumCF, List.of(
-            CountPlacement.of(20),
+            CountPlacement.of(7),
             InSquarePlacement.spread(),
             HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-16)),
+            BiomeFilter.biome()
+        )));
+
+        // Raw necoium block blobs — only in mythic cave biomes, diamond rarity
+        var rawNecoiumBlockCF = features.getOrThrow(MythicConfiguredFeatures.RAW_NECOIUM_BLOCK_IN_CAVES_CF);
+        ctx.register(RAW_NECOIUM_BLOCK_CAVES_PF, new PlacedFeature(rawNecoiumBlockCF, List.of(
+            CountPlacement.of(4),
+            InSquarePlacement.spread(),
+            HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(16)),
             BiomeFilter.biome()
         )));
     }

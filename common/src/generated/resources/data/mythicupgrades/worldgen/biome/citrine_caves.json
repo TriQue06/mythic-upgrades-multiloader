@@ -5,7 +5,7 @@
   "effects": {
     "additions_sound": {
       "sound": "mythicupgrades:ambient.mythic_chime",
-      "tick_chance": 0.0222
+      "tick_chance": 0.0111
     },
     "fog_color": 12638463,
     "mood_sound": {
@@ -53,6 +53,7 @@
       "minecraft:underwater_magma",
       "mythicupgrades:necoium_ore_extra",
       "mythicupgrades:deepslate_necoium_ore_extra",
+      "mythicupgrades:raw_necoium_block_caves",
       "mythicupgrades:citrine_stone_blobs",
       "mythicupgrades:citrine_ore"
     ],

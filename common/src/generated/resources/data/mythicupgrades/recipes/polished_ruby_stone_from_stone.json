@@ -3,7 +3,7 @@
   "category": "building",
   "key": {
     "B": {
-      "item": "mythicupgrades:ruby_stone"
+      "item": "mythicupgrades:ruby_schist"
     }
   },
   "pattern": [
@@ -12,7 +12,7 @@
   ],
   "result": {
     "count": 4,
-    "item": "mythicupgrades:polished_ruby_stone"
+    "item": "mythicupgrades:polished_ruby_schist"
   },
   "show_notification": true
 }
