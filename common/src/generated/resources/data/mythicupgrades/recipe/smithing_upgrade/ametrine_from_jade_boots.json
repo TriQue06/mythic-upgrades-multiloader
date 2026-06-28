@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "mythicupgrades:ametrine_ingot"
+  },
+  "base": {
+    "item": "mythicupgrades:jade_boots"
+  },
+  "result": {
+    "count": 1,
+    "id": "mythicupgrades:ametrine_boots"
+  },
+  "template": {
+    "item": "mythicupgrades:mythic_upgrade_smithing_template"
+  }
+}

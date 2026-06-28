@@ -34,68 +34,40 @@ public class MythicRecipeProvider extends RecipeProvider {
         gemGroup(output, "aquamarine",
             MythicItems.AQUAMARINE, MythicItems.AQUAMARINE_INGOT, MythicItems.AQUAMARINE_CRYSTAL_SHARD,
             MythicBlocks.AQUAMARINE_ORE, MythicBlocks.DEEPSLATE_AQUAMARINE_ORE, MythicBlocks.AQUAMARINE_BLOCK,
-            MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK,
-            MythicItems.AQUAMARINE_SWORD, MythicItems.AQUAMARINE_PICKAXE, MythicItems.AQUAMARINE_AXE,
-            MythicItems.AQUAMARINE_SHOVEL, MythicItems.AQUAMARINE_HOE,
-            MythicItems.AQUAMARINE_HELMET, MythicItems.AQUAMARINE_CHESTPLATE, MythicItems.AQUAMARINE_LEGGINGS, MythicItems.AQUAMARINE_BOOTS,
-            true);
+            MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK, true);
 
         gemGroup(output, "citrine",
             MythicItems.CITRINE, MythicItems.CITRINE_INGOT, MythicItems.CITRINE_CRYSTAL_SHARD,
             MythicBlocks.CITRINE_ORE, MythicBlocks.DEEPSLATE_CITRINE_ORE, MythicBlocks.CITRINE_BLOCK,
-            MythicBlocks.CITRINE_CRYSTAL_BLOCK,
-            MythicItems.CITRINE_SWORD, MythicItems.CITRINE_PICKAXE, MythicItems.CITRINE_AXE,
-            MythicItems.CITRINE_SHOVEL, MythicItems.CITRINE_HOE,
-            MythicItems.CITRINE_HELMET, MythicItems.CITRINE_CHESTPLATE, MythicItems.CITRINE_LEGGINGS, MythicItems.CITRINE_BOOTS,
-            true);
+            MythicBlocks.CITRINE_CRYSTAL_BLOCK, true);
 
         gemGroup(output, "topaz",
             MythicItems.TOPAZ, MythicItems.TOPAZ_INGOT, MythicItems.TOPAZ_CRYSTAL_SHARD,
             MythicBlocks.TOPAZ_ORE, MythicBlocks.DEEPSLATE_TOPAZ_ORE, MythicBlocks.TOPAZ_BLOCK,
-            MythicBlocks.TOPAZ_CRYSTAL_BLOCK,
-            MythicItems.TOPAZ_SWORD, MythicItems.TOPAZ_PICKAXE, MythicItems.TOPAZ_AXE,
-            MythicItems.TOPAZ_SHOVEL, MythicItems.TOPAZ_HOE,
-            MythicItems.TOPAZ_HELMET, MythicItems.TOPAZ_CHESTPLATE, MythicItems.TOPAZ_LEGGINGS, MythicItems.TOPAZ_BOOTS,
-            true);
+            MythicBlocks.TOPAZ_CRYSTAL_BLOCK, true);
 
         gemGroup(output, "peridot",
             MythicItems.PERIDOT, MythicItems.PERIDOT_INGOT, MythicItems.PERIDOT_CRYSTAL_SHARD,
             MythicBlocks.PERIDOT_ORE, MythicBlocks.DEEPSLATE_PERIDOT_ORE, MythicBlocks.PERIDOT_BLOCK,
-            MythicBlocks.PERIDOT_CRYSTAL_BLOCK,
-            MythicItems.PERIDOT_SWORD, MythicItems.PERIDOT_PICKAXE, MythicItems.PERIDOT_AXE,
-            MythicItems.PERIDOT_SHOVEL, MythicItems.PERIDOT_HOE,
-            MythicItems.PERIDOT_HELMET, MythicItems.PERIDOT_CHESTPLATE, MythicItems.PERIDOT_LEGGINGS, MythicItems.PERIDOT_BOOTS,
-            true);
+            MythicBlocks.PERIDOT_CRYSTAL_BLOCK, true);
 
         // Nether gems (no deepslate ore)
         gemGroupNether(output, "ruby",
             MythicItems.RUBY, MythicItems.RUBY_INGOT, MythicItems.RUBY_CRYSTAL_SHARD,
-            MythicBlocks.RUBY_ORE, MythicBlocks.RUBY_BLOCK, MythicBlocks.RUBY_CRYSTAL_BLOCK,
-            MythicItems.RUBY_SWORD, MythicItems.RUBY_PICKAXE, MythicItems.RUBY_AXE,
-            MythicItems.RUBY_SHOVEL, MythicItems.RUBY_HOE,
-            MythicItems.RUBY_HELMET, MythicItems.RUBY_CHESTPLATE, MythicItems.RUBY_LEGGINGS, MythicItems.RUBY_BOOTS);
+            MythicBlocks.RUBY_ORE, MythicBlocks.RUBY_BLOCK, MythicBlocks.RUBY_CRYSTAL_BLOCK);
 
         gemGroupNether(output, "sapphire",
             MythicItems.SAPPHIRE, MythicItems.SAPPHIRE_INGOT, MythicItems.SAPPHIRE_CRYSTAL_SHARD,
-            MythicBlocks.SAPPHIRE_ORE, MythicBlocks.SAPPHIRE_BLOCK, MythicBlocks.SAPPHIRE_CRYSTAL_BLOCK,
-            MythicItems.SAPPHIRE_SWORD, MythicItems.SAPPHIRE_PICKAXE, MythicItems.SAPPHIRE_AXE,
-            MythicItems.SAPPHIRE_SHOVEL, MythicItems.SAPPHIRE_HOE,
-            MythicItems.SAPPHIRE_HELMET, MythicItems.SAPPHIRE_CHESTPLATE, MythicItems.SAPPHIRE_LEGGINGS, MythicItems.SAPPHIRE_BOOTS);
+            MythicBlocks.SAPPHIRE_ORE, MythicBlocks.SAPPHIRE_BLOCK, MythicBlocks.SAPPHIRE_CRYSTAL_BLOCK);
 
         // End gems (no deepslate ore)
         gemGroupNether(output, "jade",
             MythicItems.JADE, MythicItems.JADE_INGOT, MythicItems.JADE_CRYSTAL_SHARD,
-            MythicBlocks.JADE_ORE, MythicBlocks.JADE_BLOCK, MythicBlocks.JADE_CRYSTAL_BLOCK,
-            MythicItems.JADE_SWORD, MythicItems.JADE_PICKAXE, MythicItems.JADE_AXE,
-            MythicItems.JADE_SHOVEL, MythicItems.JADE_HOE,
-            MythicItems.JADE_HELMET, MythicItems.JADE_CHESTPLATE, MythicItems.JADE_LEGGINGS, MythicItems.JADE_BOOTS);
+            MythicBlocks.JADE_ORE, MythicBlocks.JADE_BLOCK, MythicBlocks.JADE_CRYSTAL_BLOCK);
 
         gemGroupNether(output, "ametrine",
             MythicItems.AMETRINE, MythicItems.AMETRINE_INGOT, MythicItems.AMETRINE_CRYSTAL_SHARD,
-            MythicBlocks.AMETRINE_ORE, MythicBlocks.AMETRINE_BLOCK, MythicBlocks.AMETRINE_CRYSTAL_BLOCK,
-            MythicItems.AMETRINE_SWORD, MythicItems.AMETRINE_PICKAXE, MythicItems.AMETRINE_AXE,
-            MythicItems.AMETRINE_SHOVEL, MythicItems.AMETRINE_HOE,
-            MythicItems.AMETRINE_HELMET, MythicItems.AMETRINE_CHESTPLATE, MythicItems.AMETRINE_LEGGINGS, MythicItems.AMETRINE_BOOTS);
+            MythicBlocks.AMETRINE_ORE, MythicBlocks.AMETRINE_BLOCK, MythicBlocks.AMETRINE_CRYSTAL_BLOCK);
 
         // Crystal sub-blocks for each gem
         for (String gem : new String[]{"aquamarine","citrine","topaz","peridot","ruby","sapphire","jade","ametrine"}) {
@@ -209,28 +181,20 @@ public class MythicRecipeProvider extends RecipeProvider {
     private void gemGroup(RecipeOutput output, String gem,
                           Item gemItem, Item ingot, Item shard,
                           Block ore, Block deepslateOre, Block storageBlock, Block crystalBlock,
-                          Item sword, Item pickaxe, Item axe, Item shovel, Item hoe,
-                          Item helmet, Item chestplate, Item leggings, Item boots,
                           boolean hasCaveOres) {
         oreSmelting(output, List.of(ore, deepslateOre), RecipeCategory.MISC, gemItem, 0.7f, 200, gem);
         oreBlasting(output, List.of(ore, deepslateOre), RecipeCategory.MISC, gemItem, 0.7f, 100, gem);
         storageAndUnpack(output, gem, ingot, storageBlock);
         crystalBlockRecipes(output, gem, shard, crystalBlock);
-        tools(output, gem, gemItem, sword, pickaxe, axe, shovel, hoe);
-        armor(output, gem, gemItem, helmet, chestplate, leggings, boots);
     }
 
     private void gemGroupNether(RecipeOutput output, String gem,
                                 Item gemItem, Item ingot, Item shard,
-                                Block ore, Block storageBlock, Block crystalBlock,
-                                Item sword, Item pickaxe, Item axe, Item shovel, Item hoe,
-                                Item helmet, Item chestplate, Item leggings, Item boots) {
+                                Block ore, Block storageBlock, Block crystalBlock) {
         oreSmelting(output, List.of(ore), RecipeCategory.MISC, gemItem, 0.7f, 200, gem);
         oreBlasting(output, List.of(ore), RecipeCategory.MISC, gemItem, 0.7f, 100, gem);
         storageAndUnpack(output, gem, ingot, storageBlock);
         crystalBlockRecipes(output, gem, shard, crystalBlock);
-        tools(output, gem, gemItem, sword, pickaxe, axe, shovel, hoe);
-        armor(output, gem, gemItem, helmet, chestplate, leggings, boots);
     }
 
     private void storageAndUnpack(RecipeOutput output, String gem, Item ingotItem, Block storageBlock) {
@@ -255,59 +219,6 @@ public class MythicRecipeProvider extends RecipeProvider {
             .requires(crystalBlock)
             .unlockedBy("has_" + gem + "_crystal_block", has(crystalBlock))
             .save(output, rl(gem + "_crystal_shard_from_block"));
-    }
-
-    private void tools(RecipeOutput output, String gem, Item mat,
-                       Item sword, Item pickaxe, Item axe, Item shovel, Item hoe) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, sword)
-            .define('#', mat).define('S', Items.STICK)
-            .pattern("#").pattern("#").pattern("S")
-            .unlockedBy("has_" + gem, has(mat))
-            .save(output, rl(gem + "_sword"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, pickaxe)
-            .define('#', mat).define('S', Items.STICK)
-            .pattern("###").pattern(" S ").pattern(" S ")
-            .unlockedBy("has_" + gem, has(mat))
-            .save(output, rl(gem + "_pickaxe"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, axe)
-            .define('#', mat).define('S', Items.STICK)
-            .pattern("##").pattern("#S").pattern(" S")
-            .unlockedBy("has_" + gem, has(mat))
-            .save(output, rl(gem + "_axe"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, shovel)
-            .define('#', mat).define('S', Items.STICK)
-            .pattern("#").pattern("S").pattern("S")
-            .unlockedBy("has_" + gem, has(mat))
-            .save(output, rl(gem + "_shovel"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, hoe)
-            .define('#', mat).define('S', Items.STICK)
-            .pattern("##").pattern(" S").pattern(" S")
-            .unlockedBy("has_" + gem, has(mat))
-            .save(output, rl(gem + "_hoe"));
-    }
-
-    private void armor(RecipeOutput output, String gem, Item mat,
-                       Item helmet, Item chestplate, Item leggings, Item boots) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, helmet)
-            .define('#', mat)
-            .pattern("###").pattern("# #")
-            .unlockedBy("has_" + gem, has(mat))
-            .save(output, rl(gem + "_helmet"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, chestplate)
-            .define('#', mat)
-            .pattern("# #").pattern("###").pattern("###")
-            .unlockedBy("has_" + gem, has(mat))
-            .save(output, rl(gem + "_chestplate"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, leggings)
-            .define('#', mat)
-            .pattern("###").pattern("# #").pattern("# #")
-            .unlockedBy("has_" + gem, has(mat))
-            .save(output, rl(gem + "_leggings"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, boots)
-            .define('#', mat)
-            .pattern("# #").pattern("# #")
-            .unlockedBy("has_" + gem, has(mat))
-            .save(output, rl(gem + "_boots"));
     }
 
     private void crystalSubBlocks(RecipeOutput output, String gem) {

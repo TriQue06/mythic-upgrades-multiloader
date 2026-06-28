@@ -49,7 +49,7 @@ public class MythicArmorMaterials {
 
     public static final Holder<ArmorMaterial> AQUAMARINE = make("aquamarine", 37, new int[]{3, 6, 8, 3}, 15, 3.0F, 0.1F, Ingredient.of(MythicItems.AQUAMARINE_INGOT));
     public static final Holder<ArmorMaterial> CITRINE    = make("citrine",    37, new int[]{3, 6, 8, 3}, 15, 3.0F, 0.1F, Ingredient.of(MythicItems.CITRINE_INGOT));
-    public static final Holder<ArmorMaterial> TOPAZ      = make("topaz",      74, new int[]{3, 6, 8, 3}, 15, 3.0F, 0.1F, Ingredient.of(MythicItems.TOPAZ_INGOT));
+    public static final Holder<ArmorMaterial> TOPAZ      = make("topaz",      37, new int[]{3, 6, 8, 3}, 15, 3.0F, 0.1F, Ingredient.of(MythicItems.TOPAZ_INGOT));
     public static final Holder<ArmorMaterial> PERIDOT    = make("peridot",    37, new int[]{3, 6, 8, 3}, 15, 3.0F, 0.1F, Ingredient.of(MythicItems.PERIDOT_INGOT));
     public static final Holder<ArmorMaterial> RUBY       = make("ruby",       37, new int[]{3, 6, 8, 3}, 15, 3.0F, 0.1F, Ingredient.of(MythicItems.RUBY_INGOT));
     public static final Holder<ArmorMaterial> SAPPHIRE   = make("sapphire",   37, new int[]{3, 6, 8, 3}, 15, 3.0F, 0.1F, Ingredient.of(MythicItems.SAPPHIRE_INGOT));
