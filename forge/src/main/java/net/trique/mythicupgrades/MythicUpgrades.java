@@ -148,6 +148,23 @@ public class MythicUpgrades {
         addBrewMix(net.minecraft.world.item.alchemy.Potions.AWKWARD, MythicItems.NECOIUM_INGOT, MythicPotions.NECOIUM_SHARE);
         addBrewMix(MythicPotions.NECOIUM_SHARE,         Items.REDSTONE,        MythicPotions.NECOIUM_SHARE_LONG);
 
+        // Negative potions (fermented spider eye)
+        addBrewMix(MythicPotions.ICE_SHIELD,            Items.FERMENTED_SPIDER_EYE, MythicPotions.ICE_BOMB);
+        addBrewMix(MythicPotions.ICE_BOMB,              Items.REDSTONE,             MythicPotions.ICE_BOMB_LONG);
+        addBrewMix(MythicPotions.ICE_BOMB,              Items.GLOWSTONE_DUST,       MythicPotions.ICE_BOMB_STRONG);
+
+        addBrewMix(MythicPotions.ICE_BOMB,              Items.FERMENTED_SPIDER_EYE, MythicPotions.FREEZE);
+        addBrewMix(MythicPotions.FREEZE,                Items.REDSTONE,             MythicPotions.FREEZE_LONG);
+        addBrewMix(MythicPotions.FREEZE,                Items.GLOWSTONE_DUST,       MythicPotions.FREEZE_STRONG);
+
+        addBrewMix(MythicPotions.STATIC_FIELD,          Items.FERMENTED_SPIDER_EYE, MythicPotions.CHARGED);
+        addBrewMix(MythicPotions.CHARGED,               Items.REDSTONE,             MythicPotions.CHARGED_LONG);
+        addBrewMix(MythicPotions.CHARGED,               Items.GLOWSTONE_DUST,       MythicPotions.CHARGED_STRONG);
+
+        addBrewMix(MythicPotions.MIASMA,                Items.FERMENTED_SPIDER_EYE, MythicPotions.LETHAL_INCUBATION);
+        addBrewMix(MythicPotions.LETHAL_INCUBATION,     Items.REDSTONE,             MythicPotions.LETHAL_INCUBATION_LONG);
+        addBrewMix(MythicPotions.LETHAL_INCUBATION,     Items.GLOWSTONE_DUST,       MythicPotions.LETHAL_INCUBATION_STRONG);
+
         Constants.LOG.info("MythicPotions brewing recipes registered (Forge).");
     }
 

@@ -68,6 +68,26 @@ public class MythicPotions {
     public static final Potion NECOIUM_SHARE      = def("necoium_share",      "necoium_share", MythicEffects.NECOIUM_SHARE, 1800, 0);
     public static final Potion NECOIUM_SHARE_LONG = def("long_necoium_share", "necoium_share", MythicEffects.NECOIUM_SHARE, 4800, 0);
 
+    // Negative: Ice Shield → Ice Bomb (fermented spider eye)
+    public static final Potion ICE_BOMB        = def("ice_bomb",        "ice_bomb", MythicEffects.ICE_BOMB, 3600, 2);
+    public static final Potion ICE_BOMB_LONG   = def("long_ice_bomb",   "ice_bomb", MythicEffects.ICE_BOMB, 9600, 2);
+    public static final Potion ICE_BOMB_STRONG = def("strong_ice_bomb", "ice_bomb", MythicEffects.ICE_BOMB, 1800, 4);
+
+    // Negative: Ice Bomb → Freeze (fermented spider eye chain)
+    public static final Potion FREEZE        = def("freeze",        "freeze", MythicEffects.FREEZE, 3600, 2);
+    public static final Potion FREEZE_LONG   = def("long_freeze",   "freeze", MythicEffects.FREEZE, 9600, 2);
+    public static final Potion FREEZE_STRONG = def("strong_freeze", "freeze", MythicEffects.FREEZE, 1800, 4);
+
+    // Negative: Static Field → Charged (fermented spider eye)
+    public static final Potion CHARGED        = def("charged",        "charged", MythicEffects.CHARGED, 3600, 2);
+    public static final Potion CHARGED_LONG   = def("long_charged",   "charged", MythicEffects.CHARGED, 9600, 2);
+    public static final Potion CHARGED_STRONG = def("strong_charged", "charged", MythicEffects.CHARGED, 1800, 4);
+
+    // Negative: Miasma → Lethal Incubation (fermented spider eye)
+    public static final Potion LETHAL_INCUBATION        = def("lethal_incubation",        "lethal_incubation", MythicEffects.LETHAL_INCUBATION, 3600, 2);
+    public static final Potion LETHAL_INCUBATION_LONG   = def("long_lethal_incubation",   "lethal_incubation", MythicEffects.LETHAL_INCUBATION, 9600, 2);
+    public static final Potion LETHAL_INCUBATION_STRONG = def("strong_lethal_incubation", "lethal_incubation", MythicEffects.LETHAL_INCUBATION, 1800, 4);
+
     public static void register(BiFunction<String, Potion, Potion> reg) {
         DEFERRED.forEach(e -> reg.apply(e.getKey(), e.getValue()));
         Constants.LOG.info("MythicPotions registered.");

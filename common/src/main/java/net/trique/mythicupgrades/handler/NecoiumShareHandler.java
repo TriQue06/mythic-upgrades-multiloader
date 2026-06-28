@@ -30,15 +30,11 @@ public class NecoiumShareHandler {
         MythicEffects.DAMAGE_DEFLECTION,
         MythicEffects.ARCANE_AURA,
         MythicEffects.TOPAZ_REACTION,
-        MythicEffects.FREEZE,
         MythicEffects.BLOOD_THIRST,
-        MythicEffects.LETHAL_INCUBATION,
         MythicEffects.MIASMA,
-        MythicEffects.ICE_SHIELD_MARK,
-        MythicEffects.ICE_SHIELD,
-        MythicEffects.CHARGED,
         MythicEffects.STATIC_FIELD,
-        MythicEffects.JADE_AURA
+        MythicEffects.JADE_AURA,
+        MythicEffects.ICE_SHIELD
     );
 
     private static final Map<Level, Long> levelTickCache = new WeakHashMap<>();

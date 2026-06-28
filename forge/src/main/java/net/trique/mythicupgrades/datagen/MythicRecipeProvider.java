@@ -9,6 +9,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
 import net.minecraft.data.recipes.SmithingTrimRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -153,6 +154,8 @@ public class MythicRecipeProvider extends RecipeProvider {
             .pattern("III")
             .unlockedBy("has_mythic_upgrade_smithing_template", has(MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE))
             .save(writer, new ResourceLocation(Constants.MOD_ID, "mythic_upgrade_smithing_template_duplicate"));
+
+        mythicUpgradeSmithing(writer);
 
         crystalBlock(writer, MythicItems.AQUAMARINE_CRYSTAL_SHARD, MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK, "aquamarine");
         crystalBlock(writer, MythicItems.CITRINE_CRYSTAL_SHARD, MythicBlocks.CITRINE_CRYSTAL_BLOCK, "citrine");
@@ -351,6 +354,135 @@ public class MythicRecipeProvider extends RecipeProvider {
             RecipeCategory.MISC
         ).unlocks("has_smithing_trim_template", has(ItemTags.TRIM_TEMPLATES))
          .save(writer, new ResourceLocation(Constants.MOD_ID, name + "_smithing_trim"));
+    }
+
+    // Smithing upgrade: mythic_upgrade_template + gem_ingot + base_gear → gem_gear
+    // Base gear: netherite + all 8 mythic sets (sword/pickaxe/axe/shovel/hoe/helmet/chestplate/leggings/boots)
+    private void mythicUpgradeSmithing(Consumer<FinishedRecipe> writer) {
+        record GemSet(String name, Item ingot,
+                      Item sword, Item pickaxe, Item axe, Item shovel, Item hoe,
+                      Item helmet, Item chestplate, Item leggings, Item boots) {}
+
+        List<GemSet> gems = List.of(
+            new GemSet("aquamarine", MythicItems.AQUAMARINE_INGOT,
+                MythicItems.AQUAMARINE_SWORD, MythicItems.AQUAMARINE_PICKAXE, MythicItems.AQUAMARINE_AXE,
+                MythicItems.AQUAMARINE_SHOVEL, MythicItems.AQUAMARINE_HOE,
+                MythicItems.AQUAMARINE_HELMET, MythicItems.AQUAMARINE_CHESTPLATE,
+                MythicItems.AQUAMARINE_LEGGINGS, MythicItems.AQUAMARINE_BOOTS),
+            new GemSet("citrine", MythicItems.CITRINE_INGOT,
+                MythicItems.CITRINE_SWORD, MythicItems.CITRINE_PICKAXE, MythicItems.CITRINE_AXE,
+                MythicItems.CITRINE_SHOVEL, MythicItems.CITRINE_HOE,
+                MythicItems.CITRINE_HELMET, MythicItems.CITRINE_CHESTPLATE,
+                MythicItems.CITRINE_LEGGINGS, MythicItems.CITRINE_BOOTS),
+            new GemSet("topaz", MythicItems.TOPAZ_INGOT,
+                MythicItems.TOPAZ_SWORD, MythicItems.TOPAZ_PICKAXE, MythicItems.TOPAZ_AXE,
+                MythicItems.TOPAZ_SHOVEL, MythicItems.TOPAZ_HOE,
+                MythicItems.TOPAZ_HELMET, MythicItems.TOPAZ_CHESTPLATE,
+                MythicItems.TOPAZ_LEGGINGS, MythicItems.TOPAZ_BOOTS),
+            new GemSet("peridot", MythicItems.PERIDOT_INGOT,
+                MythicItems.PERIDOT_SWORD, MythicItems.PERIDOT_PICKAXE, MythicItems.PERIDOT_AXE,
+                MythicItems.PERIDOT_SHOVEL, MythicItems.PERIDOT_HOE,
+                MythicItems.PERIDOT_HELMET, MythicItems.PERIDOT_CHESTPLATE,
+                MythicItems.PERIDOT_LEGGINGS, MythicItems.PERIDOT_BOOTS),
+            new GemSet("ruby", MythicItems.RUBY_INGOT,
+                MythicItems.RUBY_SWORD, MythicItems.RUBY_PICKAXE, MythicItems.RUBY_AXE,
+                MythicItems.RUBY_SHOVEL, MythicItems.RUBY_HOE,
+                MythicItems.RUBY_HELMET, MythicItems.RUBY_CHESTPLATE,
+                MythicItems.RUBY_LEGGINGS, MythicItems.RUBY_BOOTS),
+            new GemSet("sapphire", MythicItems.SAPPHIRE_INGOT,
+                MythicItems.SAPPHIRE_SWORD, MythicItems.SAPPHIRE_PICKAXE, MythicItems.SAPPHIRE_AXE,
+                MythicItems.SAPPHIRE_SHOVEL, MythicItems.SAPPHIRE_HOE,
+                MythicItems.SAPPHIRE_HELMET, MythicItems.SAPPHIRE_CHESTPLATE,
+                MythicItems.SAPPHIRE_LEGGINGS, MythicItems.SAPPHIRE_BOOTS),
+            new GemSet("jade", MythicItems.JADE_INGOT,
+                MythicItems.JADE_SWORD, MythicItems.JADE_PICKAXE, MythicItems.JADE_AXE,
+                MythicItems.JADE_SHOVEL, MythicItems.JADE_HOE,
+                MythicItems.JADE_HELMET, MythicItems.JADE_CHESTPLATE,
+                MythicItems.JADE_LEGGINGS, MythicItems.JADE_BOOTS),
+            new GemSet("ametrine", MythicItems.AMETRINE_INGOT,
+                MythicItems.AMETRINE_SWORD, MythicItems.AMETRINE_PICKAXE, MythicItems.AMETRINE_AXE,
+                MythicItems.AMETRINE_SHOVEL, MythicItems.AMETRINE_HOE,
+                MythicItems.AMETRINE_HELMET, MythicItems.AMETRINE_CHESTPLATE,
+                MythicItems.AMETRINE_LEGGINGS, MythicItems.AMETRINE_BOOTS)
+        );
+
+        // Base gear that can be upgraded: netherite + all 8 mythic sets
+        record BaseGear(String suffix, Item sword, Item pickaxe, Item axe, Item shovel, Item hoe,
+                        Item helmet, Item chestplate, Item leggings, Item boots) {}
+
+        List<BaseGear> bases = List.of(
+            new BaseGear("netherite",
+                Items.NETHERITE_SWORD, Items.NETHERITE_PICKAXE, Items.NETHERITE_AXE,
+                Items.NETHERITE_SHOVEL, Items.NETHERITE_HOE,
+                Items.NETHERITE_HELMET, Items.NETHERITE_CHESTPLATE,
+                Items.NETHERITE_LEGGINGS, Items.NETHERITE_BOOTS),
+            new BaseGear("aquamarine",
+                MythicItems.AQUAMARINE_SWORD, MythicItems.AQUAMARINE_PICKAXE, MythicItems.AQUAMARINE_AXE,
+                MythicItems.AQUAMARINE_SHOVEL, MythicItems.AQUAMARINE_HOE,
+                MythicItems.AQUAMARINE_HELMET, MythicItems.AQUAMARINE_CHESTPLATE,
+                MythicItems.AQUAMARINE_LEGGINGS, MythicItems.AQUAMARINE_BOOTS),
+            new BaseGear("citrine",
+                MythicItems.CITRINE_SWORD, MythicItems.CITRINE_PICKAXE, MythicItems.CITRINE_AXE,
+                MythicItems.CITRINE_SHOVEL, MythicItems.CITRINE_HOE,
+                MythicItems.CITRINE_HELMET, MythicItems.CITRINE_CHESTPLATE,
+                MythicItems.CITRINE_LEGGINGS, MythicItems.CITRINE_BOOTS),
+            new BaseGear("topaz",
+                MythicItems.TOPAZ_SWORD, MythicItems.TOPAZ_PICKAXE, MythicItems.TOPAZ_AXE,
+                MythicItems.TOPAZ_SHOVEL, MythicItems.TOPAZ_HOE,
+                MythicItems.TOPAZ_HELMET, MythicItems.TOPAZ_CHESTPLATE,
+                MythicItems.TOPAZ_LEGGINGS, MythicItems.TOPAZ_BOOTS),
+            new BaseGear("peridot",
+                MythicItems.PERIDOT_SWORD, MythicItems.PERIDOT_PICKAXE, MythicItems.PERIDOT_AXE,
+                MythicItems.PERIDOT_SHOVEL, MythicItems.PERIDOT_HOE,
+                MythicItems.PERIDOT_HELMET, MythicItems.PERIDOT_CHESTPLATE,
+                MythicItems.PERIDOT_LEGGINGS, MythicItems.PERIDOT_BOOTS),
+            new BaseGear("ruby",
+                MythicItems.RUBY_SWORD, MythicItems.RUBY_PICKAXE, MythicItems.RUBY_AXE,
+                MythicItems.RUBY_SHOVEL, MythicItems.RUBY_HOE,
+                MythicItems.RUBY_HELMET, MythicItems.RUBY_CHESTPLATE,
+                MythicItems.RUBY_LEGGINGS, MythicItems.RUBY_BOOTS),
+            new BaseGear("sapphire",
+                MythicItems.SAPPHIRE_SWORD, MythicItems.SAPPHIRE_PICKAXE, MythicItems.SAPPHIRE_AXE,
+                MythicItems.SAPPHIRE_SHOVEL, MythicItems.SAPPHIRE_HOE,
+                MythicItems.SAPPHIRE_HELMET, MythicItems.SAPPHIRE_CHESTPLATE,
+                MythicItems.SAPPHIRE_LEGGINGS, MythicItems.SAPPHIRE_BOOTS),
+            new BaseGear("jade",
+                MythicItems.JADE_SWORD, MythicItems.JADE_PICKAXE, MythicItems.JADE_AXE,
+                MythicItems.JADE_SHOVEL, MythicItems.JADE_HOE,
+                MythicItems.JADE_HELMET, MythicItems.JADE_CHESTPLATE,
+                MythicItems.JADE_LEGGINGS, MythicItems.JADE_BOOTS),
+            new BaseGear("ametrine",
+                MythicItems.AMETRINE_SWORD, MythicItems.AMETRINE_PICKAXE, MythicItems.AMETRINE_AXE,
+                MythicItems.AMETRINE_SHOVEL, MythicItems.AMETRINE_HOE,
+                MythicItems.AMETRINE_HELMET, MythicItems.AMETRINE_CHESTPLATE,
+                MythicItems.AMETRINE_LEGGINGS, MythicItems.AMETRINE_BOOTS)
+        );
+
+        for (GemSet gem : gems) {
+            for (BaseGear base : bases) {
+                if (base.suffix().equals(gem.name())) continue; // same gem → skip (no point upgrading to itself)
+                smithingUpgrade(writer, gem.ingot(), base.sword(),      gem.sword(),      gem.name() + "_from_" + base.suffix() + "_sword");
+                smithingUpgrade(writer, gem.ingot(), base.pickaxe(),    gem.pickaxe(),    gem.name() + "_from_" + base.suffix() + "_pickaxe");
+                smithingUpgrade(writer, gem.ingot(), base.axe(),        gem.axe(),        gem.name() + "_from_" + base.suffix() + "_axe");
+                smithingUpgrade(writer, gem.ingot(), base.shovel(),     gem.shovel(),     gem.name() + "_from_" + base.suffix() + "_shovel");
+                smithingUpgrade(writer, gem.ingot(), base.hoe(),        gem.hoe(),        gem.name() + "_from_" + base.suffix() + "_hoe");
+                smithingUpgrade(writer, gem.ingot(), base.helmet(),     gem.helmet(),     gem.name() + "_from_" + base.suffix() + "_helmet");
+                smithingUpgrade(writer, gem.ingot(), base.chestplate(), gem.chestplate(), gem.name() + "_from_" + base.suffix() + "_chestplate");
+                smithingUpgrade(writer, gem.ingot(), base.leggings(),   gem.leggings(),   gem.name() + "_from_" + base.suffix() + "_leggings");
+                smithingUpgrade(writer, gem.ingot(), base.boots(),      gem.boots(),      gem.name() + "_from_" + base.suffix() + "_boots");
+            }
+        }
+    }
+
+    private void smithingUpgrade(Consumer<FinishedRecipe> writer, Item ingot, Item base, Item result, String id) {
+        SmithingTransformRecipeBuilder.smithing(
+            Ingredient.of(MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE),
+            Ingredient.of(base),
+            Ingredient.of(ingot),
+            RecipeCategory.COMBAT,
+            result
+        ).unlocks("has_mythic_upgrade_smithing_template", has(MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE))
+         .save(writer, new ResourceLocation(Constants.MOD_ID, "smithing_upgrade/" + id));
     }
 
     private void crystalSubBlocks(Consumer<FinishedRecipe> writer,
