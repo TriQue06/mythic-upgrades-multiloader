@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 public enum MythicToolMaterials implements Tier {
     AQUAMARINE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.AQUAMARINE_INGOT)),
     CITRINE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.CITRINE_INGOT)),
-    TOPAZ(4, 4062, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.TOPAZ_INGOT)),
+    TOPAZ(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.TOPAZ_INGOT)),
     PERIDOT(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.PERIDOT_INGOT)),
     RUBY(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.RUBY_INGOT)),
     SAPPHIRE(4, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(MythicItems.SAPPHIRE_INGOT)),

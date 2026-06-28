@@ -3,18 +3,18 @@ package net.trique.mythicupgrades;
 public class MythicStats {
 
     public static int SAPPHIRE_HELMET_LEVELS = 2;
-    public static int SAPPHIRE_CHESTPLATE_LEVELS = 4;
+    public static int SAPPHIRE_CHESTPLATE_LEVELS = 3;
     public static int SAPPHIRE_LEGGINGS_LEVELS = 3;
-    public static int SAPPHIRE_BOOTS_LEVELS = 1;
+    public static int SAPPHIRE_BOOTS_LEVELS = 2;
     public static float DEFLECT_PER_LEVEL = 0.05f;
 
     public static float SAPPHIRE_TOOL_PERCENT_DAMAGE = 0.05f;
     public static float SAPPHIRE_TOOL_PERCENT_DAMAGE_CAP = 15.0f;
 
     public static int AMETRINE_HELMET_LEVELS = 2;
-    public static int AMETRINE_CHESTPLATE_LEVELS = 4;
+    public static int AMETRINE_CHESTPLATE_LEVELS = 3;
     public static int AMETRINE_LEGGINGS_LEVELS = 3;
-    public static int AMETRINE_BOOTS_LEVELS = 1;
+    public static int AMETRINE_BOOTS_LEVELS = 2;
 
     public static float ARCANE_AURA_RADIUS_PER_LEVEL = 1.0f;
     public static int ARCANE_AURA_MAX_RADIUS = 10;
@@ -27,12 +27,12 @@ public class MythicStats {
     public static float AMETRINE_TOOL_TELEPORT_CHANCE = 0.05f;
 
     public static int TOPAZ_HELMET_LEVELS = 2;
-    public static int TOPAZ_CHESTPLATE_LEVELS = 4;
+    public static int TOPAZ_CHESTPLATE_LEVELS = 3;
     public static int TOPAZ_LEGGINGS_LEVELS = 3;
-    public static int TOPAZ_BOOTS_LEVELS = 1;
+    public static int TOPAZ_BOOTS_LEVELS = 2;
 
-    public static float TOPAZ_SHOCK_DAMAGE_PER_LEVEL = 1.0f;
-    public static float TOPAZ_SHOCK_KNOCKBACK_PER_LEVEL = 0.5f;
+    public static float TOPAZ_SHOCK_DAMAGE_PER_LEVEL = 0.25f;
+    public static float TOPAZ_SHOCK_KNOCKBACK_PER_LEVEL = 0.25f;
     public static float TOPAZ_FALL_REDUCTION_PER_LEVEL = 0.05f;
     public static float TOPAZ_FALL_MAX_REDUCTION = 0.50f;
     public static float TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL = 1.0f;
@@ -42,9 +42,9 @@ public class MythicStats {
     public static int TOPAZ_TOOL_EFFECTIVE_LEVEL = 5;
 
     public static int RUBY_HELMET_LEVELS = 2;
-    public static int RUBY_CHESTPLATE_LEVELS = 4;
+    public static int RUBY_CHESTPLATE_LEVELS = 3;
     public static int RUBY_LEGGINGS_LEVELS = 3;
-    public static int RUBY_BOOTS_LEVELS = 1;
+    public static int RUBY_BOOTS_LEVELS = 2;
 
     public static float RUBY_TOOL_LIFESTEAL_FRACTION = 0.30f;
     public static int RUBY_TOOL_LIFESTEAL_PARTICLE_COUNT = 20;
@@ -56,9 +56,9 @@ public class MythicStats {
     public static int BLOOD_THIRST_PARTICLES_PER_LEVEL = 5;
 
     public static int PERIDOT_HELMET_LEVELS = 2;
-    public static int PERIDOT_CHESTPLATE_LEVELS = 4;
+    public static int PERIDOT_CHESTPLATE_LEVELS = 3;
     public static int PERIDOT_LEGGINGS_LEVELS = 3;
-    public static int PERIDOT_BOOTS_LEVELS = 1;
+    public static int PERIDOT_BOOTS_LEVELS = 2;
 
     public static int LETHAL_INCUBATION_TOOL_LEVEL = 3;
     public static int LETHAL_INCUBATION_DURATION_TICKS_PER_LEVEL = 20;
@@ -74,9 +74,9 @@ public class MythicStats {
     public static int MIASMA_INTERVAL_TICKS = 200;
 
     public static int AQUAMARINE_HELMET_LEVELS = 2;
-    public static int AQUAMARINE_CHESTPLATE_LEVELS = 4;
+    public static int AQUAMARINE_CHESTPLATE_LEVELS = 3;
     public static int AQUAMARINE_LEGGINGS_LEVELS = 3;
-    public static int AQUAMARINE_BOOTS_LEVELS = 1;
+    public static int AQUAMARINE_BOOTS_LEVELS = 2;
 
     public static int AQUAMARINE_TOOL_FREEZE_TICKS = 18;
     public static int AQUAMARINE_TOOL_SLOWNESS_DURATION_TICKS = 60;
@@ -98,9 +98,9 @@ public class MythicStats {
     public static float ICE_SHIELD_MAGIC_DAMAGE_PER_LEVEL = 0.5f;
 
     public static int CITRINE_HELMET_LEVELS = 2;
-    public static int CITRINE_CHESTPLATE_LEVELS = 4;
+    public static int CITRINE_CHESTPLATE_LEVELS = 3;
     public static int CITRINE_LEGGINGS_LEVELS = 3;
-    public static int CITRINE_BOOTS_LEVELS = 1;
+    public static int CITRINE_BOOTS_LEVELS = 2;
 
     public static int CITRINE_TOOL_CHARGED_DURATION_TICKS = 60;
     public static int CITRINE_TOOL_FREEZE_TICKS = 5;
@@ -128,9 +128,9 @@ public class MythicStats {
     public static int ICE_SHIELD_SLOWNESS_MAX_AMPLIFIER = 9;
 
     public static int JADE_HELMET_LEVELS = 2;
-    public static int JADE_CHESTPLATE_LEVELS = 4;
+    public static int JADE_CHESTPLATE_LEVELS = 3;
     public static int JADE_LEGGINGS_LEVELS = 3;
-    public static int JADE_BOOTS_LEVELS = 1;
+    public static int JADE_BOOTS_LEVELS = 2;
 
     public static float JADE_TOOL_TELEPORT_CHANCE = 0.05f;
     public static int JADE_TOOL_AURA_DURATION_TICKS = 20;
