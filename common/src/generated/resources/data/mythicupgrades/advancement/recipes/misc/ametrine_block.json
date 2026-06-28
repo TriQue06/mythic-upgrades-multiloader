@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_ametrine": {
+    "has_ametrine_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "mythicupgrades:ametrine"
+            "items": "mythicupgrades:ametrine_ingot"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_ametrine"
+      "has_ametrine_ingot"
     ]
   ],
   "rewards": {

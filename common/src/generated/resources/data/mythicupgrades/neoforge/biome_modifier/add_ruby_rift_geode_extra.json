@@ -1,6 +1,6 @@
 {
   "type": "neoforge:add_features",
   "biomes": "mythicupgrades:ruby_rift",
-  "features": "mythicupgrades:ruby_rift_geode_extra",
+  "features": "mythicupgrades:ruby_geode_extra",
   "step": "underground_ores"
 }

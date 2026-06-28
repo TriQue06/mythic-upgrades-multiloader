@@ -38,6 +38,10 @@ public abstract class ServerPlayerGameModeMixin {
             player.addEffect(new MobEffectInstance(MythicEffects.JADE_AURA, MythicStats.JADE_TOOL_AURA_DURATION_TICKS, 4));
         }
 
+        if (isRubyTool(tool)) {
+            player.heal(1.0f);
+        }
+
         if (!isTopazTool(tool)) return;
 
         int count = MythicState.TOPAZ_TOOL_HIT_COUNTS.getOrDefault(player, 0) + 1;
@@ -74,6 +78,13 @@ public abstract class ServerPlayerGameModeMixin {
         return item == MythicItems.TOPAZ_SWORD || item == MythicItems.TOPAZ_PICKAXE
             || item == MythicItems.TOPAZ_AXE || item == MythicItems.TOPAZ_SHOVEL
             || item == MythicItems.TOPAZ_HOE;
+    }
+
+    @Unique
+    private static boolean isRubyTool(Item item) {
+        return item == MythicItems.RUBY_SWORD || item == MythicItems.RUBY_PICKAXE
+            || item == MythicItems.RUBY_AXE || item == MythicItems.RUBY_SHOVEL
+            || item == MythicItems.RUBY_HOE;
     }
 
     @Unique

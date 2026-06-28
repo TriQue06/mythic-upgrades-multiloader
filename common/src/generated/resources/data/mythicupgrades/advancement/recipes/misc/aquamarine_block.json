@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_aquamarine": {
+    "has_aquamarine_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "mythicupgrades:aquamarine"
+            "items": "mythicupgrades:aquamarine_ingot"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_aquamarine"
+      "has_aquamarine_ingot"
     ]
   ],
   "rewards": {

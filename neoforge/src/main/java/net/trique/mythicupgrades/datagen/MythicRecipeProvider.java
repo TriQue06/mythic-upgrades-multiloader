@@ -156,7 +156,7 @@ public class MythicRecipeProvider extends RecipeProvider {
                           boolean hasCaveOres) {
         oreSmelting(output, List.of(ore, deepslateOre), RecipeCategory.MISC, gemItem, 0.7f, 200, gem);
         oreBlasting(output, List.of(ore, deepslateOre), RecipeCategory.MISC, gemItem, 0.7f, 100, gem);
-        storageAndUnpack(output, gem, gemItem, storageBlock);
+        storageAndUnpack(output, gem, ingot, storageBlock);
         crystalBlockRecipes(output, gem, shard, crystalBlock);
         tools(output, gem, gemItem, sword, pickaxe, axe, shovel, hoe);
         armor(output, gem, gemItem, helmet, chestplate, leggings, boots);
@@ -169,19 +169,19 @@ public class MythicRecipeProvider extends RecipeProvider {
                                 Item helmet, Item chestplate, Item leggings, Item boots) {
         oreSmelting(output, List.of(ore), RecipeCategory.MISC, gemItem, 0.7f, 200, gem);
         oreBlasting(output, List.of(ore), RecipeCategory.MISC, gemItem, 0.7f, 100, gem);
-        storageAndUnpack(output, gem, gemItem, storageBlock);
+        storageAndUnpack(output, gem, ingot, storageBlock);
         crystalBlockRecipes(output, gem, shard, crystalBlock);
         tools(output, gem, gemItem, sword, pickaxe, axe, shovel, hoe);
         armor(output, gem, gemItem, helmet, chestplate, leggings, boots);
     }
 
-    private void storageAndUnpack(RecipeOutput output, String gem, Item gemItem, Block storageBlock) {
+    private void storageAndUnpack(RecipeOutput output, String gem, Item ingotItem, Block storageBlock) {
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, storageBlock)
-            .define('#', gemItem)
+            .define('#', ingotItem)
             .pattern("###").pattern("###").pattern("###")
-            .unlockedBy("has_" + gem, has(gemItem))
+            .unlockedBy("has_" + gem + "_ingot", has(ingotItem))
             .save(output, rl(gem + "_block"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, gemItem, 9)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ingotItem, 9)
             .requires(storageBlock)
             .unlockedBy("has_" + gem + "_block", has(storageBlock))
             .save(output, rl(gem + "_from_block"));

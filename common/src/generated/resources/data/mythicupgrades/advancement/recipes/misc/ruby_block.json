@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_ruby": {
+    "has_ruby_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "mythicupgrades:ruby"
+            "items": "mythicupgrades:ruby_ingot"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_ruby"
+      "has_ruby_ingot"
     ]
   ],
   "rewards": {

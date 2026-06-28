@@ -147,11 +147,11 @@ public class MythicItems {
     public static final Item SAPPHIRE_LEGGINGS = defer("sapphire_leggings", armor(MythicArmorMaterials.SAPPHIRE, ArmorItem.Type.LEGGINGS));
     public static final Item SAPPHIRE_BOOTS = defer("sapphire_boots", armor(MythicArmorMaterials.SAPPHIRE, ArmorItem.Type.BOOTS));
 
-    public static final Item JADE_SWORD = defer("jade_sword", new SwordItem(MythicToolMaterials.JADE, weapon(MythicToolMaterials.JADE, 3, -1.6F)));
-    public static final Item JADE_PICKAXE = defer("jade_pickaxe", new PickaxeItem(MythicToolMaterials.JADE, tool(MythicToolMaterials.JADE, 1.0F, -2.0F)) {});
-    public static final Item JADE_AXE = defer("jade_axe", new AxeItem(MythicToolMaterials.JADE, tool(MythicToolMaterials.JADE, 5.0F, -2.2F)) {});
-    public static final Item JADE_SHOVEL = defer("jade_shovel", new ShovelItem(MythicToolMaterials.JADE, tool(MythicToolMaterials.JADE, 1.5F, -2.2F)));
-    public static final Item JADE_HOE = defer("jade_hoe", new HoeItem(MythicToolMaterials.JADE, tool(MythicToolMaterials.JADE, -4.0F, 0.8F)) {});
+    public static final Item JADE_SWORD = defer("jade_sword", new SwordItem(MythicToolMaterials.JADE, weapon(MythicToolMaterials.JADE, 3, -2.4F)));
+    public static final Item JADE_PICKAXE = defer("jade_pickaxe", new PickaxeItem(MythicToolMaterials.JADE, tool(MythicToolMaterials.JADE, 1.0F, -2.8F)) {});
+    public static final Item JADE_AXE = defer("jade_axe", new AxeItem(MythicToolMaterials.JADE, tool(MythicToolMaterials.JADE, 5.0F, -3.0F)) {});
+    public static final Item JADE_SHOVEL = defer("jade_shovel", new ShovelItem(MythicToolMaterials.JADE, tool(MythicToolMaterials.JADE, 1.5F, -3.0F)));
+    public static final Item JADE_HOE = defer("jade_hoe", new HoeItem(MythicToolMaterials.JADE, tool(MythicToolMaterials.JADE, -4.0F, 0.0F)) {});
     public static final Item JADE_HELMET = defer("jade_helmet", armor(MythicArmorMaterials.JADE, ArmorItem.Type.HELMET));
     public static final Item JADE_CHESTPLATE = defer("jade_chestplate", armor(MythicArmorMaterials.JADE, ArmorItem.Type.CHESTPLATE));
     public static final Item JADE_LEGGINGS = defer("jade_leggings", armor(MythicArmorMaterials.JADE, ArmorItem.Type.LEGGINGS));

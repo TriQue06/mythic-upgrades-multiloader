@@ -26,8 +26,8 @@
     [],
     [],
     [
-      "mythicupgrades:sapphire_rift_stone_blobs",
-      "mythicupgrades:sapphire_rift_ore"
+      "mythicupgrades:sapphire_stone_blobs",
+      "mythicupgrades:sapphire_ore"
     ],
     [
       "minecraft:ore_gravel_nether",
@@ -36,9 +36,9 @@
       "minecraft:ore_quartz_nether",
       "minecraft:ore_ancient_debris_large",
       "minecraft:ore_debris_small",
-      "mythicupgrades:sapphire_rift_crystal_blobs",
-      "mythicupgrades:sapphire_rift_crystal_buds",
-      "mythicupgrades:sapphire_rift_crystal_buds_rare"
+      "mythicupgrades:sapphire_crystal_blobs",
+      "mythicupgrades:sapphire_crystal_buds",
+      "mythicupgrades:sapphire_crystal_buds_rare"
     ]
   ],
   "has_precipitation": false,

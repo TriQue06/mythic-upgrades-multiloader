@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_peridot": {
+    "has_peridot_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "mythicupgrades:peridot"
+            "items": "mythicupgrades:peridot_ingot"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_peridot"
+      "has_peridot_ingot"
     ]
   ],
   "rewards": {

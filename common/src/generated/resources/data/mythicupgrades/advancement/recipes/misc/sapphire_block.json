@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_sapphire": {
+    "has_sapphire_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "mythicupgrades:sapphire"
+            "items": "mythicupgrades:sapphire_ingot"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_sapphire"
+      "has_sapphire_ingot"
     ]
   ],
   "rewards": {

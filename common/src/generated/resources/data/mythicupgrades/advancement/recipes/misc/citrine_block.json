@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_citrine": {
+    "has_citrine_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "mythicupgrades:citrine"
+            "items": "mythicupgrades:citrine_ingot"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_citrine"
+      "has_citrine_ingot"
     ]
   ],
   "rewards": {

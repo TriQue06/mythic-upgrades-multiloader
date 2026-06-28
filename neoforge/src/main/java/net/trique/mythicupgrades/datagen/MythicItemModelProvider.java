@@ -34,7 +34,6 @@ public class MythicItemModelProvider extends ItemModelProvider {
 
         // Legacy items — keep in registry but reuse existing textures
         for (String gem : GEMS) {
-            generated(gem + "_potion",                    modLoc("item/" + gem + "_potion"));
             generated(gem + "_upgrade_smithing_template", modLoc("item/mythic_upgrade_smithing_template"));
         }
     }

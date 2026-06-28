@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_jade": {
+    "has_jade_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "mythicupgrades:jade"
+            "items": "mythicupgrades:jade_ingot"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_jade"
+      "has_jade_ingot"
     ]
   ],
   "rewards": {

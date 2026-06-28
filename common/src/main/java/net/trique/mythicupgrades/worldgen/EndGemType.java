@@ -44,24 +44,24 @@ public enum EndGemType {
         return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, id + "_barrens"));
     }
 
-    public ResourceKey<ConfiguredFeature<?, ?>> stoneBlobsCF()      { return cf(id + "_end_stone_blobs"); }
-    public ResourceKey<ConfiguredFeature<?, ?>> crystalBlobsCF()    { return cf(id + "_end_crystal_blobs"); }
-    public ResourceKey<ConfiguredFeature<?, ?>> crystalBudsCF()     { return cf(id + "_end_crystal_buds"); }
-    public ResourceKey<ConfiguredFeature<?, ?>> crystalBudsRareCF() { return cf(id + "_end_crystal_buds_rare"); }
-    public ResourceKey<ConfiguredFeature<?, ?>> oreCF()             { return cf(id + "_end_ore"); }
-    public ResourceKey<ConfiguredFeature<?, ?>> geodeCF()           { return cf(id + "_end_geode"); }
+    public ResourceKey<ConfiguredFeature<?, ?>> stoneBlobsCF()      { return cf(id + "_stone_blobs"); }
+    public ResourceKey<ConfiguredFeature<?, ?>> crystalBlobsCF()    { return cf(id + "_crystal_blobs"); }
+    public ResourceKey<ConfiguredFeature<?, ?>> crystalBudsCF()     { return cf(id + "_crystal_buds"); }
+    public ResourceKey<ConfiguredFeature<?, ?>> crystalBudsRareCF() { return cf(id + "_crystal_buds_rare"); }
+    public ResourceKey<ConfiguredFeature<?, ?>> oreCF()             { return cf(id + "_ore"); }
+    public ResourceKey<ConfiguredFeature<?, ?>> geodeCF()           { return cf(id + "_geode"); }
 
     private ResourceKey<ConfiguredFeature<?, ?>> cf(String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
     }
 
-    public ResourceKey<PlacedFeature> stoneBlobsPF()      { return pf(id + "_end_stone_blobs"); }
-    public ResourceKey<PlacedFeature> crystalBlobsPF()    { return pf(id + "_end_crystal_blobs"); }
-    public ResourceKey<PlacedFeature> crystalBudsPF()     { return pf(id + "_end_crystal_buds"); }
-    public ResourceKey<PlacedFeature> crystalBudsRarePF() { return pf(id + "_end_crystal_buds_rare"); }
-    public ResourceKey<PlacedFeature> orePF()             { return pf(id + "_end_ore"); }
-    public ResourceKey<PlacedFeature> geodePF()           { return pf(id + "_end_geode"); }
-    public ResourceKey<PlacedFeature> geodeExtraPF()      { return pf(id + "_end_geode_extra"); }
+    public ResourceKey<PlacedFeature> stoneBlobsPF()      { return pf(id + "_stone_blobs"); }
+    public ResourceKey<PlacedFeature> crystalBlobsPF()    { return pf(id + "_crystal_blobs"); }
+    public ResourceKey<PlacedFeature> crystalBudsPF()     { return pf(id + "_crystal_buds"); }
+    public ResourceKey<PlacedFeature> crystalBudsRarePF() { return pf(id + "_crystal_buds_rare"); }
+    public ResourceKey<PlacedFeature> orePF()             { return pf(id + "_ore"); }
+    public ResourceKey<PlacedFeature> geodePF()           { return pf(id + "_geode"); }
+    public ResourceKey<PlacedFeature> geodeExtraPF()      { return pf(id + "_geode_extra"); }
 
     private ResourceKey<PlacedFeature> pf(String name) {
         return ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));

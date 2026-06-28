@@ -7,11 +7,11 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_topaz": {
+    "has_topaz_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "mythicupgrades:topaz"
+            "items": "mythicupgrades:topaz_ingot"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_topaz"
+      "has_topaz_ingot"
     ]
   ],
   "rewards": {
