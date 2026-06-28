@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "mythicupgrades:jade_ingot"
+  },
+  "base": {
+    "item": "mythicupgrades:sapphire_leggings"
+  },
+  "result": {
+    "item": "mythicupgrades:jade_leggings"
+  },
+  "template": {
+    "item": "mythicupgrades:mythic_upgrade_smithing_template"
+  }
+}

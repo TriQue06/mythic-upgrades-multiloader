@@ -87,54 +87,6 @@ public class MythicRecipeProvider extends RecipeProvider {
         unpackBlock(writer, MythicBlocks.RAW_NECOIUM_BLOCK, MythicItems.RAW_NECOIUM, "raw_necoium");
         unpackBlock(writer, MythicBlocks.NECOIUM_BLOCK, MythicItems.NECOIUM_INGOT, "necoium_ingot");
 
-        toolAndArmor(writer, MythicItems.AQUAMARINE, "aquamarine",
-            MythicItems.AQUAMARINE_SWORD, MythicItems.AQUAMARINE_PICKAXE,
-            MythicItems.AQUAMARINE_AXE, MythicItems.AQUAMARINE_SHOVEL, MythicItems.AQUAMARINE_HOE,
-            MythicItems.AQUAMARINE_HELMET, MythicItems.AQUAMARINE_CHESTPLATE,
-            MythicItems.AQUAMARINE_LEGGINGS, MythicItems.AQUAMARINE_BOOTS);
-
-        toolAndArmor(writer, MythicItems.CITRINE, "citrine",
-            MythicItems.CITRINE_SWORD, MythicItems.CITRINE_PICKAXE,
-            MythicItems.CITRINE_AXE, MythicItems.CITRINE_SHOVEL, MythicItems.CITRINE_HOE,
-            MythicItems.CITRINE_HELMET, MythicItems.CITRINE_CHESTPLATE,
-            MythicItems.CITRINE_LEGGINGS, MythicItems.CITRINE_BOOTS);
-
-        toolAndArmor(writer, MythicItems.TOPAZ, "topaz",
-            MythicItems.TOPAZ_SWORD, MythicItems.TOPAZ_PICKAXE,
-            MythicItems.TOPAZ_AXE, MythicItems.TOPAZ_SHOVEL, MythicItems.TOPAZ_HOE,
-            MythicItems.TOPAZ_HELMET, MythicItems.TOPAZ_CHESTPLATE,
-            MythicItems.TOPAZ_LEGGINGS, MythicItems.TOPAZ_BOOTS);
-
-        toolAndArmor(writer, MythicItems.PERIDOT, "peridot",
-            MythicItems.PERIDOT_SWORD, MythicItems.PERIDOT_PICKAXE,
-            MythicItems.PERIDOT_AXE, MythicItems.PERIDOT_SHOVEL, MythicItems.PERIDOT_HOE,
-            MythicItems.PERIDOT_HELMET, MythicItems.PERIDOT_CHESTPLATE,
-            MythicItems.PERIDOT_LEGGINGS, MythicItems.PERIDOT_BOOTS);
-
-        toolAndArmor(writer, MythicItems.RUBY, "ruby",
-            MythicItems.RUBY_SWORD, MythicItems.RUBY_PICKAXE,
-            MythicItems.RUBY_AXE, MythicItems.RUBY_SHOVEL, MythicItems.RUBY_HOE,
-            MythicItems.RUBY_HELMET, MythicItems.RUBY_CHESTPLATE,
-            MythicItems.RUBY_LEGGINGS, MythicItems.RUBY_BOOTS);
-
-        toolAndArmor(writer, MythicItems.SAPPHIRE, "sapphire",
-            MythicItems.SAPPHIRE_SWORD, MythicItems.SAPPHIRE_PICKAXE,
-            MythicItems.SAPPHIRE_AXE, MythicItems.SAPPHIRE_SHOVEL, MythicItems.SAPPHIRE_HOE,
-            MythicItems.SAPPHIRE_HELMET, MythicItems.SAPPHIRE_CHESTPLATE,
-            MythicItems.SAPPHIRE_LEGGINGS, MythicItems.SAPPHIRE_BOOTS);
-
-        toolAndArmor(writer, MythicItems.JADE, "jade",
-            MythicItems.JADE_SWORD, MythicItems.JADE_PICKAXE,
-            MythicItems.JADE_AXE, MythicItems.JADE_SHOVEL, MythicItems.JADE_HOE,
-            MythicItems.JADE_HELMET, MythicItems.JADE_CHESTPLATE,
-            MythicItems.JADE_LEGGINGS, MythicItems.JADE_BOOTS);
-
-        toolAndArmor(writer, MythicItems.AMETRINE, "ametrine",
-            MythicItems.AMETRINE_SWORD, MythicItems.AMETRINE_PICKAXE,
-            MythicItems.AMETRINE_AXE, MythicItems.AMETRINE_SHOVEL, MythicItems.AMETRINE_HOE,
-            MythicItems.AMETRINE_HELMET, MythicItems.AMETRINE_CHESTPLATE,
-            MythicItems.AMETRINE_LEGGINGS, MythicItems.AMETRINE_BOOTS);
-
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE, 2)
             .define('I', MythicItems.NECOIUM_INGOT)
             .define('T', Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE)
@@ -638,61 +590,4 @@ public class MythicRecipeProvider extends RecipeProvider {
             .save(writer, new ResourceLocation(Constants.MOD_ID, gem + "_schist_wall_from_stonecutting"));
     }
 
-    private void toolAndArmor(Consumer<FinishedRecipe> writer, Item gem, String n,
-                               Item sword, Item pickaxe, Item axe, Item shovel, Item hoe,
-                               Item helmet, Item chestplate, Item leggings, Item boots) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, sword)
-                .define('G', gem).define('S', Items.STICK)
-                .pattern("G").pattern("G").pattern("S")
-                .unlockedBy("has_" + n, has(gem))
-                .save(writer, new ResourceLocation(Constants.MOD_ID, n + "_sword"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, pickaxe)
-                .define('G', gem).define('S', Items.STICK)
-                .pattern("GGG").pattern(" S ").pattern(" S ")
-                .unlockedBy("has_" + n, has(gem))
-                .save(writer, new ResourceLocation(Constants.MOD_ID, n + "_pickaxe"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, axe)
-                .define('G', gem).define('S', Items.STICK)
-                .pattern("GG").pattern("GS").pattern(" S")
-                .unlockedBy("has_" + n, has(gem))
-                .save(writer, new ResourceLocation(Constants.MOD_ID, n + "_axe"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, shovel)
-                .define('G', gem).define('S', Items.STICK)
-                .pattern("G").pattern("S").pattern("S")
-                .unlockedBy("has_" + n, has(gem))
-                .save(writer, new ResourceLocation(Constants.MOD_ID, n + "_shovel"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, hoe)
-                .define('G', gem).define('S', Items.STICK)
-                .pattern("GG").pattern(" S").pattern(" S")
-                .unlockedBy("has_" + n, has(gem))
-                .save(writer, new ResourceLocation(Constants.MOD_ID, n + "_hoe"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, helmet)
-                .define('G', gem)
-                .pattern("GGG").pattern("G G")
-                .unlockedBy("has_" + n, has(gem))
-                .save(writer, new ResourceLocation(Constants.MOD_ID, n + "_helmet"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, chestplate)
-                .define('G', gem)
-                .pattern("G G").pattern("GGG").pattern("GGG")
-                .unlockedBy("has_" + n, has(gem))
-                .save(writer, new ResourceLocation(Constants.MOD_ID, n + "_chestplate"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, leggings)
-                .define('G', gem)
-                .pattern("GGG").pattern("G G").pattern("G G")
-                .unlockedBy("has_" + n, has(gem))
-                .save(writer, new ResourceLocation(Constants.MOD_ID, n + "_leggings"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, boots)
-                .define('G', gem)
-                .pattern("G G").pattern("G G")
-                .unlockedBy("has_" + n, has(gem))
-                .save(writer, new ResourceLocation(Constants.MOD_ID, n + "_boots"));
-    }
 }
