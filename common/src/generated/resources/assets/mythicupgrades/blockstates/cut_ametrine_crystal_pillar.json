@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "mythicupgrades:block/cut_ametrine_crystal_pillar_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "mythicupgrades:block/cut_ametrine_crystal_pillar"
+    },
+    "axis=z": {
+      "model": "mythicupgrades:block/cut_ametrine_crystal_pillar_horizontal",
+      "x": 90
+    }
+  }
+}

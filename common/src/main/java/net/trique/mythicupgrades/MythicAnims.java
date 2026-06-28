@@ -83,6 +83,4 @@ public class MythicAnims {
     public static int JADE_COLOR_2 = 0x1CBB41;
     public static int JADE_COLOR_3 = 0x80F544;
     public static float JADE_TRAIL_PARTICLE_SCALE = 1.0f;
-    public static float JADE_BOUNCER_PARTICLE_SCALE = 1.0f;
-    public static int JADE_BOUNCER_PARTICLE_COUNT = 12;
 }

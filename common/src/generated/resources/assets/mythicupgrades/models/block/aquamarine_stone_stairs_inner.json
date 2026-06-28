@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "mythicupgrades:block/aquamarine_stone",
+    "side": "mythicupgrades:block/aquamarine_stone",
+    "top": "mythicupgrades:block/aquamarine_stone"
+  }
+}

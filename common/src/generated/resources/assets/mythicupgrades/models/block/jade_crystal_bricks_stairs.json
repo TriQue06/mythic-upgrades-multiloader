@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "mythicupgrades:block/jade_crystal_bricks",
+    "side": "mythicupgrades:block/jade_crystal_bricks",
+    "top": "mythicupgrades:block/jade_crystal_bricks"
+  }
+}

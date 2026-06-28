@@ -5,7 +5,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffect;
 import net.trique.mythicupgrades.effect.ArcaneAuraEffect;
 import net.trique.mythicupgrades.effect.BloodThirstEffect;
-import net.trique.mythicupgrades.effect.BouncerEffect;
 import net.trique.mythicupgrades.effect.ChargedEffect;
 import net.trique.mythicupgrades.effect.JadeAuraEffect;
 import net.trique.mythicupgrades.effect.StaticFieldEffect;
@@ -46,7 +45,6 @@ public class MythicEffects {
     public static Holder<MobEffect> ICE_BOMB = defer("ice_bomb", new IceBombEffect());
     public static Holder<MobEffect> CHARGED = defer("charged", new ChargedEffect());
     public static Holder<MobEffect> STATIC_FIELD = defer("static_field", new StaticFieldEffect());
-    public static Holder<MobEffect> BOUNCER = defer("bouncer", new BouncerEffect());
     public static Holder<MobEffect> JADE_AURA = defer("jade_aura", new JadeAuraEffect());
     public static Holder<MobEffect> NECOIUM_SHARE = defer("necoium_share", new NecoiumShareEffect());
 
@@ -66,7 +64,6 @@ public class MythicEffects {
         ICE_BOMB           = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(ICE_BOMB.value());
         CHARGED            = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(CHARGED.value());
         STATIC_FIELD       = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(STATIC_FIELD.value());
-        BOUNCER            = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(BOUNCER.value());
         JADE_AURA          = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(JADE_AURA.value());
         NECOIUM_SHARE      = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(NECOIUM_SHARE.value());
         Constants.LOG.info("MythicEffects registered.");

@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "mythicupgrades:jade_barrens",
+  "features": "mythicupgrades:jade_end_geode_extra",
+  "step": "underground_ores"
+}

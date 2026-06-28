@@ -1,0 +1,14 @@
+{
+  "asset_name": "ametrine",
+  "description": {
+    "color": "#8422AE",
+    "translate": "trim_material.mythicupgrades.ametrine"
+  },
+  "ingredient": "mythicupgrades:ametrine_crystal_shard",
+  "item_model_index": 1.9,
+  "override_armor_assets": {
+    "mythicupgrades:ametrine": {
+      "asset_name": "ametrine_darker"
+    }
+  }
+}

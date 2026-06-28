@@ -244,13 +244,6 @@ public abstract class LivingEntityMixin {
             if (jadeLevel > 0)
                 self.addEffect(new MobEffectInstance(MythicEffects.JADE_AURA, -1, jadeLevel - 1, false, false, true));
         }
-        // Passive bouncer icon while holding a jade tool (duration=3 refreshed each tick; won't override real bouncer)
-        if (isJadeTool(self.getMainHandItem().getItem())) {
-            MobEffectInstance curBouncer = self.getEffect(MythicEffects.BOUNCER);
-            if (curBouncer == null || curBouncer.getDuration() <= 3) {
-                self.addEffect(new MobEffectInstance(MythicEffects.BOUNCER, 3, 0, false, false, true));
-            }
-        }
         // Linger trail processing runs regardless of current effect state so laid trail persists
         if (!mu_jadeLingerTrail.isEmpty() && self.level() instanceof ServerLevel jadeLingerLevel) {
             mu_jadeLingerTrail.removeIf(p -> self.tickCount - p[0] >= p[4]);
@@ -544,8 +537,6 @@ public abstract class LivingEntityMixin {
                 directAttacker.addEffect(new MobEffectInstance(MythicEffects.JADE_AURA, MythicStats.JADE_TOOL_AURA_DURATION_TICKS, 4));
                 if (self.getRandom().nextFloat() < MythicStats.JADE_TOOL_TELEPORT_CHANCE)
                     randomTeleportNear(self);
-                if (self.level() instanceof ServerLevel jadeSLevel)
-                    emitJadeBouncerParticles(jadeSLevel, directAttacker);
             }
 
             MobEffectInstance iceShield = self.getEffect(MythicEffects.ICE_SHIELD);
@@ -1044,14 +1035,4 @@ public abstract class LivingEntityMixin {
         }
     }
 
-    @Unique
-    private static void emitJadeBouncerParticles(ServerLevel level, LivingEntity entity) {
-        DustParticleOptions c1 = new DustParticleOptions(colorFromHex(MythicAnims.JADE_COLOR_2), MythicAnims.JADE_BOUNCER_PARTICLE_SCALE);
-        DustParticleOptions c2 = new DustParticleOptions(colorFromHex(MythicAnims.JADE_COLOR_3), MythicAnims.JADE_BOUNCER_PARTICLE_SCALE);
-        double cx = entity.getX(), cy = entity.getY() + entity.getBbHeight() * 0.5, cz = entity.getZ();
-        int count = MythicAnims.JADE_BOUNCER_PARTICLE_COUNT;
-        for (int i = 0; i < count; i++) {
-            level.sendParticles(i % 2 == 0 ? c1 : c2, cx, cy, cz, 1, 0.25, 0.35, 0.25, 0);
-        }
-    }
 }

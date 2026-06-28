@@ -1,18 +1,17 @@
 package net.trique.mythicupgrades.datagen;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.trique.mythicupgrades.block.MythicBlocks;
 import net.trique.mythicupgrades.item.MythicItems;
 
@@ -71,14 +70,14 @@ public class MythicBlockLootTableProvider extends BlockLootSubProvider {
         add(MythicBlocks.BUDDING_AMETRINE_CRYSTAL,   createSilkTouchOnlyTable(MythicBlocks.BUDDING_AMETRINE_CRYSTAL));
 
         // Clusters — 4 shards with fortune (or silk touch = block)
-        add(MythicBlocks.AQUAMARINE_CRYSTAL_CLUSTER, createAmethystClusterDrops(MythicBlocks.AQUAMARINE_CRYSTAL_CLUSTER, MythicItems.AQUAMARINE_CRYSTAL_SHARD));
-        add(MythicBlocks.CITRINE_CRYSTAL_CLUSTER,    createAmethystClusterDrops(MythicBlocks.CITRINE_CRYSTAL_CLUSTER,    MythicItems.CITRINE_CRYSTAL_SHARD));
-        add(MythicBlocks.TOPAZ_CRYSTAL_CLUSTER,      createAmethystClusterDrops(MythicBlocks.TOPAZ_CRYSTAL_CLUSTER,      MythicItems.TOPAZ_CRYSTAL_SHARD));
-        add(MythicBlocks.PERIDOT_CRYSTAL_CLUSTER,    createAmethystClusterDrops(MythicBlocks.PERIDOT_CRYSTAL_CLUSTER,    MythicItems.PERIDOT_CRYSTAL_SHARD));
-        add(MythicBlocks.RUBY_CRYSTAL_CLUSTER,       createAmethystClusterDrops(MythicBlocks.RUBY_CRYSTAL_CLUSTER,       MythicItems.RUBY_CRYSTAL_SHARD));
-        add(MythicBlocks.SAPPHIRE_CRYSTAL_CLUSTER,   createAmethystClusterDrops(MythicBlocks.SAPPHIRE_CRYSTAL_CLUSTER,   MythicItems.SAPPHIRE_CRYSTAL_SHARD));
-        add(MythicBlocks.JADE_CRYSTAL_CLUSTER,       createAmethystClusterDrops(MythicBlocks.JADE_CRYSTAL_CLUSTER,       MythicItems.JADE_CRYSTAL_SHARD));
-        add(MythicBlocks.AMETRINE_CRYSTAL_CLUSTER,   createAmethystClusterDrops(MythicBlocks.AMETRINE_CRYSTAL_CLUSTER,   MythicItems.AMETRINE_CRYSTAL_SHARD));
+        add(MythicBlocks.AQUAMARINE_CRYSTAL_CLUSTER, createClusterDrop(MythicBlocks.AQUAMARINE_CRYSTAL_CLUSTER, MythicItems.AQUAMARINE_CRYSTAL_SHARD));
+        add(MythicBlocks.CITRINE_CRYSTAL_CLUSTER,    createClusterDrop(MythicBlocks.CITRINE_CRYSTAL_CLUSTER,    MythicItems.CITRINE_CRYSTAL_SHARD));
+        add(MythicBlocks.TOPAZ_CRYSTAL_CLUSTER,      createClusterDrop(MythicBlocks.TOPAZ_CRYSTAL_CLUSTER,      MythicItems.TOPAZ_CRYSTAL_SHARD));
+        add(MythicBlocks.PERIDOT_CRYSTAL_CLUSTER,    createClusterDrop(MythicBlocks.PERIDOT_CRYSTAL_CLUSTER,    MythicItems.PERIDOT_CRYSTAL_SHARD));
+        add(MythicBlocks.RUBY_CRYSTAL_CLUSTER,       createClusterDrop(MythicBlocks.RUBY_CRYSTAL_CLUSTER,       MythicItems.RUBY_CRYSTAL_SHARD));
+        add(MythicBlocks.SAPPHIRE_CRYSTAL_CLUSTER,   createClusterDrop(MythicBlocks.SAPPHIRE_CRYSTAL_CLUSTER,   MythicItems.SAPPHIRE_CRYSTAL_SHARD));
+        add(MythicBlocks.JADE_CRYSTAL_CLUSTER,       createClusterDrop(MythicBlocks.JADE_CRYSTAL_CLUSTER,       MythicItems.JADE_CRYSTAL_SHARD));
+        add(MythicBlocks.AMETRINE_CRYSTAL_CLUSTER,   createClusterDrop(MythicBlocks.AMETRINE_CRYSTAL_CLUSTER,   MythicItems.AMETRINE_CRYSTAL_SHARD));
 
         // Small/medium buds — silk touch only
         addSilkTouchOnlyGroup(MythicBlocks.SMALL_AQUAMARINE_CRYSTAL_BUD,  MythicBlocks.SMALL_CITRINE_CRYSTAL_BUD,  MythicBlocks.SMALL_TOPAZ_CRYSTAL_BUD,  MythicBlocks.SMALL_PERIDOT_CRYSTAL_BUD);
@@ -190,6 +189,15 @@ public class MythicBlockLootTableProvider extends BlockLootSubProvider {
         add(MythicBlocks.POLISHED_SAPPHIRE_STONE_SLAB,  createSlabItemTable(MythicBlocks.POLISHED_SAPPHIRE_STONE_SLAB));
         add(MythicBlocks.POLISHED_JADE_STONE_SLAB,      createSlabItemTable(MythicBlocks.POLISHED_JADE_STONE_SLAB));
         add(MythicBlocks.POLISHED_AMETRINE_STONE_SLAB,  createSlabItemTable(MythicBlocks.POLISHED_AMETRINE_STONE_SLAB));
+    }
+
+    private LootTable.Builder createClusterDrop(Block block, Item shard) {
+        return createSilkTouchDispatchTable(block,
+            applyExplosionDecay(block,
+                LootItem.lootTableItem(shard)
+                    .apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F)))
+                    .apply(ApplyBonusCount.addOreBonusCount(
+                        this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE)))));
     }
 
     private void addSilkTouchOnlyGroup(Block... blocks) {

@@ -39,7 +39,6 @@ public class NecoiumShareHandler {
         MythicEffects.ICE_SHIELD,
         MythicEffects.CHARGED,
         MythicEffects.STATIC_FIELD,
-        MythicEffects.BOUNCER,
         MythicEffects.JADE_AURA
     );
 

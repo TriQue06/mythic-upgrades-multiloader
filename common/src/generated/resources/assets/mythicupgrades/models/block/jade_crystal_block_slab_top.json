@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "mythicupgrades:block/jade_crystal_block",
+    "side": "mythicupgrades:block/jade_crystal_block",
+    "top": "mythicupgrades:block/jade_crystal_block"
+  }
+}

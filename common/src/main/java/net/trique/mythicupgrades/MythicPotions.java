@@ -62,8 +62,8 @@ public class MythicPotions {
     public static final Potion ARCANE_AURA_STRONG = def("strong_arcane_aura", "arcane_aura", MythicEffects.ARCANE_AURA, 1800, 4);
 
     // Necoium → Necoium Share (3:00 / 8:00)
-    public static final Potion NECOIUM_SHARE      = def("necoium_share",      "necoium_share", MythicEffects.NECOIUM_SHARE, 3600, 0);
-    public static final Potion NECOIUM_SHARE_LONG = def("long_necoium_share", "necoium_share", MythicEffects.NECOIUM_SHARE, 9600, 0);
+    public static final Potion NECOIUM_SHARE      = def("necoium_share",      "necoium_share", MythicEffects.NECOIUM_SHARE, 1800, 0);
+    public static final Potion NECOIUM_SHARE_LONG = def("long_necoium_share", "necoium_share", MythicEffects.NECOIUM_SHARE, 4800, 0);
 
     public static void register(BiFunction<String, Potion, Potion> reg) {
         DEFERRED.forEach(e -> reg.apply(e.getKey(), e.getValue()));

@@ -5,6 +5,6 @@ import net.minecraft.world.effect.MobEffectCategory;
 
 public class BloodThirstEffect extends MobEffect {
     public BloodThirstEffect() {
-        super(MobEffectCategory.BENEFICIAL, 0xCC1111);
+        super(MobEffectCategory.BENEFICIAL, 0xef3547);
     }
 }

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "mythicupgrades:block/sapphire_stone_slab"
+    },
+    "type=double": {
+      "model": "mythicupgrades:block/sapphire_stone"
+    },
+    "type=top": {
+      "model": "mythicupgrades:block/sapphire_stone_slab_top"
+    }
+  }
+}

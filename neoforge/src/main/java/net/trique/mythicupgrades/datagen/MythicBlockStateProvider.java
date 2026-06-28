@@ -74,7 +74,7 @@ public class MythicBlockStateProvider extends BlockStateProvider {
     }
 
     private void clusterBlock(Block b, String name) {
-        ModelFile model = models().cross(name, modLoc("block/" + name));
+        ModelFile model = models().cross(name, modLoc("block/" + name)).renderType("minecraft:cutout");
         getVariantBuilder(b).forAllStatesExcept(state -> {
             int x = 0, y = 0;
             switch (state.getValue(BlockStateProperties.FACING)) {

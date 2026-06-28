@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "mythicupgrades:raw_necoium_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "mythicupgrades:raw_necoium"
+  }
+}

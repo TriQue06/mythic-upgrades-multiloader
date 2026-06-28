@@ -6,6 +6,6 @@ import net.minecraft.world.effect.MobEffectCategory;
 public class DamageDeflectionEffect extends MobEffect {
 
     public DamageDeflectionEffect() {
-        super(MobEffectCategory.BENEFICIAL, 0x1146B4);
+        super(MobEffectCategory.BENEFICIAL, 0x1995ec);
     }
 }

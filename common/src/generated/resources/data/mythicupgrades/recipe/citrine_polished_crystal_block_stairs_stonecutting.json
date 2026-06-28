@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "mythicupgrades:polished_citrine_crystal_block"
+  },
+  "result": {
+    "count": 1,
+    "id": "mythicupgrades:polished_citrine_crystal_block_stairs"
+  }
+}

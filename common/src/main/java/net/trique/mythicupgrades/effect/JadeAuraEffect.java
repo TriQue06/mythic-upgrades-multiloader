@@ -13,7 +13,7 @@ public class JadeAuraEffect extends MobEffect {
     private static final ResourceLocation SPEED_ID = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "jade_aura_speed");
 
     public JadeAuraEffect() {
-        super(MobEffectCategory.BENEFICIAL, 0x0F6B3F);
+        super(MobEffectCategory.BENEFICIAL, 0x58cf3e);
     }
 
     @Override

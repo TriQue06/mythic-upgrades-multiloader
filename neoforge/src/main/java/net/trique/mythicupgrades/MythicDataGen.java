@@ -25,6 +25,7 @@ import net.trique.mythicupgrades.datagen.MythicTrimAtlasProvider;
 import net.trique.mythicupgrades.datagen.MythicTrimMaterialProvider;
 import net.trique.mythicupgrades.worldgen.MythicBiomeBootstrap;
 import net.trique.mythicupgrades.worldgen.MythicBiomeModifierBootstrap;
+import net.trique.mythicupgrades.worldgen.MythicDamageTypeBootstrap;
 import net.trique.mythicupgrades.worldgen.MythicConfiguredFeatures;
 import net.trique.mythicupgrades.worldgen.MythicEndBiomeBootstrap;
 import net.trique.mythicupgrades.worldgen.MythicEndConfiguredFeatures;
@@ -57,6 +58,7 @@ public class MythicDataGen {
             MythicNetherBiomeBootstrap.bootstrap(ctx);
             MythicEndBiomeBootstrap.bootstrap(ctx);
         })
+        .add(Registries.DAMAGE_TYPE, MythicDamageTypeBootstrap::bootstrap)
         .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, MythicBiomeModifierBootstrap::bootstrap);
 
     @SubscribeEvent
@@ -74,7 +76,7 @@ public class MythicDataGen {
         // Block/item tags
         var blockTags = new MythicBlockTagsProvider(output, lookupProvider, existingFileHelper);
         gen.addProvider(event.includeServer(), blockTags);
-        gen.addProvider(event.includeServer(), new MythicItemTagsProvider(output, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
+        gen.addProvider(event.includeServer(), new MythicItemTagsProvider(output, lookupProvider, existingFileHelper));
         gen.addProvider(event.includeServer(), new MythicBiomeTagsProvider(output, lookupProvider, existingFileHelper));
         gen.addProvider(event.includeServer(), new MythicDamageTypeTagsProvider(output, lookupProvider, existingFileHelper));
 

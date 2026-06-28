@@ -1,6 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": "mythicupgrades:sapphire_rift",
-  "features": "mythicupgrades:sapphire_rift_geode_extra",
-  "step": "underground_decoration"
-}

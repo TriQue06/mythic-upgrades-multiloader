@@ -6,6 +6,6 @@ import net.minecraft.world.effect.MobEffectCategory;
 public class ArcaneAuraEffect extends MobEffect {
 
     public ArcaneAuraEffect() {
-        super(MobEffectCategory.BENEFICIAL, 0x9B00E8);
+        super(MobEffectCategory.BENEFICIAL, 0xd040bf);
     }
 }
