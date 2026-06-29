@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "mythicupgrades:block/polished_ruby_stone",
-    "side": "mythicupgrades:block/polished_ruby_stone",
-    "top": "mythicupgrades:block/polished_ruby_stone"
-  }
-}

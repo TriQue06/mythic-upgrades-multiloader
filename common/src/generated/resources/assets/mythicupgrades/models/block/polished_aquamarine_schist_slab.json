@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "mythicupgrades:block/polished_aquamarine_schist",
+    "side": "mythicupgrades:block/polished_aquamarine_schist",
+    "top": "mythicupgrades:block/polished_aquamarine_schist"
+  }
+}

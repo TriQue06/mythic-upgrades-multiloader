@@ -27,7 +27,7 @@
           "Name": "mythicupgrades:deepslate_peridot_ore"
         },
         "target": {
-          "block": "mythicupgrades:peridot_stone",
+          "block": "mythicupgrades:peridot_schist",
           "predicate_type": "minecraft:block_match"
         }
       }

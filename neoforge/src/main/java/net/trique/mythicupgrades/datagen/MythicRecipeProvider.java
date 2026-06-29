@@ -286,28 +286,28 @@ public class MythicRecipeProvider extends RecipeProvider {
 
     private void stoneBlocks(RecipeOutput output, String gem) {
         Item shard = getGemShard(gem);
-        Block stone = getBlock(gem + "_stone");
-        Block polishedStone = getBlock("polished_" + gem + "_stone");
+        Block stone = getBlock(gem + "_schist");
+        Block polishedStone = getBlock("polished_" + gem + "_schist");
 
-        // Stone from cobblestone + shard
+        // Schist from cobblestone + shard
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, stone)
             .define('C', Items.COBBLESTONE)
             .define('S', shard)
             .pattern("CS")
             .unlockedBy("has_shard", has(shard))
-            .save(output, rl(gem + "_stone"));
+            .save(output, rl(gem + "_schist"));
 
-        // Polished stone from stone
+        // Polished schist from schist
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, polishedStone, 4)
             .define('#', stone)
             .pattern("##").pattern("##")
-            .unlockedBy("has_stone", has(stone))
-            .save(output, rl(gem + "_polished_stone"));
+            .unlockedBy("has_schist", has(stone))
+            .save(output, rl(gem + "_polished_schist"));
 
-        stonecutAndSlabStairs(output, gem + "_stone", stone,
-            getBlock(gem + "_stone_slab"), getBlock(gem + "_stone_stairs"));
-        stonecutAndSlabStairs(output, gem + "_polished_stone", polishedStone,
-            getBlock("polished_" + gem + "_stone_slab"), getBlock("polished_" + gem + "_stone_stairs"));
+        stonecutAndSlabStairs(output, gem + "_schist", stone,
+            getBlock(gem + "_schist_slab"), getBlock(gem + "_schist_stairs"));
+        stonecutAndSlabStairs(output, gem + "_polished_schist", polishedStone,
+            getBlock("polished_" + gem + "_schist_slab"), getBlock("polished_" + gem + "_schist_stairs"));
     }
 
     private static Block getBlock(String name) {
@@ -392,54 +392,54 @@ public class MythicRecipeProvider extends RecipeProvider {
             case "sapphire_crystal_bricks_stairs"      -> MythicBlocks.SAPPHIRE_CRYSTAL_BRICKS_STAIRS;
             case "jade_crystal_bricks_stairs"          -> MythicBlocks.JADE_CRYSTAL_BRICKS_STAIRS;
             case "ametrine_crystal_bricks_stairs"      -> MythicBlocks.AMETRINE_CRYSTAL_BRICKS_STAIRS;
-            case "aquamarine_stone"                    -> MythicBlocks.AQUAMARINE_STONE;
-            case "citrine_stone"                       -> MythicBlocks.CITRINE_STONE;
-            case "topaz_stone"                         -> MythicBlocks.TOPAZ_STONE;
-            case "peridot_stone"                       -> MythicBlocks.PERIDOT_STONE;
-            case "ruby_stone"                          -> MythicBlocks.RUBY_STONE;
-            case "sapphire_stone"                      -> MythicBlocks.SAPPHIRE_STONE;
-            case "jade_stone"                          -> MythicBlocks.JADE_STONE;
-            case "ametrine_stone"                      -> MythicBlocks.AMETRINE_STONE;
-            case "polished_aquamarine_stone"           -> MythicBlocks.POLISHED_AQUAMARINE_STONE;
-            case "polished_citrine_stone"              -> MythicBlocks.POLISHED_CITRINE_STONE;
-            case "polished_topaz_stone"                -> MythicBlocks.POLISHED_TOPAZ_STONE;
-            case "polished_peridot_stone"              -> MythicBlocks.POLISHED_PERIDOT_STONE;
-            case "polished_ruby_stone"                 -> MythicBlocks.POLISHED_RUBY_STONE;
-            case "polished_sapphire_stone"             -> MythicBlocks.POLISHED_SAPPHIRE_STONE;
-            case "polished_jade_stone"                 -> MythicBlocks.POLISHED_JADE_STONE;
-            case "polished_ametrine_stone"             -> MythicBlocks.POLISHED_AMETRINE_STONE;
-            case "aquamarine_stone_slab"               -> MythicBlocks.AQUAMARINE_STONE_SLAB;
-            case "citrine_stone_slab"                  -> MythicBlocks.CITRINE_STONE_SLAB;
-            case "topaz_stone_slab"                    -> MythicBlocks.TOPAZ_STONE_SLAB;
-            case "peridot_stone_slab"                  -> MythicBlocks.PERIDOT_STONE_SLAB;
-            case "ruby_stone_slab"                     -> MythicBlocks.RUBY_STONE_SLAB;
-            case "sapphire_stone_slab"                 -> MythicBlocks.SAPPHIRE_STONE_SLAB;
-            case "jade_stone_slab"                     -> MythicBlocks.JADE_STONE_SLAB;
-            case "ametrine_stone_slab"                 -> MythicBlocks.AMETRINE_STONE_SLAB;
-            case "aquamarine_stone_stairs"             -> MythicBlocks.AQUAMARINE_STONE_STAIRS;
-            case "citrine_stone_stairs"                -> MythicBlocks.CITRINE_STONE_STAIRS;
-            case "topaz_stone_stairs"                  -> MythicBlocks.TOPAZ_STONE_STAIRS;
-            case "peridot_stone_stairs"                -> MythicBlocks.PERIDOT_STONE_STAIRS;
-            case "ruby_stone_stairs"                   -> MythicBlocks.RUBY_STONE_STAIRS;
-            case "sapphire_stone_stairs"               -> MythicBlocks.SAPPHIRE_STONE_STAIRS;
-            case "jade_stone_stairs"                   -> MythicBlocks.JADE_STONE_STAIRS;
-            case "ametrine_stone_stairs"               -> MythicBlocks.AMETRINE_STONE_STAIRS;
-            case "polished_aquamarine_stone_slab"      -> MythicBlocks.POLISHED_AQUAMARINE_STONE_SLAB;
-            case "polished_citrine_stone_slab"         -> MythicBlocks.POLISHED_CITRINE_STONE_SLAB;
-            case "polished_topaz_stone_slab"           -> MythicBlocks.POLISHED_TOPAZ_STONE_SLAB;
-            case "polished_peridot_stone_slab"         -> MythicBlocks.POLISHED_PERIDOT_STONE_SLAB;
-            case "polished_ruby_stone_slab"            -> MythicBlocks.POLISHED_RUBY_STONE_SLAB;
-            case "polished_sapphire_stone_slab"        -> MythicBlocks.POLISHED_SAPPHIRE_STONE_SLAB;
-            case "polished_jade_stone_slab"            -> MythicBlocks.POLISHED_JADE_STONE_SLAB;
-            case "polished_ametrine_stone_slab"        -> MythicBlocks.POLISHED_AMETRINE_STONE_SLAB;
-            case "polished_aquamarine_stone_stairs"    -> MythicBlocks.POLISHED_AQUAMARINE_STONE_STAIRS;
-            case "polished_citrine_stone_stairs"       -> MythicBlocks.POLISHED_CITRINE_STONE_STAIRS;
-            case "polished_topaz_stone_stairs"         -> MythicBlocks.POLISHED_TOPAZ_STONE_STAIRS;
-            case "polished_peridot_stone_stairs"       -> MythicBlocks.POLISHED_PERIDOT_STONE_STAIRS;
-            case "polished_ruby_stone_stairs"          -> MythicBlocks.POLISHED_RUBY_STONE_STAIRS;
-            case "polished_sapphire_stone_stairs"      -> MythicBlocks.POLISHED_SAPPHIRE_STONE_STAIRS;
-            case "polished_jade_stone_stairs"          -> MythicBlocks.POLISHED_JADE_STONE_STAIRS;
-            case "polished_ametrine_stone_stairs"      -> MythicBlocks.POLISHED_AMETRINE_STONE_STAIRS;
+            case "aquamarine_schist"                    -> MythicBlocks.AQUAMARINE_SCHIST;
+            case "citrine_schist"                       -> MythicBlocks.CITRINE_SCHIST;
+            case "topaz_schist"                         -> MythicBlocks.TOPAZ_SCHIST;
+            case "peridot_schist"                       -> MythicBlocks.PERIDOT_SCHIST;
+            case "ruby_schist"                          -> MythicBlocks.RUBY_SCHIST;
+            case "sapphire_schist"                      -> MythicBlocks.SAPPHIRE_SCHIST;
+            case "jade_schist"                          -> MythicBlocks.JADE_SCHIST;
+            case "ametrine_schist"                      -> MythicBlocks.AMETRINE_SCHIST;
+            case "polished_aquamarine_schist"           -> MythicBlocks.POLISHED_AQUAMARINE_SCHIST;
+            case "polished_citrine_schist"              -> MythicBlocks.POLISHED_CITRINE_SCHIST;
+            case "polished_topaz_schist"                -> MythicBlocks.POLISHED_TOPAZ_SCHIST;
+            case "polished_peridot_schist"              -> MythicBlocks.POLISHED_PERIDOT_SCHIST;
+            case "polished_ruby_schist"                 -> MythicBlocks.POLISHED_RUBY_SCHIST;
+            case "polished_sapphire_schist"             -> MythicBlocks.POLISHED_SAPPHIRE_SCHIST;
+            case "polished_jade_schist"                 -> MythicBlocks.POLISHED_JADE_SCHIST;
+            case "polished_ametrine_schist"             -> MythicBlocks.POLISHED_AMETRINE_SCHIST;
+            case "aquamarine_schist_slab"               -> MythicBlocks.AQUAMARINE_SCHIST_SLAB;
+            case "citrine_schist_slab"                  -> MythicBlocks.CITRINE_SCHIST_SLAB;
+            case "topaz_schist_slab"                    -> MythicBlocks.TOPAZ_SCHIST_SLAB;
+            case "peridot_schist_slab"                  -> MythicBlocks.PERIDOT_SCHIST_SLAB;
+            case "ruby_schist_slab"                     -> MythicBlocks.RUBY_SCHIST_SLAB;
+            case "sapphire_schist_slab"                 -> MythicBlocks.SAPPHIRE_SCHIST_SLAB;
+            case "jade_schist_slab"                     -> MythicBlocks.JADE_SCHIST_SLAB;
+            case "ametrine_schist_slab"                 -> MythicBlocks.AMETRINE_SCHIST_SLAB;
+            case "aquamarine_schist_stairs"             -> MythicBlocks.AQUAMARINE_SCHIST_STAIRS;
+            case "citrine_schist_stairs"                -> MythicBlocks.CITRINE_SCHIST_STAIRS;
+            case "topaz_schist_stairs"                  -> MythicBlocks.TOPAZ_SCHIST_STAIRS;
+            case "peridot_schist_stairs"                -> MythicBlocks.PERIDOT_SCHIST_STAIRS;
+            case "ruby_schist_stairs"                   -> MythicBlocks.RUBY_SCHIST_STAIRS;
+            case "sapphire_schist_stairs"               -> MythicBlocks.SAPPHIRE_SCHIST_STAIRS;
+            case "jade_schist_stairs"                   -> MythicBlocks.JADE_SCHIST_STAIRS;
+            case "ametrine_schist_stairs"               -> MythicBlocks.AMETRINE_SCHIST_STAIRS;
+            case "polished_aquamarine_schist_slab"      -> MythicBlocks.POLISHED_AQUAMARINE_SCHIST_SLAB;
+            case "polished_citrine_schist_slab"         -> MythicBlocks.POLISHED_CITRINE_SCHIST_SLAB;
+            case "polished_topaz_schist_slab"           -> MythicBlocks.POLISHED_TOPAZ_SCHIST_SLAB;
+            case "polished_peridot_schist_slab"         -> MythicBlocks.POLISHED_PERIDOT_SCHIST_SLAB;
+            case "polished_ruby_schist_slab"            -> MythicBlocks.POLISHED_RUBY_SCHIST_SLAB;
+            case "polished_sapphire_schist_slab"        -> MythicBlocks.POLISHED_SAPPHIRE_SCHIST_SLAB;
+            case "polished_jade_schist_slab"            -> MythicBlocks.POLISHED_JADE_SCHIST_SLAB;
+            case "polished_ametrine_schist_slab"        -> MythicBlocks.POLISHED_AMETRINE_SCHIST_SLAB;
+            case "polished_aquamarine_schist_stairs"    -> MythicBlocks.POLISHED_AQUAMARINE_SCHIST_STAIRS;
+            case "polished_citrine_schist_stairs"       -> MythicBlocks.POLISHED_CITRINE_SCHIST_STAIRS;
+            case "polished_topaz_schist_stairs"         -> MythicBlocks.POLISHED_TOPAZ_SCHIST_STAIRS;
+            case "polished_peridot_schist_stairs"       -> MythicBlocks.POLISHED_PERIDOT_SCHIST_STAIRS;
+            case "polished_ruby_schist_stairs"          -> MythicBlocks.POLISHED_RUBY_SCHIST_STAIRS;
+            case "polished_sapphire_schist_stairs"      -> MythicBlocks.POLISHED_SAPPHIRE_SCHIST_STAIRS;
+            case "polished_jade_schist_stairs"          -> MythicBlocks.POLISHED_JADE_SCHIST_STAIRS;
+            case "polished_ametrine_schist_stairs"      -> MythicBlocks.POLISHED_AMETRINE_SCHIST_STAIRS;
             default -> throw new IllegalArgumentException("Unknown block: " + name);
         };
     }

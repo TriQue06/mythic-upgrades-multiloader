@@ -18,7 +18,7 @@
           "Name": "mythicupgrades:ruby_crystal_block"
         },
         "target": {
-          "block": "mythicupgrades:ruby_stone",
+          "block": "mythicupgrades:ruby_schist",
           "predicate_type": "minecraft:block_match"
         }
       }

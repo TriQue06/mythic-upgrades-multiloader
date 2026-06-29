@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "mythicupgrades:block/topaz_stone",
-    "side": "mythicupgrades:block/topaz_stone",
-    "top": "mythicupgrades:block/topaz_stone"
-  }
-}

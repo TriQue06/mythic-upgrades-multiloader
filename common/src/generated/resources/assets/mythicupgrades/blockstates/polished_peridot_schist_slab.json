@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "mythicupgrades:block/polished_peridot_schist_slab"
+    },
+    "type=double": {
+      "model": "mythicupgrades:block/polished_peridot_schist"
+    },
+    "type=top": {
+      "model": "mythicupgrades:block/polished_peridot_schist_slab_top"
+    }
+  }
+}

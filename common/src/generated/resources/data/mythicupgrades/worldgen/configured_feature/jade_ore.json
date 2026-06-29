@@ -18,7 +18,7 @@
           "Name": "mythicupgrades:jade_ore"
         },
         "target": {
-          "block": "mythicupgrades:jade_stone",
+          "block": "mythicupgrades:jade_schist",
           "predicate_type": "minecraft:block_match"
         }
       }

@@ -27,7 +27,7 @@ public enum NetherGemType {
         this.waterColor    = waterColor;
     }
 
-    public ResourceKey<Block> stoneBlock()      { return block(id + "_stone"); }
+    public ResourceKey<Block> stoneBlock()      { return block(id + "_schist"); }
     public ResourceKey<Block> crystalBlock()   { return block(id + "_crystal_block"); }
     public ResourceKey<Block> buddingCrystal() { return block("budding_" + id + "_crystal"); }
     public ResourceKey<Block> oreBlock()       { return block(id + "_ore"); }
@@ -44,7 +44,7 @@ public enum NetherGemType {
         return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, id + "_rift"));
     }
 
-    public ResourceKey<ConfiguredFeature<?, ?>> stoneBlobsCF()      { return cf(id + "_stone_blobs"); }
+    public ResourceKey<ConfiguredFeature<?, ?>> stoneBlobsCF()      { return cf(id + "_schist_blobs"); }
     public ResourceKey<ConfiguredFeature<?, ?>> crystalBlobsCF()    { return cf(id + "_crystal_blobs"); }
     public ResourceKey<ConfiguredFeature<?, ?>> crystalBudsCF()     { return cf(id + "_crystal_buds"); }
     public ResourceKey<ConfiguredFeature<?, ?>> crystalBudsRareCF() { return cf(id + "_crystal_buds_rare"); }
@@ -55,7 +55,7 @@ public enum NetherGemType {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
     }
 
-    public ResourceKey<PlacedFeature> stoneBlobsPF()      { return pf(id + "_stone_blobs"); }
+    public ResourceKey<PlacedFeature> stoneBlobsPF()      { return pf(id + "_schist_blobs"); }
     public ResourceKey<PlacedFeature> crystalBlobsPF()    { return pf(id + "_crystal_blobs"); }
     public ResourceKey<PlacedFeature> crystalBudsPF()     { return pf(id + "_crystal_buds"); }
     public ResourceKey<PlacedFeature> crystalBudsRarePF() { return pf(id + "_crystal_buds_rare"); }
