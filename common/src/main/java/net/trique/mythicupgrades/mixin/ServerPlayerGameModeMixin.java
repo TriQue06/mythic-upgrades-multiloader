@@ -7,8 +7,13 @@ import net.minecraft.server.level.ServerPlayerGameMode;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
 import net.trique.mythicupgrades.MythicAnims;
 import net.trique.mythicupgrades.MythicEffects;
 import net.trique.mythicupgrades.MythicState;
@@ -39,7 +44,7 @@ public abstract class ServerPlayerGameModeMixin {
         }
 
         if (isRubyTool(tool)) {
-            player.heal(1.0f);
+            player.heal(MythicStats.RUBY_TOOL_INTERACTION_HEAL);
         }
 
         if (!isTopazTool(tool)) return;
@@ -70,6 +75,18 @@ public abstract class ServerPlayerGameModeMixin {
             serverLevel.playSound(null, cx, cy, cz, MythicAnims.TOPAZ_WAVE_SOUND_2, SoundSource.PLAYERS, MythicAnims.TOPAZ_WAVE_SOUND_VOLUME, MythicAnims.TOPAZ_WAVE_SOUND_PITCH_2);
         } else {
             MythicState.TOPAZ_TOOL_HIT_COUNTS.put(player, count);
+        }
+    }
+
+    @Inject(method = "useItemOn", at = @At("RETURN"))
+    private void onUseItemOn(ServerPlayer player, Level level, ItemStack stack, InteractionHand hand, BlockHitResult hitResult, CallbackInfoReturnable<InteractionResult> cir) {
+        if (cir.getReturnValue() == InteractionResult.PASS || cir.getReturnValue() == InteractionResult.FAIL) return;
+        Item item = stack.getItem();
+        if (isJadeTool(item)) {
+            this.player.addEffect(new MobEffectInstance(MythicEffects.JADE_AURA, MythicStats.JADE_TOOL_AURA_DURATION_TICKS, 4));
+        }
+        if (isRubyTool(item)) {
+            this.player.heal(MythicStats.RUBY_TOOL_INTERACTION_HEAL);
         }
     }
 

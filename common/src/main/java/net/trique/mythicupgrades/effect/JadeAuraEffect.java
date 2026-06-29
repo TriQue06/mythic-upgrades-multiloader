@@ -1,4 +1,5 @@
 package net.trique.mythicupgrades.effect;
+import net.trique.mythicupgrades.MythicAnims;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
@@ -13,7 +14,7 @@ public class JadeAuraEffect extends MobEffect {
     private static final ResourceLocation SPEED_ID = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "jade_aura_speed");
 
     public JadeAuraEffect() {
-        super(MobEffectCategory.BENEFICIAL, 0x58cf3e);
+        super(MobEffectCategory.BENEFICIAL, MythicAnims.JADE_AURA_EFFECT_COLOR);
     }
 
     @Override
