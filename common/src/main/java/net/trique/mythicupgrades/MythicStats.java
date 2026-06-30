@@ -62,11 +62,10 @@ public class MythicStats {
     public static int PERIDOT_LEGGINGS_LEVELS = 3;
     public static int PERIDOT_BOOTS_LEVELS = 2;
 
-    public static int LETHAL_INCUBATION_TOOL_LEVEL = 3;
-    public static int LETHAL_INCUBATION_DURATION_TICKS_PER_LEVEL = 20;
-    public static int LETHAL_INCUBATION_POISON_DURATION_TICKS_PER_LEVEL = 20;
-    public static float LETHAL_INCUBATION_SHOCK_DAMAGE = 3.0f;
+    public static int LETHAL_INCUBATION_TOOL_DURATION_TICKS = 100;
+    public static float LETHAL_INCUBATION_SHOCK_DAMAGE = 1.5f;
     public static float LETHAL_INCUBATION_SHOCK_RADIUS = 5.0f;
+    public static int LETHAL_INCUBATION_POISON_DURATION_TICKS = 60;
 
     public static float MIASMA_CLOUD_RADIUS_PER_LEVEL = 1.0f;
     public static float MIASMA_CLOUD_MAX_RADIUS = 10.0f;
