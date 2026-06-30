@@ -32,12 +32,12 @@ public class MythicStats {
     public static int TOPAZ_LEGGINGS_LEVELS = 3;
     public static int TOPAZ_BOOTS_LEVELS = 2;
 
-    public static float TOPAZ_SHOCK_DAMAGE_PER_LEVEL = 0.25f;
-    public static float TOPAZ_SHOCK_KNOCKBACK_PER_LEVEL = 0.25f;
+    public static float TOPAZ_SHOCK_DAMAGE_PER_LEVEL = 0.20f;
+    public static float TOPAZ_SHOCK_KNOCKBACK_PER_LEVEL = 0.20f;
     public static float TOPAZ_FALL_REDUCTION_PER_LEVEL = 0.05f;
     public static float TOPAZ_FALL_MAX_REDUCTION = 0.50f;
-    public static float TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL = 1.0f;
-    public static float TOPAZ_ARMOR_SHOCK_MAX_RADIUS = 10.0f;
+    public static float TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL = 0.75f;
+    public static float TOPAZ_ARMOR_SHOCK_MAX_RADIUS = 7.50f;
 
     public static int TOPAZ_TOOL_SHOCK_INTERVAL = 3;
     public static int TOPAZ_TOOL_EFFECTIVE_LEVEL = 5;
