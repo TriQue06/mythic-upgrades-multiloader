@@ -115,7 +115,6 @@ public class MythicStats {
     public static float STATIC_FIELD_STACK_DAMAGE_INCREASE = 0.10f;
     public static int STATIC_FIELD_STACK_RESET_TICKS = 60;
 
-
     public static int JADE_HELMET_LEVELS = 2;
     public static int JADE_CHESTPLATE_LEVELS = 3;
     public static int JADE_LEGGINGS_LEVELS = 3;
