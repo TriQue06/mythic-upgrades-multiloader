@@ -440,7 +440,7 @@ public abstract class LivingEntityMixin {
             int effectLevel = aura.getAmplifier() + 1;
             float maxRadius = Math.min(effectLevel * MythicStats.ARCANE_AURA_RADIUS_PER_LEVEL, MythicStats.ARCANE_AURA_MAX_RADIUS);
             int levitationAmp = effectLevel * MythicStats.ARCANE_AURA_LEVITATION_AMP_PER_LEVEL - 1;
-            int levitationDur = Math.min(effectLevel * MythicStats.ARCANE_AURA_LEVITATION_DURATION_TICKS_PER_LEVEL, MythicStats.ARCANE_AURA_LEVITATION_MAX_DURATION_TICKS);
+            int levitationDur = MythicStats.ARCANE_AURA_LEVITATION_DURATION_TICKS;
 
             mu_arcaneWaveTick = 0;
             mu_arcaneWaveMaxRadius = maxRadius;

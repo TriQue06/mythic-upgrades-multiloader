@@ -21,8 +21,7 @@ public class MythicStats {
     public static float ARCANE_AURA_RADIUS_PER_LEVEL = 1.0f;
     public static int ARCANE_AURA_MAX_RADIUS = 10;
     public static int ARCANE_AURA_LEVITATION_AMP_PER_LEVEL = 1;
-    public static int ARCANE_AURA_LEVITATION_DURATION_TICKS_PER_LEVEL = 20;
-    public static int ARCANE_AURA_LEVITATION_MAX_DURATION_TICKS = 20;
+    public static int ARCANE_AURA_LEVITATION_DURATION_TICKS = 30;
 
     public static int AMETRINE_TOOL_LEVITATION_AMPLIFIER = 2;
     public static int AMETRINE_TOOL_LEVITATION_DURATION_TICKS = 20;
