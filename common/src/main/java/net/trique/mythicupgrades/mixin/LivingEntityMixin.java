@@ -380,7 +380,7 @@ public abstract class LivingEntityMixin {
 
         String msgId = source.type().msgId();
         if ("deflecting".equals(msgId) || "percentage".equals(msgId) || "topaz_shock".equals(msgId)
-            || "peridot_incubation".equals(msgId) || "ice_shield_reflect".equals(msgId)
+            || "peridot_incubation".equals(msgId)
             || "citrine_chain".equals(msgId) || "static_field".equals(msgId) || "ice_bomb_burst".equals(msgId)) return;
 
         float actualDamage = mu_healthBefore - self.getHealth();
@@ -551,8 +551,6 @@ public abstract class LivingEntityMixin {
 
             MobEffectInstance iceShield = self.getEffect(MythicEffects.ICE_SHIELD);
             if (iceShield != null) {
-                int level = iceShield.getAmplifier() + 1;
-                directAttacker.hurt(MUDamageTypes.iceShieldReflect(self), level * MythicStats.ICE_SHIELD_MAGIC_DAMAGE_PER_LEVEL);
                 directAttacker.addEffect(new MobEffectInstance(MythicEffects.FREEZE, MythicStats.ICE_SHIELD_FREEZE_TICKS, 0));
                 if (self.level() instanceof ServerLevel iceLevel)
                     emitIceShieldStreamParticles(iceLevel, self, directAttacker);

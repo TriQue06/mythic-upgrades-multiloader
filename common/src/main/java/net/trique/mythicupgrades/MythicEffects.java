@@ -48,8 +48,6 @@ public class MythicEffects {
 
     public static void register(BiFunction<String, MobEffect, MobEffect> reg) {
         DEFERRED.forEach(e -> reg.apply(e.getKey(), e.getValue()));
-        // Replace Holder.direct() with registry-backed holders so MobEffectInstance
-        // can be serialized (Holder.direct() has no registry key → save crash).
         DAMAGE_DEFLECTION  = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(DAMAGE_DEFLECTION.value());
         ARCANE_AURA        = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(ARCANE_AURA.value());
         TOPAZ_REACTION     = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(TOPAZ_REACTION.value());
