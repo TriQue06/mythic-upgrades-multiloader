@@ -1,4 +1,5 @@
 package net.trique.mythicupgrades.effect;
+import net.trique.mythicupgrades.MythicAnims;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
@@ -8,7 +9,7 @@ import net.trique.mythicupgrades.handler.NecoiumShareHandler;
 
 public class NecoiumShareEffect extends MobEffect {
     public NecoiumShareEffect() {
-        super(MobEffectCategory.BENEFICIAL, 0xe61a8f);
+        super(MobEffectCategory.BENEFICIAL, MythicAnims.NECOIUM_SHARE_EFFECT_COLOR);
     }
 
     @Override

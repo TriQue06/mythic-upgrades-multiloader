@@ -7,6 +7,8 @@ public class MythicStats {
     public static int SAPPHIRE_LEGGINGS_LEVELS = 3;
     public static int SAPPHIRE_BOOTS_LEVELS = 2;
     public static float DEFLECT_PER_LEVEL = 0.05f;
+    public static float DEFLECT_BONUS_DAMAGE_PER_LEVEL = 0.5f;
+    public static float DEFLECT_BONUS_DAMAGE_MAX = 5.0f;
 
     public static float SAPPHIRE_TOOL_PERCENT_DAMAGE = 0.05f;
     public static float SAPPHIRE_TOOL_PERCENT_DAMAGE_CAP = 15.0f;
@@ -47,6 +49,7 @@ public class MythicStats {
     public static int RUBY_BOOTS_LEVELS = 2;
 
     public static float RUBY_TOOL_LIFESTEAL_FRACTION = 0.30f;
+    public static float RUBY_TOOL_INTERACTION_HEAL = 1.0f;
     public static int RUBY_TOOL_LIFESTEAL_PARTICLE_COUNT = 20;
 
     public static float BLOOD_THIRST_RADIUS_PER_LEVEL = 3.0f;
@@ -70,7 +73,6 @@ public class MythicStats {
     public static float MIASMA_CLOUD_MAX_RADIUS = 10.0f;
     public static int MIASMA_POISON_MAX_AMPLIFIER = 9;
     public static int MIASMA_POISON_DURATION_TICKS_PER_LEVEL = 10;
-    public static int MIASMA_CLOUD_DURATION_TICKS_PER_LEVEL = 40;
     public static int MIASMA_INTERVAL_TICKS = 200;
 
     public static int AQUAMARINE_HELMET_LEVELS = 2;
@@ -82,10 +84,6 @@ public class MythicStats {
     public static int AQUAMARINE_TOOL_SLOWNESS_DURATION_TICKS = 60;
     public static int AQUAMARINE_TOOL_SLOWNESS_AMPLIFIER = 0;
 
-    public static int ICE_SHIELD_MARK_DURATION_TICKS = 60;
-    public static float ICE_SHIELD_MARK_BURST_RADIUS = 3.0f;
-    public static float ICE_SHIELD_MARK_BURST_DAMAGE = 3.0f;
-    public static int ICE_SHIELD_MARK_BURST_FREEZE_TICKS = 6;
     public static int ICE_SHIELD_FREEZE_TICKS_PER_LEVEL = 6;
     public static int ICE_SHIELD_FREEZE_MIN_TICKS = 6;
     public static int ICE_SHIELD_FREEZE_MAX_TICKS = 60;
@@ -116,8 +114,6 @@ public class MythicStats {
     public static float STATIC_FIELD_MAX_RADIUS = 4.0f;
     public static float STATIC_FIELD_DAMAGE_PER_LEVEL_PER_SECOND = 0.20f;
     public static float STATIC_FIELD_MAX_DAMAGE_PER_SECOND = 2.0f;
-    public static float STATIC_FIELD_LIGHTNING_CHANCE_PER_LEVEL = 0.01f;
-    public static float STATIC_FIELD_MAX_LIGHTNING_CHANCE = 0.10f;
     public static double CITRINE_LIGHTNING_REDIRECT_DISTANCE = 7.0;
     public static int STATIC_FIELD_MAX_STACKS = 5;
     public static float STATIC_FIELD_STACK_DAMAGE_INCREASE = 0.10f;
@@ -142,8 +138,6 @@ public class MythicStats {
     public static float JADE_TRAIL_RADIUS = 1.0f;
     public static int JADE_TRAIL_DURATION_TICKS = 60;
     public static int JADE_TRAIL_EFFECT_DURATION_TICKS = 80;
-    public static int JADE_TRAIL_LINGER_TICKS_PER_LEVEL = 10;
-    public static int JADE_TRAIL_LINGER_MAX_TICKS = 100;
     public static float JADE_TRAIL_LINGER_CONTACT_RADIUS = 1.0f;
     public static int JADE_TRAIL_CONTACT_EFFECT_DURATION_TICKS = 300;
 }

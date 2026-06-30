@@ -275,7 +275,7 @@ public abstract class LivingEntityMixin {
                 && self.level() instanceof ServerLevel jadeSLevel) {
             int auraLevel = jadeAuraActive.getAmplifier() + 1;
             applyJadeTrail(jadeSLevel, self, auraLevel);
-            int lingerTicks = Math.min(auraLevel * MythicStats.JADE_TRAIL_LINGER_TICKS_PER_LEVEL, MythicStats.JADE_TRAIL_LINGER_MAX_TICKS);
+            int lingerTicks = MythicStats.JADE_TRAIL_DURATION_TICKS;
             mu_jadeLingerTrail.add(new float[]{(float)self.tickCount, (float)self.getX(), (float)self.getY(), (float)self.getZ(), (float)lingerTicks, (float)auraLevel});
         }
 
@@ -391,6 +391,8 @@ public abstract class LivingEntityMixin {
                 if (rawAttacker instanceof LivingEntity attacker) {
                     float reflectAmount = (deflection.getAmplifier() + 1) * MythicStats.DEFLECT_PER_LEVEL * actualDamage;
                     attacker.hurt(MUDamageTypes.deflecting(self), reflectAmount);
+                    float bonusDamage = Math.min((deflection.getAmplifier() + 1) * MythicStats.DEFLECT_BONUS_DAMAGE_PER_LEVEL, MythicStats.DEFLECT_BONUS_DAMAGE_MAX);
+                    attacker.hurt(MUDamageTypes.deflecting(self), bonusDamage);
                 }
             }
         }
@@ -641,9 +643,9 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitArcaneAuraWaveRing(ServerLevel level, double cx, double cy, double cz, float radius) {
-        DustParticleOptions c1 = new DustParticleOptions(new Vector3f(0.353f, 0.098f, 0.522f), MythicAnims.ARCANE_AURA_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c2 = new DustParticleOptions(new Vector3f(0.694f, 0.192f, 0.761f), MythicAnims.ARCANE_AURA_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c3 = new DustParticleOptions(new Vector3f(0.914f, 0.447f, 0.576f), MythicAnims.ARCANE_AURA_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c1 = new DustParticleOptions(colorFromHex(MythicAnims.ARCANE_AURA_COLOR_1), MythicAnims.ARCANE_AURA_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c2 = new DustParticleOptions(colorFromHex(MythicAnims.ARCANE_AURA_COLOR_2), MythicAnims.ARCANE_AURA_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c3 = new DustParticleOptions(colorFromHex(MythicAnims.ARCANE_AURA_COLOR_3), MythicAnims.ARCANE_AURA_WAVE_PARTICLE_SCALE);
         int step = MythicAnims.ARCANE_AURA_WAVE_STEP_DEGREES;
         int segment = step * 3;
         for (int angle = 0; angle < 360; angle += step) {
@@ -688,7 +690,7 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitLifestealParticles(ServerLevel level, LivingEntity from, LivingEntity to) {
-        DustParticleOptions dust = new DustParticleOptions(new Vector3f(0.800f, 0.125f, 0.251f), MythicAnims.RUBY_LIFESTEAL_PARTICLE_SCALE);
+        DustParticleOptions dust = new DustParticleOptions(colorFromHex(MythicAnims.RUBY_COLOR), MythicAnims.RUBY_LIFESTEAL_PARTICLE_SCALE);
         double fx = from.getX(), fy = from.getY() + from.getBbHeight() * 0.5, fz = from.getZ();
         double tx = to.getX(), ty = to.getY() + to.getBbHeight() * 0.5, tz = to.getZ();
         int count = MythicStats.RUBY_TOOL_LIFESTEAL_PARTICLE_COUNT;
@@ -700,7 +702,7 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitBloodThirstParticles(ServerLevel level, LivingEntity from, LivingEntity to, int btLevel) {
-        DustParticleOptions dust = new DustParticleOptions(new Vector3f(0.800f, 0.125f, 0.251f), MythicAnims.RUBY_BLOOD_THIRST_PARTICLE_SCALE);
+        DustParticleOptions dust = new DustParticleOptions(colorFromHex(MythicAnims.RUBY_COLOR), MythicAnims.RUBY_BLOOD_THIRST_PARTICLE_SCALE);
         double fx = from.getX(), fy = from.getY() + from.getBbHeight() * 0.5, fz = from.getZ();
         double tx = to.getX(), ty = to.getY() + to.getBbHeight() * 0.5, tz = to.getZ();
         int count = btLevel * MythicStats.BLOOD_THIRST_PARTICLES_PER_LEVEL;
@@ -714,9 +716,9 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitMiasmaWaveRing(ServerLevel level, double cx, double cy, double cz, float radius, int waveLevel) {
-        DustParticleOptions c1 = new DustParticleOptions(new Vector3f(0.247f, 0.533f, 0.055f), MythicAnims.MIASMA_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c2 = new DustParticleOptions(new Vector3f(0.557f, 0.839f, 0.078f), MythicAnims.MIASMA_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c3 = new DustParticleOptions(new Vector3f(0.894f, 0.961f, 0.224f), MythicAnims.MIASMA_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c1 = new DustParticleOptions(colorFromHex(MythicAnims.MIASMA_COLOR_1), MythicAnims.MIASMA_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c2 = new DustParticleOptions(colorFromHex(MythicAnims.MIASMA_COLOR_2), MythicAnims.MIASMA_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c3 = new DustParticleOptions(colorFromHex(MythicAnims.MIASMA_COLOR_3), MythicAnims.MIASMA_WAVE_PARTICLE_SCALE);
         int step = MythicAnims.MIASMA_WAVE_STEP_DEGREES;
         int segment = step * 3;
         int ppp = Math.max(1, waveLevel * MythicAnims.MIASMA_WAVE_PARTICLES_PER_LEVEL);
@@ -732,9 +734,9 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitLethalIncubationWaveRing(ServerLevel level, double cx, double cy, double cz, float radius, int waveLevel) {
-        DustParticleOptions c1 = new DustParticleOptions(new Vector3f(0.247f, 0.533f, 0.055f), MythicAnims.LETHAL_INCUBATION_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c2 = new DustParticleOptions(new Vector3f(0.557f, 0.839f, 0.078f), MythicAnims.LETHAL_INCUBATION_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c3 = new DustParticleOptions(new Vector3f(0.894f, 0.961f, 0.224f), MythicAnims.LETHAL_INCUBATION_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c1 = new DustParticleOptions(colorFromHex(MythicAnims.MIASMA_COLOR_1), MythicAnims.LETHAL_INCUBATION_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c2 = new DustParticleOptions(colorFromHex(MythicAnims.MIASMA_COLOR_2), MythicAnims.LETHAL_INCUBATION_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c3 = new DustParticleOptions(colorFromHex(MythicAnims.MIASMA_COLOR_3), MythicAnims.LETHAL_INCUBATION_WAVE_PARTICLE_SCALE);
         int step = MythicAnims.LETHAL_INCUBATION_WAVE_STEP_DEGREES;
         int segment = step * 3;
         int ppp = Math.max(1, waveLevel * MythicAnims.LETHAL_INCUBATION_WAVE_PARTICLES_PER_LEVEL);
@@ -777,7 +779,7 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitAquamarineHitParticles(ServerLevel level, LivingEntity entity) {
-        DustParticleOptions dust = new DustParticleOptions(new Vector3f(0.051f, 0.612f, 0.757f), MythicAnims.AQUAMARINE_PARTICLE_SCALE);
+        DustParticleOptions dust = new DustParticleOptions(colorFromHex(MythicAnims.AQUAMARINE_COLOR), MythicAnims.AQUAMARINE_PARTICLE_SCALE);
         level.sendParticles(dust, entity.getX(), entity.getY() + entity.getBbHeight() * 0.5, entity.getZ(), 12, 0.3, 0.4, 0.3, 0);
     }
 
@@ -997,7 +999,7 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitIceShieldStreamParticles(ServerLevel level, LivingEntity from, LivingEntity to) {
-        DustParticleOptions dust = new DustParticleOptions(new Vector3f(0.051f, 0.612f, 0.757f), 0.9f);
+        DustParticleOptions dust = new DustParticleOptions(colorFromHex(MythicAnims.AQUAMARINE_COLOR), MythicAnims.ICE_SHIELD_STREAM_PARTICLE_SCALE);
         double fx = from.getX(), fy = from.getY() + from.getBbHeight() * 0.5, fz = from.getZ();
         double tx = to.getX(), ty = to.getY() + to.getBbHeight() * 0.5, tz = to.getZ();
         int count = 20;
@@ -1009,7 +1011,7 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitIceFreezeOrbitParticles(ServerLevel level, LivingEntity entity) {
-        DustParticleOptions dust = new DustParticleOptions(new Vector3f(0.051f, 0.612f, 0.757f), 0.8f);
+        DustParticleOptions dust = new DustParticleOptions(colorFromHex(MythicAnims.AQUAMARINE_COLOR), MythicAnims.ICE_FREEZE_ORBIT_PARTICLE_SCALE);
         int baseAngle = (entity.tickCount * 7) % 360;
         float r = 0.75f;
         double midY = entity.getY() + entity.getBbHeight() * 0.5;

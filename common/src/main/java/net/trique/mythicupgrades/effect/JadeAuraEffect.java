@@ -1,4 +1,5 @@
 package net.trique.mythicupgrades.effect;
+import net.trique.mythicupgrades.MythicAnims;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -14,7 +15,7 @@ public class JadeAuraEffect extends MobEffect {
     private static final UUID SPEED_UUID = UUID.fromString("7a9c2f1e-4b83-4d56-ae12-9cf38741b5c2");
 
     public JadeAuraEffect() {
-        super(MobEffectCategory.BENEFICIAL, 0x58cf3e);
+        super(MobEffectCategory.BENEFICIAL, MythicAnims.JADE_AURA_EFFECT_COLOR);
     }
 
     @Override
