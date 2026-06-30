@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "mythicupgrades:polished_sapphire_crystal_block"
-  },
-  "result": "mythicupgrades:sapphire_crystal_bricks"
-}

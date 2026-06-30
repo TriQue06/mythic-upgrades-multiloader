@@ -6,7 +6,7 @@
   },
   "ingredient": "mythicupgrades:ruby_crystal_shard",
   "item_model_index": 1.6,
-  "override_armor_materials": {
+  "override_armor_assets": {
     "mythicupgrades:ruby": {
       "asset_name": "ruby_darker"
     }

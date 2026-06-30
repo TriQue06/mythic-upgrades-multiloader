@@ -11,8 +11,8 @@ import net.trique.mythicupgrades.MythicEffects;
 public class NecoiumCarrotItem extends Item {
     public NecoiumCarrotItem() {
         super(new Item.Properties().food(new FoodProperties.Builder()
-            .nutrition(6).alwaysEat()
-            .saturationMod(1.5f)
+            .nutrition(6).alwaysEdible()
+            .saturationModifier(1.5f)
             .build()));
     }
 

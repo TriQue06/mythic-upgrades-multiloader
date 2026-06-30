@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 2,
-  "ingredient": {
-    "item": "mythicupgrades:sapphire_crystal_block"
-  },
-  "result": "mythicupgrades:sapphire_crystal_block_slab"
-}

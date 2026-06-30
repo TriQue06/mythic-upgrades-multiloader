@@ -18,7 +18,7 @@
           "Name": "mythicupgrades:topaz_crystal_block"
         },
         "target": {
-          "block": "mythicupgrades:topaz_stone",
+          "block": "mythicupgrades:topaz_schist",
           "predicate_type": "minecraft:block_match"
         }
       },

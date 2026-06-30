@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_nether",
+  "features": [
+    "mythicupgrades:ruby_geode",
+    "mythicupgrades:sapphire_geode"
+  ],
+  "step": "underground_ores"
+}

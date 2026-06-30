@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "mythicupgrades:ametrine_ingot"
+  },
+  "base": {
+    "item": "mythicupgrades:jade_chestplate"
+  },
+  "result": {
+    "count": 1,
+    "id": "mythicupgrades:ametrine_chestplate"
+  },
+  "template": {
+    "item": "mythicupgrades:mythic_upgrade_smithing_template"
+  }
+}

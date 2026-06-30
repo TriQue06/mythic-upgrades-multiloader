@@ -18,7 +18,7 @@
           "Name": "mythicupgrades:citrine_crystal_block"
         },
         "target": {
-          "block": "mythicupgrades:citrine_stone",
+          "block": "mythicupgrades:citrine_schist",
           "predicate_type": "minecraft:block_match"
         }
       },

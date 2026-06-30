@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "mythicupgrades:citrine_crystal_block"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "mythicupgrades:citrine_crystal_shard"
+  }
+}

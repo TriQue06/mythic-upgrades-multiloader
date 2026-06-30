@@ -1,9 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#minecraft:is_nether",
-  "features": [
-    "mythicupgrades:ruby_rift_geode",
-    "mythicupgrades:sapphire_rift_geode"
-  ],
-  "step": "underground_ores"
-}

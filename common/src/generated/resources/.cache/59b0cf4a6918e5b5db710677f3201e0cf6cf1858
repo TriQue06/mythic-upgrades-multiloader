@@ -1,0 +1,4 @@
+// 1.21.1	2026-06-30T14:01:01.4050161	Tags for minecraft:damage_type mod id mythicupgrades
+88780d43d4044149608f6f18ac443cb96f48b55c data/minecraft/tags/damage_type/bypasses_armor.json
+9a08a571ae0783d4da27ee3a04d0bcbbc8fbed02 data/minecraft/tags/damage_type/bypasses_cooldown.json
+421b93ead6de41a22d5b57602e177a9607543202 data/minecraft/tags/damage_type/bypasses_effects.json

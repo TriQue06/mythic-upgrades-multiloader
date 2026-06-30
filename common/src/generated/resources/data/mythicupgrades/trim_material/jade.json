@@ -6,7 +6,7 @@
   },
   "ingredient": "mythicupgrades:jade_crystal_shard",
   "item_model_index": 1.8,
-  "override_armor_materials": {
+  "override_armor_assets": {
     "mythicupgrades:jade": {
       "asset_name": "jade_darker"
     }

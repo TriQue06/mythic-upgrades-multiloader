@@ -3,6 +3,10 @@
   "creature_spawn_probability": 0.0,
   "downfall": 0.0,
   "effects": {
+    "additions_sound": {
+      "sound": "mythicupgrades:ambient.mythic_chime",
+      "tick_chance": 0.0111
+    },
     "fog_color": 724526,
     "mood_sound": {
       "block_search_extent": 8,
@@ -22,13 +26,13 @@
     [],
     [],
     [
-      "mythicupgrades:ametrine_end_stone_blobs",
-      "mythicupgrades:ametrine_end_ore"
+      "mythicupgrades:ametrine_schist_blobs",
+      "mythicupgrades:ametrine_ore"
     ],
     [
-      "mythicupgrades:ametrine_end_crystal_blobs",
-      "mythicupgrades:ametrine_end_crystal_buds",
-      "mythicupgrades:ametrine_end_crystal_buds_rare"
+      "mythicupgrades:ametrine_crystal_blobs",
+      "mythicupgrades:ametrine_crystal_buds",
+      "mythicupgrades:ametrine_crystal_buds_rare"
     ]
   ],
   "has_precipitation": false,

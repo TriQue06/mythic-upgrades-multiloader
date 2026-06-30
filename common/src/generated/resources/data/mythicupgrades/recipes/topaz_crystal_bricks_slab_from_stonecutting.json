@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 2,
-  "ingredient": {
-    "item": "mythicupgrades:topaz_crystal_bricks"
-  },
-  "result": "mythicupgrades:topaz_crystal_bricks_slab"
-}

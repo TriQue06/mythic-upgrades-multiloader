@@ -2,6 +2,7 @@ package net.trique.mythicupgrades.handler;
 
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -26,19 +27,14 @@ public class NecoiumShareHandler {
         new DustParticleOptions(new Vector3f(0.957f, 0.490f, 0.627f), 1.4f), // #f47da0
     };
 
-    private static final List<MobEffect> SHAREABLE_EFFECTS = Arrays.asList(
+    private static final List<Holder<MobEffect>> SHAREABLE_EFFECTS = Arrays.asList(
         MythicEffects.DAMAGE_DEFLECTION,
         MythicEffects.ARCANE_AURA,
         MythicEffects.TOPAZ_REACTION,
-        MythicEffects.FREEZE,
         MythicEffects.BLOOD_THIRST,
-        MythicEffects.LETHAL_INCUBATION,
         MythicEffects.MIASMA,
-        MythicEffects.ICE_SHIELD_MARK,
         MythicEffects.ICE_SHIELD,
-        MythicEffects.CHARGED,
         MythicEffects.STATIC_FIELD,
-        MythicEffects.BOUNCER,
         MythicEffects.JADE_AURA
     );
 
@@ -81,7 +77,7 @@ public class NecoiumShareHandler {
 
         if (network.size() < 2) {
             // Alone or out of range: remove any infinite ambient copies so they don't persist forever
-            for (MobEffect effect : SHAREABLE_EFFECTS) {
+            for (Holder<MobEffect> effect : SHAREABLE_EFFECTS) {
                 MobEffectInstance inst = source.getEffect(effect);
                 if (inst != null && inst.isAmbient() && inst.getDuration() == -1) {
                     source.removeEffect(effect);
@@ -105,7 +101,7 @@ public class NecoiumShareHandler {
     }
 
     private static void processNetwork(ServerLevel level, List<LivingEntity> network, long tick) {
-        for (MobEffect effect : SHAREABLE_EFFECTS) {
+        for (Holder<MobEffect> effect : SHAREABLE_EFFECTS) {
             // Only count non-ambient effects as sources to avoid shared copies re-sharing themselves
             int maxAmplifier = -1;
             boolean anyInfinite = false;

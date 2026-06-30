@@ -1,3 +1,3 @@
-// 1.20.1	2026-06-25T01:34:46.1463055	Tags for minecraft:block mod id mythicupgrades
-20ef38b6f8e87fd948aaeddfcddac967fbc99ac9 data/minecraft/tags/blocks/mineable/pickaxe.json
-bea0dd9611a8b583d6478177579839ea6bcd935b data/minecraft/tags/blocks/needs_iron_tool.json
+// 1.21.1	2026-06-30T14:01:01.4019976	Tags for minecraft:block mod id mythicupgrades
+e61dc7fd591bce0c155a6175a6c525668fc6de4e data/minecraft/tags/block/mineable/pickaxe.json
+759c966f098434132038e6d219746d5e3b70cef1 data/minecraft/tags/block/needs_iron_tool.json

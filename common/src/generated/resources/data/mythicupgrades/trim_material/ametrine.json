@@ -6,7 +6,7 @@
   },
   "ingredient": "mythicupgrades:ametrine_crystal_shard",
   "item_model_index": 1.9,
-  "override_armor_materials": {
+  "override_armor_assets": {
     "mythicupgrades:ametrine": {
       "asset_name": "ametrine_darker"
     }

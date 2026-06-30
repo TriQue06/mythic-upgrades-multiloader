@@ -1,8 +1,14 @@
 package net.trique.mythicupgrades;
 
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.trique.mythicupgrades.block.MythicBlocks;
 import net.trique.mythicupgrades.item.MythicItems;
 
@@ -14,11 +20,27 @@ public class MythicCreativeTabs {
     public static CreativeModeTab BLOCKS_TAB;
     public static CreativeModeTab GEAR_TAB;
 
+    private static ItemStack potion(Item potionItem, Potion p) {
+        ItemStack s = new ItemStack(potionItem);
+        s.set(DataComponents.POTION_CONTENTS, new PotionContents(BuiltInRegistries.POTION.wrapAsHolder(p)));
+        return s;
+    }
+
+    private static void addPotionGroup(CreativeModeTab.Output output, Potion normal, Potion extended, Potion strong) {
+        for (Potion p : new Potion[]{normal, extended, strong}) {
+            if (p == null) continue;
+            output.accept(potion(Items.POTION, p));
+            output.accept(potion(Items.SPLASH_POTION, p));
+            output.accept(potion(Items.LINGERING_POTION, p));
+            output.accept(potion(Items.TIPPED_ARROW, p));
+        }
+    }
+
     public static void register(BiFunction<String, CreativeModeTab, CreativeModeTab> reg) {
         ITEMS_TAB = reg.apply("items",
             CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                 .title(Component.translatable("itemGroup.mythicupgrades.items"))
-                .icon(() -> new ItemStack(MythicItems.AQUAMARINE))
+                .icon(() -> new ItemStack(MythicItems.AMETRINE_INGOT))
                 .displayItems((params, output) -> {
                     output.accept(MythicItems.AQUAMARINE);
                     output.accept(MythicItems.AQUAMARINE_INGOT);
@@ -48,6 +70,21 @@ public class MythicCreativeTabs {
                     output.accept(MythicItems.NECOIUM_INGOT);
                     output.accept(MythicItems.NECOIUM_CARROT);
                     output.accept(MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
+                    // Potions — regular, splash, lingering for each type (matches 1.20.1)
+                    addPotionGroup(output, MythicPotions.ICE_SHIELD,        MythicPotions.ICE_SHIELD_LONG,        MythicPotions.ICE_SHIELD_STRONG);
+                    addPotionGroup(output, MythicPotions.STATIC_FIELD,      MythicPotions.STATIC_FIELD_LONG,      MythicPotions.STATIC_FIELD_STRONG);
+                    addPotionGroup(output, MythicPotions.TOPAZ_REACTION,    MythicPotions.TOPAZ_REACTION_LONG,    MythicPotions.TOPAZ_REACTION_STRONG);
+                    addPotionGroup(output, MythicPotions.MIASMA,            MythicPotions.MIASMA_LONG,            MythicPotions.MIASMA_STRONG);
+                    addPotionGroup(output, MythicPotions.BLOOD_THIRST,      MythicPotions.BLOOD_THIRST_LONG,      MythicPotions.BLOOD_THIRST_STRONG);
+                    addPotionGroup(output, MythicPotions.DAMAGE_DEFLECTION, MythicPotions.DAMAGE_DEFLECTION_LONG, MythicPotions.DAMAGE_DEFLECTION_STRONG);
+                    addPotionGroup(output, MythicPotions.JADE_AURA,         MythicPotions.JADE_AURA_LONG,         MythicPotions.JADE_AURA_STRONG);
+                    addPotionGroup(output, MythicPotions.ARCANE_AURA,       MythicPotions.ARCANE_AURA_LONG,       MythicPotions.ARCANE_AURA_STRONG);
+                    addPotionGroup(output, MythicPotions.NECOIUM_SHARE,     MythicPotions.NECOIUM_SHARE_LONG,     null);
+                    // Negative potions
+                    addPotionGroup(output, MythicPotions.ICE_BOMB,          MythicPotions.ICE_BOMB_LONG,          MythicPotions.ICE_BOMB_STRONG);
+                    addPotionGroup(output, MythicPotions.FREEZE,            MythicPotions.FREEZE_LONG,            MythicPotions.FREEZE_STRONG);
+                    addPotionGroup(output, MythicPotions.CHARGED,           MythicPotions.CHARGED_LONG,           MythicPotions.CHARGED_STRONG);
+                    addPotionGroup(output, MythicPotions.LETHAL_INCUBATION, MythicPotions.LETHAL_INCUBATION_LONG, MythicPotions.LETHAL_INCUBATION_STRONG);
                 })
                 .build()
         );
@@ -55,7 +92,7 @@ public class MythicCreativeTabs {
         GEAR_TAB = reg.apply("gear",
             CreativeModeTab.builder(CreativeModeTab.Row.TOP, 2)
                 .title(Component.translatable("itemGroup.mythicupgrades.gear"))
-                .icon(() -> new ItemStack(MythicItems.AQUAMARINE_SWORD))
+                .icon(() -> new ItemStack(MythicItems.AMETRINE_AXE))
                 .displayItems((params, output) -> {
                     output.accept(MythicItems.AQUAMARINE_SWORD);
                     output.accept(MythicItems.AQUAMARINE_PICKAXE);
@@ -136,7 +173,7 @@ public class MythicCreativeTabs {
         BLOCKS_TAB = reg.apply("blocks",
             CreativeModeTab.builder(CreativeModeTab.Row.TOP, 3)
                 .title(Component.translatable("itemGroup.mythicupgrades.blocks"))
-                .icon(() -> new ItemStack(MythicBlocks.AQUAMARINE_BLOCK))
+                .icon(() -> new ItemStack(MythicBlocks.AMETRINE_CRYSTAL_BRICKS))
                 .displayItems((params, output) -> {
                     output.accept(MythicBlocks.AQUAMARINE_ORE);
                     output.accept(MythicBlocks.DEEPSLATE_AQUAMARINE_ORE);
@@ -162,54 +199,54 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.JADE_BLOCK);
                     output.accept(MythicBlocks.AMETRINE_BLOCK);
                     output.accept(MythicBlocks.NECOIUM_BLOCK);
-                    output.accept(MythicBlocks.AQUAMARINE_STONE);
-                    output.accept(MythicBlocks.AQUAMARINE_STONE_SLAB);
-                    output.accept(MythicBlocks.AQUAMARINE_STONE_STAIRS);
-                    output.accept(MythicBlocks.POLISHED_AQUAMARINE_STONE);
-                    output.accept(MythicBlocks.POLISHED_AQUAMARINE_STONE_SLAB);
-                    output.accept(MythicBlocks.POLISHED_AQUAMARINE_STONE_STAIRS);
-                    output.accept(MythicBlocks.CITRINE_STONE);
-                    output.accept(MythicBlocks.CITRINE_STONE_SLAB);
-                    output.accept(MythicBlocks.CITRINE_STONE_STAIRS);
-                    output.accept(MythicBlocks.POLISHED_CITRINE_STONE);
-                    output.accept(MythicBlocks.POLISHED_CITRINE_STONE_SLAB);
-                    output.accept(MythicBlocks.POLISHED_CITRINE_STONE_STAIRS);
-                    output.accept(MythicBlocks.TOPAZ_STONE);
-                    output.accept(MythicBlocks.TOPAZ_STONE_SLAB);
-                    output.accept(MythicBlocks.TOPAZ_STONE_STAIRS);
-                    output.accept(MythicBlocks.POLISHED_TOPAZ_STONE);
-                    output.accept(MythicBlocks.POLISHED_TOPAZ_STONE_SLAB);
-                    output.accept(MythicBlocks.POLISHED_TOPAZ_STONE_STAIRS);
-                    output.accept(MythicBlocks.PERIDOT_STONE);
-                    output.accept(MythicBlocks.PERIDOT_STONE_SLAB);
-                    output.accept(MythicBlocks.PERIDOT_STONE_STAIRS);
-                    output.accept(MythicBlocks.POLISHED_PERIDOT_STONE);
-                    output.accept(MythicBlocks.POLISHED_PERIDOT_STONE_SLAB);
-                    output.accept(MythicBlocks.POLISHED_PERIDOT_STONE_STAIRS);
-                    output.accept(MythicBlocks.RUBY_STONE);
-                    output.accept(MythicBlocks.RUBY_STONE_SLAB);
-                    output.accept(MythicBlocks.RUBY_STONE_STAIRS);
-                    output.accept(MythicBlocks.POLISHED_RUBY_STONE);
-                    output.accept(MythicBlocks.POLISHED_RUBY_STONE_SLAB);
-                    output.accept(MythicBlocks.POLISHED_RUBY_STONE_STAIRS);
-                    output.accept(MythicBlocks.SAPPHIRE_STONE);
-                    output.accept(MythicBlocks.SAPPHIRE_STONE_SLAB);
-                    output.accept(MythicBlocks.SAPPHIRE_STONE_STAIRS);
-                    output.accept(MythicBlocks.POLISHED_SAPPHIRE_STONE);
-                    output.accept(MythicBlocks.POLISHED_SAPPHIRE_STONE_SLAB);
-                    output.accept(MythicBlocks.POLISHED_SAPPHIRE_STONE_STAIRS);
-                    output.accept(MythicBlocks.JADE_STONE);
-                    output.accept(MythicBlocks.JADE_STONE_SLAB);
-                    output.accept(MythicBlocks.JADE_STONE_STAIRS);
-                    output.accept(MythicBlocks.POLISHED_JADE_STONE);
-                    output.accept(MythicBlocks.POLISHED_JADE_STONE_SLAB);
-                    output.accept(MythicBlocks.POLISHED_JADE_STONE_STAIRS);
-                    output.accept(MythicBlocks.AMETRINE_STONE);
-                    output.accept(MythicBlocks.AMETRINE_STONE_SLAB);
-                    output.accept(MythicBlocks.AMETRINE_STONE_STAIRS);
-                    output.accept(MythicBlocks.POLISHED_AMETRINE_STONE);
-                    output.accept(MythicBlocks.POLISHED_AMETRINE_STONE_SLAB);
-                    output.accept(MythicBlocks.POLISHED_AMETRINE_STONE_STAIRS);
+                    output.accept(MythicBlocks.AQUAMARINE_SCHIST);
+                    output.accept(MythicBlocks.AQUAMARINE_SCHIST_SLAB);
+                    output.accept(MythicBlocks.AQUAMARINE_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_AQUAMARINE_SCHIST);
+                    output.accept(MythicBlocks.POLISHED_AQUAMARINE_SCHIST_SLAB);
+                    output.accept(MythicBlocks.POLISHED_AQUAMARINE_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.CITRINE_SCHIST);
+                    output.accept(MythicBlocks.CITRINE_SCHIST_SLAB);
+                    output.accept(MythicBlocks.CITRINE_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_CITRINE_SCHIST);
+                    output.accept(MythicBlocks.POLISHED_CITRINE_SCHIST_SLAB);
+                    output.accept(MythicBlocks.POLISHED_CITRINE_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.TOPAZ_SCHIST);
+                    output.accept(MythicBlocks.TOPAZ_SCHIST_SLAB);
+                    output.accept(MythicBlocks.TOPAZ_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_TOPAZ_SCHIST);
+                    output.accept(MythicBlocks.POLISHED_TOPAZ_SCHIST_SLAB);
+                    output.accept(MythicBlocks.POLISHED_TOPAZ_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.PERIDOT_SCHIST);
+                    output.accept(MythicBlocks.PERIDOT_SCHIST_SLAB);
+                    output.accept(MythicBlocks.PERIDOT_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_PERIDOT_SCHIST);
+                    output.accept(MythicBlocks.POLISHED_PERIDOT_SCHIST_SLAB);
+                    output.accept(MythicBlocks.POLISHED_PERIDOT_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.RUBY_SCHIST);
+                    output.accept(MythicBlocks.RUBY_SCHIST_SLAB);
+                    output.accept(MythicBlocks.RUBY_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_RUBY_SCHIST);
+                    output.accept(MythicBlocks.POLISHED_RUBY_SCHIST_SLAB);
+                    output.accept(MythicBlocks.POLISHED_RUBY_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.SAPPHIRE_SCHIST);
+                    output.accept(MythicBlocks.SAPPHIRE_SCHIST_SLAB);
+                    output.accept(MythicBlocks.SAPPHIRE_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_SAPPHIRE_SCHIST);
+                    output.accept(MythicBlocks.POLISHED_SAPPHIRE_SCHIST_SLAB);
+                    output.accept(MythicBlocks.POLISHED_SAPPHIRE_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.JADE_SCHIST);
+                    output.accept(MythicBlocks.JADE_SCHIST_SLAB);
+                    output.accept(MythicBlocks.JADE_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_JADE_SCHIST);
+                    output.accept(MythicBlocks.POLISHED_JADE_SCHIST_SLAB);
+                    output.accept(MythicBlocks.POLISHED_JADE_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.AMETRINE_SCHIST);
+                    output.accept(MythicBlocks.AMETRINE_SCHIST_SLAB);
+                    output.accept(MythicBlocks.AMETRINE_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_AMETRINE_SCHIST);
+                    output.accept(MythicBlocks.POLISHED_AMETRINE_SCHIST_SLAB);
+                    output.accept(MythicBlocks.POLISHED_AMETRINE_SCHIST_STAIRS);
                     output.accept(MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK);
                     output.accept(MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK_SLAB);
                     output.accept(MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK_STAIRS);

@@ -18,7 +18,7 @@ public class MythicBiomes {
     public static final ResourceKey<Biome> SAPPHIRE_RIFT       = key("sapphire_rift");
 
     private static ResourceKey<Biome> key(String name) {
-        return ResourceKey.create(Registries.BIOME, new ResourceLocation(Constants.MOD_ID, name));
+        return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
     }
 
     public static void init() {}

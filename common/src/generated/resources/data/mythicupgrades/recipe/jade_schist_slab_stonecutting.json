@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "mythicupgrades:jade_schist"
+  },
+  "result": {
+    "count": 2,
+    "id": "mythicupgrades:jade_schist_slab"
+  }
+}

@@ -27,7 +27,7 @@
           "Name": "mythicupgrades:deepslate_aquamarine_ore"
         },
         "target": {
-          "block": "mythicupgrades:aquamarine_stone",
+          "block": "mythicupgrades:aquamarine_schist",
           "predicate_type": "minecraft:block_match"
         }
       }

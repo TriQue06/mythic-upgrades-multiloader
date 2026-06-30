@@ -6,7 +6,7 @@
   },
   "ingredient": "mythicupgrades:topaz_crystal_shard",
   "item_model_index": 1.4,
-  "override_armor_materials": {
+  "override_armor_assets": {
     "mythicupgrades:topaz": {
       "asset_name": "topaz_darker"
     }

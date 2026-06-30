@@ -18,7 +18,7 @@
           "Name": "mythicupgrades:aquamarine_crystal_block"
         },
         "target": {
-          "block": "mythicupgrades:aquamarine_stone",
+          "block": "mythicupgrades:aquamarine_schist",
           "predicate_type": "minecraft:block_match"
         }
       },

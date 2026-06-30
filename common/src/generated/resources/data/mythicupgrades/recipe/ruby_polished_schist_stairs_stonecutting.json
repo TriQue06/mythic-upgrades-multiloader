@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "mythicupgrades:polished_ruby_schist"
+  },
+  "result": {
+    "count": 1,
+    "id": "mythicupgrades:polished_ruby_schist_stairs"
+  }
+}

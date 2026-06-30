@@ -7,8 +7,13 @@ import net.minecraft.server.level.ServerPlayerGameMode;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
 import net.trique.mythicupgrades.MythicAnims;
 import net.trique.mythicupgrades.MythicEffects;
 import net.trique.mythicupgrades.MythicState;
@@ -36,6 +41,10 @@ public abstract class ServerPlayerGameModeMixin {
 
         if (isJadeTool(tool)) {
             player.addEffect(new MobEffectInstance(MythicEffects.JADE_AURA, MythicStats.JADE_TOOL_AURA_DURATION_TICKS, 4));
+        }
+
+        if (isRubyTool(tool)) {
+            player.heal(MythicStats.RUBY_TOOL_INTERACTION_HEAL);
         }
 
         if (!isTopazTool(tool)) return;
@@ -69,11 +78,30 @@ public abstract class ServerPlayerGameModeMixin {
         }
     }
 
+    @Inject(method = "useItemOn", at = @At("RETURN"))
+    private void onUseItemOn(ServerPlayer player, Level level, ItemStack stack, InteractionHand hand, BlockHitResult hitResult, CallbackInfoReturnable<InteractionResult> cir) {
+        if (cir.getReturnValue() == InteractionResult.PASS || cir.getReturnValue() == InteractionResult.FAIL) return;
+        Item item = stack.getItem();
+        if (isJadeTool(item)) {
+            this.player.addEffect(new MobEffectInstance(MythicEffects.JADE_AURA, MythicStats.JADE_TOOL_AURA_DURATION_TICKS, 4));
+        }
+        if (isRubyTool(item)) {
+            this.player.heal(MythicStats.RUBY_TOOL_INTERACTION_HEAL);
+        }
+    }
+
     @Unique
     private static boolean isTopazTool(Item item) {
         return item == MythicItems.TOPAZ_SWORD || item == MythicItems.TOPAZ_PICKAXE
             || item == MythicItems.TOPAZ_AXE || item == MythicItems.TOPAZ_SHOVEL
             || item == MythicItems.TOPAZ_HOE;
+    }
+
+    @Unique
+    private static boolean isRubyTool(Item item) {
+        return item == MythicItems.RUBY_SWORD || item == MythicItems.RUBY_PICKAXE
+            || item == MythicItems.RUBY_AXE || item == MythicItems.RUBY_SHOVEL
+            || item == MythicItems.RUBY_HOE;
     }
 
     @Unique

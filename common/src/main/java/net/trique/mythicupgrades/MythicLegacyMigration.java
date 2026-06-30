@@ -5,8 +5,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.trique.mythicupgrades.item.MythicItems;
@@ -107,7 +109,9 @@ public class MythicLegacyMigration {
         Item item = stack.getItem();
         Potion newPotion = POTION_MAP.get(item);
         if (newPotion != null) {
-            return PotionUtils.setPotion(new ItemStack(Items.POTION, stack.getCount()), newPotion);
+            ItemStack result = new ItemStack(Items.POTION, stack.getCount());
+            result.set(DataComponents.POTION_CONTENTS, new PotionContents(BuiltInRegistries.POTION.wrapAsHolder(newPotion)));
+            return result;
         }
         Item newItem = TEMPLATE_MAP.get(item);
         if (newItem != null) {

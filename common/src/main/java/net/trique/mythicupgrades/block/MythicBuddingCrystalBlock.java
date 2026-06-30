@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.util.function.Supplier;
 
 public class MythicBuddingCrystalBlock extends Block implements BonemealableBlock {
@@ -50,7 +50,7 @@ public class MythicBuddingCrystalBlock extends Block implements BonemealableBloc
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
         for (Direction dir : DIRECTIONS) {
             BlockPos neighbor = pos.relative(dir);
             BlockState nState = level.getBlockState(neighbor);

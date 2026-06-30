@@ -3,7 +3,7 @@ package net.trique.mythicupgrades.worldgen;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -27,7 +27,7 @@ import java.util.List;
 
 public class MythicNetherConfiguredFeatures {
 
-    public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> ctx) {
+    public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> ctx) {
         HolderGetter<Block> blocks = ctx.lookup(Registries.BLOCK);
 
         for (NetherGemType gem : NetherGemType.values()) {

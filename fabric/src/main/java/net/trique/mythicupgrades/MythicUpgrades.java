@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.core.Registry;
@@ -19,6 +20,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCon
 import net.trique.mythicupgrades.MythicEffects;
 import net.trique.mythicupgrades.MythicLegacyMigration;
 import net.trique.mythicupgrades.MythicPotions;
+import net.trique.mythicupgrades.MythicSounds;
 import net.trique.mythicupgrades.block.MythicBlocks;
 import net.trique.mythicupgrades.item.MythicItems;
 import net.trique.mythicupgrades.worldgen.CaveGemType;
@@ -32,25 +34,28 @@ public class MythicUpgrades implements ModInitializer {
     @Override
     public void onInitialize() {
         MythicBlocks.register((name, block) ->
-            Registry.register(BuiltInRegistries.BLOCK, new ResourceLocation(Constants.MOD_ID, name), block));
+            Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), block));
 
         MythicBlocks.registerItems((name, item) ->
-            Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(Constants.MOD_ID, name), item));
+            Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), item));
 
         MythicItems.register((name, item) ->
-            Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(Constants.MOD_ID, name), item));
+            Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), item));
 
         MythicCreativeTabs.register((name, tab) ->
-            Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, new ResourceLocation(Constants.MOD_ID, name), tab));
+            Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), tab));
 
         MythicEffects.register((name, effect) ->
-            Registry.register(BuiltInRegistries.MOB_EFFECT, new ResourceLocation(Constants.MOD_ID, name), effect));
+            Registry.register(BuiltInRegistries.MOB_EFFECT, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), effect));
 
         MythicPotions.register((name, potion) ->
-            Registry.register(BuiltInRegistries.POTION, new ResourceLocation(Constants.MOD_ID, name), potion));
+            Registry.register(BuiltInRegistries.POTION, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), potion));
 
         MythicFeatures.register((name, feature) ->
-            Registry.register(BuiltInRegistries.FEATURE, new ResourceLocation(Constants.MOD_ID, name), feature));
+            Registry.register(BuiltInRegistries.FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), feature));
+
+        MythicSounds.register((name, sound) ->
+            Registry.register(BuiltInRegistries.SOUND_EVENT, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), sound));
 
         // FeatureSorter cycle prevention:
         // Cave biome JSONs already contain ALL features (glow_lichen, vanilla ores, monster_room,
@@ -63,7 +68,7 @@ public class MythicUpgrades implements ModInitializer {
         // In cave biomes: same — JSON bootstrap first, then this appended after.
         for (String gem : new String[]{"aquamarine", "citrine", "peridot", "topaz"}) {
             ResourceKey<PlacedFeature> key = ResourceKey.create(Registries.PLACED_FEATURE,
-                new ResourceLocation(Constants.MOD_ID, gem + "_crystal_buds_rare"));
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, gem + "_crystal_buds_rare"));
             BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
                 GenerationStep.Decoration.UNDERGROUND_DECORATION, key);
         }
@@ -98,8 +103,8 @@ public class MythicUpgrades implements ModInitializer {
                 GenerationStep.Decoration.UNDERGROUND_DECORATION, gem.geodeExtraPF());
         }
 
-        LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
-            if (id.equals(new ResourceLocation("minecraft", "chests/end_city_treasure"))) {
+        LootTableEvents.MODIFY.register((key, tableBuilder, source) -> {
+            if (key.location().equals(ResourceLocation.withDefaultNamespace("chests/end_city_treasure"))) {
                 tableBuilder.withPool(
                     LootPool.lootPool()
                         .add(LootItem.lootTableItem(MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE)
@@ -108,20 +113,21 @@ public class MythicUpgrades implements ModInitializer {
             }
         });
 
-        MythicPotions.registerBrewingRecipes();
+        FabricBrewingHelper.register();
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             MythicLegacyMigration.migratePlayer(handler.player);
             MythicLegacyMigration.drainPendingChunks();
         });
 
-        ServerChunkEvents.CHUNK_LOAD.register((world, chunk) -> {
-            if (world.getServer().getTickCount() > 0) {
-                MythicLegacyMigration.migrateChunk(chunk);
-            } else {
-                MythicLegacyMigration.PENDING_CHUNKS.offer(chunk);
-            }
-        });
+        // Always queue — never call migrateChunk() directly from CHUNK_LOAD.
+        // Accessing container items unpacks loot tables → setChanged() → getChunkAt()
+        // → deadlock while the chunk is still being registered. Drain safely on tick end.
+        ServerChunkEvents.CHUNK_LOAD.register((world, chunk) ->
+            MythicLegacyMigration.PENDING_CHUNKS.offer(chunk));
+
+        ServerTickEvents.END_SERVER_TICK.register(server ->
+            MythicLegacyMigration.drainPendingChunks());
 
         CommonClass.init();
     }

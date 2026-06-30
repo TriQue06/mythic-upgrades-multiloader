@@ -2,7 +2,7 @@ package net.trique.mythicupgrades.worldgen;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -21,15 +21,17 @@ public class MythicPlacedFeatures {
 
     // Necoium ore placed feature keys, referenced from MythicBiomeBootstrap and BiomeModifier
     public static final ResourceKey<PlacedFeature> NECOIUM_ORE_PF = ResourceKey.create(
-            Registries.PLACED_FEATURE, new ResourceLocation(Constants.MOD_ID, "necoium_ore"));
+            Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "necoium_ore"));
     public static final ResourceKey<PlacedFeature> DEEPSLATE_NECOIUM_ORE_PF = ResourceKey.create(
-            Registries.PLACED_FEATURE, new ResourceLocation(Constants.MOD_ID, "deepslate_necoium_ore"));
+            Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "deepslate_necoium_ore"));
     public static final ResourceKey<PlacedFeature> NECOIUM_ORE_EXTRA_PF = ResourceKey.create(
-            Registries.PLACED_FEATURE, new ResourceLocation(Constants.MOD_ID, "necoium_ore_extra"));
+            Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "necoium_ore_extra"));
     public static final ResourceKey<PlacedFeature> DEEPSLATE_NECOIUM_ORE_EXTRA_PF = ResourceKey.create(
-            Registries.PLACED_FEATURE, new ResourceLocation(Constants.MOD_ID, "deepslate_necoium_ore_extra"));
+            Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "deepslate_necoium_ore_extra"));
+    public static final ResourceKey<PlacedFeature> RAW_NECOIUM_BLOCK_CAVES_PF = ResourceKey.create(
+            Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "raw_necoium_block_caves"));
 
-    public static void bootstrap(BootstapContext<PlacedFeature> ctx) {
+    public static void bootstrap(BootstrapContext<PlacedFeature> ctx) {
         HolderGetter<ConfiguredFeature<?, ?>> features = ctx.lookup(Registries.CONFIGURED_FEATURE);
 
         for (CaveGemType gem : CaveGemType.values()) {
@@ -103,13 +105,13 @@ public class MythicPlacedFeatures {
         var deepslateNecoiumCF = features.getOrThrow(MythicConfiguredFeatures.DEEPSLATE_NECOIUM_ORE_CF);
 
         ctx.register(NECOIUM_ORE_PF, new PlacedFeature(necoiumCF, List.of(
-            CountPlacement.of(10),
+            CountPlacement.of(5),
             InSquarePlacement.spread(),
             HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(16)),
             BiomeFilter.biome()
         )));
         ctx.register(DEEPSLATE_NECOIUM_ORE_PF, new PlacedFeature(deepslateNecoiumCF, List.of(
-            CountPlacement.of(10),
+            CountPlacement.of(5),
             InSquarePlacement.spread(),
             HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-16)),
             BiomeFilter.biome()
@@ -117,15 +119,23 @@ public class MythicPlacedFeatures {
 
         // Extra necoium ore for mythic cave biomes (added via MythicBiomeBootstrap)
         ctx.register(NECOIUM_ORE_EXTRA_PF, new PlacedFeature(necoiumCF, List.of(
-            CountPlacement.of(20),
+            CountPlacement.of(10),
             InSquarePlacement.spread(),
             HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(16)),
             BiomeFilter.biome()
         )));
         ctx.register(DEEPSLATE_NECOIUM_ORE_EXTRA_PF, new PlacedFeature(deepslateNecoiumCF, List.of(
-            CountPlacement.of(20),
+            CountPlacement.of(10),
             InSquarePlacement.spread(),
             HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-16)),
+            BiomeFilter.biome()
+        )));
+
+        var rawNecoiumBlockCF = features.getOrThrow(MythicConfiguredFeatures.RAW_NECOIUM_BLOCK_IN_CAVES_CF);
+        ctx.register(RAW_NECOIUM_BLOCK_CAVES_PF, new PlacedFeature(rawNecoiumBlockCF, List.of(
+            CountPlacement.of(4),
+            InSquarePlacement.spread(),
+            HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(16)),
             BiomeFilter.biome()
         )));
     }

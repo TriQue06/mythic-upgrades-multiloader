@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "mythicupgrades:ruby_crystal_pillar"
-  },
-  "result": "mythicupgrades:cut_ruby_crystal_pillar"
-}

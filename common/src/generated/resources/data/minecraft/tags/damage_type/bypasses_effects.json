@@ -1,0 +1,32 @@
+{
+  "values": [
+    {
+      "id": "mythicupgrades:deflecting_damage_type",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:percentage_damage_type",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:topaz_shock_damage_type",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:peridot_incubation_damage_type",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:ice_shield_reflect_damage_type",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:citrine_chain_damage_type",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:static_field_damage_type",
+      "required": false
+    }
+  ]
+}

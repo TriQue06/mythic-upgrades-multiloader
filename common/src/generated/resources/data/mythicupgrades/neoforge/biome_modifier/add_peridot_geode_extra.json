@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "mythicupgrades:peridot_caves",
+  "features": "mythicupgrades:peridot_geode_extra",
+  "step": "underground_ores"
+}

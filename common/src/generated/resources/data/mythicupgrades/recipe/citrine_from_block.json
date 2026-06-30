@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "mythicupgrades:citrine_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "mythicupgrades:citrine_ingot"
+  }
+}
