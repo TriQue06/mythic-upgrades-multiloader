@@ -65,6 +65,7 @@ public class MythicStats {
     public static int LETHAL_INCUBATION_TOOL_DURATION_TICKS = 100;
     public static float LETHAL_INCUBATION_SHOCK_DAMAGE = 1.5f;
     public static float LETHAL_INCUBATION_SHOCK_RADIUS = 5.0f;
+    public static int LETHAL_INCUBATION_POISON_DURATION_TICKS = 60;
 
     public static float MIASMA_CLOUD_RADIUS_PER_LEVEL = 1.0f;
     public static float MIASMA_CLOUD_MAX_RADIUS = 10.0f;

@@ -88,6 +88,7 @@ public abstract class LivingEntityMixin {
     @Unique private double mu_iceBombWaveX = 0, mu_iceBombWaveY = 0, mu_iceBombWaveZ = 0;
 
     @Unique private boolean mu_deathHadLethalIncubation = false;
+    @Unique private int mu_deathLethalIncubationLevel = 0;
     @Unique private boolean mu_deathHadIceBomb = false;
     @Unique private boolean mu_deathHadCharged = false;
 
@@ -366,7 +367,8 @@ public abstract class LivingEntityMixin {
         }
         mu_healthBefore = self.getHealth();
         // Accumulate flags on every hit so multi-tick (lava/void) damage can't miss the window.
-        if (self.getEffect(MythicEffects.LETHAL_INCUBATION) != null) mu_deathHadLethalIncubation = true;
+        MobEffectInstance liEffect = self.getEffect(MythicEffects.LETHAL_INCUBATION);
+        if (liEffect != null) { mu_deathHadLethalIncubation = true; mu_deathLethalIncubationLevel = liEffect.getAmplifier() + 1; }
         if (self.getEffect(MythicEffects.ICE_BOMB) != null)          mu_deathHadIceBomb = true;
         if (self.getEffect(MythicEffects.CHARGED) != null)           mu_deathHadCharged = true;
     }
@@ -524,7 +526,7 @@ public abstract class LivingEntityMixin {
             }
 
             if (isPeridotTool(weapon)) {
-                self.addEffect(new MobEffectInstance(MythicEffects.LETHAL_INCUBATION, MythicStats.LETHAL_INCUBATION_TOOL_DURATION_TICKS, 0));
+                self.addEffect(new MobEffectInstance(MythicEffects.LETHAL_INCUBATION, MythicStats.LETHAL_INCUBATION_TOOL_DURATION_TICKS, 2));
             }
 
             if (isAquamarineTool(weapon) && self.level() instanceof ServerLevel serverLevel) {
@@ -593,19 +595,21 @@ public abstract class LivingEntityMixin {
         boolean hadIncub   = mu_deathHadLethalIncubation;
         boolean hadIceBomb = mu_deathHadIceBomb;
         boolean hadCharged = mu_deathHadCharged;
+        int incubLevel = mu_deathLethalIncubationLevel;
 
         mu_deathHadLethalIncubation = false;
         mu_deathHadIceBomb          = false;
         mu_deathHadCharged          = false;
+        mu_deathLethalIncubationLevel = 0;
 
         if (hadIncub) {
-            applyLethalIncubationBurst(serverLevel, self);
+            applyLethalIncubationBurst(serverLevel, self, incubLevel);
             mu_incubationWaveTick = 0;
-            mu_incubationWaveMaxRadius = 3.0f * MythicStats.MIASMA_CLOUD_RADIUS_PER_LEVEL;
+            mu_incubationWaveMaxRadius = MythicStats.LETHAL_INCUBATION_SHOCK_RADIUS;
             mu_incubationWaveX = self.getX();
             mu_incubationWaveY = self.getY() + 1.0;
             mu_incubationWaveZ = self.getZ();
-            mu_incubationWaveLevel = 3;
+            mu_incubationWaveLevel = incubLevel;
         }
 
         if (hadIceBomb) {
@@ -775,14 +779,16 @@ public abstract class LivingEntityMixin {
     }
 
     @Unique
-    private static void applyLethalIncubationBurst(ServerLevel level, LivingEntity center) {
+    private static void applyLethalIncubationBurst(ServerLevel level, LivingEntity center, int incubationLevel) {
         float radius = MythicStats.LETHAL_INCUBATION_SHOCK_RADIUS;
+        int poisonAmplifier = Math.max(0, incubationLevel - 1);
         AABB bb = new AABB(center.getX() - radius, center.getY() - radius, center.getZ() - radius,
             center.getX() + radius, center.getY() + radius, center.getZ() + radius);
         for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, bb)) {
             if (entity == center) continue;
             if (entity.distanceTo(center) > radius) continue;
             entity.hurt(MUDamageTypes.peridotIncubation(center), MythicStats.LETHAL_INCUBATION_SHOCK_DAMAGE);
+            entity.addEffect(new MobEffectInstance(MobEffects.POISON, MythicStats.LETHAL_INCUBATION_POISON_DURATION_TICKS, poisonAmplifier));
             entity.knockback(1.0, center.getX() - entity.getX(), center.getZ() - entity.getZ());
         }
         level.explode(null, center.getX(), center.getY(), center.getZ(), 2.0f, Level.ExplosionInteraction.NONE);
