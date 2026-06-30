@@ -70,7 +70,7 @@ public class MythicStats {
     public static float MIASMA_CLOUD_RADIUS_PER_LEVEL = 1.0f;
     public static float MIASMA_CLOUD_MAX_RADIUS = 10.0f;
     public static int MIASMA_POISON_MAX_AMPLIFIER = 9;
-    public static int MIASMA_POISON_DURATION_TICKS_PER_LEVEL = 10;
+    public static int MIASMA_POISON_DURATION_TICKS = 60;
     public static int MIASMA_INTERVAL_TICKS = 200;
 
     public static int AQUAMARINE_HELMET_LEVELS = 2;
