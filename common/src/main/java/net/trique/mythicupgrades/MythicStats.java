@@ -82,9 +82,7 @@ public class MythicStats {
     public static int AQUAMARINE_TOOL_SLOWNESS_DURATION_TICKS = 60;
     public static int AQUAMARINE_TOOL_SLOWNESS_AMPLIFIER = 0;
 
-    public static int ICE_SHIELD_FREEZE_TICKS_PER_LEVEL = 6;
-    public static int ICE_SHIELD_FREEZE_MIN_TICKS = 6;
-    public static int ICE_SHIELD_FREEZE_MAX_TICKS = 60;
+    public static int ICE_SHIELD_FREEZE_TICKS = 10;
 
     public static int ICE_BOMB_TOOL_DURATION_TICKS = 60;
     public static float ICE_BOMB_BURST_RADIUS = 5.0f;
@@ -116,10 +114,6 @@ public class MythicStats {
     public static int STATIC_FIELD_MAX_STACKS = 5;
     public static float STATIC_FIELD_STACK_DAMAGE_INCREASE = 0.10f;
     public static int STATIC_FIELD_STACK_RESET_TICKS = 60;
-
-    public static int ICE_SHIELD_SLOWNESS_DURATION_TICKS_PER_LEVEL = 10;
-    public static int ICE_SHIELD_SLOWNESS_MAX_DURATION_TICKS = 100;
-    public static int ICE_SHIELD_SLOWNESS_MAX_AMPLIFIER = 9;
 
     public static int JADE_HELMET_LEVELS = 2;
     public static int JADE_CHESTPLATE_LEVELS = 3;

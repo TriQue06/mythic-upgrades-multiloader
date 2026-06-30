@@ -554,11 +554,7 @@ public abstract class LivingEntityMixin {
             if (iceShield != null) {
                 int level = iceShield.getAmplifier() + 1;
                 directAttacker.hurt(MUDamageTypes.iceShieldReflect(self), level * MythicStats.ICE_SHIELD_MAGIC_DAMAGE_PER_LEVEL);
-                int slownessDur = Math.min(level * MythicStats.ICE_SHIELD_SLOWNESS_DURATION_TICKS_PER_LEVEL, MythicStats.ICE_SHIELD_SLOWNESS_MAX_DURATION_TICKS);
-                int slownessAmp = Math.min(level - 1, MythicStats.ICE_SHIELD_SLOWNESS_MAX_AMPLIFIER);
-                int freezeDur = Math.max(MythicStats.ICE_SHIELD_FREEZE_MIN_TICKS, Math.min(level * MythicStats.ICE_SHIELD_FREEZE_TICKS_PER_LEVEL, MythicStats.ICE_SHIELD_FREEZE_MAX_TICKS));
-                directAttacker.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, slownessDur, slownessAmp));
-                directAttacker.addEffect(new MobEffectInstance(MythicEffects.FREEZE, freezeDur, 0));
+                directAttacker.addEffect(new MobEffectInstance(MythicEffects.FREEZE, MythicStats.ICE_SHIELD_FREEZE_TICKS, 0));
                 if (self.level() instanceof ServerLevel iceLevel)
                     emitIceShieldStreamParticles(iceLevel, self, directAttacker);
             }
