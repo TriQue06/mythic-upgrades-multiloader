@@ -89,8 +89,6 @@ public class MythicStats {
     public static float ICE_BOMB_BURST_DAMAGE = 4.0f;
     public static int ICE_BOMB_BURST_FREEZE_TICKS = 18;
 
-    public static float ICE_SHIELD_MAGIC_DAMAGE_PER_LEVEL = 0.5f;
-
     public static int CITRINE_HELMET_LEVELS = 2;
     public static int CITRINE_CHESTPLATE_LEVELS = 3;
     public static int CITRINE_LEGGINGS_LEVELS = 3;
