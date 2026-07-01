@@ -57,6 +57,16 @@ public class MythicRecipeProvider extends RecipeProvider {
         storageBlock(writer, MythicItems.RAW_NECOIUM, MythicBlocks.RAW_NECOIUM_BLOCK, "raw_necoium");
         storageBlock(writer, MythicItems.NECOIUM_INGOT, MythicBlocks.NECOIUM_BLOCK, "necoium_ingot");
 
+        // Gem ingots from raw gems + necoium (netherite-style): 4x gem + 4x necoium ingot → 1x gem ingot
+        mythicIngot(writer, MythicItems.AQUAMARINE, MythicItems.AQUAMARINE_INGOT, "aquamarine");
+        mythicIngot(writer, MythicItems.CITRINE,    MythicItems.CITRINE_INGOT,    "citrine");
+        mythicIngot(writer, MythicItems.TOPAZ,      MythicItems.TOPAZ_INGOT,      "topaz");
+        mythicIngot(writer, MythicItems.PERIDOT,    MythicItems.PERIDOT_INGOT,    "peridot");
+        mythicIngot(writer, MythicItems.RUBY,       MythicItems.RUBY_INGOT,       "ruby");
+        mythicIngot(writer, MythicItems.SAPPHIRE,   MythicItems.SAPPHIRE_INGOT,   "sapphire");
+        mythicIngot(writer, MythicItems.JADE,       MythicItems.JADE_INGOT,       "jade");
+        mythicIngot(writer, MythicItems.AMETRINE,   MythicItems.AMETRINE_INGOT,   "ametrine");
+
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, MythicItems.NECOIUM_CARROT)
             .define('N', MythicBlocks.NECOIUM_BLOCK)
             .define('C', Items.CARROT)
@@ -529,6 +539,14 @@ public class MythicRecipeProvider extends RecipeProvider {
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(pillar), RecipeCategory.BUILDING_BLOCKS, cutPillar)
             .unlockedBy("has_" + gem + "_crystal_pillar", has(pillar))
             .save(writer, new ResourceLocation(Constants.MOD_ID, "cut_" + gem + "_crystal_pillar_from_stonecutting"));
+    }
+
+    private void mythicIngot(Consumer<FinishedRecipe> writer, Item gem, Item ingot, String name) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ingot)
+            .requires(gem, 4)
+            .requires(MythicItems.NECOIUM_INGOT, 4)
+            .unlockedBy("has_" + name, has(gem))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, name + "_ingot_from_" + name + "_and_necoium"));
     }
 
     private void stoneBlocks(Consumer<FinishedRecipe> writer, Item shard,

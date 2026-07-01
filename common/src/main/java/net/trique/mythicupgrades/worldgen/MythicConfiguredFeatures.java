@@ -146,7 +146,7 @@ public class MythicConfiguredFeatures {
         ctx.register(NECOIUM_ORE_CF, new ConfiguredFeature<>(Feature.ORE,
             new OreConfiguration(List.of(
                 OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), necoiumOre.defaultBlockState())
-            ), 6)
+            ), 5)
         ));
         ctx.register(DEEPSLATE_NECOIUM_ORE_CF, new ConfiguredFeature<>(Feature.ORE,
             new OreConfiguration(List.of(
@@ -161,7 +161,7 @@ public class MythicConfiguredFeatures {
             new OreConfiguration(List.of(
                 OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), rawNecoiumBlock.defaultBlockState()),
                 OreConfiguration.target(new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES), rawNecoiumBlock.defaultBlockState())
-            ), 4)
+            ), 3)
         ));
     }
 

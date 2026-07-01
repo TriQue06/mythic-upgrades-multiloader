@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "mythicupgrades:aquamarine"
+    },
+    {
+      "item": "mythicupgrades:aquamarine"
+    },
+    {
+      "item": "mythicupgrades:aquamarine"
+    },
+    {
+      "item": "mythicupgrades:aquamarine"
+    },
+    {
+      "item": "mythicupgrades:necoium_ingot"
+    },
+    {
+      "item": "mythicupgrades:necoium_ingot"
+    },
+    {
+      "item": "mythicupgrades:necoium_ingot"
+    },
+    {
+      "item": "mythicupgrades:necoium_ingot"
+    }
+  ],
+  "result": {
+    "item": "mythicupgrades:aquamarine_ingot"
+  }
+}
