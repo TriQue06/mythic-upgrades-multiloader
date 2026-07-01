@@ -97,6 +97,16 @@ public class MythicRecipeProvider extends RecipeProvider {
             .unlockedBy("has_raw_necoium_block", has(MythicBlocks.RAW_NECOIUM_BLOCK))
             .save(output, rl("raw_necoium_from_block"));
 
+        // Gem ingots from raw gems + necoium (netherite-style): 4x gem + 4x necoium ingot → 1x gem ingot
+        mythicIngot(output, MythicItems.AQUAMARINE, MythicItems.AQUAMARINE_INGOT, "aquamarine");
+        mythicIngot(output, MythicItems.CITRINE,    MythicItems.CITRINE_INGOT,    "citrine");
+        mythicIngot(output, MythicItems.TOPAZ,      MythicItems.TOPAZ_INGOT,      "topaz");
+        mythicIngot(output, MythicItems.PERIDOT,    MythicItems.PERIDOT_INGOT,    "peridot");
+        mythicIngot(output, MythicItems.RUBY,       MythicItems.RUBY_INGOT,       "ruby");
+        mythicIngot(output, MythicItems.SAPPHIRE,   MythicItems.SAPPHIRE_INGOT,   "sapphire");
+        mythicIngot(output, MythicItems.JADE,       MythicItems.JADE_INGOT,       "jade");
+        mythicIngot(output, MythicItems.AMETRINE,   MythicItems.AMETRINE_INGOT,   "ametrine");
+
         // Necoium carrot
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MythicItems.NECOIUM_CARROT)
             .define('N', MythicBlocks.NECOIUM_BLOCK)
@@ -470,6 +480,14 @@ public class MythicRecipeProvider extends RecipeProvider {
             case "ametrine"   -> MythicItems.AMETRINE_CRYSTAL_SHARD;
             default -> throw new IllegalArgumentException("Unknown gem: " + gem);
         };
+    }
+
+    private static void mythicIngot(RecipeOutput output, Item gem, Item ingot, String name) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ingot)
+            .requires(gem, 4)
+            .requires(MythicItems.NECOIUM_INGOT, 4)
+            .unlockedBy("has_" + name, has(gem))
+            .save(output, rl(name + "_ingot_from_" + name + "_and_necoium"));
     }
 
     private static ResourceLocation rl(String name) {

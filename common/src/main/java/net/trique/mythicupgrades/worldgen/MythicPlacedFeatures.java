@@ -105,13 +105,13 @@ public class MythicPlacedFeatures {
         var deepslateNecoiumCF = features.getOrThrow(MythicConfiguredFeatures.DEEPSLATE_NECOIUM_ORE_CF);
 
         ctx.register(NECOIUM_ORE_PF, new PlacedFeature(necoiumCF, List.of(
-            CountPlacement.of(5),
+            CountPlacement.of(3),
             InSquarePlacement.spread(),
             HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(16)),
             BiomeFilter.biome()
         )));
         ctx.register(DEEPSLATE_NECOIUM_ORE_PF, new PlacedFeature(deepslateNecoiumCF, List.of(
-            CountPlacement.of(5),
+            CountPlacement.of(3),
             InSquarePlacement.spread(),
             HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-16)),
             BiomeFilter.biome()
@@ -119,13 +119,13 @@ public class MythicPlacedFeatures {
 
         // Extra necoium ore for mythic cave biomes (added via MythicBiomeBootstrap)
         ctx.register(NECOIUM_ORE_EXTRA_PF, new PlacedFeature(necoiumCF, List.of(
-            CountPlacement.of(10),
+            CountPlacement.of(5),
             InSquarePlacement.spread(),
             HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(16)),
             BiomeFilter.biome()
         )));
         ctx.register(DEEPSLATE_NECOIUM_ORE_EXTRA_PF, new PlacedFeature(deepslateNecoiumCF, List.of(
-            CountPlacement.of(10),
+            CountPlacement.of(5),
             InSquarePlacement.spread(),
             HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-16)),
             BiomeFilter.biome()
