@@ -271,11 +271,11 @@ public class MythicRecipeProvider extends RecipeProvider {
         for (ItemLike input : inputs) {
             String inputName = BuiltInRegistries.ITEM.getKey(input.asItem()).getPath();
             SimpleCookingRecipeBuilder
-                    .smelting(Ingredient.of(input), RecipeCategory.MISC, result, 0.7f, 200)
+                    .smelting(Ingredient.of(input), RecipeCategory.MISC, result, 1.4f, 200)
                     .unlockedBy("has_" + inputName, has(input))
                     .save(writer, new ResourceLocation(Constants.MOD_ID, idPrefix + "_from_smelting_" + inputName));
             SimpleCookingRecipeBuilder
-                    .blasting(Ingredient.of(input), RecipeCategory.MISC, result, 0.7f, 100)
+                    .blasting(Ingredient.of(input), RecipeCategory.MISC, result, 1.4f, 100)
                     .unlockedBy("has_" + inputName, has(input))
                     .save(writer, new ResourceLocation(Constants.MOD_ID, idPrefix + "_from_blasting_" + inputName));
         }

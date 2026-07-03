@@ -37,6 +37,8 @@ public class NecoiumShareHandler {
         MythicEffects.ICE_SHIELD
     );
 
+    public static List<MobEffect> getShareableEffects() { return SHAREABLE_EFFECTS; }
+
     private static final Map<Level, Long> levelTickCache = new WeakHashMap<>();
     private static final Map<Level, Set<LivingEntity>> processedPerTick = new WeakHashMap<>();
 
@@ -78,7 +80,7 @@ public class NecoiumShareHandler {
             // Alone or out of range: remove any infinite ambient copies so they don't persist forever
             for (MobEffect effect : SHAREABLE_EFFECTS) {
                 MobEffectInstance inst = source.getEffect(effect);
-                if (inst != null && inst.isAmbient() && inst.getDuration() == -1) {
+                if (inst != null && inst.isAmbient() && inst.showParticles() && inst.getDuration() == -1) {
                     source.removeEffect(effect);
                 }
             }
@@ -101,12 +103,14 @@ public class NecoiumShareHandler {
 
     private static void processNetwork(ServerLevel level, List<LivingEntity> network, long tick) {
         for (MobEffect effect : SHAREABLE_EFFECTS) {
-            // Only count non-ambient effects as sources to avoid shared copies re-sharing themselves
+            // Count non-ambient effects and hidden-ambient supplement boosts as sources
             int maxAmplifier = -1;
             boolean anyInfinite = false;
             for (LivingEntity entity : network) {
                 MobEffectInstance instance = entity.getEffect(effect);
-                if (instance != null && !instance.isAmbient()) {
+                boolean isSource = instance != null
+                    && (!instance.isAmbient() || !instance.showParticles());
+                if (isSource) {
                     if (instance.getAmplifier() > maxAmplifier) maxAmplifier = instance.getAmplifier();
                     if (instance.getDuration() == -1) anyInfinite = true;
                 }
@@ -130,10 +134,10 @@ public class NecoiumShareHandler {
                     }
                 }
             } else {
-                // No non-ambient source left in network: remove shared (ambient) copies
+                // No source left in network: remove visible-ambient (shared) copies only
                 for (LivingEntity entity : network) {
                     MobEffectInstance current = entity.getEffect(effect);
-                    if (current != null && current.isAmbient()) {
+                    if (current != null && current.isAmbient() && current.showParticles()) {
                         entity.removeEffect(effect);
                     }
                 }

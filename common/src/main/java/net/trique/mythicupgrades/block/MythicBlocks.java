@@ -32,61 +32,59 @@ public class MythicBlocks {
 
     public static final Block AQUAMARINE_ORE = defer("aquamarine_ore", new DropExperienceBlock(
         BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).mapColor(MapColor.STONE).strength(3.0F, 3.0F),
-        UniformInt.of(3, 7)));
+        UniformInt.of(6, 14)));
 
     public static final Block DEEPSLATE_AQUAMARINE_ORE = defer("deepslate_aquamarine_ore", new DropExperienceBlock(
         BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F),
-        UniformInt.of(3, 7)));
+        UniformInt.of(6, 14)));
 
     public static final Block CITRINE_ORE = defer("citrine_ore", new DropExperienceBlock(
         BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).mapColor(MapColor.STONE).strength(3.0F, 3.0F),
-        UniformInt.of(3, 7)));
+        UniformInt.of(6, 14)));
 
     public static final Block DEEPSLATE_CITRINE_ORE = defer("deepslate_citrine_ore", new DropExperienceBlock(
         BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F),
-        UniformInt.of(3, 7)));
+        UniformInt.of(6, 14)));
 
     public static final Block TOPAZ_ORE = defer("topaz_ore", new DropExperienceBlock(
         BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).mapColor(MapColor.STONE).strength(3.0F, 3.0F),
-        UniformInt.of(3, 7)));
+        UniformInt.of(6, 14)));
 
     public static final Block DEEPSLATE_TOPAZ_ORE = defer("deepslate_topaz_ore", new DropExperienceBlock(
         BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F),
-        UniformInt.of(3, 7)));
+        UniformInt.of(6, 14)));
 
     public static final Block PERIDOT_ORE = defer("peridot_ore", new DropExperienceBlock(
         BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).mapColor(MapColor.STONE).strength(3.0F, 3.0F),
-        UniformInt.of(3, 7)));
+        UniformInt.of(6, 14)));
 
     public static final Block DEEPSLATE_PERIDOT_ORE = defer("deepslate_peridot_ore", new DropExperienceBlock(
         BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F),
-        UniformInt.of(3, 7)));
+        UniformInt.of(6, 14)));
 
     public static final Block RUBY_ORE = defer("ruby_ore", new DropExperienceBlock(
         BlockBehaviour.Properties.copy(Blocks.NETHER_GOLD_ORE).mapColor(MapColor.NETHER).strength(3.0F, 3.0F),
-        UniformInt.of(2, 5)));
+        UniformInt.of(4, 10)));
 
     public static final Block SAPPHIRE_ORE = defer("sapphire_ore", new DropExperienceBlock(
         BlockBehaviour.Properties.copy(Blocks.NETHER_GOLD_ORE).mapColor(MapColor.NETHER).strength(3.0F, 3.0F),
-        UniformInt.of(2, 5)));
+        UniformInt.of(4, 10)));
 
     public static final Block JADE_ORE = defer("jade_ore", new DropExperienceBlock(
         BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM)
             .requiresCorrectToolForDrops().strength(3.0F, 9.0F),
-        UniformInt.of(3, 7)));
+        UniformInt.of(6, 14)));
 
     public static final Block AMETRINE_ORE = defer("ametrine_ore", new DropExperienceBlock(
         BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM)
             .requiresCorrectToolForDrops().strength(3.0F, 9.0F),
-        UniformInt.of(3, 7)));
+        UniformInt.of(6, 14)));
 
-    public static final Block NECOIUM_ORE = defer("necoium_ore", new DropExperienceBlock(
-        BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).mapColor(MapColor.STONE).strength(3.0F, 3.0F),
-        UniformInt.of(3, 7)));
+    public static final Block NECOIUM_ORE = defer("necoium_ore", new Block(
+        BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).mapColor(MapColor.STONE).strength(3.0F, 3.0F)));
 
-    public static final Block DEEPSLATE_NECOIUM_ORE = defer("deepslate_necoium_ore", new DropExperienceBlock(
-        BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F),
-        UniformInt.of(3, 7)));
+    public static final Block DEEPSLATE_NECOIUM_ORE = defer("deepslate_necoium_ore", new Block(
+        BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE).mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F)));
 
     public static final Block RAW_NECOIUM_BLOCK = defer("raw_necoium_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.RAW_GOLD_BLOCK).mapColor(MapColor.WARPED_NYLIUM).strength(5.0F, 6.0F)));

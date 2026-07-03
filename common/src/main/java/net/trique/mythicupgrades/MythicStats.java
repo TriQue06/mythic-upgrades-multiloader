@@ -19,7 +19,6 @@ public class MythicStats {
     public static int AMETRINE_BOOTS_LEVELS = 2;
 
     public static float ARCANE_AURA_RADIUS_PER_LEVEL = 1.0f;
-    public static int ARCANE_AURA_MAX_RADIUS = 10;
     public static int ARCANE_AURA_LEVITATION_AMP_PER_LEVEL = 1;
     public static int ARCANE_AURA_LEVITATION_DURATION_TICKS = 30;
 
@@ -35,9 +34,7 @@ public class MythicStats {
     public static float TOPAZ_SHOCK_DAMAGE_PER_LEVEL = 0.25f;
     public static float TOPAZ_SHOCK_KNOCKBACK_PER_LEVEL = 0.25f;
     public static float TOPAZ_FALL_REDUCTION_PER_LEVEL = 0.05f;
-    public static float TOPAZ_FALL_MAX_REDUCTION = 0.50f;
     public static float TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL = 1.0f;
-    public static float TOPAZ_ARMOR_SHOCK_MAX_RADIUS = 10.0f;
 
     public static int TOPAZ_TOOL_SHOCK_INTERVAL = 3;
     public static int TOPAZ_TOOL_EFFECTIVE_LEVEL = 5;
@@ -52,9 +49,7 @@ public class MythicStats {
     public static int RUBY_TOOL_LIFESTEAL_PARTICLE_COUNT = 20;
 
     public static float BLOOD_THIRST_RADIUS_PER_LEVEL = 3.0f;
-    public static float BLOOD_THIRST_MAX_RADIUS = 30.0f;
     public static float BLOOD_THIRST_HEAL_FRACTION_PER_LEVEL = 0.03f;
-    public static float BLOOD_THIRST_MAX_HEAL_FRACTION = 0.30f;
     public static int BLOOD_THIRST_PARTICLES_PER_LEVEL = 5;
 
     public static int PERIDOT_HELMET_LEVELS = 2;
@@ -68,7 +63,6 @@ public class MythicStats {
     public static int LETHAL_INCUBATION_POISON_DURATION_TICKS = 60;
 
     public static float MIASMA_CLOUD_RADIUS_PER_LEVEL = 1.0f;
-    public static float MIASMA_CLOUD_MAX_RADIUS = 10.0f;
     public static int MIASMA_POISON_MAX_AMPLIFIER = 9;
     public static int MIASMA_POISON_DURATION_TICKS = 60;
     public static int MIASMA_INTERVAL_TICKS = 200;
@@ -105,11 +99,8 @@ public class MythicStats {
     public static float CITRINE_CHARGED_LIGHTNING_SPREAD = 1.5f;
 
     public static float STATIC_FIELD_RADIUS_PER_LEVEL = 0.40f;
-    public static float STATIC_FIELD_MAX_RADIUS = 4.0f;
     public static float STATIC_FIELD_DAMAGE_PER_LEVEL_PER_SECOND = 0.20f;
-    public static float STATIC_FIELD_MAX_DAMAGE_PER_SECOND = 2.0f;
     public static double CITRINE_LIGHTNING_REDIRECT_DISTANCE = 7.0;
-    public static int STATIC_FIELD_MAX_STACKS = 5;
     public static float STATIC_FIELD_STACK_DAMAGE_INCREASE = 0.10f;
     public static int STATIC_FIELD_STACK_RESET_TICKS = 60;
 
