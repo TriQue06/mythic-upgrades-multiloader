@@ -21,7 +21,6 @@ public class NecoiumCarrotItem extends Item {
         ItemStack result = super.finishUsingItem(stack, level, entity);
         if (!level.isClientSide) {
             entity.addEffect(new MobEffectInstance(MythicEffects.NECOIUM_SHARE, 6000, 0));
-            entity.addEffect(new MobEffectInstance(MythicEffects.MYTHIC_SUPPLEMENT, 6000, 0));
         }
         return result;
     }

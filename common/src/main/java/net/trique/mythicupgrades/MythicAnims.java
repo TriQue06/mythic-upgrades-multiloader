@@ -12,8 +12,6 @@ public class MythicAnims {
     public static int ARCANE_AURA_WAVE_COUNT = 1;
     public static int ARCANE_AURA_WAVE_GAP_TICKS = 20;
 
-    public static int MYTHIC_SUPPLEMENT_EFFECT_COLOR = 0xa60e6a;
-
     public static int ARCANE_AURA_COLOR_1 = 0x641f9a;
     public static int ARCANE_AURA_COLOR_2 = 0xa431c2;
     public static int ARCANE_AURA_COLOR_3 = 0xef6dab;
