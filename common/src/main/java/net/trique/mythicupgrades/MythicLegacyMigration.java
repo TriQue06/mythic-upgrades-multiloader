@@ -47,10 +47,14 @@ public class MythicLegacyMigration {
         TEMPLATE_MAP.put(MythicItems.LEGACY_AMETRINE_TEMPLATE,   MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
     }
 
+    private static final int CHUNKS_PER_TICK = 5;
+
     public static void drainPendingChunks() {
+        int processed = 0;
         LevelChunk chunk;
-        while ((chunk = PENDING_CHUNKS.poll()) != null) {
+        while (processed < CHUNKS_PER_TICK && (chunk = PENDING_CHUNKS.poll()) != null) {
             migrateChunk(chunk);
+            processed++;
         }
     }
 
