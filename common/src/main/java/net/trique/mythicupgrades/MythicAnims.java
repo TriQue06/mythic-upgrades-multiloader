@@ -108,6 +108,7 @@ public class MythicAnims {
     public static int LETHAL_INCUBATION_EFFECT_COLOR = 0x4e9013;
     public static int MIASMA_EFFECT_COLOR            = 0x8bd017;
     public static int NECOIUM_SHARE_EFFECT_COLOR     = 0xe61a8f;
+    public static int MYTHIC_SUPPLEMENT_EFFECT_COLOR = 0xa60e6a;
     public static int STATIC_FIELD_EFFECT_COLOR      = 0xe8911b;
     public static int TOPAZ_REACTION_EFFECT_COLOR    = 0xe4491c;
 }

@@ -166,7 +166,7 @@ public abstract class LivingEntityMixin {
                 mu_miasmaTick = 0;
                 applyMiasmaPoison(serverLevel, self, miasmaLevel);
                 mu_miasmaWaveTick = 0;
-                mu_miasmaWaveMaxRadius = Math.min(miasmaLevel * MythicStats.MIASMA_CLOUD_RADIUS_PER_LEVEL, MythicStats.MIASMA_CLOUD_MAX_RADIUS);
+                mu_miasmaWaveMaxRadius = miasmaLevel * MythicStats.MIASMA_CLOUD_RADIUS_PER_LEVEL;
                 mu_miasmaWaveX = self.getX();
                 mu_miasmaWaveY = self.getY() + 1.0;
                 mu_miasmaWaveZ = self.getZ();
@@ -205,11 +205,11 @@ public abstract class LivingEntityMixin {
         MobEffectInstance staticFieldEff = self.getEffect(MythicEffects.STATIC_FIELD);
         if (staticFieldEff != null && self.level() instanceof ServerLevel citrineSLevel) {
             int staticLevel = staticFieldEff.getAmplifier() + 1;
-            float fieldRadius = Math.min(staticLevel * MythicStats.STATIC_FIELD_RADIUS_PER_LEVEL, MythicStats.STATIC_FIELD_MAX_RADIUS);
+            float fieldRadius = staticLevel * MythicStats.STATIC_FIELD_RADIUS_PER_LEVEL;
             if (self.tickCount % MythicAnims.CITRINE_STATIC_FIELD_PARTICLE_INTERVAL == 0 && !self.isCrouching())
                 emitStaticFieldParticles(citrineSLevel, self, fieldRadius, staticLevel);
             if (self.tickCount % 20 == 0) {
-                float fieldDamage = Math.min(staticLevel * MythicStats.STATIC_FIELD_DAMAGE_PER_LEVEL_PER_SECOND, MythicStats.STATIC_FIELD_MAX_DAMAGE_PER_SECOND);
+                float fieldDamage = staticLevel * MythicStats.STATIC_FIELD_DAMAGE_PER_LEVEL_PER_SECOND;
                 AABB fbb = new AABB(self.getX() - fieldRadius, self.getY() - fieldRadius, self.getZ() - fieldRadius,
                     self.getX() + fieldRadius, self.getY() + fieldRadius, self.getZ() + fieldRadius);
                 int currentTick = self.tickCount;
@@ -227,8 +227,7 @@ public abstract class LivingEntityMixin {
                         int stacks = mu_staticFieldStacks.getOrDefault(entityId, 0);
                         float multiplier = (float)Math.pow(1.0 + MythicStats.STATIC_FIELD_STACK_DAMAGE_INCREASE, stacks);
                         entity.hurt(MUDamageTypes.staticField(self), fieldDamage * multiplier);
-                        if (stacks < MythicStats.STATIC_FIELD_MAX_STACKS)
-                            mu_staticFieldStacks.put(entityId, stacks + 1);
+                        mu_staticFieldStacks.put(entityId, stacks + 1);
                         mu_staticFieldLastHitTick.put(entityId, currentTick);
                     }
                 }
@@ -361,7 +360,7 @@ public abstract class LivingEntityMixin {
             MobEffectInstance topazEff = self.getEffect(MythicEffects.TOPAZ_REACTION);
             if (topazEff != null) {
                 int topazLvl = topazEff.getAmplifier() + 1;
-                float reduction = Math.min(topazLvl * MythicStats.TOPAZ_FALL_REDUCTION_PER_LEVEL, MythicStats.TOPAZ_FALL_MAX_REDUCTION);
+                float reduction = topazLvl * MythicStats.TOPAZ_FALL_REDUCTION_PER_LEVEL;
                 mu_topazFallBlocked = amount * reduction;
             }
         }
@@ -403,7 +402,7 @@ public abstract class LivingEntityMixin {
             if (topazForFall != null) {
                 self.heal(mu_topazFallBlocked);
                 int fallTopazLevel = topazForFall.getAmplifier() + 1;
-                float fallShockRadius = Math.min(fallTopazLevel * MythicStats.TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL, MythicStats.TOPAZ_ARMOR_SHOCK_MAX_RADIUS);
+                float fallShockRadius = fallTopazLevel * MythicStats.TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL;
                 mu_topazWaveTick = 0;
                 mu_topazWaveMaxRadius = fallShockRadius;
                 mu_topazWaveX = self.getX();
@@ -417,7 +416,7 @@ public abstract class LivingEntityMixin {
         }
 
         if (actualDamage > 0 && self.level() instanceof ServerLevel btServerLevel) {
-            float maxSearch = MythicStats.BLOOD_THIRST_MAX_RADIUS;
+            float maxSearch = 128f;
             AABB searchBB = new AABB(
                 self.getX() - maxSearch, self.getY() - maxSearch, self.getZ() - maxSearch,
                 self.getX() + maxSearch, self.getY() + maxSearch, self.getZ() + maxSearch
@@ -428,9 +427,9 @@ public abstract class LivingEntityMixin {
                 MobEffectInstance btEff = btEntity.getEffect(MythicEffects.BLOOD_THIRST);
                 if (btEff == null) continue;
                 int btLevel = btEff.getAmplifier() + 1;
-                float btRadius = Math.min(btLevel * MythicStats.BLOOD_THIRST_RADIUS_PER_LEVEL, MythicStats.BLOOD_THIRST_MAX_RADIUS);
+                float btRadius = btLevel * MythicStats.BLOOD_THIRST_RADIUS_PER_LEVEL;
                 if (btEntity.distanceTo(self) > btRadius) continue;
-                float healFrac = Math.min(btLevel * MythicStats.BLOOD_THIRST_HEAL_FRACTION_PER_LEVEL, MythicStats.BLOOD_THIRST_MAX_HEAL_FRACTION);
+                float healFrac = btLevel * MythicStats.BLOOD_THIRST_HEAL_FRACTION_PER_LEVEL;
                 btEntity.heal(actualDamage * healFrac);
                 emitBloodThirstParticles(btServerLevel, self, btEntity, btLevel);
             }
@@ -439,7 +438,7 @@ public abstract class LivingEntityMixin {
         MobEffectInstance aura = self.getEffect(MythicEffects.ARCANE_AURA);
         if (aura != null && self.level() instanceof ServerLevel serverLevel) {
             int effectLevel = aura.getAmplifier() + 1;
-            float maxRadius = Math.min(effectLevel * MythicStats.ARCANE_AURA_RADIUS_PER_LEVEL, MythicStats.ARCANE_AURA_MAX_RADIUS);
+            float maxRadius = effectLevel * MythicStats.ARCANE_AURA_RADIUS_PER_LEVEL;
             int levitationAmp = effectLevel * MythicStats.ARCANE_AURA_LEVITATION_AMP_PER_LEVEL - 1;
             int levitationDur = MythicStats.ARCANE_AURA_LEVITATION_DURATION_TICKS;
 
@@ -457,7 +456,7 @@ public abstract class LivingEntityMixin {
         MobEffectInstance topaz = self.getEffect(MythicEffects.TOPAZ_REACTION);
         if (topaz != null && self.level() instanceof ServerLevel serverLevel) {
             int effectLevel = topaz.getAmplifier() + 1;
-            float shockRadius = Math.min(effectLevel * MythicStats.TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL, MythicStats.TOPAZ_ARMOR_SHOCK_MAX_RADIUS);
+            float shockRadius = effectLevel * MythicStats.TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL;
 
             mu_topazWaveTick = 0;
             mu_topazWaveMaxRadius = shockRadius;
@@ -493,7 +492,7 @@ public abstract class LivingEntityMixin {
                 if (count >= MythicStats.TOPAZ_TOOL_SHOCK_INTERVAL) {
                     MythicState.TOPAZ_TOOL_HIT_COUNTS.put(directAttacker, 0);
                     int effectiveLevel = MythicStats.TOPAZ_TOOL_EFFECTIVE_LEVEL;
-                    float shockRadius = Math.min(effectiveLevel * MythicStats.TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL, MythicStats.TOPAZ_ARMOR_SHOCK_MAX_RADIUS);
+                    float shockRadius = effectiveLevel * MythicStats.TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL;
                     mu_topazWaveTick = 0;
                     mu_topazWaveMaxRadius = shockRadius;
                     mu_topazWaveX = self.getX();
@@ -518,7 +517,7 @@ public abstract class LivingEntityMixin {
                 MobEffectInstance btEffD = directAttacker.getEffect(MythicEffects.BLOOD_THIRST);
                 if (btEffD != null) {
                     int btRubyLevel = btEffD.getAmplifier() + 1;
-                    float healFrac = Math.min(btRubyLevel * MythicStats.BLOOD_THIRST_HEAL_FRACTION_PER_LEVEL, MythicStats.BLOOD_THIRST_MAX_HEAL_FRACTION);
+                    float healFrac = btRubyLevel * MythicStats.BLOOD_THIRST_HEAL_FRACTION_PER_LEVEL;
                     directAttacker.heal(actualDamage * healFrac);
                     if (self.level() instanceof ServerLevel btDServerLevel)
                         emitBloodThirstParticles(btDServerLevel, self, directAttacker, btRubyLevel);
@@ -826,7 +825,7 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void applyMiasmaPoison(ServerLevel level, LivingEntity owner, int peridotLevel) {
-        float radius = Math.min(peridotLevel * MythicStats.MIASMA_CLOUD_RADIUS_PER_LEVEL, MythicStats.MIASMA_CLOUD_MAX_RADIUS);
+        float radius = peridotLevel * MythicStats.MIASMA_CLOUD_RADIUS_PER_LEVEL;
         int poisonAmplifier = Math.min(peridotLevel - 1, MythicStats.MIASMA_POISON_MAX_AMPLIFIER);
         int poisonDuration = MythicStats.MIASMA_POISON_DURATION_TICKS;
         AABB bb = new AABB(owner.getX() - radius, owner.getY() - radius, owner.getZ() - radius,

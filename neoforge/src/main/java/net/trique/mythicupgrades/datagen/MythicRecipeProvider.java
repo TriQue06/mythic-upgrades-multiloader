@@ -76,8 +76,8 @@ public class MythicRecipeProvider extends RecipeProvider {
         }
 
         // Necoium
-        oreSmelting(output, List.of(MythicBlocks.NECOIUM_ORE, MythicBlocks.DEEPSLATE_NECOIUM_ORE, MythicItems.RAW_NECOIUM), RecipeCategory.MISC, MythicItems.NECOIUM_INGOT, 0.7f, 200, "necoium");
-        oreBlasting(output, List.of(MythicBlocks.NECOIUM_ORE, MythicBlocks.DEEPSLATE_NECOIUM_ORE, MythicItems.RAW_NECOIUM), RecipeCategory.MISC, MythicItems.NECOIUM_INGOT, 0.7f, 100, "necoium");
+        oreSmelting(output, List.of(MythicBlocks.NECOIUM_ORE, MythicBlocks.DEEPSLATE_NECOIUM_ORE, MythicItems.RAW_NECOIUM), RecipeCategory.MISC, MythicItems.NECOIUM_INGOT, 1.4f, 200, "necoium");
+        oreBlasting(output, List.of(MythicBlocks.NECOIUM_ORE, MythicBlocks.DEEPSLATE_NECOIUM_ORE, MythicItems.RAW_NECOIUM), RecipeCategory.MISC, MythicItems.NECOIUM_INGOT, 1.4f, 100, "necoium");
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MythicBlocks.NECOIUM_BLOCK)
             .define('#', MythicItems.NECOIUM_INGOT)
             .pattern("###").pattern("###").pattern("###")
@@ -192,8 +192,8 @@ public class MythicRecipeProvider extends RecipeProvider {
                           Item gemItem, Item ingot, Item shard,
                           Block ore, Block deepslateOre, Block storageBlock, Block crystalBlock,
                           boolean hasCaveOres) {
-        oreSmelting(output, List.of(ore, deepslateOre), RecipeCategory.MISC, gemItem, 0.7f, 200, gem);
-        oreBlasting(output, List.of(ore, deepslateOre), RecipeCategory.MISC, gemItem, 0.7f, 100, gem);
+        oreSmelting(output, List.of(ore, deepslateOre), RecipeCategory.MISC, gemItem, 1.4f, 200, gem);
+        oreBlasting(output, List.of(ore, deepslateOre), RecipeCategory.MISC, gemItem, 1.4f, 100, gem);
         storageAndUnpack(output, gem, ingot, storageBlock);
         crystalBlockRecipes(output, gem, shard, crystalBlock);
     }
@@ -201,8 +201,8 @@ public class MythicRecipeProvider extends RecipeProvider {
     private void gemGroupNether(RecipeOutput output, String gem,
                                 Item gemItem, Item ingot, Item shard,
                                 Block ore, Block storageBlock, Block crystalBlock) {
-        oreSmelting(output, List.of(ore), RecipeCategory.MISC, gemItem, 0.7f, 200, gem);
-        oreBlasting(output, List.of(ore), RecipeCategory.MISC, gemItem, 0.7f, 100, gem);
+        oreSmelting(output, List.of(ore), RecipeCategory.MISC, gemItem, 1.4f, 200, gem);
+        oreBlasting(output, List.of(ore), RecipeCategory.MISC, gemItem, 1.4f, 100, gem);
         storageAndUnpack(output, gem, ingot, storageBlock);
         crystalBlockRecipes(output, gem, shard, crystalBlock);
     }
