@@ -27,8 +27,6 @@ public class NecoiumShareHandler {
         new DustParticleOptions(new Vector3f(0.957f, 0.490f, 0.627f), 1.4f), // #f47da0
     };
 
-    public static List<Holder<MobEffect>> getShareableEffects() { return SHAREABLE_EFFECTS; }
-
     private static final List<Holder<MobEffect>> SHAREABLE_EFFECTS = Arrays.asList(
         MythicEffects.DAMAGE_DEFLECTION,
         MythicEffects.ARCANE_AURA,
@@ -81,8 +79,7 @@ public class NecoiumShareHandler {
             // Alone or out of range: remove any infinite ambient copies so they don't persist forever
             for (Holder<MobEffect> effect : SHAREABLE_EFFECTS) {
                 MobEffectInstance inst = source.getEffect(effect);
-                // Remove only visible ambient (share) copies, not hidden supplement copies
-                if (inst != null && inst.isAmbient() && inst.isVisible() && inst.getDuration() == -1) {
+                if (inst != null && inst.isAmbient() && inst.getDuration() == -1) {
                     source.removeEffect(effect);
                 }
             }
@@ -105,15 +102,12 @@ public class NecoiumShareHandler {
 
     private static void processNetwork(ServerLevel level, List<LivingEntity> network, long tick) {
         for (Holder<MobEffect> effect : SHAREABLE_EFFECTS) {
-            // Count non-ambient (own) effects and hidden-ambient (supplement-boosted) effects as sources.
-            // Visible ambient copies are share copies and must not re-share themselves.
+            // Only count non-ambient effects as sources to avoid shared copies re-sharing themselves
             int maxAmplifier = -1;
             boolean anyInfinite = false;
             for (LivingEntity entity : network) {
                 MobEffectInstance instance = entity.getEffect(effect);
-                boolean isSource = instance != null
-                    && (!instance.isAmbient() || !instance.isVisible());
-                if (isSource) {
+                if (instance != null && !instance.isAmbient()) {
                     if (instance.getAmplifier() > maxAmplifier) maxAmplifier = instance.getAmplifier();
                     if (instance.getDuration() == -1) anyInfinite = true;
                 }

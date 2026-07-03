@@ -14,7 +14,6 @@ import net.trique.mythicupgrades.effect.IceShieldEffect;
 import net.trique.mythicupgrades.effect.LethalIncubationEffect;
 import net.trique.mythicupgrades.effect.MiasmaEffect;
 import net.trique.mythicupgrades.effect.IceBombEffect;
-import net.trique.mythicupgrades.effect.MythicSupplementEffect;
 import net.trique.mythicupgrades.effect.NecoiumShareEffect;
 import net.trique.mythicupgrades.effect.TopazReactionEffect;
 
@@ -46,7 +45,6 @@ public class MythicEffects {
     public static Holder<MobEffect> STATIC_FIELD = defer("static_field", new StaticFieldEffect());
     public static Holder<MobEffect> JADE_AURA = defer("jade_aura", new JadeAuraEffect());
     public static Holder<MobEffect> NECOIUM_SHARE = defer("necoium_share", new NecoiumShareEffect());
-    public static Holder<MobEffect> MYTHIC_SUPPLEMENT = defer("mythic_supplement", new MythicSupplementEffect());
 
     public static void register(BiFunction<String, MobEffect, MobEffect> reg) {
         DEFERRED.forEach(e -> reg.apply(e.getKey(), e.getValue()));
@@ -63,7 +61,6 @@ public class MythicEffects {
         STATIC_FIELD       = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(STATIC_FIELD.value());
         JADE_AURA          = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(JADE_AURA.value());
         NECOIUM_SHARE      = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(NECOIUM_SHARE.value());
-        MYTHIC_SUPPLEMENT  = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(MYTHIC_SUPPLEMENT.value());
         Constants.LOG.info("MythicEffects registered.");
     }
 }

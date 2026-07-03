@@ -21,11 +21,6 @@ public class MythicPotions {
         return p;
     }
 
-    private static Potion defMulti(String id, String baseName, MobEffectInstance... effects) {
-        Potion p = new Potion(baseName, effects);
-        DEFERRED.add(new AbstractMap.SimpleEntry<>(id, p));
-        return p;
-    }
 
     // Aquamarine → Ice Shield (3:00 III / 8:00 III / 1:30 V)
     public static final Potion ICE_SHIELD        = def("ice_shield",        "ice_shield", MythicEffects.ICE_SHIELD, 3600, 2);
@@ -67,13 +62,9 @@ public class MythicPotions {
     public static final Potion ARCANE_AURA_LONG   = def("long_arcane_aura",   "arcane_aura", MythicEffects.ARCANE_AURA, 9600, 2);
     public static final Potion ARCANE_AURA_STRONG = def("strong_arcane_aura", "arcane_aura", MythicEffects.ARCANE_AURA, 1800, 4);
 
-    // Necoium → Necoium Share + Mythic Supplement (1:30 / 4:00)
-    public static final Potion NECOIUM_SHARE      = defMulti("necoium_share",      "necoium_share",
-        new MobEffectInstance(MythicEffects.NECOIUM_SHARE,      1800, 0),
-        new MobEffectInstance(MythicEffects.MYTHIC_SUPPLEMENT,  1800, 0));
-    public static final Potion NECOIUM_SHARE_LONG = defMulti("long_necoium_share", "necoium_share",
-        new MobEffectInstance(MythicEffects.NECOIUM_SHARE,      4800, 0),
-        new MobEffectInstance(MythicEffects.MYTHIC_SUPPLEMENT,  4800, 0));
+    // Necoium → Necoium Share (duration only, no amplifier variants)
+    public static final Potion NECOIUM_SHARE      = def("necoium_share",      "necoium_share", MythicEffects.NECOIUM_SHARE, 1800, 0);
+    public static final Potion NECOIUM_SHARE_LONG = def("long_necoium_share", "necoium_share", MythicEffects.NECOIUM_SHARE, 4800, 0);
 
     // Negative: Ice Shield → Ice Bomb (fermented spider eye)
     public static final Potion ICE_BOMB        = def("ice_bomb",        "ice_bomb", MythicEffects.ICE_BOMB, 3600, 2);
