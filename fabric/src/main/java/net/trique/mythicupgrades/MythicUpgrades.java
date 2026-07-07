@@ -8,10 +8,13 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.core.Registry;
+import net.minecraft.core.RegistrationInfo;
+import net.minecraft.core.WritableRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -33,6 +36,19 @@ public class MythicUpgrades implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        // Effects must be registered first: MythicItems static initializers (crystal shards)
+        // reference MythicEffects.* fields for food properties, so those fields must be
+        // non-null before MythicItems class is loaded.
+        MythicEffects.register((name, effect) -> {
+            ResourceKey<MobEffect> key = ResourceKey.create(
+                BuiltInRegistries.MOB_EFFECT.key(),
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+            // WritableRegistry.register() returns Holder.Reference — guaranteed registry-backed.
+            // Registry.register() (static util) calls .value() and discards the holder, so we avoid it.
+            return ((WritableRegistry<MobEffect>) BuiltInRegistries.MOB_EFFECT)
+                .register(key, effect, RegistrationInfo.BUILT_IN);
+        });
+
         MythicBlocks.register((name, block) ->
             Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), block));
 
@@ -44,9 +60,6 @@ public class MythicUpgrades implements ModInitializer {
 
         MythicCreativeTabs.register((name, tab) ->
             Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), tab));
-
-        MythicEffects.register((name, effect) ->
-            Registry.register(BuiltInRegistries.MOB_EFFECT, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), effect));
 
         MythicPotions.register((name, potion) ->
             Registry.register(BuiltInRegistries.POTION, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), potion));

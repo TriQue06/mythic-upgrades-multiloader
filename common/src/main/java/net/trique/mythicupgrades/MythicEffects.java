@@ -1,7 +1,6 @@
 package net.trique.mythicupgrades;
 
 import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffect;
 import net.trique.mythicupgrades.effect.ArcaneAuraEffect;
 import net.trique.mythicupgrades.effect.BloodThirstEffect;
@@ -17,50 +16,45 @@ import net.trique.mythicupgrades.effect.IceBombEffect;
 import net.trique.mythicupgrades.effect.NecoiumShareEffect;
 import net.trique.mythicupgrades.effect.TopazReactionEffect;
 
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.function.BiFunction;
 
 public class MythicEffects {
 
-    private static final List<Map.Entry<String, MobEffect>> DEFERRED = new ArrayList<>();
+    // Holders are null until register() is called by the platform.
+    // All fields are set to registry-backed Holder.Reference in register().
+    public static Holder<MobEffect> DAMAGE_DEFLECTION;
+    public static Holder<MobEffect> ARCANE_AURA;
+    public static Holder<MobEffect> TOPAZ_REACTION;
+    public static Holder<MobEffect> FREEZE;
+    public static Holder<MobEffect> BLOOD_THIRST;
+    public static Holder<MobEffect> LETHAL_INCUBATION;
+    public static Holder<MobEffect> MIASMA;
+    public static Holder<MobEffect> ICE_SHIELD;
+    public static Holder<MobEffect> ICE_BOMB;
+    public static Holder<MobEffect> CHARGED;
+    public static Holder<MobEffect> STATIC_FIELD;
+    public static Holder<MobEffect> JADE_AURA;
+    public static Holder<MobEffect> NECOIUM_SHARE;
 
-    private static Holder<MobEffect> defer(String name, MobEffect effect) {
-        DEFERRED.add(new AbstractMap.SimpleEntry<>(name, effect));
-        return Holder.direct(effect);
-    }
-
-    public static Holder<MobEffect> DAMAGE_DEFLECTION = defer("damage_deflection", new DamageDeflectionEffect());
-    public static Holder<MobEffect> ARCANE_AURA = defer("arcane_aura", new ArcaneAuraEffect());
-    public static Holder<MobEffect> TOPAZ_REACTION = defer("topaz_reaction", new TopazReactionEffect());
-    public static Holder<MobEffect> FREEZE = defer("freeze", new FreezeEffect());
-    public static Holder<MobEffect> BLOOD_THIRST = defer("blood_thirst", new BloodThirstEffect());
-    public static Holder<MobEffect> LETHAL_INCUBATION = defer("lethal_incubation", new LethalIncubationEffect());
-    public static Holder<MobEffect> MIASMA = defer("miasma", new MiasmaEffect());
-    public static Holder<MobEffect> ICE_SHIELD = defer("ice_shield", new IceShieldEffect());
-    public static Holder<MobEffect> ICE_BOMB = defer("ice_bomb", new IceBombEffect());
-    public static Holder<MobEffect> CHARGED = defer("charged", new ChargedEffect());
-    public static Holder<MobEffect> STATIC_FIELD = defer("static_field", new StaticFieldEffect());
-    public static Holder<MobEffect> JADE_AURA = defer("jade_aura", new JadeAuraEffect());
-    public static Holder<MobEffect> NECOIUM_SHARE = defer("necoium_share", new NecoiumShareEffect());
-
-    public static void register(BiFunction<String, MobEffect, MobEffect> reg) {
-        DEFERRED.forEach(e -> reg.apply(e.getKey(), e.getValue()));
-        DAMAGE_DEFLECTION  = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(DAMAGE_DEFLECTION.value());
-        ARCANE_AURA        = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(ARCANE_AURA.value());
-        TOPAZ_REACTION     = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(TOPAZ_REACTION.value());
-        FREEZE             = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(FREEZE.value());
-        BLOOD_THIRST       = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(BLOOD_THIRST.value());
-        LETHAL_INCUBATION  = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(LETHAL_INCUBATION.value());
-        MIASMA             = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(MIASMA.value());
-        ICE_SHIELD         = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(ICE_SHIELD.value());
-        ICE_BOMB           = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(ICE_BOMB.value());
-        CHARGED            = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(CHARGED.value());
-        STATIC_FIELD       = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(STATIC_FIELD.value());
-        JADE_AURA          = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(JADE_AURA.value());
-        NECOIUM_SHARE      = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(NECOIUM_SHARE.value());
+    /**
+     * Registers all effects. The platform lambda must register the effect and return
+     * the registry-backed Holder<MobEffect> (not Holder.direct). This is called once,
+     * before MythicPotions.register() and before any gameplay code runs.
+     */
+    public static void register(BiFunction<String, MobEffect, Holder<MobEffect>> reg) {
+        DAMAGE_DEFLECTION = reg.apply("damage_deflection", new DamageDeflectionEffect());
+        ARCANE_AURA       = reg.apply("arcane_aura",       new ArcaneAuraEffect());
+        TOPAZ_REACTION    = reg.apply("topaz_reaction",    new TopazReactionEffect());
+        FREEZE            = reg.apply("freeze",            new FreezeEffect());
+        BLOOD_THIRST      = reg.apply("blood_thirst",      new BloodThirstEffect());
+        LETHAL_INCUBATION = reg.apply("lethal_incubation", new LethalIncubationEffect());
+        MIASMA            = reg.apply("miasma",            new MiasmaEffect());
+        ICE_SHIELD        = reg.apply("ice_shield",        new IceShieldEffect());
+        ICE_BOMB          = reg.apply("ice_bomb",          new IceBombEffect());
+        CHARGED           = reg.apply("charged",           new ChargedEffect());
+        STATIC_FIELD      = reg.apply("static_field",      new StaticFieldEffect());
+        JADE_AURA         = reg.apply("jade_aura",         new JadeAuraEffect());
+        NECOIUM_SHARE     = reg.apply("necoium_share",     new NecoiumShareEffect());
         Constants.LOG.info("MythicEffects registered.");
     }
 }

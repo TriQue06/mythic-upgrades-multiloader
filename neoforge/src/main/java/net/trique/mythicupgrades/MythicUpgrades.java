@@ -1,8 +1,11 @@
 package net.trique.mythicupgrades;
 
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.chunk.LevelChunk;
@@ -60,8 +63,12 @@ public class MythicUpgrades {
         } else if (event.getRegistryKey().equals(Registries.MOB_EFFECT)) {
             event.register(Registries.MOB_EFFECT, helper ->
                 MythicEffects.register((name, effect) -> {
-                    helper.register(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), effect);
-                    return effect;
+                    ResourceKey<MobEffect> key = ResourceKey.create(
+                        BuiltInRegistries.MOB_EFFECT.key(),
+                        ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+                    helper.register(key.location(), effect);
+                    return BuiltInRegistries.MOB_EFFECT.getHolder(key).orElseThrow(
+                        () -> new IllegalStateException("MythicEffects: unregistered on NeoForge: " + name));
                 })
             );
         } else if (event.getRegistryKey().equals(Registries.POTION)) {
