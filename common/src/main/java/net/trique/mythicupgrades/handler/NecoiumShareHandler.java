@@ -80,7 +80,7 @@ public class NecoiumShareHandler {
             // Alone or out of range: remove any infinite ambient copies so they don't persist forever
             for (MobEffect effect : SHAREABLE_EFFECTS) {
                 MobEffectInstance inst = source.getEffect(effect);
-                if (inst != null && inst.isAmbient() && inst.showParticles() && inst.getDuration() == -1) {
+                if (inst != null && inst.isAmbient() && inst.isVisible() && inst.getDuration() == -1) {
                     source.removeEffect(effect);
                 }
             }
@@ -109,7 +109,7 @@ public class NecoiumShareHandler {
             for (LivingEntity entity : network) {
                 MobEffectInstance instance = entity.getEffect(effect);
                 boolean isSource = instance != null
-                    && (!instance.isAmbient() || !instance.showParticles());
+                    && (!instance.isAmbient() || !instance.isVisible());
                 if (isSource) {
                     if (instance.getAmplifier() > maxAmplifier) maxAmplifier = instance.getAmplifier();
                     if (instance.getDuration() == -1) anyInfinite = true;
@@ -137,7 +137,7 @@ public class NecoiumShareHandler {
                 // No source left in network: remove visible-ambient (shared) copies only
                 for (LivingEntity entity : network) {
                     MobEffectInstance current = entity.getEffect(effect);
-                    if (current != null && current.isAmbient() && current.showParticles()) {
+                    if (current != null && current.isAmbient() && current.isVisible()) {
                         entity.removeEffect(effect);
                     }
                 }

@@ -51,7 +51,6 @@ public class MythicBiomeBootstrap {
         // Crystal decoration — unique to each cave biome
         // glow_lichen, crystal_buds_rare, and geodes are added via BiomeModifier/BiomeModifications
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBlobsPF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsPF()));
 
         // spring_water and spring_lava are added via BiomeModifier/BiomeModifications
 

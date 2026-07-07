@@ -34,7 +34,6 @@ public class MythicEndBiomeBootstrap {
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES,       features.getOrThrow(gem.stoneBlobsPF()));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES,       features.getOrThrow(gem.orePF()));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBlobsPF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsPF()));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsRarePF()));
 
         MobSpawnSettings spawns = new MobSpawnSettings.Builder()
