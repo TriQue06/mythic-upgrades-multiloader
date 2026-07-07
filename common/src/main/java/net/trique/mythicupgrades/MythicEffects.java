@@ -38,7 +38,7 @@ public class MythicEffects {
 
     /**
      * Registers all effects. The platform lambda must register the effect and return
-     * the registry-backed Holder<MobEffect> (not Holder.direct). This is called once,
+     * the registry-backed {@code Holder<MobEffect>} (not Holder.direct). This is called once,
      * before MythicPotions.register() and before any gameplay code runs.
      */
     public static void register(BiFunction<String, MobEffect, Holder<MobEffect>> reg) {
