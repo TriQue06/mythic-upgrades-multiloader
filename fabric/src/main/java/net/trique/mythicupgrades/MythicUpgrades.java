@@ -130,7 +130,6 @@ public class MythicUpgrades implements ModInitializer {
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             MythicLegacyMigration.migratePlayer(handler.player);
-            MythicLegacyMigration.drainPendingChunks();
         });
 
         // Always queue — never call migrateChunk() directly from CHUNK_LOAD.

@@ -826,7 +826,7 @@ public abstract class LivingEntityMixin {
     @Unique
     private static void applyMiasmaPoison(ServerLevel level, LivingEntity owner, int peridotLevel) {
         float radius = peridotLevel * MythicStats.MIASMA_CLOUD_RADIUS_PER_LEVEL;
-        int poisonAmplifier = Math.min(peridotLevel - 1, MythicStats.MIASMA_POISON_MAX_AMPLIFIER);
+        int poisonAmplifier = peridotLevel - 1;
         int poisonDuration = MythicStats.MIASMA_POISON_DURATION_TICKS;
         AABB bb = new AABB(owner.getX() - radius, owner.getY() - radius, owner.getZ() - radius,
             owner.getX() + radius, owner.getY() + radius, owner.getZ() + radius);

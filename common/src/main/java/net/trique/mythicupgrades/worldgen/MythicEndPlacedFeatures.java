@@ -25,43 +25,43 @@ public class MythicEndPlacedFeatures {
         for (EndGemType gem : EndGemType.values()) {
             ctx.register(gem.stoneBlobsPF(), new PlacedFeature(
                 features.getOrThrow(gem.stoneBlobsCF()), List.of(
-                    CountPlacement.of(30),
+                    CountPlacement.of(40),
                     InSquarePlacement.spread(),
                     HeightRangePlacement.uniform(VerticalAnchor.absolute(END_MIN_Y), VerticalAnchor.absolute(END_MAX_Y)),
                     BiomeFilter.biome()
             )));
 
-            // Crystal blobs: 8 per chunk, biome-filtered
+            // Crystal blobs: 11 per chunk, biome-filtered
             ctx.register(gem.crystalBlobsPF(), new PlacedFeature(
                 features.getOrThrow(gem.crystalBlobsCF()), List.of(
-                    CountPlacement.of(8),
+                    CountPlacement.of(11),
                     InSquarePlacement.spread(),
                     HeightRangePlacement.uniform(VerticalAnchor.absolute(END_MIN_Y), VerticalAnchor.absolute(END_MAX_Y)),
                     BiomeFilter.biome()
             )));
 
-            // Crystal buds: 12 per chunk, biome-filtered
+            // Crystal buds: 16 per chunk, biome-filtered
             ctx.register(gem.crystalBudsPF(), new PlacedFeature(
                 features.getOrThrow(gem.crystalBudsCF()), List.of(
-                    CountPlacement.of(12),
+                    CountPlacement.of(16),
                     InSquarePlacement.spread(),
                     HeightRangePlacement.uniform(VerticalAnchor.absolute(END_MIN_Y), VerticalAnchor.absolute(END_MAX_Y)),
                     BiomeFilter.biome()
             )));
 
-            // Crystal buds rare: 1-in-20 chunks, biome-filtered
+            // Crystal buds rare: 1-in-15 chunks, biome-filtered
             ctx.register(gem.crystalBudsRarePF(), new PlacedFeature(
                 features.getOrThrow(gem.crystalBudsRareCF()), List.of(
-                    RarityFilter.onAverageOnceEvery(20),
+                    RarityFilter.onAverageOnceEvery(15),
                     InSquarePlacement.spread(),
                     HeightRangePlacement.uniform(VerticalAnchor.absolute(END_MIN_Y), VerticalAnchor.absolute(END_MAX_Y)),
                     BiomeFilter.biome()
             )));
 
-            // Ore: 8 per chunk, biome-filtered
+            // Ore: 11 per chunk, biome-filtered
             ctx.register(gem.orePF(), new PlacedFeature(
                 features.getOrThrow(gem.oreCF()), List.of(
-                    CountPlacement.of(8),
+                    CountPlacement.of(11),
                     InSquarePlacement.spread(),
                     HeightRangePlacement.uniform(VerticalAnchor.absolute(END_MIN_Y), VerticalAnchor.absolute(END_MAX_Y)),
                     BiomeFilter.biome()
