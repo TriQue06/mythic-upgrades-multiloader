@@ -18,8 +18,8 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 public class MythicEndBiomeBootstrap {
 
     public static void bootstrap(BootstrapContext<Biome> ctx) {
-        HolderGetter<PlacedFeature>           features = ctx.lookup(Registries.PLACED_FEATURE);
-        HolderGetter<ConfiguredWorldCarver<?>> carvers  = ctx.lookup(Registries.CONFIGURED_CARVER);
+        HolderGetter<PlacedFeature> features = ctx.lookup(Registries.PLACED_FEATURE);
+        HolderGetter<ConfiguredWorldCarver<?>> carvers = ctx.lookup(Registries.CONFIGURED_CARVER);
 
         for (EndGemType gem : EndGemType.values()) {
             ctx.register(gem.endBiome(), buildBiome(gem, features, carvers));
@@ -31,8 +31,8 @@ public class MythicEndBiomeBootstrap {
                                     HolderGetter<ConfiguredWorldCarver<?>> carvers) {
 
         BiomeGenerationSettings.Builder gen = new BiomeGenerationSettings.Builder(features, carvers);
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES,       features.getOrThrow(gem.stoneBlobsPF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES,       features.getOrThrow(gem.orePF()));
+        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.stoneBlobsPF()));
+        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.orePF()));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBlobsPF()));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsRarePF()));
 
@@ -40,7 +40,6 @@ public class MythicEndBiomeBootstrap {
                 .creatureGenerationProbability(0.0f)
                 .build();
 
-        // End-like colors with ametrine purple tint
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
                 .fogColor(0x0B0E2E)
                 .skyColor(0x0B0E2E)

@@ -37,7 +37,6 @@ public class CrystalBudFeature extends Feature<CrystalBudFeatureConfig> {
 
             if (!level.getBlockState(pos).isAir()) continue;
 
-            // Slightly favour ceiling placement for a more natural cave look
             Direction[] dirs = random.nextFloat() < 0.4f
                 ? new Direction[]{Direction.DOWN, Direction.UP, Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST}
                 : DIRECTIONS;

@@ -96,18 +96,17 @@ public class MythicAnims {
     public static int JADE_COLOR_3 = 0x94f14c;
     public static float JADE_TRAIL_PARTICLE_SCALE = 1.0f;
 
-    // Effect icon/potion colors
-    public static int ARCANE_AURA_EFFECT_COLOR       = 0xa431c2;
-    public static int BLOOD_THIRST_EFFECT_COLOR      = 0xdc1b41;
-    public static int CHARGED_EFFECT_COLOR           = 0xe8911b;
+    public static int ARCANE_AURA_EFFECT_COLOR = 0xa431c2;
+    public static int BLOOD_THIRST_EFFECT_COLOR = 0xdc1b41;
+    public static int CHARGED_EFFECT_COLOR = 0xe8911b;
     public static int DAMAGE_DEFLECTION_EFFECT_COLOR = 0x156bd2;
-    public static int FREEZE_EFFECT_COLOR            = 0x3bebf7;
-    public static int ICE_BOMB_EFFECT_COLOR          = 0x0c5c82;
-    public static int ICE_SHIELD_EFFECT_COLOR        = 0x0fa2c7;
-    public static int JADE_AURA_EFFECT_COLOR         = 0x20bb3f;
+    public static int FREEZE_EFFECT_COLOR = 0x3bebf7;
+    public static int ICE_BOMB_EFFECT_COLOR = 0x0c5c82;
+    public static int ICE_SHIELD_EFFECT_COLOR = 0x0fa2c7;
+    public static int JADE_AURA_EFFECT_COLOR = 0x20bb3f;
     public static int LETHAL_INCUBATION_EFFECT_COLOR = 0x4e9013;
-    public static int MIASMA_EFFECT_COLOR            = 0x8bd017;
-    public static int NECOIUM_SHARE_EFFECT_COLOR     = 0xe61a8f;
-    public static int STATIC_FIELD_EFFECT_COLOR      = 0xe8911b;
-    public static int TOPAZ_REACTION_EFFECT_COLOR    = 0xe4491c;
+    public static int MIASMA_EFFECT_COLOR = 0x8bd017;
+    public static int NECOIUM_SHARE_EFFECT_COLOR = 0xe61a8f;
+    public static int STATIC_FIELD_EFFECT_COLOR = 0xe8911b;
+    public static int TOPAZ_REACTION_EFFECT_COLOR = 0xe4491c;
 }

@@ -22,17 +22,16 @@ public class MythicItemModelProvider extends ItemModelProvider {
             gemItems(gem);
         }
 
-        generated("raw_necoium",                       modLoc("item/raw_necoium"));
-        generated("necoium_ingot",                     modLoc("item/necoium_ingot"));
-        generated("necoium_carrot",                    modLoc("item/necoium_carrot"));
-        generated("mythic_upgrade_smithing_template",  modLoc("item/mythic_upgrade_smithing_template"));
+        generated("raw_necoium", modLoc("item/raw_necoium"));
+        generated("necoium_ingot", modLoc("item/necoium_ingot"));
+        generated("necoium_carrot", modLoc("item/necoium_carrot"));
+        generated("mythic_upgrade_smithing_template", modLoc("item/mythic_upgrade_smithing_template"));
 
         blockItem("necoium_ore");
         blockItem("deepslate_necoium_ore");
         blockItem("raw_necoium_block");
         blockItem("necoium_block");
 
-        // Legacy items — keep in registry but reuse existing textures
         for (String gem : GEMS) {
             generated(gem + "_upgrade_smithing_template", modLoc("item/mythic_upgrade_smithing_template"));
         }
@@ -41,20 +40,20 @@ public class MythicItemModelProvider extends ItemModelProvider {
     private void gemItems(String gem) {
         boolean caveGem = gem.equals("aquamarine") || gem.equals("citrine") || gem.equals("topaz") || gem.equals("peridot");
 
-        generated(gem,                  modLoc("item/" + gem));
-        generated(gem + "_ingot",       modLoc("item/" + gem + "_ingot"));
+        generated(gem, modLoc("item/" + gem));
+        generated(gem + "_ingot", modLoc("item/" + gem + "_ingot"));
         generated(gem + "_crystal_shard", modLoc("item/" + gem + "_crystal_shard"));
 
-        handheld(gem + "_sword",   modLoc("item/" + gem + "_sword"));
+        handheld(gem + "_sword", modLoc("item/" + gem + "_sword"));
         handheld(gem + "_pickaxe", modLoc("item/" + gem + "_pickaxe"));
-        handheld(gem + "_axe",     modLoc("item/" + gem + "_axe"));
-        handheld(gem + "_shovel",  modLoc("item/" + gem + "_shovel"));
-        handheld(gem + "_hoe",     modLoc("item/" + gem + "_hoe"));
+        handheld(gem + "_axe", modLoc("item/" + gem + "_axe"));
+        handheld(gem + "_shovel", modLoc("item/" + gem + "_shovel"));
+        handheld(gem + "_hoe", modLoc("item/" + gem + "_hoe"));
 
-        generated(gem + "_helmet",     modLoc("item/" + gem + "_helmet"));
+        generated(gem + "_helmet", modLoc("item/" + gem + "_helmet"));
         generated(gem + "_chestplate", modLoc("item/" + gem + "_chestplate"));
-        generated(gem + "_leggings",   modLoc("item/" + gem + "_leggings"));
-        generated(gem + "_boots",      modLoc("item/" + gem + "_boots"));
+        generated(gem + "_leggings", modLoc("item/" + gem + "_leggings"));
+        generated(gem + "_boots", modLoc("item/" + gem + "_boots"));
 
         blockItem(gem + "_ore");
         if (caveGem) blockItem("deepslate_" + gem + "_ore");

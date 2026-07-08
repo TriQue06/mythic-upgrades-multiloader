@@ -13,18 +13,18 @@ public enum NetherGemType {
     RUBY    ("ruby",     2.0f, 0.0f, false, 0xFC4747),
     SAPPHIRE("sapphire", 2.0f, 0.0f, false, 0x4747FC);
 
-    public final String  id;
-    public final float   temperature;
-    public final float   downfall;
+    public final String id;
+    public final float temperature;
+    public final float downfall;
     public final boolean precipitation;
-    public final int     waterColor;
+    public final int waterColor;
 
     NetherGemType(String id, float temperature, float downfall, boolean precipitation, int waterColor) {
-        this.id            = id;
-        this.temperature   = temperature;
-        this.downfall      = downfall;
+        this.id = id;
+        this.temperature = temperature;
+        this.downfall = downfall;
         this.precipitation = precipitation;
-        this.waterColor    = waterColor;
+        this.waterColor = waterColor;
     }
 
     public ResourceKey<Block> stoneBlock()      { return block(id + "_schist"); }

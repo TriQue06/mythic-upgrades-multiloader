@@ -15,18 +15,18 @@ public enum CaveGemType {
     PERIDOT   ("peridot",   0.3f,  0.4f,  true,  4177782),
     TOPAZ     ("topaz",     0.8f,  0.2f,  true,  4159204);
 
-    public final String  id;
-    public final float   temperature;
-    public final float   downfall;
+    public final String id;
+    public final float temperature;
+    public final float downfall;
     public final boolean precipitation;
-    public final int     waterColor;
+    public final int waterColor;
 
     CaveGemType(String id, float temperature, float downfall, boolean precipitation, int waterColor) {
-        this.id            = id;
-        this.temperature   = temperature;
-        this.downfall      = downfall;
+        this.id = id;
+        this.temperature = temperature;
+        this.downfall = downfall;
         this.precipitation = precipitation;
-        this.waterColor    = waterColor;
+        this.waterColor = waterColor;
     }
 
     public ResourceKey<Block> stoneBlock()      { return block(id + "_schist"); }

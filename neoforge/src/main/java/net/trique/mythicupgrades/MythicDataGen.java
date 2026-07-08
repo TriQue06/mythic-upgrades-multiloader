@@ -68,31 +68,25 @@ public class MythicDataGen {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<net.minecraft.core.HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        // Datapack built-in entries (worldgen + biome modifiers)
         gen.addProvider(event.includeServer(), new DatapackBuiltinEntriesProvider(
             output, lookupProvider, BUILDER, Set.of(Constants.MOD_ID)
         ));
 
-        // Block/item tags
         var blockTags = new MythicBlockTagsProvider(output, lookupProvider, existingFileHelper);
         gen.addProvider(event.includeServer(), blockTags);
         gen.addProvider(event.includeServer(), new MythicItemTagsProvider(output, lookupProvider, existingFileHelper));
         gen.addProvider(event.includeServer(), new MythicBiomeTagsProvider(output, lookupProvider, existingFileHelper));
         gen.addProvider(event.includeServer(), new MythicDamageTypeTagsProvider(output, lookupProvider, existingFileHelper));
 
-        // Loot tables
         gen.addProvider(event.includeServer(), new LootTableProvider(output, Set.of(),
             List.of(new LootTableProvider.SubProviderEntry(MythicBlockLootTableProvider::new, LootContextParamSets.BLOCK)),
             lookupProvider));
 
-        // Recipes
         gen.addProvider(event.includeServer(), new MythicRecipeProvider(output, lookupProvider));
 
-        // Trim materials + atlas
         gen.addProvider(event.includeServer(), new MythicTrimMaterialProvider(output));
         gen.addProvider(event.includeClient(), new MythicTrimAtlasProvider(output));
 
-        // Block states + models
         gen.addProvider(event.includeClient(), new MythicBlockStateProvider(output, existingFileHelper));
         gen.addProvider(event.includeClient(), new MythicItemModelProvider(output, existingFileHelper));
     }

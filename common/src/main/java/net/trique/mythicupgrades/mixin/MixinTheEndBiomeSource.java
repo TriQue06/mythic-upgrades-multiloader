@@ -23,8 +23,6 @@ public class MixinTheEndBiomeSource {
 
     @Unique private static final Logger LOGGER = LoggerFactory.getLogger("MythicUpgrades/EndBiome");
 
-    // Shadow the stored holder fields so we can overwrite them directly.
-    // Vanilla getNoiseBiome reads these fields — replacing them is the most reliable approach.
     @Mutable @Final @Shadow private Holder<Biome> highlands;
     @Mutable @Final @Shadow private Holder<Biome> midlands;
 
@@ -36,7 +34,6 @@ public class MixinTheEndBiomeSource {
             Holder<Biome> end, Holder<Biome> highlands, Holder<Biome> midlands,
             Holder<Biome> islands, Holder<Biome> barrens, CallbackInfo ci) {
 
-        // Skip during Forge/NeoForge datagen
         try {
             boolean isDatagen = (boolean) Class
                     .forName("net.minecraftforge.data.loading.DatagenModLoader")

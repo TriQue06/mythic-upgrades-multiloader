@@ -36,15 +36,10 @@ public class MythicUpgrades implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        // Effects must be registered first: MythicItems static initializers (crystal shards)
-        // reference MythicEffects.* fields for food properties, so those fields must be
-        // non-null before MythicItems class is loaded.
         MythicEffects.register((name, effect) -> {
             ResourceKey<MobEffect> key = ResourceKey.create(
                 BuiltInRegistries.MOB_EFFECT.key(),
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
-            // WritableRegistry.register() returns Holder.Reference — guaranteed registry-backed.
-            // Registry.register() (static util) calls .value() and discards the holder, so we avoid it.
             return ((WritableRegistry<MobEffect>) BuiltInRegistries.MOB_EFFECT)
                 .register(key, effect, RegistrationInfo.BUILT_IN);
         });
@@ -70,15 +65,6 @@ public class MythicUpgrades implements ModInitializer {
         MythicSounds.register((name, sound) ->
             Registry.register(BuiltInRegistries.SOUND_EVENT, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), sound));
 
-        // FeatureSorter cycle prevention:
-        // Cave biome JSONs already contain ALL features (glow_lichen, vanilla ores, monster_room,
-        // springs, gem ores) in their bootstrap in vanilla-compatible order.
-        // BiomeModifications only adds features that are ALWAYS appended last across ALL overworld
-        // biomes — so they can never conflict with bootstrap feature ordering.
-
-        // crystal_buds_rare: appended last in UNDERGROUND_DECORATION for all overworld biomes.
-        // In vanilla biomes: bootstrap features come first, then this is appended after.
-        // In cave biomes: same — JSON bootstrap first, then this appended after.
         for (String gem : new String[]{"aquamarine", "citrine", "peridot", "topaz"}) {
             ResourceKey<PlacedFeature> key = ResourceKey.create(Registries.PLACED_FEATURE,
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, gem + "_crystal_buds_rare"));
@@ -86,13 +72,11 @@ public class MythicUpgrades implements ModInitializer {
                 GenerationStep.Decoration.UNDERGROUND_DECORATION, key);
         }
 
-        // necoium: appended last in UNDERGROUND_ORES for all overworld biomes.
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
             GenerationStep.Decoration.UNDERGROUND_ORES, MythicPlacedFeatures.NECOIUM_ORE_PF);
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
             GenerationStep.Decoration.UNDERGROUND_ORES, MythicPlacedFeatures.DEEPSLATE_NECOIUM_ORE_PF);
 
-        // overworld geodes: global (all overworld) + extra in home cave biome
         for (CaveGemType gem : CaveGemType.values()) {
             BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
                 GenerationStep.Decoration.UNDERGROUND_ORES, gem.geodePF());
@@ -100,7 +84,6 @@ public class MythicUpgrades implements ModInitializer {
                 GenerationStep.Decoration.UNDERGROUND_DECORATION, gem.geodeExtraPF());
         }
 
-        // nether geodes: global (all nether) + extra in home rift biome
         for (NetherGemType gem : NetherGemType.values()) {
             BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(),
                 GenerationStep.Decoration.UNDERGROUND_ORES, gem.geodePF());
@@ -108,7 +91,6 @@ public class MythicUpgrades implements ModInitializer {
                 GenerationStep.Decoration.UNDERGROUND_DECORATION, gem.geodeExtraPF());
         }
 
-        // end geodes: global (all end) + extra in home barren biome
         for (EndGemType gem : EndGemType.values()) {
             BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
                 GenerationStep.Decoration.UNDERGROUND_ORES, gem.geodePF());
@@ -132,9 +114,6 @@ public class MythicUpgrades implements ModInitializer {
             MythicLegacyMigration.migratePlayer(handler.player);
         });
 
-        // Always queue — never call migrateChunk() directly from CHUNK_LOAD.
-        // Accessing container items unpacks loot tables → setChanged() → getChunkAt()
-        // → deadlock while the chunk is still being registered. Drain safely on tick end.
         ServerChunkEvents.CHUNK_LOAD.register((world, chunk) ->
             MythicLegacyMigration.PENDING_CHUNKS.offer(chunk));
 

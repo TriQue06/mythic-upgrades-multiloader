@@ -21,14 +21,14 @@ public class MythicTrimMaterialProvider implements DataProvider {
 
     private static final List<TrimEntry> ENTRIES = List.of(
         new TrimEntry("aquamarine", "#057B9E", 1.1f, "mythicupgrades:aquamarine"),
-        new TrimEntry("citrine",    "#DCB40A", 1.3f, null),
-        new TrimEntry("topaz",      "#D1480D", 1.4f, "mythicupgrades:topaz"),
-        new TrimEntry("peridot",    "#61AD0F", 1.5f, "mythicupgrades:peridot"),
-        new TrimEntry("ruby",       "#A90C37", 1.6f, "mythicupgrades:ruby"),
-        new TrimEntry("sapphire",   "#0C46B2", 1.7f, "mythicupgrades:sapphire"),
-        new TrimEntry("jade",       "#1D8B30", 1.8f, "mythicupgrades:jade"),
-        new TrimEntry("ametrine",   "#8422AE", 1.9f, "mythicupgrades:ametrine"),
-        new TrimEntry("necoium",    "#9F1C73", 2.0f, null)
+        new TrimEntry("citrine", "#DCB40A", 1.3f, null),
+        new TrimEntry("topaz", "#D1480D", 1.4f, "mythicupgrades:topaz"),
+        new TrimEntry("peridot", "#61AD0F", 1.5f, "mythicupgrades:peridot"),
+        new TrimEntry("ruby", "#A90C37", 1.6f, "mythicupgrades:ruby"),
+        new TrimEntry("sapphire", "#0C46B2", 1.7f, "mythicupgrades:sapphire"),
+        new TrimEntry("jade", "#1D8B30", 1.8f, "mythicupgrades:jade"),
+        new TrimEntry("ametrine", "#8422AE", 1.9f, "mythicupgrades:ametrine"),
+        new TrimEntry("necoium", "#9F1C73", 2.0f, null)
     );
 
     private final PackOutput output;

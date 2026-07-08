@@ -70,7 +70,6 @@ public class MythicCreativeTabs {
                     output.accept(MythicItems.NECOIUM_INGOT);
                     output.accept(MythicItems.NECOIUM_CARROT);
                     output.accept(MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
-                    // Potions — regular, splash, lingering for each type (matches 1.20.1)
                     addPotionGroup(output, MythicPotions.ICE_SHIELD,        MythicPotions.ICE_SHIELD_LONG,        MythicPotions.ICE_SHIELD_STRONG);
                     addPotionGroup(output, MythicPotions.STATIC_FIELD,      MythicPotions.STATIC_FIELD_LONG,      MythicPotions.STATIC_FIELD_STRONG);
                     addPotionGroup(output, MythicPotions.TOPAZ_REACTION,    MythicPotions.TOPAZ_REACTION_LONG,    MythicPotions.TOPAZ_REACTION_STRONG);
@@ -80,7 +79,6 @@ public class MythicCreativeTabs {
                     addPotionGroup(output, MythicPotions.JADE_AURA,         MythicPotions.JADE_AURA_LONG,         MythicPotions.JADE_AURA_STRONG);
                     addPotionGroup(output, MythicPotions.ARCANE_AURA,       MythicPotions.ARCANE_AURA_LONG,       MythicPotions.ARCANE_AURA_STRONG);
                     addPotionGroup(output, MythicPotions.NECOIUM_SHARE,     MythicPotions.NECOIUM_SHARE_LONG,     null);
-                    // Negative potions
                     addPotionGroup(output, MythicPotions.ICE_BOMB,          MythicPotions.ICE_BOMB_LONG,          MythicPotions.ICE_BOMB_STRONG);
                     addPotionGroup(output, MythicPotions.FREEZE,            MythicPotions.FREEZE_LONG,            MythicPotions.FREEZE_STRONG);
                     addPotionGroup(output, MythicPotions.CHARGED,           MythicPotions.CHARGED_LONG,           MythicPotions.CHARGED_STRONG);

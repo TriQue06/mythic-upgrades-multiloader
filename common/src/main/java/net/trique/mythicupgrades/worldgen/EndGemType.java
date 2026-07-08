@@ -13,18 +13,18 @@ public enum EndGemType {
     AMETRINE("ametrine", 0.5f, 0.0f, false, 10518688),
     JADE    ("jade",     0.5f, 0.0f, false, 3840830);
 
-    public final String  id;
-    public final float   temperature;
-    public final float   downfall;
+    public final String id;
+    public final float temperature;
+    public final float downfall;
     public final boolean precipitation;
-    public final int     waterColor;
+    public final int waterColor;
 
     EndGemType(String id, float temperature, float downfall, boolean precipitation, int waterColor) {
-        this.id            = id;
-        this.temperature   = temperature;
-        this.downfall      = downfall;
+        this.id = id;
+        this.temperature = temperature;
+        this.downfall = downfall;
         this.precipitation = precipitation;
-        this.waterColor    = waterColor;
+        this.waterColor = waterColor;
     }
 
     public ResourceKey<Block> stoneBlock()      { return block(id + "_schist"); }
