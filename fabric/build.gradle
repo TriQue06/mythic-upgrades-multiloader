@@ -39,3 +39,12 @@ loom {
         }
     }
 }
+
+// Loom's run tasks otherwise pick up whatever JVM launched Gradle (e.g. system JAVA_HOME),
+// which can be newer than what Minecraft/Mixin support. Force them onto the project's
+// toolchain JDK regardless of the environment.
+tasks.withType(JavaExec).configureEach {
+    javaLauncher.set(javaToolchains.launcherFor {
+        languageVersion.set(JavaLanguageVersion.of(java_version.toInteger()))
+    })
+}

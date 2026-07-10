@@ -11,12 +11,10 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.RegistrationInfo;
 import net.minecraft.core.WritableRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
@@ -65,11 +63,9 @@ public class MythicUpgrades implements ModInitializer {
         MythicSounds.register((name, sound) ->
             Registry.register(BuiltInRegistries.SOUND_EVENT, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), sound));
 
-        for (String gem : new String[]{"aquamarine", "citrine", "peridot", "topaz"}) {
-            ResourceKey<PlacedFeature> key = ResourceKey.create(Registries.PLACED_FEATURE,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, gem + "_crystal_buds_rare"));
-            BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
-                GenerationStep.Decoration.UNDERGROUND_DECORATION, key);
+        for (CaveGemType gem : CaveGemType.values()) {
+            BiomeModifications.addFeature(BiomeSelectors.includeByKey(gem.biome()),
+                GenerationStep.Decoration.UNDERGROUND_DECORATION, gem.crystalBudsRarePF());
         }
 
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),

@@ -43,16 +43,6 @@ public class MythicBiomeModifierBootstrap {
                 ),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
 
-        ctx.register(key("add_crystal_buds_to_overworld"),
-            new BiomeModifiers.AddFeaturesBiomeModifier(overworld,
-                HolderSet.direct(
-                    features.getOrThrow(CaveGemType.AQUAMARINE.crystalBudsRarePF()),
-                    features.getOrThrow(CaveGemType.CITRINE.crystalBudsRarePF()),
-                    features.getOrThrow(CaveGemType.TOPAZ.crystalBudsRarePF()),
-                    features.getOrThrow(CaveGemType.PERIDOT.crystalBudsRarePF())
-                ),
-                GenerationStep.Decoration.UNDERGROUND_DECORATION));
-
         ctx.register(key("add_end_geodes"),
             new BiomeModifiers.AddFeaturesBiomeModifier(end,
                 HolderSet.direct(
@@ -75,6 +65,11 @@ public class MythicBiomeModifierBootstrap {
                     HolderSet.direct(biomes.getOrThrow(gem.biome())),
                     HolderSet.direct(features.getOrThrow(gem.geodeExtraPF())),
                     GenerationStep.Decoration.UNDERGROUND_ORES));
+            ctx.register(key("add_" + gem.id + "_crystal_buds_rare"),
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                    HolderSet.direct(biomes.getOrThrow(gem.biome())),
+                    HolderSet.direct(features.getOrThrow(gem.crystalBudsRarePF())),
+                    GenerationStep.Decoration.UNDERGROUND_DECORATION));
         }
 
         for (NetherGemType gem : NetherGemType.values()) {
