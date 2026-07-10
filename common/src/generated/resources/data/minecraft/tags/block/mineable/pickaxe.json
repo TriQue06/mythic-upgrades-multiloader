@@ -152,6 +152,14 @@
     "mythicupgrades:sapphire_crystal_bricks_stairs",
     "mythicupgrades:jade_crystal_bricks_stairs",
     "mythicupgrades:ametrine_crystal_bricks_stairs",
+    "mythicupgrades:aquamarine_crystal_bricks_wall",
+    "mythicupgrades:citrine_crystal_bricks_wall",
+    "mythicupgrades:topaz_crystal_bricks_wall",
+    "mythicupgrades:peridot_crystal_bricks_wall",
+    "mythicupgrades:ruby_crystal_bricks_wall",
+    "mythicupgrades:sapphire_crystal_bricks_wall",
+    "mythicupgrades:jade_crystal_bricks_wall",
+    "mythicupgrades:ametrine_crystal_bricks_wall",
     "mythicupgrades:aquamarine_schist",
     "mythicupgrades:citrine_schist",
     "mythicupgrades:topaz_schist",
@@ -199,6 +207,14 @@
     "mythicupgrades:polished_ruby_schist_stairs",
     "mythicupgrades:polished_sapphire_schist_stairs",
     "mythicupgrades:polished_jade_schist_stairs",
-    "mythicupgrades:polished_ametrine_schist_stairs"
+    "mythicupgrades:polished_ametrine_schist_stairs",
+    "mythicupgrades:aquamarine_schist_wall",
+    "mythicupgrades:citrine_schist_wall",
+    "mythicupgrades:topaz_schist_wall",
+    "mythicupgrades:peridot_schist_wall",
+    "mythicupgrades:ruby_schist_wall",
+    "mythicupgrades:sapphire_schist_wall",
+    "mythicupgrades:jade_schist_wall",
+    "mythicupgrades:ametrine_schist_wall"
   ]
 }

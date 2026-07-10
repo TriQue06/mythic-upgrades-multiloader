@@ -256,6 +256,19 @@ public class MythicRecipeProvider extends RecipeProvider {
             getBlock("polished_" + gem + "_crystal_block_slab"), getBlock("polished_" + gem + "_crystal_block_stairs"));
         stonecutAndSlabStairs(output, gem + "_crystal_bricks", crystalBricks,
             getBlock(gem + "_crystal_bricks_slab"), getBlock(gem + "_crystal_bricks_stairs"));
+
+        wallRecipe(output, gem + "_crystal_bricks", crystalBricks, getBlock(gem + "_crystal_bricks_wall"));
+    }
+
+    private void wallRecipe(RecipeOutput output, String name, Block source, Block wall) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, wall, 6)
+            .define('#', source)
+            .pattern("###").pattern("###")
+            .unlockedBy("has_block", has(source))
+            .save(output, rl(name + "_wall"));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(source), RecipeCategory.BUILDING_BLOCKS, wall)
+            .unlockedBy("has_block", has(source))
+            .save(output, rl(name + "_wall_stonecutting"));
     }
 
     private void stonecutAndSlabStairs(RecipeOutput output, String name, Block source, Block slab, Block stairs) {
@@ -299,6 +312,8 @@ public class MythicRecipeProvider extends RecipeProvider {
             getBlock(gem + "_schist_slab"), getBlock(gem + "_schist_stairs"));
         stonecutAndSlabStairs(output, gem + "_polished_schist", polishedStone,
             getBlock("polished_" + gem + "_schist_slab"), getBlock("polished_" + gem + "_schist_stairs"));
+
+        wallRecipe(output, gem + "_schist", stone, getBlock(gem + "_schist_wall"));
     }
 
     private static Block getBlock(String name) {
@@ -383,6 +398,14 @@ public class MythicRecipeProvider extends RecipeProvider {
             case "sapphire_crystal_bricks_stairs" -> MythicBlocks.SAPPHIRE_CRYSTAL_BRICKS_STAIRS;
             case "jade_crystal_bricks_stairs" -> MythicBlocks.JADE_CRYSTAL_BRICKS_STAIRS;
             case "ametrine_crystal_bricks_stairs" -> MythicBlocks.AMETRINE_CRYSTAL_BRICKS_STAIRS;
+            case "aquamarine_crystal_bricks_wall" -> MythicBlocks.AQUAMARINE_CRYSTAL_BRICKS_WALL;
+            case "citrine_crystal_bricks_wall" -> MythicBlocks.CITRINE_CRYSTAL_BRICKS_WALL;
+            case "topaz_crystal_bricks_wall" -> MythicBlocks.TOPAZ_CRYSTAL_BRICKS_WALL;
+            case "peridot_crystal_bricks_wall" -> MythicBlocks.PERIDOT_CRYSTAL_BRICKS_WALL;
+            case "ruby_crystal_bricks_wall" -> MythicBlocks.RUBY_CRYSTAL_BRICKS_WALL;
+            case "sapphire_crystal_bricks_wall" -> MythicBlocks.SAPPHIRE_CRYSTAL_BRICKS_WALL;
+            case "jade_crystal_bricks_wall" -> MythicBlocks.JADE_CRYSTAL_BRICKS_WALL;
+            case "ametrine_crystal_bricks_wall" -> MythicBlocks.AMETRINE_CRYSTAL_BRICKS_WALL;
             case "aquamarine_schist" -> MythicBlocks.AQUAMARINE_SCHIST;
             case "citrine_schist" -> MythicBlocks.CITRINE_SCHIST;
             case "topaz_schist" -> MythicBlocks.TOPAZ_SCHIST;
@@ -431,6 +454,14 @@ public class MythicRecipeProvider extends RecipeProvider {
             case "polished_sapphire_schist_stairs" -> MythicBlocks.POLISHED_SAPPHIRE_SCHIST_STAIRS;
             case "polished_jade_schist_stairs" -> MythicBlocks.POLISHED_JADE_SCHIST_STAIRS;
             case "polished_ametrine_schist_stairs" -> MythicBlocks.POLISHED_AMETRINE_SCHIST_STAIRS;
+            case "aquamarine_schist_wall" -> MythicBlocks.AQUAMARINE_SCHIST_WALL;
+            case "citrine_schist_wall" -> MythicBlocks.CITRINE_SCHIST_WALL;
+            case "topaz_schist_wall" -> MythicBlocks.TOPAZ_SCHIST_WALL;
+            case "peridot_schist_wall" -> MythicBlocks.PERIDOT_SCHIST_WALL;
+            case "ruby_schist_wall" -> MythicBlocks.RUBY_SCHIST_WALL;
+            case "sapphire_schist_wall" -> MythicBlocks.SAPPHIRE_SCHIST_WALL;
+            case "jade_schist_wall" -> MythicBlocks.JADE_SCHIST_WALL;
+            case "ametrine_schist_wall" -> MythicBlocks.AMETRINE_SCHIST_WALL;
             default -> throw new IllegalArgumentException("Unknown block: " + name);
         };
     }

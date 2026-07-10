@@ -8,16 +8,6 @@
       "entries": [
         {
           "data": {
-            "Name": "mythicupgrades:small_citrine_crystal_bud",
-            "Properties": {
-              "facing": "up",
-              "waterlogged": "false"
-            }
-          },
-          "weight": 3
-        },
-        {
-          "data": {
             "Name": "mythicupgrades:medium_citrine_crystal_bud",
             "Properties": {
               "facing": "up",

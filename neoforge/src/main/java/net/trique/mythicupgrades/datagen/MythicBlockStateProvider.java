@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
@@ -54,6 +55,7 @@ public class MythicBlockStateProvider extends BlockStateProvider {
         slabAndStairs(gem + "_crystal_block", modLoc("block/" + gem + "_crystal_block"));
         slabAndStairs("polished_" + gem + "_crystal_block", modLoc("block/polished_" + gem + "_crystal_block"));
         slabAndStairs(gem + "_crystal_bricks", modLoc("block/" + gem + "_crystal_bricks"));
+        wallBlock((WallBlock) getBlock(gem + "_crystal_bricks_wall"), modLoc("block/" + gem + "_crystal_bricks"));
 
         axisBlock((RotatedPillarBlock) getBlock(gem + "_crystal_pillar"),
             modLoc("block/" + gem + "_crystal_pillar"),
@@ -66,6 +68,7 @@ public class MythicBlockStateProvider extends BlockStateProvider {
         simpleBlock(getBlock("polished_" + gem + "_schist"));
         slabAndStairs(gem + "_schist", modLoc("block/" + gem + "_schist"));
         slabAndStairs("polished_" + gem + "_schist", modLoc("block/polished_" + gem + "_schist"));
+        wallBlock((WallBlock) getBlock(gem + "_schist_wall"), modLoc("block/" + gem + "_schist"));
     }
 
     private void slabAndStairs(String baseName, ResourceLocation texture) {
@@ -227,6 +230,14 @@ public class MythicBlockStateProvider extends BlockStateProvider {
             case "sapphire_crystal_bricks_stairs" -> MythicBlocks.SAPPHIRE_CRYSTAL_BRICKS_STAIRS;
             case "jade_crystal_bricks_stairs" -> MythicBlocks.JADE_CRYSTAL_BRICKS_STAIRS;
             case "ametrine_crystal_bricks_stairs" -> MythicBlocks.AMETRINE_CRYSTAL_BRICKS_STAIRS;
+            case "aquamarine_crystal_bricks_wall" -> MythicBlocks.AQUAMARINE_CRYSTAL_BRICKS_WALL;
+            case "citrine_crystal_bricks_wall" -> MythicBlocks.CITRINE_CRYSTAL_BRICKS_WALL;
+            case "topaz_crystal_bricks_wall" -> MythicBlocks.TOPAZ_CRYSTAL_BRICKS_WALL;
+            case "peridot_crystal_bricks_wall" -> MythicBlocks.PERIDOT_CRYSTAL_BRICKS_WALL;
+            case "ruby_crystal_bricks_wall" -> MythicBlocks.RUBY_CRYSTAL_BRICKS_WALL;
+            case "sapphire_crystal_bricks_wall" -> MythicBlocks.SAPPHIRE_CRYSTAL_BRICKS_WALL;
+            case "jade_crystal_bricks_wall" -> MythicBlocks.JADE_CRYSTAL_BRICKS_WALL;
+            case "ametrine_crystal_bricks_wall" -> MythicBlocks.AMETRINE_CRYSTAL_BRICKS_WALL;
             case "aquamarine_crystal_pillar" -> MythicBlocks.AQUAMARINE_CRYSTAL_PILLAR;
             case "citrine_crystal_pillar" -> MythicBlocks.CITRINE_CRYSTAL_PILLAR;
             case "topaz_crystal_pillar" -> MythicBlocks.TOPAZ_CRYSTAL_PILLAR;
@@ -291,6 +302,14 @@ public class MythicBlockStateProvider extends BlockStateProvider {
             case "polished_sapphire_schist_stairs" -> MythicBlocks.POLISHED_SAPPHIRE_SCHIST_STAIRS;
             case "polished_jade_schist_stairs" -> MythicBlocks.POLISHED_JADE_SCHIST_STAIRS;
             case "polished_ametrine_schist_stairs" -> MythicBlocks.POLISHED_AMETRINE_SCHIST_STAIRS;
+            case "aquamarine_schist_wall" -> MythicBlocks.AQUAMARINE_SCHIST_WALL;
+            case "citrine_schist_wall" -> MythicBlocks.CITRINE_SCHIST_WALL;
+            case "topaz_schist_wall" -> MythicBlocks.TOPAZ_SCHIST_WALL;
+            case "peridot_schist_wall" -> MythicBlocks.PERIDOT_SCHIST_WALL;
+            case "ruby_schist_wall" -> MythicBlocks.RUBY_SCHIST_WALL;
+            case "sapphire_schist_wall" -> MythicBlocks.SAPPHIRE_SCHIST_WALL;
+            case "jade_schist_wall" -> MythicBlocks.JADE_SCHIST_WALL;
+            case "ametrine_schist_wall" -> MythicBlocks.AMETRINE_SCHIST_WALL;
             default -> throw new IllegalArgumentException("Unknown block: " + name);
         };
         return b;

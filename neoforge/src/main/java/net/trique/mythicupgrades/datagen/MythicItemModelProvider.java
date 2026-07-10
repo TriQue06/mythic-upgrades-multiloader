@@ -68,6 +68,7 @@ public class MythicItemModelProvider extends ItemModelProvider {
         blockItem("polished_" + gem + "_crystal_block_stairs");
         blockItem(gem + "_crystal_bricks_slab");
         blockItem(gem + "_crystal_bricks_stairs");
+        wallItem(gem + "_crystal_bricks_wall", gem + "_crystal_bricks");
         blockItem(gem + "_crystal_pillar");
         blockItem("cut_" + gem + "_crystal_pillar");
         blockItem(gem + "_schist");
@@ -76,6 +77,7 @@ public class MythicItemModelProvider extends ItemModelProvider {
         blockItem("polished_" + gem + "_schist");
         blockItem("polished_" + gem + "_schist_slab");
         blockItem("polished_" + gem + "_schist_stairs");
+        wallItem(gem + "_schist_wall", gem + "_schist");
 
         clusterItem(gem + "_crystal_cluster");
         clusterItem("large_" + gem + "_crystal_bud");
@@ -93,6 +95,10 @@ public class MythicItemModelProvider extends ItemModelProvider {
 
     private void blockItem(String name) {
         withExistingParent(name, modLoc("block/" + name));
+    }
+
+    private void wallItem(String name, String texture) {
+        withExistingParent(name, mcLoc("block/wall_inventory")).texture("wall", modLoc("block/" + texture));
     }
 
     private void clusterItem(String name) {
