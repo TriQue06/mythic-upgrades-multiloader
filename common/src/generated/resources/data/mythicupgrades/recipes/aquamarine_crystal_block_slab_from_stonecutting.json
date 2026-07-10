@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "mythicupgrades:aquamarine_crystal_block"
+  },
+  "result": "mythicupgrades:aquamarine_crystal_block_slab"
+}

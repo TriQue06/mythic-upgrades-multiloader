@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "mythicupgrades:block/citrine_crystal_pillar_top",
+    "side": "mythicupgrades:block/citrine_crystal_pillar"
+  }
+}

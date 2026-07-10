@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "mythicupgrades:block/topaz_schist",
+    "side": "mythicupgrades:block/topaz_schist",
+    "top": "mythicupgrades:block/topaz_schist"
+  }
+}

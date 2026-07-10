@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "C": {
+      "item": "minecraft:cobblestone"
+    },
+    "S": {
+      "item": "mythicupgrades:ametrine_crystal_shard"
+    }
+  },
+  "pattern": [
+    "CS",
+    "SC"
+  ],
+  "result": {
+    "count": 2,
+    "item": "mythicupgrades:ametrine_schist"
+  },
+  "show_notification": true
+}

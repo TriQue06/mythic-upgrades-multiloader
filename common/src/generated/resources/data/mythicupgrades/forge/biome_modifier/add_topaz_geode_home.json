@@ -1,0 +1,9 @@
+{
+  "type": "forge:add_features",
+  "biomes": "mythicupgrades:topaz_caves",
+  "features": [
+    "mythicupgrades:topaz_geode_extra",
+    "mythicupgrades:topaz_crystal_buds_rare"
+  ],
+  "step": "underground_decoration"
+}

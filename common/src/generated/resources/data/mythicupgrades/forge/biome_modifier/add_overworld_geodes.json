@@ -1,0 +1,11 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "mythicupgrades:aquamarine_geode",
+    "mythicupgrades:citrine_geode",
+    "mythicupgrades:peridot_geode",
+    "mythicupgrades:topaz_geode"
+  ],
+  "step": "underground_ores"
+}

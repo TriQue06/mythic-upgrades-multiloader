@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "mythicupgrades:ametrine"
+    },
+    {
+      "item": "mythicupgrades:ametrine"
+    },
+    {
+      "item": "mythicupgrades:ametrine"
+    },
+    {
+      "item": "mythicupgrades:ametrine"
+    },
+    {
+      "item": "mythicupgrades:necoium_ingot"
+    },
+    {
+      "item": "mythicupgrades:necoium_ingot"
+    },
+    {
+      "item": "mythicupgrades:necoium_ingot"
+    },
+    {
+      "item": "mythicupgrades:necoium_ingot"
+    }
+  ],
+  "result": {
+    "item": "mythicupgrades:ametrine_ingot"
+  }
+}

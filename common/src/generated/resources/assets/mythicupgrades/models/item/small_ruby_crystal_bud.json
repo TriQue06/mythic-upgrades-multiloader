@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "mythicupgrades:block/small_ruby_crystal_bud"
+  }
+}

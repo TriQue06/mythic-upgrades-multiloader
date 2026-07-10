@@ -1,0 +1,9 @@
+{
+  "type": "forge:add_features",
+  "biomes": "mythicupgrades:aquamarine_caves",
+  "features": [
+    "mythicupgrades:aquamarine_geode_extra",
+    "mythicupgrades:aquamarine_crystal_buds_rare"
+  ],
+  "step": "underground_decoration"
+}

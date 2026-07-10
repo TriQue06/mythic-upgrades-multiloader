@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "mythicupgrades:block/polished_peridot_schist",
+    "side": "mythicupgrades:block/polished_peridot_schist",
+    "top": "mythicupgrades:block/polished_peridot_schist"
+  }
+}

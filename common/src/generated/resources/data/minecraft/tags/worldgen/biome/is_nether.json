@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "mythicupgrades:ruby_rift",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:sapphire_rift",
+      "required": false
+    }
+  ]
+}

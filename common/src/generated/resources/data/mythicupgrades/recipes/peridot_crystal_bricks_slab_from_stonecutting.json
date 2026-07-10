@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "mythicupgrades:peridot_crystal_bricks"
+  },
+  "result": "mythicupgrades:peridot_crystal_bricks_slab"
+}

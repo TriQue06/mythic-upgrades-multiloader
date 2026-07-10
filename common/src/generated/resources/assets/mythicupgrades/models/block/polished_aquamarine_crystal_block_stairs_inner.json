@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "mythicupgrades:block/polished_aquamarine_crystal_block",
+    "side": "mythicupgrades:block/polished_aquamarine_crystal_block",
+    "top": "mythicupgrades:block/polished_aquamarine_crystal_block"
+  }
+}
