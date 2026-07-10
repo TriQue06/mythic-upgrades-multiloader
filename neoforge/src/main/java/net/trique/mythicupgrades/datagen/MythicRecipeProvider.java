@@ -217,10 +217,6 @@ public class MythicRecipeProvider extends RecipeProvider {
             .pattern("##").pattern("##")
             .unlockedBy("has_" + gem + "_shard", has(shard))
             .save(output, rl(gem + "_crystal_block"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, shard, 4)
-            .requires(crystalBlock)
-            .unlockedBy("has_" + gem + "_crystal_block", has(crystalBlock))
-            .save(output, rl(gem + "_crystal_shard_from_block"));
     }
 
     private void crystalSubBlocks(RecipeOutput output, String gem) {

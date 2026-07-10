@@ -84,7 +84,7 @@ public class MythicPlacedFeatures {
             )));
 
             ctx.register(gem.geodeExtraPF(), new PlacedFeature(geodeH, List.of(
-                RarityFilter.onAverageOnceEvery(8),
+                RarityFilter.onAverageOnceEvery(12),
                 InSquarePlacement.spread(),
                 HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(30)),
                 BiomeFilter.biome()
