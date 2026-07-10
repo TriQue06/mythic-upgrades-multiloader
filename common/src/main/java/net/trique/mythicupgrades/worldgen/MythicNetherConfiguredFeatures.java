@@ -31,18 +31,16 @@ public class MythicNetherConfiguredFeatures {
         HolderGetter<Block> blocks = ctx.lookup(Registries.BLOCK);
 
         for (NetherGemType gem : NetherGemType.values()) {
-            Block stone   = blocks.getOrThrow(gem.stoneBlock()).value();
+            Block stone = blocks.getOrThrow(gem.stoneBlock()).value();
             Block crystal = blocks.getOrThrow(gem.crystalBlock()).value();
-            Block ore     = blocks.getOrThrow(gem.oreBlock()).value();
+            Block ore = blocks.getOrThrow(gem.oreBlock()).value();
 
-            // Stone blobs — replace netherrack with gem stone (size 64)
             ctx.register(gem.stoneBlobsCF(), new ConfiguredFeature<>(Feature.ORE,
                 new OreConfiguration(List.of(
                     OreConfiguration.target(new BlockMatchTest(Blocks.NETHERRACK), stone.defaultBlockState())
                 ), 64)
             ));
 
-            // Crystal blobs — replace netherrack and gem stone with crystal block (size 20)
             ctx.register(gem.crystalBlobsCF(), new ConfiguredFeature<>(Feature.ORE,
                 new OreConfiguration(List.of(
                     OreConfiguration.target(new BlockMatchTest(Blocks.NETHERRACK), crystal.defaultBlockState()),
@@ -50,7 +48,6 @@ public class MythicNetherConfiguredFeatures {
                 ), 20)
             ));
 
-            // Crystal buds — weighted mix of all 4 bud sizes (tries 96)
             ctx.register(gem.crystalBudsCF(), new ConfiguredFeature<>(MythicFeatures.CRYSTAL_BUD,
                 new CrystalBudFeatureConfig(
                     new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
@@ -63,7 +60,6 @@ public class MythicNetherConfiguredFeatures {
                 )
             ));
 
-            // Crystal buds rare — smaller patch, no cluster variant (tries 16)
             ctx.register(gem.crystalBudsRareCF(), new ConfiguredFeature<>(MythicFeatures.CRYSTAL_BUD,
                 new CrystalBudFeatureConfig(
                     new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
@@ -75,18 +71,16 @@ public class MythicNetherConfiguredFeatures {
                 )
             ));
 
-            // Ore — replace netherrack (size 6)
             ctx.register(gem.oreCF(), new ConfiguredFeature<>(Feature.ORE,
                 new OreConfiguration(List.of(
                     OreConfiguration.target(new BlockMatchTest(Blocks.NETHERRACK), ore.defaultBlockState())
                 ), 6)
             ));
 
-            // Geode — basalt-shelled crystal geode in the nether
             Block buddingBlock = blocks.getOrThrow(gem.buddingCrystal()).value();
-            Block smallBud     = blocks.getOrThrow(gem.smallBud()).value();
-            Block mediumBud    = blocks.getOrThrow(gem.mediumBud()).value();
-            Block largeBud     = blocks.getOrThrow(gem.largeBud()).value();
+            Block smallBud = blocks.getOrThrow(gem.smallBud()).value();
+            Block mediumBud = blocks.getOrThrow(gem.mediumBud()).value();
+            Block largeBud = blocks.getOrThrow(gem.largeBud()).value();
             Block clusterBlock = blocks.getOrThrow(gem.cluster()).value();
 
             ctx.register(gem.geodeCF(), new ConfiguredFeature<>(Feature.GEODE,

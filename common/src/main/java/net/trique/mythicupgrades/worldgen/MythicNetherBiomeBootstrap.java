@@ -19,8 +19,8 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 public class MythicNetherBiomeBootstrap {
 
     public static void bootstrap(BootstapContext<Biome> ctx) {
-        HolderGetter<PlacedFeature>           features = ctx.lookup(Registries.PLACED_FEATURE);
-        HolderGetter<ConfiguredWorldCarver<?>> carvers  = ctx.lookup(Registries.CONFIGURED_CARVER);
+        HolderGetter<PlacedFeature> features = ctx.lookup(Registries.PLACED_FEATURE);
+        HolderGetter<ConfiguredWorldCarver<?>> carvers = ctx.lookup(Registries.CONFIGURED_CARVER);
 
         for (NetherGemType gem : NetherGemType.values()) {
             ctx.register(gem.netherBiome(), buildBiome(gem, features, carvers));
@@ -33,11 +33,10 @@ public class MythicNetherBiomeBootstrap {
 
         BiomeGenerationSettings.Builder gen = new BiomeGenerationSettings.Builder(features, carvers);
 
-        // Vanilla nether ores (quartz, gold, ancient debris) — first for consistent FeatureSorter ordering
         BiomeDefaultFeatures.addNetherDefaultOres(gen);
 
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES,       features.getOrThrow(gem.stoneBlobsPF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES,       features.getOrThrow(gem.orePF()));
+        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.stoneBlobsPF()));
+        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.orePF()));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBlobsPF()));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsRarePF()));
 

@@ -22,27 +22,27 @@ public class MythicLegacyMigration {
 
     public static final Queue<LevelChunk> PENDING_CHUNKS = new ConcurrentLinkedQueue<>();
 
-    private static final Map<Item, Potion> POTION_MAP   = new IdentityHashMap<>();
-    private static final Map<Item, Item>   TEMPLATE_MAP = new IdentityHashMap<>();
+    private static final Map<Item, Potion> POTION_MAP = new IdentityHashMap<>();
+    private static final Map<Item, Item> TEMPLATE_MAP = new IdentityHashMap<>();
 
     public static void init() {
         POTION_MAP.put(MythicItems.LEGACY_AQUAMARINE_POTION, MythicPotions.ICE_SHIELD);
-        POTION_MAP.put(MythicItems.LEGACY_CITRINE_POTION,    MythicPotions.STATIC_FIELD);
-        POTION_MAP.put(MythicItems.LEGACY_TOPAZ_POTION,      MythicPotions.TOPAZ_REACTION);
-        POTION_MAP.put(MythicItems.LEGACY_PERIDOT_POTION,    MythicPotions.MIASMA);
-        POTION_MAP.put(MythicItems.LEGACY_RUBY_POTION,       MythicPotions.BLOOD_THIRST);
-        POTION_MAP.put(MythicItems.LEGACY_SAPPHIRE_POTION,   MythicPotions.DAMAGE_DEFLECTION);
-        POTION_MAP.put(MythicItems.LEGACY_JADE_POTION,       MythicPotions.JADE_AURA);
-        POTION_MAP.put(MythicItems.LEGACY_AMETRINE_POTION,   MythicPotions.ARCANE_AURA);
+        POTION_MAP.put(MythicItems.LEGACY_CITRINE_POTION, MythicPotions.STATIC_FIELD);
+        POTION_MAP.put(MythicItems.LEGACY_TOPAZ_POTION, MythicPotions.TOPAZ_REACTION);
+        POTION_MAP.put(MythicItems.LEGACY_PERIDOT_POTION, MythicPotions.MIASMA);
+        POTION_MAP.put(MythicItems.LEGACY_RUBY_POTION, MythicPotions.BLOOD_THIRST);
+        POTION_MAP.put(MythicItems.LEGACY_SAPPHIRE_POTION, MythicPotions.DAMAGE_DEFLECTION);
+        POTION_MAP.put(MythicItems.LEGACY_JADE_POTION, MythicPotions.JADE_AURA);
+        POTION_MAP.put(MythicItems.LEGACY_AMETRINE_POTION, MythicPotions.ARCANE_AURA);
 
         TEMPLATE_MAP.put(MythicItems.LEGACY_AQUAMARINE_TEMPLATE, MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
-        TEMPLATE_MAP.put(MythicItems.LEGACY_CITRINE_TEMPLATE,    MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
-        TEMPLATE_MAP.put(MythicItems.LEGACY_TOPAZ_TEMPLATE,      MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
-        TEMPLATE_MAP.put(MythicItems.LEGACY_PERIDOT_TEMPLATE,    MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
-        TEMPLATE_MAP.put(MythicItems.LEGACY_RUBY_TEMPLATE,       MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
-        TEMPLATE_MAP.put(MythicItems.LEGACY_SAPPHIRE_TEMPLATE,   MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
-        TEMPLATE_MAP.put(MythicItems.LEGACY_JADE_TEMPLATE,       MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
-        TEMPLATE_MAP.put(MythicItems.LEGACY_AMETRINE_TEMPLATE,   MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
+        TEMPLATE_MAP.put(MythicItems.LEGACY_CITRINE_TEMPLATE, MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
+        TEMPLATE_MAP.put(MythicItems.LEGACY_TOPAZ_TEMPLATE, MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
+        TEMPLATE_MAP.put(MythicItems.LEGACY_PERIDOT_TEMPLATE, MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
+        TEMPLATE_MAP.put(MythicItems.LEGACY_RUBY_TEMPLATE, MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
+        TEMPLATE_MAP.put(MythicItems.LEGACY_SAPPHIRE_TEMPLATE, MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
+        TEMPLATE_MAP.put(MythicItems.LEGACY_JADE_TEMPLATE, MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
+        TEMPLATE_MAP.put(MythicItems.LEGACY_AMETRINE_TEMPLATE, MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
     }
 
     public static void drainPendingChunks() {

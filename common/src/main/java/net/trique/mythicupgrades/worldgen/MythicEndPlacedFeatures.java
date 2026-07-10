@@ -31,7 +31,6 @@ public class MythicEndPlacedFeatures {
                     BiomeFilter.biome()
             )));
 
-            // Crystal blobs: 11 per chunk, biome-filtered
             ctx.register(gem.crystalBlobsPF(), new PlacedFeature(
                 features.getOrThrow(gem.crystalBlobsCF()), List.of(
                     CountPlacement.of(11),
@@ -40,7 +39,6 @@ public class MythicEndPlacedFeatures {
                     BiomeFilter.biome()
             )));
 
-            // Crystal buds: 16 per chunk, biome-filtered
             ctx.register(gem.crystalBudsPF(), new PlacedFeature(
                 features.getOrThrow(gem.crystalBudsCF()), List.of(
                     CountPlacement.of(16),
@@ -49,7 +47,6 @@ public class MythicEndPlacedFeatures {
                     BiomeFilter.biome()
             )));
 
-            // Crystal buds rare: 1-in-15 chunks, biome-filtered
             ctx.register(gem.crystalBudsRarePF(), new PlacedFeature(
                 features.getOrThrow(gem.crystalBudsRareCF()), List.of(
                     RarityFilter.onAverageOnceEvery(15),
@@ -58,7 +55,6 @@ public class MythicEndPlacedFeatures {
                     BiomeFilter.biome()
             )));
 
-            // Ore: 11 per chunk, biome-filtered
             ctx.register(gem.orePF(), new PlacedFeature(
                 features.getOrThrow(gem.oreCF()), List.of(
                     CountPlacement.of(11),
@@ -67,7 +63,6 @@ public class MythicEndPlacedFeatures {
                     BiomeFilter.biome()
             )));
 
-            // Geode: 1-in-24 chunks (vanilla amethyst rarity), y 0 to 64
             var geodeH = features.getOrThrow(gem.geodeCF());
             ctx.register(gem.geodePF(), new PlacedFeature(geodeH, List.of(
                 RarityFilter.onAverageOnceEvery(24),
@@ -76,9 +71,8 @@ public class MythicEndPlacedFeatures {
                 BiomeFilter.biome()
             )));
 
-            // Geode extra: 1-in-8 chunks in the matching gem barren biome
             ctx.register(gem.geodeExtraPF(), new PlacedFeature(geodeH, List.of(
-                RarityFilter.onAverageOnceEvery(8),
+                RarityFilter.onAverageOnceEvery(12),
                 InSquarePlacement.spread(),
                 HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(64)),
                 BiomeFilter.biome()

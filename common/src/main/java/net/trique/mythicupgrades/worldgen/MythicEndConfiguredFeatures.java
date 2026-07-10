@@ -31,64 +31,58 @@ public class MythicEndConfiguredFeatures {
         HolderGetter<Block> blocks = ctx.lookup(Registries.BLOCK);
 
         for (EndGemType gem : EndGemType.values()) {
-            Block stone   = blocks.getOrThrow(gem.stoneBlock()).value();
+            Block stone = blocks.getOrThrow(gem.stoneBlock()).value();
             Block crystal = blocks.getOrThrow(gem.crystalBlock()).value();
-            Block ore     = blocks.getOrThrow(gem.oreBlock()).value();
+            Block ore = blocks.getOrThrow(gem.oreBlock()).value();
             Block endStone = Blocks.END_STONE;
 
-            // Stone blobs — fill end stone with gem stone (size 64)
             ctx.register(gem.stoneBlobsCF(), new ConfiguredFeature<>(Feature.ORE,
                 new OreConfiguration(List.of(
                     OreConfiguration.target(new BlockMatchTest(endStone), stone.defaultBlockState())
                 ), 64)
             ));
 
-            // Crystal blobs — replace end stone and gem stone with crystal block (size 20)
             ctx.register(gem.crystalBlobsCF(), new ConfiguredFeature<>(Feature.ORE,
                 new OreConfiguration(List.of(
                     OreConfiguration.target(new BlockMatchTest(endStone), crystal.defaultBlockState()),
-                    OreConfiguration.target(new BlockMatchTest(stone),    crystal.defaultBlockState())
+                    OreConfiguration.target(new BlockMatchTest(stone), crystal.defaultBlockState())
                 ), 20)
             ));
 
-            // Crystal buds — weighted mix of all 4 bud sizes (tries 96)
             ctx.register(gem.crystalBudsCF(), new ConfiguredFeature<>(MythicFeatures.CRYSTAL_BUD,
                 new CrystalBudFeatureConfig(
                     new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                        .add(budState(blocks, gem.smallBud()),  4)
+                        .add(budState(blocks, gem.smallBud()), 4)
                         .add(budState(blocks, gem.mediumBud()), 3)
-                        .add(budState(blocks, gem.largeBud()),  2)
-                        .add(budState(blocks, gem.cluster()),   1)
+                        .add(budState(blocks, gem.largeBud()), 2)
+                        .add(budState(blocks, gem.cluster()), 1)
                         .build()),
                     96, 5, 4
                 )
             ));
 
-            // Crystal buds rare — smaller patch, no cluster variant (tries 16)
             ctx.register(gem.crystalBudsRareCF(), new ConfiguredFeature<>(MythicFeatures.CRYSTAL_BUD,
                 new CrystalBudFeatureConfig(
                     new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                        .add(budState(blocks, gem.smallBud()),  3)
+                        .add(budState(blocks, gem.smallBud()), 3)
                         .add(budState(blocks, gem.mediumBud()), 2)
-                        .add(budState(blocks, gem.largeBud()),  1)
+                        .add(budState(blocks, gem.largeBud()), 1)
                         .build()),
                     16, 4, 3
                 )
             ));
 
-            // Ore — replaces end stone (size 7)
             ctx.register(gem.oreCF(), new ConfiguredFeature<>(Feature.ORE,
                 new OreConfiguration(List.of(
                     OreConfiguration.target(new BlockMatchTest(endStone), ore.defaultBlockState()),
-                    OreConfiguration.target(new BlockMatchTest(stone),    ore.defaultBlockState())
+                    OreConfiguration.target(new BlockMatchTest(stone), ore.defaultBlockState())
                 ), 7)
             ));
 
-            // Geode — end stone-shelled crystal geode in the end
             Block buddingBlock = blocks.getOrThrow(gem.buddingCrystal()).value();
-            Block smallBud     = blocks.getOrThrow(gem.smallBud()).value();
-            Block mediumBud    = blocks.getOrThrow(gem.mediumBud()).value();
-            Block largeBud     = blocks.getOrThrow(gem.largeBud()).value();
+            Block smallBud = blocks.getOrThrow(gem.smallBud()).value();
+            Block mediumBud = blocks.getOrThrow(gem.mediumBud()).value();
+            Block largeBud = blocks.getOrThrow(gem.largeBud()).value();
             Block clusterBlock = blocks.getOrThrow(gem.cluster()).value();
 
             ctx.register(gem.geodeCF(), new ConfiguredFeature<>(Feature.GEODE,

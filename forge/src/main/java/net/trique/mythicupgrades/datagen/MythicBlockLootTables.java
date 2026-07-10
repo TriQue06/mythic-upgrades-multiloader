@@ -62,14 +62,14 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         dropSelf(MythicBlocks.JADE_CRYSTAL_BLOCK);
         dropSelf(MythicBlocks.AMETRINE_CRYSTAL_BLOCK);
 
-        add(MythicBlocks.BUDDING_AQUAMARINE_CRYSTAL, createSilkTouchOnlyTable(MythicBlocks.BUDDING_AQUAMARINE_CRYSTAL));
-        add(MythicBlocks.BUDDING_CITRINE_CRYSTAL, createSilkTouchOnlyTable(MythicBlocks.BUDDING_CITRINE_CRYSTAL));
-        add(MythicBlocks.BUDDING_TOPAZ_CRYSTAL, createSilkTouchOnlyTable(MythicBlocks.BUDDING_TOPAZ_CRYSTAL));
-        add(MythicBlocks.BUDDING_PERIDOT_CRYSTAL, createSilkTouchOnlyTable(MythicBlocks.BUDDING_PERIDOT_CRYSTAL));
-        add(MythicBlocks.BUDDING_RUBY_CRYSTAL, createSilkTouchOnlyTable(MythicBlocks.BUDDING_RUBY_CRYSTAL));
-        add(MythicBlocks.BUDDING_SAPPHIRE_CRYSTAL, createSilkTouchOnlyTable(MythicBlocks.BUDDING_SAPPHIRE_CRYSTAL));
-        add(MythicBlocks.BUDDING_JADE_CRYSTAL, createSilkTouchOnlyTable(MythicBlocks.BUDDING_JADE_CRYSTAL));
-        add(MythicBlocks.BUDDING_AMETRINE_CRYSTAL, createSilkTouchOnlyTable(MythicBlocks.BUDDING_AMETRINE_CRYSTAL));
+        add(MythicBlocks.BUDDING_AQUAMARINE_CRYSTAL, LootTable.lootTable());
+        add(MythicBlocks.BUDDING_CITRINE_CRYSTAL, LootTable.lootTable());
+        add(MythicBlocks.BUDDING_TOPAZ_CRYSTAL, LootTable.lootTable());
+        add(MythicBlocks.BUDDING_PERIDOT_CRYSTAL, LootTable.lootTable());
+        add(MythicBlocks.BUDDING_RUBY_CRYSTAL, LootTable.lootTable());
+        add(MythicBlocks.BUDDING_SAPPHIRE_CRYSTAL, LootTable.lootTable());
+        add(MythicBlocks.BUDDING_JADE_CRYSTAL, LootTable.lootTable());
+        add(MythicBlocks.BUDDING_AMETRINE_CRYSTAL, LootTable.lootTable());
 
         add(MythicBlocks.SMALL_AQUAMARINE_CRYSTAL_BUD, createSilkTouchOnlyTable(MythicBlocks.SMALL_AQUAMARINE_CRYSTAL_BUD));
         add(MythicBlocks.MEDIUM_AQUAMARINE_CRYSTAL_BUD, createSilkTouchOnlyTable(MythicBlocks.MEDIUM_AQUAMARINE_CRYSTAL_BUD));
@@ -88,14 +88,14 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         add(MythicBlocks.SMALL_AMETRINE_CRYSTAL_BUD, createSilkTouchOnlyTable(MythicBlocks.SMALL_AMETRINE_CRYSTAL_BUD));
         add(MythicBlocks.MEDIUM_AMETRINE_CRYSTAL_BUD, createSilkTouchOnlyTable(MythicBlocks.MEDIUM_AMETRINE_CRYSTAL_BUD));
 
-        add(MythicBlocks.LARGE_AQUAMARINE_CRYSTAL_BUD, block -> createSingleItemTableWithSilkTouch(block, MythicItems.AQUAMARINE_CRYSTAL_SHARD));
-        add(MythicBlocks.LARGE_CITRINE_CRYSTAL_BUD, block -> createSingleItemTableWithSilkTouch(block, MythicItems.CITRINE_CRYSTAL_SHARD));
-        add(MythicBlocks.LARGE_TOPAZ_CRYSTAL_BUD, block -> createSingleItemTableWithSilkTouch(block, MythicItems.TOPAZ_CRYSTAL_SHARD));
-        add(MythicBlocks.LARGE_PERIDOT_CRYSTAL_BUD, block -> createSingleItemTableWithSilkTouch(block, MythicItems.PERIDOT_CRYSTAL_SHARD));
-        add(MythicBlocks.LARGE_RUBY_CRYSTAL_BUD, block -> createSingleItemTableWithSilkTouch(block, MythicItems.RUBY_CRYSTAL_SHARD));
-        add(MythicBlocks.LARGE_SAPPHIRE_CRYSTAL_BUD, block -> createSingleItemTableWithSilkTouch(block, MythicItems.SAPPHIRE_CRYSTAL_SHARD));
-        add(MythicBlocks.LARGE_JADE_CRYSTAL_BUD, block -> createSingleItemTableWithSilkTouch(block, MythicItems.JADE_CRYSTAL_SHARD));
-        add(MythicBlocks.LARGE_AMETRINE_CRYSTAL_BUD, block -> createSingleItemTableWithSilkTouch(block, MythicItems.AMETRINE_CRYSTAL_SHARD));
+        add(MythicBlocks.LARGE_AQUAMARINE_CRYSTAL_BUD, createSilkTouchOnlyTable(MythicBlocks.LARGE_AQUAMARINE_CRYSTAL_BUD));
+        add(MythicBlocks.LARGE_CITRINE_CRYSTAL_BUD, createSilkTouchOnlyTable(MythicBlocks.LARGE_CITRINE_CRYSTAL_BUD));
+        add(MythicBlocks.LARGE_TOPAZ_CRYSTAL_BUD, createSilkTouchOnlyTable(MythicBlocks.LARGE_TOPAZ_CRYSTAL_BUD));
+        add(MythicBlocks.LARGE_PERIDOT_CRYSTAL_BUD, createSilkTouchOnlyTable(MythicBlocks.LARGE_PERIDOT_CRYSTAL_BUD));
+        add(MythicBlocks.LARGE_RUBY_CRYSTAL_BUD, createSilkTouchOnlyTable(MythicBlocks.LARGE_RUBY_CRYSTAL_BUD));
+        add(MythicBlocks.LARGE_SAPPHIRE_CRYSTAL_BUD, createSilkTouchOnlyTable(MythicBlocks.LARGE_SAPPHIRE_CRYSTAL_BUD));
+        add(MythicBlocks.LARGE_JADE_CRYSTAL_BUD, createSilkTouchOnlyTable(MythicBlocks.LARGE_JADE_CRYSTAL_BUD));
+        add(MythicBlocks.LARGE_AMETRINE_CRYSTAL_BUD, createSilkTouchOnlyTable(MythicBlocks.LARGE_AMETRINE_CRYSTAL_BUD));
 
         add(MythicBlocks.AQUAMARINE_CRYSTAL_CLUSTER, block -> createClusterDrop(block, MythicItems.AQUAMARINE_CRYSTAL_SHARD));
         add(MythicBlocks.CITRINE_CRYSTAL_CLUSTER, block -> createClusterDrop(block, MythicItems.CITRINE_CRYSTAL_SHARD));

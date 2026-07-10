@@ -58,15 +58,6 @@ public class MythicUpgrades implements ModInitializer {
         MythicFeatures.register((name, feature) ->
             Registry.register(BuiltInRegistries.FEATURE, new ResourceLocation(Constants.MOD_ID, name), feature));
 
-        // FeatureSorter cycle prevention:
-        // Cave biome JSONs already contain ALL features (glow_lichen, vanilla ores, monster_room,
-        // springs, gem ores) in their bootstrap in vanilla-compatible order.
-        // BiomeModifications only adds features that are ALWAYS appended last across ALL overworld
-        // biomes — so they can never conflict with bootstrap feature ordering.
-
-        // crystal_buds_rare: appended last in UNDERGROUND_DECORATION for all overworld biomes.
-        // In vanilla biomes: bootstrap features come first, then this is appended after.
-        // In cave biomes: same — JSON bootstrap first, then this appended after.
         for (String gem : new String[]{"aquamarine", "citrine", "peridot", "topaz"}) {
             ResourceKey<PlacedFeature> key = ResourceKey.create(Registries.PLACED_FEATURE,
                 new ResourceLocation(Constants.MOD_ID, gem + "_crystal_buds_rare"));
@@ -74,13 +65,11 @@ public class MythicUpgrades implements ModInitializer {
                 GenerationStep.Decoration.UNDERGROUND_DECORATION, key);
         }
 
-        // necoium: appended last in UNDERGROUND_ORES for all overworld biomes.
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
             GenerationStep.Decoration.UNDERGROUND_ORES, MythicPlacedFeatures.NECOIUM_ORE_PF);
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
             GenerationStep.Decoration.UNDERGROUND_ORES, MythicPlacedFeatures.DEEPSLATE_NECOIUM_ORE_PF);
 
-        // overworld geodes: global (all overworld) + extra in home cave biome
         for (CaveGemType gem : CaveGemType.values()) {
             BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
                 GenerationStep.Decoration.UNDERGROUND_ORES, gem.geodePF());
@@ -88,7 +77,6 @@ public class MythicUpgrades implements ModInitializer {
                 GenerationStep.Decoration.UNDERGROUND_DECORATION, gem.geodeExtraPF());
         }
 
-        // nether geodes: global (all nether) + extra in home rift biome
         for (NetherGemType gem : NetherGemType.values()) {
             BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(),
                 GenerationStep.Decoration.UNDERGROUND_ORES, gem.geodePF());
@@ -96,12 +84,10 @@ public class MythicUpgrades implements ModInitializer {
                 GenerationStep.Decoration.UNDERGROUND_DECORATION, gem.geodeExtraPF());
         }
 
-        // end biomes: register ametrine as a highlands biome, jade as midlands next to vanilla highlands
         TheEndBiomes.addHighlandsBiome(MythicBiomes.AMETRINE_BARRENS, 1.0);
         TheEndBiomes.addMidlandsBiome(Biomes.END_HIGHLANDS, MythicBiomes.JADE_BARRENS, 1.0);
         TheEndBiomes.addMidlandsBiome(MythicBiomes.AMETRINE_BARRENS, MythicBiomes.JADE_BARRENS, 1.0);
 
-        // end geodes: global (all end) + extra in home barren biome
         for (EndGemType gem : EndGemType.values()) {
             BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
                 GenerationStep.Decoration.UNDERGROUND_ORES, gem.geodePF());
@@ -125,9 +111,6 @@ public class MythicUpgrades implements ModInitializer {
             MythicLegacyMigration.migratePlayer(handler.player);
         });
 
-        // Always queue — migrateChunk() is never safe to call during chunk promotion.
-        // Calling container.getItem() triggers loot table unpacking → setChanged() →
-        // getChunkAt() → deadlock on the server thread, regardless of tickCount.
         ServerChunkEvents.CHUNK_LOAD.register((world, chunk) ->
             MythicLegacyMigration.PENDING_CHUNKS.offer(chunk));
 

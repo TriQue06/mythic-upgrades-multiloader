@@ -57,15 +57,14 @@ public class MythicRecipeProvider extends RecipeProvider {
         storageBlock(writer, MythicItems.RAW_NECOIUM, MythicBlocks.RAW_NECOIUM_BLOCK, "raw_necoium");
         storageBlock(writer, MythicItems.NECOIUM_INGOT, MythicBlocks.NECOIUM_BLOCK, "necoium_ingot");
 
-        // Gem ingots from raw gems + necoium (netherite-style): 4x gem + 4x necoium ingot → 1x gem ingot
         mythicIngot(writer, MythicItems.AQUAMARINE, MythicItems.AQUAMARINE_INGOT, "aquamarine");
-        mythicIngot(writer, MythicItems.CITRINE,    MythicItems.CITRINE_INGOT,    "citrine");
-        mythicIngot(writer, MythicItems.TOPAZ,      MythicItems.TOPAZ_INGOT,      "topaz");
-        mythicIngot(writer, MythicItems.PERIDOT,    MythicItems.PERIDOT_INGOT,    "peridot");
-        mythicIngot(writer, MythicItems.RUBY,       MythicItems.RUBY_INGOT,       "ruby");
-        mythicIngot(writer, MythicItems.SAPPHIRE,   MythicItems.SAPPHIRE_INGOT,   "sapphire");
-        mythicIngot(writer, MythicItems.JADE,       MythicItems.JADE_INGOT,       "jade");
-        mythicIngot(writer, MythicItems.AMETRINE,   MythicItems.AMETRINE_INGOT,   "ametrine");
+        mythicIngot(writer, MythicItems.CITRINE, MythicItems.CITRINE_INGOT, "citrine");
+        mythicIngot(writer, MythicItems.TOPAZ, MythicItems.TOPAZ_INGOT, "topaz");
+        mythicIngot(writer, MythicItems.PERIDOT, MythicItems.PERIDOT_INGOT, "peridot");
+        mythicIngot(writer, MythicItems.RUBY, MythicItems.RUBY_INGOT, "ruby");
+        mythicIngot(writer, MythicItems.SAPPHIRE, MythicItems.SAPPHIRE_INGOT, "sapphire");
+        mythicIngot(writer, MythicItems.JADE, MythicItems.JADE_INGOT, "jade");
+        mythicIngot(writer, MythicItems.AMETRINE, MythicItems.AMETRINE_INGOT, "ametrine");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, MythicItems.NECOIUM_CARROT)
             .define('N', MythicBlocks.NECOIUM_BLOCK)
@@ -302,10 +301,6 @@ public class MythicRecipeProvider extends RecipeProvider {
             .pattern("SS").pattern("SS")
             .unlockedBy("has_" + gem + "_crystal_shard", has(shard))
             .save(writer, new ResourceLocation(Constants.MOD_ID, gem + "_crystal_block_from_shards"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, shard, 4)
-            .requires(block)
-            .unlockedBy("has_" + gem + "_crystal_block", has(block))
-            .save(writer, new ResourceLocation(Constants.MOD_ID, gem + "_crystal_shard_from_block"));
     }
 
     private void armorTrim(Consumer<FinishedRecipe> writer, Item armor, String name) {
@@ -318,8 +313,6 @@ public class MythicRecipeProvider extends RecipeProvider {
          .save(writer, new ResourceLocation(Constants.MOD_ID, name + "_smithing_trim"));
     }
 
-    // Smithing upgrade: mythic_upgrade_template + gem_ingot + base_gear → gem_gear
-    // Base gear: netherite + all 8 mythic sets (sword/pickaxe/axe/shovel/hoe/helmet/chestplate/leggings/boots)
     private void mythicUpgradeSmithing(Consumer<FinishedRecipe> writer) {
         record GemSet(String name, Item ingot,
                       Item sword, Item pickaxe, Item axe, Item shovel, Item hoe,
@@ -368,7 +361,6 @@ public class MythicRecipeProvider extends RecipeProvider {
                 MythicItems.AMETRINE_LEGGINGS, MythicItems.AMETRINE_BOOTS)
         );
 
-        // Base gear that can be upgraded: netherite + all 8 mythic sets
         record BaseGear(String suffix, Item sword, Item pickaxe, Item axe, Item shovel, Item hoe,
                         Item helmet, Item chestplate, Item leggings, Item boots) {}
 
@@ -422,16 +414,16 @@ public class MythicRecipeProvider extends RecipeProvider {
 
         for (GemSet gem : gems) {
             for (BaseGear base : bases) {
-                if (base.suffix().equals(gem.name())) continue; // same gem → skip (no point upgrading to itself)
-                smithingUpgrade(writer, gem.ingot(), base.sword(),      gem.sword(),      gem.name() + "_from_" + base.suffix() + "_sword");
-                smithingUpgrade(writer, gem.ingot(), base.pickaxe(),    gem.pickaxe(),    gem.name() + "_from_" + base.suffix() + "_pickaxe");
-                smithingUpgrade(writer, gem.ingot(), base.axe(),        gem.axe(),        gem.name() + "_from_" + base.suffix() + "_axe");
-                smithingUpgrade(writer, gem.ingot(), base.shovel(),     gem.shovel(),     gem.name() + "_from_" + base.suffix() + "_shovel");
-                smithingUpgrade(writer, gem.ingot(), base.hoe(),        gem.hoe(),        gem.name() + "_from_" + base.suffix() + "_hoe");
-                smithingUpgrade(writer, gem.ingot(), base.helmet(),     gem.helmet(),     gem.name() + "_from_" + base.suffix() + "_helmet");
+                if (base.suffix().equals(gem.name())) continue;
+                smithingUpgrade(writer, gem.ingot(), base.sword(), gem.sword(), gem.name() + "_from_" + base.suffix() + "_sword");
+                smithingUpgrade(writer, gem.ingot(), base.pickaxe(), gem.pickaxe(), gem.name() + "_from_" + base.suffix() + "_pickaxe");
+                smithingUpgrade(writer, gem.ingot(), base.axe(), gem.axe(), gem.name() + "_from_" + base.suffix() + "_axe");
+                smithingUpgrade(writer, gem.ingot(), base.shovel(), gem.shovel(), gem.name() + "_from_" + base.suffix() + "_shovel");
+                smithingUpgrade(writer, gem.ingot(), base.hoe(), gem.hoe(), gem.name() + "_from_" + base.suffix() + "_hoe");
+                smithingUpgrade(writer, gem.ingot(), base.helmet(), gem.helmet(), gem.name() + "_from_" + base.suffix() + "_helmet");
                 smithingUpgrade(writer, gem.ingot(), base.chestplate(), gem.chestplate(), gem.name() + "_from_" + base.suffix() + "_chestplate");
-                smithingUpgrade(writer, gem.ingot(), base.leggings(),   gem.leggings(),   gem.name() + "_from_" + base.suffix() + "_leggings");
-                smithingUpgrade(writer, gem.ingot(), base.boots(),      gem.boots(),      gem.name() + "_from_" + base.suffix() + "_boots");
+                smithingUpgrade(writer, gem.ingot(), base.leggings(), gem.leggings(), gem.name() + "_from_" + base.suffix() + "_leggings");
+                smithingUpgrade(writer, gem.ingot(), base.boots(), gem.boots(), gem.name() + "_from_" + base.suffix() + "_boots");
             }
         }
     }

@@ -50,7 +50,6 @@ public class MythicCreativeTabs {
                     output.accept(MythicItems.NECOIUM_INGOT);
                     output.accept(MythicItems.NECOIUM_CARROT);
                     output.accept(MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
-                    // Positive potions
                     for (var entry : new Object[][]{
                         {MythicPotions.ICE_SHIELD,             MythicPotions.ICE_SHIELD_LONG,             MythicPotions.ICE_SHIELD_STRONG},
                         {MythicPotions.STATIC_FIELD,           MythicPotions.STATIC_FIELD_LONG,           MythicPotions.STATIC_FIELD_STRONG},
@@ -71,7 +70,6 @@ public class MythicCreativeTabs {
                             output.accept(PotionUtils.setPotion(new ItemStack(Items.TIPPED_ARROW), p));
                         }
                     }
-                    // Negative potions
                     for (var entry : new Object[][]{
                         {MythicPotions.ICE_BOMB,          MythicPotions.ICE_BOMB_LONG,          MythicPotions.ICE_BOMB_STRONG},
                         {MythicPotions.FREEZE,            MythicPotions.FREEZE_LONG,            MythicPotions.FREEZE_STRONG},

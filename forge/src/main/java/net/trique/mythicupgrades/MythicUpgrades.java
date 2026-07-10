@@ -111,59 +111,57 @@ public class MythicUpgrades {
         CommonClass.init();
     }
 
-    // PotionBrewing.addMix static was removed in Forge 47.3+; use BrewingRecipeRegistry instead.
     private static void registerForgeBrewingRecipes() {
         addBrewMix(net.minecraft.world.item.alchemy.Potions.AWKWARD, MythicItems.AQUAMARINE_CRYSTAL_SHARD, MythicPotions.ICE_SHIELD);
-        addBrewMix(MythicPotions.ICE_SHIELD,            Items.REDSTONE,        MythicPotions.ICE_SHIELD_LONG);
-        addBrewMix(MythicPotions.ICE_SHIELD,            Items.GLOWSTONE_DUST,  MythicPotions.ICE_SHIELD_STRONG);
+        addBrewMix(MythicPotions.ICE_SHIELD, Items.REDSTONE, MythicPotions.ICE_SHIELD_LONG);
+        addBrewMix(MythicPotions.ICE_SHIELD, Items.GLOWSTONE_DUST, MythicPotions.ICE_SHIELD_STRONG);
 
-        addBrewMix(net.minecraft.world.item.alchemy.Potions.AWKWARD, MythicItems.CITRINE_CRYSTAL_SHARD,    MythicPotions.STATIC_FIELD);
-        addBrewMix(MythicPotions.STATIC_FIELD,          Items.REDSTONE,        MythicPotions.STATIC_FIELD_LONG);
-        addBrewMix(MythicPotions.STATIC_FIELD,          Items.GLOWSTONE_DUST,  MythicPotions.STATIC_FIELD_STRONG);
+        addBrewMix(net.minecraft.world.item.alchemy.Potions.AWKWARD, MythicItems.CITRINE_CRYSTAL_SHARD, MythicPotions.STATIC_FIELD);
+        addBrewMix(MythicPotions.STATIC_FIELD, Items.REDSTONE, MythicPotions.STATIC_FIELD_LONG);
+        addBrewMix(MythicPotions.STATIC_FIELD, Items.GLOWSTONE_DUST, MythicPotions.STATIC_FIELD_STRONG);
 
-        addBrewMix(net.minecraft.world.item.alchemy.Potions.AWKWARD, MythicItems.TOPAZ_CRYSTAL_SHARD,      MythicPotions.TOPAZ_REACTION);
-        addBrewMix(MythicPotions.TOPAZ_REACTION,        Items.REDSTONE,        MythicPotions.TOPAZ_REACTION_LONG);
-        addBrewMix(MythicPotions.TOPAZ_REACTION,        Items.GLOWSTONE_DUST,  MythicPotions.TOPAZ_REACTION_STRONG);
+        addBrewMix(net.minecraft.world.item.alchemy.Potions.AWKWARD, MythicItems.TOPAZ_CRYSTAL_SHARD, MythicPotions.TOPAZ_REACTION);
+        addBrewMix(MythicPotions.TOPAZ_REACTION, Items.REDSTONE, MythicPotions.TOPAZ_REACTION_LONG);
+        addBrewMix(MythicPotions.TOPAZ_REACTION, Items.GLOWSTONE_DUST, MythicPotions.TOPAZ_REACTION_STRONG);
 
-        addBrewMix(net.minecraft.world.item.alchemy.Potions.AWKWARD, MythicItems.PERIDOT_CRYSTAL_SHARD,    MythicPotions.MIASMA);
-        addBrewMix(MythicPotions.MIASMA,                Items.REDSTONE,        MythicPotions.MIASMA_LONG);
-        addBrewMix(MythicPotions.MIASMA,                Items.GLOWSTONE_DUST,  MythicPotions.MIASMA_STRONG);
+        addBrewMix(net.minecraft.world.item.alchemy.Potions.AWKWARD, MythicItems.PERIDOT_CRYSTAL_SHARD, MythicPotions.MIASMA);
+        addBrewMix(MythicPotions.MIASMA, Items.REDSTONE, MythicPotions.MIASMA_LONG);
+        addBrewMix(MythicPotions.MIASMA, Items.GLOWSTONE_DUST, MythicPotions.MIASMA_STRONG);
 
-        addBrewMix(net.minecraft.world.item.alchemy.Potions.AWKWARD, MythicItems.RUBY_CRYSTAL_SHARD,       MythicPotions.BLOOD_THIRST);
-        addBrewMix(MythicPotions.BLOOD_THIRST,          Items.REDSTONE,        MythicPotions.BLOOD_THIRST_LONG);
-        addBrewMix(MythicPotions.BLOOD_THIRST,          Items.GLOWSTONE_DUST,  MythicPotions.BLOOD_THIRST_STRONG);
+        addBrewMix(net.minecraft.world.item.alchemy.Potions.AWKWARD, MythicItems.RUBY_CRYSTAL_SHARD, MythicPotions.BLOOD_THIRST);
+        addBrewMix(MythicPotions.BLOOD_THIRST, Items.REDSTONE, MythicPotions.BLOOD_THIRST_LONG);
+        addBrewMix(MythicPotions.BLOOD_THIRST, Items.GLOWSTONE_DUST, MythicPotions.BLOOD_THIRST_STRONG);
 
-        addBrewMix(net.minecraft.world.item.alchemy.Potions.AWKWARD, MythicItems.SAPPHIRE_CRYSTAL_SHARD,   MythicPotions.DAMAGE_DEFLECTION);
-        addBrewMix(MythicPotions.DAMAGE_DEFLECTION,     Items.REDSTONE,        MythicPotions.DAMAGE_DEFLECTION_LONG);
-        addBrewMix(MythicPotions.DAMAGE_DEFLECTION,     Items.GLOWSTONE_DUST,  MythicPotions.DAMAGE_DEFLECTION_STRONG);
+        addBrewMix(net.minecraft.world.item.alchemy.Potions.AWKWARD, MythicItems.SAPPHIRE_CRYSTAL_SHARD, MythicPotions.DAMAGE_DEFLECTION);
+        addBrewMix(MythicPotions.DAMAGE_DEFLECTION, Items.REDSTONE, MythicPotions.DAMAGE_DEFLECTION_LONG);
+        addBrewMix(MythicPotions.DAMAGE_DEFLECTION, Items.GLOWSTONE_DUST, MythicPotions.DAMAGE_DEFLECTION_STRONG);
 
-        addBrewMix(net.minecraft.world.item.alchemy.Potions.AWKWARD, MythicItems.JADE_CRYSTAL_SHARD,       MythicPotions.JADE_AURA);
-        addBrewMix(MythicPotions.JADE_AURA,             Items.REDSTONE,        MythicPotions.JADE_AURA_LONG);
-        addBrewMix(MythicPotions.JADE_AURA,             Items.GLOWSTONE_DUST,  MythicPotions.JADE_AURA_STRONG);
+        addBrewMix(net.minecraft.world.item.alchemy.Potions.AWKWARD, MythicItems.JADE_CRYSTAL_SHARD, MythicPotions.JADE_AURA);
+        addBrewMix(MythicPotions.JADE_AURA, Items.REDSTONE, MythicPotions.JADE_AURA_LONG);
+        addBrewMix(MythicPotions.JADE_AURA, Items.GLOWSTONE_DUST, MythicPotions.JADE_AURA_STRONG);
 
-        addBrewMix(net.minecraft.world.item.alchemy.Potions.AWKWARD, MythicItems.AMETRINE_CRYSTAL_SHARD,   MythicPotions.ARCANE_AURA);
-        addBrewMix(MythicPotions.ARCANE_AURA,           Items.REDSTONE,        MythicPotions.ARCANE_AURA_LONG);
-        addBrewMix(MythicPotions.ARCANE_AURA,           Items.GLOWSTONE_DUST,  MythicPotions.ARCANE_AURA_STRONG);
+        addBrewMix(net.minecraft.world.item.alchemy.Potions.AWKWARD, MythicItems.AMETRINE_CRYSTAL_SHARD, MythicPotions.ARCANE_AURA);
+        addBrewMix(MythicPotions.ARCANE_AURA, Items.REDSTONE, MythicPotions.ARCANE_AURA_LONG);
+        addBrewMix(MythicPotions.ARCANE_AURA, Items.GLOWSTONE_DUST, MythicPotions.ARCANE_AURA_STRONG);
 
         addBrewMix(net.minecraft.world.item.alchemy.Potions.AWKWARD, MythicItems.NECOIUM_INGOT, MythicPotions.NECOIUM_SHARE);
-        addBrewMix(MythicPotions.NECOIUM_SHARE,         Items.REDSTONE,        MythicPotions.NECOIUM_SHARE_LONG);
+        addBrewMix(MythicPotions.NECOIUM_SHARE, Items.REDSTONE, MythicPotions.NECOIUM_SHARE_LONG);
 
-        // Negative potions (fermented spider eye)
-        addBrewMix(MythicPotions.ICE_SHIELD,            Items.FERMENTED_SPIDER_EYE, MythicPotions.ICE_BOMB);
-        addBrewMix(MythicPotions.ICE_BOMB,              Items.REDSTONE,             MythicPotions.ICE_BOMB_LONG);
-        addBrewMix(MythicPotions.ICE_BOMB,              Items.GLOWSTONE_DUST,       MythicPotions.ICE_BOMB_STRONG);
+        addBrewMix(MythicPotions.ICE_SHIELD, Items.FERMENTED_SPIDER_EYE, MythicPotions.ICE_BOMB);
+        addBrewMix(MythicPotions.ICE_BOMB, Items.REDSTONE, MythicPotions.ICE_BOMB_LONG);
+        addBrewMix(MythicPotions.ICE_BOMB, Items.GLOWSTONE_DUST, MythicPotions.ICE_BOMB_STRONG);
 
-        addBrewMix(MythicPotions.ICE_BOMB,              Items.FERMENTED_SPIDER_EYE, MythicPotions.FREEZE);
-        addBrewMix(MythicPotions.FREEZE,                Items.REDSTONE,             MythicPotions.FREEZE_LONG);
-        addBrewMix(MythicPotions.FREEZE,                Items.GLOWSTONE_DUST,       MythicPotions.FREEZE_STRONG);
+        addBrewMix(MythicPotions.ICE_BOMB, Items.FERMENTED_SPIDER_EYE, MythicPotions.FREEZE);
+        addBrewMix(MythicPotions.FREEZE, Items.REDSTONE, MythicPotions.FREEZE_LONG);
+        addBrewMix(MythicPotions.FREEZE, Items.GLOWSTONE_DUST, MythicPotions.FREEZE_STRONG);
 
-        addBrewMix(MythicPotions.STATIC_FIELD,          Items.FERMENTED_SPIDER_EYE, MythicPotions.CHARGED);
-        addBrewMix(MythicPotions.CHARGED,               Items.REDSTONE,             MythicPotions.CHARGED_LONG);
-        addBrewMix(MythicPotions.CHARGED,               Items.GLOWSTONE_DUST,       MythicPotions.CHARGED_STRONG);
+        addBrewMix(MythicPotions.STATIC_FIELD, Items.FERMENTED_SPIDER_EYE, MythicPotions.CHARGED);
+        addBrewMix(MythicPotions.CHARGED, Items.REDSTONE, MythicPotions.CHARGED_LONG);
+        addBrewMix(MythicPotions.CHARGED, Items.GLOWSTONE_DUST, MythicPotions.CHARGED_STRONG);
 
-        addBrewMix(MythicPotions.MIASMA,                Items.FERMENTED_SPIDER_EYE, MythicPotions.LETHAL_INCUBATION);
-        addBrewMix(MythicPotions.LETHAL_INCUBATION,     Items.REDSTONE,             MythicPotions.LETHAL_INCUBATION_LONG);
-        addBrewMix(MythicPotions.LETHAL_INCUBATION,     Items.GLOWSTONE_DUST,       MythicPotions.LETHAL_INCUBATION_STRONG);
+        addBrewMix(MythicPotions.MIASMA, Items.FERMENTED_SPIDER_EYE, MythicPotions.LETHAL_INCUBATION);
+        addBrewMix(MythicPotions.LETHAL_INCUBATION, Items.REDSTONE, MythicPotions.LETHAL_INCUBATION_LONG);
+        addBrewMix(MythicPotions.LETHAL_INCUBATION, Items.GLOWSTONE_DUST, MythicPotions.LETHAL_INCUBATION_STRONG);
 
         Constants.LOG.info("MythicPotions brewing recipes registered (Forge).");
     }
@@ -202,10 +200,6 @@ public class MythicUpgrades {
 
         @SubscribeEvent
         public static void onChunkLoad(ChunkEvent.Load event) {
-            // Queue the chunk for migration instead of migrating immediately.
-            // Calling container.getItem() during chunk promotion (the timing when this event fires)
-            // triggers loot table unpacking → setChanged() → getChunkAt() → deadlock.
-            // The server tick event below drains the queue safely after world gen completes.
             if (!event.getLevel().isClientSide() && event.getChunk() instanceof LevelChunk levelChunk) {
                 MythicLegacyMigration.PENDING_CHUNKS.add(levelChunk);
             }

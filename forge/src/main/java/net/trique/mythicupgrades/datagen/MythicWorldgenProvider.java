@@ -24,8 +24,8 @@ public class MythicWorldgenProvider implements DataProvider {
     private final PackOutput.PathProvider pfPath;
 
     public MythicWorldgenProvider(PackOutput output) {
-        this.cfPath    = output.createPathProvider(PackOutput.Target.DATA_PACK, "worldgen/configured_feature");
-        this.pfPath    = output.createPathProvider(PackOutput.Target.DATA_PACK, "worldgen/placed_feature");
+        this.cfPath = output.createPathProvider(PackOutput.Target.DATA_PACK, "worldgen/configured_feature");
+        this.pfPath = output.createPathProvider(PackOutput.Target.DATA_PACK, "worldgen/placed_feature");
     }
 
     @Override
@@ -35,39 +35,35 @@ public class MythicWorldgenProvider implements DataProvider {
         for (CaveGemType gem : CaveGemType.values()) {
             String g = gem.id;
 
-            // Configured features
-            futures.add(save(cache, cfPath, g + "_stone_blobs",      stoneBlobsCF(g)));
-            futures.add(save(cache, cfPath, g + "_crystal_blobs",    crystalBlobsCF(g)));
-            futures.add(save(cache, cfPath, g + "_crystal_buds",     crystalBudsCF(g, 96, 5, 4, true)));
+            futures.add(save(cache, cfPath, g + "_stone_blobs", stoneBlobsCF(g)));
+            futures.add(save(cache, cfPath, g + "_crystal_blobs", crystalBlobsCF(g)));
+            futures.add(save(cache, cfPath, g + "_crystal_buds", crystalBudsCF(g, 96, 5, 4, true)));
             futures.add(save(cache, cfPath, g + "_crystal_buds_rare", crystalBudsCF(g, 16, 4, 3, false)));
-            futures.add(save(cache, cfPath, g + "_ore",              oreCF(g)));
-            futures.add(save(cache, cfPath, g + "_deepslate_ore",    deepslateOreCF(g)));
+            futures.add(save(cache, cfPath, g + "_ore", oreCF(g)));
+            futures.add(save(cache, cfPath, g + "_deepslate_ore", deepslateOreCF(g)));
 
-            // Placed features
-            futures.add(save(cache, pfPath, g + "_stone_blobs",      placedUniform(g + "_stone_blobs",     30, -64, 30)));
-            futures.add(save(cache, pfPath, g + "_crystal_blobs",    placedUniform(g + "_crystal_blobs",    8, -64, 30)));
-            futures.add(save(cache, pfPath, g + "_crystal_buds",     placedUniform(g + "_crystal_buds",    12, -64, 30)));
+            futures.add(save(cache, pfPath, g + "_stone_blobs", placedUniform(g + "_stone_blobs", 30, -64, 30)));
+            futures.add(save(cache, pfPath, g + "_crystal_blobs", placedUniform(g + "_crystal_blobs", 8, -64, 30)));
+            futures.add(save(cache, pfPath, g + "_crystal_buds", placedUniform(g + "_crystal_buds", 12, -64, 30)));
             futures.add(save(cache, pfPath, g + "_crystal_buds_rare", placedRare(g + "_crystal_buds_rare", 20, -64, 20)));
-            futures.add(save(cache, pfPath, g + "_ore",              placedUniform(g + "_ore",              8,   0, 30)));
-            futures.add(save(cache, pfPath, g + "_deepslate_ore",    placedTrapezoid(g + "_deepslate_ore", 10, -64,  8)));
+            futures.add(save(cache, pfPath, g + "_ore", placedUniform(g + "_ore", 8, 0, 30)));
+            futures.add(save(cache, pfPath, g + "_deepslate_ore", placedTrapezoid(g + "_deepslate_ore", 10, -64, 8)));
         }
 
         return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
     }
 
-    // ── Configured features ───────────────────────────────────────────────────
-
     private static JsonObject stoneBlobsCF(String g) {
         return oreFeature(64,
-            oreTarget(tagPredicate("minecraft:stone_ore_replaceables"),       blockState(mod(g + "_stone"))),
-            oreTarget(tagPredicate("minecraft:deepslate_ore_replaceables"),   blockState(mod(g + "_stone"))));
+            oreTarget(tagPredicate("minecraft:stone_ore_replaceables"), blockState(mod(g + "_stone"))),
+            oreTarget(tagPredicate("minecraft:deepslate_ore_replaceables"), blockState(mod(g + "_stone"))));
     }
 
     private static JsonObject crystalBlobsCF(String g) {
         return oreFeature(20,
-            oreTarget(tagPredicate("minecraft:stone_ore_replaceables"),       blockState(mod(g + "_crystal_block"))),
-            oreTarget(blockPredicate(mod(g + "_stone")),                      blockState(mod(g + "_crystal_block"))),
-            oreTarget(tagPredicate("minecraft:deepslate_ore_replaceables"),   blockState(mod(g + "_crystal_block"))));
+            oreTarget(tagPredicate("minecraft:stone_ore_replaceables"), blockState(mod(g + "_crystal_block"))),
+            oreTarget(blockPredicate(mod(g + "_stone")), blockState(mod(g + "_crystal_block"))),
+            oreTarget(tagPredicate("minecraft:deepslate_ore_replaceables"), blockState(mod(g + "_crystal_block"))));
     }
 
     private static JsonObject crystalBudsCF(String g, int tries, int spreadXZ, int spreadY, boolean withCluster) {
@@ -77,9 +73,9 @@ public class MythicWorldgenProvider implements DataProvider {
         JsonObject cfg = new JsonObject();
 
         JsonArray entries = new JsonArray();
-        entries.add(weightedEntry(budState(mod("small_" + g + "_crystal_bud")),  withCluster ? 4 : 3));
+        entries.add(weightedEntry(budState(mod("small_" + g + "_crystal_bud")), withCluster ? 4 : 3));
         entries.add(weightedEntry(budState(mod("medium_" + g + "_crystal_bud")), withCluster ? 3 : 2));
-        entries.add(weightedEntry(budState(mod("large_" + g + "_crystal_bud")),  withCluster ? 2 : 1));
+        entries.add(weightedEntry(budState(mod("large_" + g + "_crystal_bud")), withCluster ? 2 : 1));
         if (withCluster) entries.add(weightedEntry(budState(mod(g + "_crystal_cluster")), 1));
 
         JsonObject stateProvider = new JsonObject();
@@ -103,10 +99,8 @@ public class MythicWorldgenProvider implements DataProvider {
     private static JsonObject deepslateOreCF(String g) {
         return oreFeature(7,
             oreTarget(tagPredicate("minecraft:deepslate_ore_replaceables"), blockState(mod("deepslate_" + g + "_ore"))),
-            oreTarget(blockPredicate(mod(g + "_stone")),                    blockState(mod("deepslate_" + g + "_ore"))));
+            oreTarget(blockPredicate(mod(g + "_stone")), blockState(mod("deepslate_" + g + "_ore"))));
     }
-
-    // ── Placed features ───────────────────────────────────────────────────────
 
     private static JsonObject placedUniform(String featureId, int count, int minY, int maxY) {
         return placed(featureId, countMod(count), inSquare(), uniformHeight(minY, maxY), biomeFilter());
@@ -128,8 +122,6 @@ public class MythicWorldgenProvider implements DataProvider {
         obj.add("placement", placement);
         return obj;
     }
-
-    // ── JSON helpers ──────────────────────────────────────────────────────────
 
     private static JsonObject oreFeature(int size, JsonObject... targets) {
         JsonObject obj = new JsonObject();
@@ -213,8 +205,10 @@ public class MythicWorldgenProvider implements DataProvider {
         obj.addProperty("type", "minecraft:height_range");
         JsonObject height = new JsonObject();
         height.addProperty("type", "minecraft:uniform");
-        JsonObject min = new JsonObject(); min.addProperty("absolute", minY);
-        JsonObject max = new JsonObject(); max.addProperty("absolute", maxY);
+        JsonObject min = new JsonObject();
+        min.addProperty("absolute", minY);
+        JsonObject max = new JsonObject();
+        max.addProperty("absolute", maxY);
         height.add("min_inclusive", min);
         height.add("max_inclusive", max);
         obj.add("height", height);
@@ -226,8 +220,10 @@ public class MythicWorldgenProvider implements DataProvider {
         obj.addProperty("type", "minecraft:height_range");
         JsonObject height = new JsonObject();
         height.addProperty("type", "minecraft:trapezoid");
-        JsonObject min = new JsonObject(); min.addProperty("absolute", minY);
-        JsonObject max = new JsonObject(); max.addProperty("absolute", maxY);
+        JsonObject min = new JsonObject();
+        min.addProperty("absolute", minY);
+        JsonObject max = new JsonObject();
+        max.addProperty("absolute", maxY);
         height.add("min_inclusive", min);
         height.add("max_inclusive", max);
         obj.add("height", height);
@@ -245,7 +241,7 @@ public class MythicWorldgenProvider implements DataProvider {
     }
 
     private CompletableFuture<?> save(CachedOutput cache, PackOutput.PathProvider provider,
-                                      String name, JsonObject json) {
+                                       String name, JsonObject json) {
         Path path = provider.json(new ResourceLocation(Constants.MOD_ID, name));
         return DataProvider.saveStable(cache, GSON.toJsonTree(json), path);
     }

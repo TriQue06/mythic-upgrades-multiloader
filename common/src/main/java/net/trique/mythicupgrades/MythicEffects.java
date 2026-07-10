@@ -33,7 +33,7 @@ public class MythicEffects {
     public static final MobEffect DAMAGE_DEFLECTION = defer("damage_deflection", new DamageDeflectionEffect());
     public static final MobEffect ARCANE_AURA = defer("arcane_aura", new ArcaneAuraEffect());
     public static final MobEffect TOPAZ_REACTION = defer("topaz_reaction", new TopazReactionEffect());
-public static final MobEffect FREEZE = defer("freeze", new FreezeEffect());
+    public static final MobEffect FREEZE = defer("freeze", new FreezeEffect());
     public static final MobEffect BLOOD_THIRST = defer("blood_thirst", new BloodThirstEffect());
     public static final MobEffect LETHAL_INCUBATION = defer("lethal_incubation", new LethalIncubationEffect());
     public static final MobEffect MIASMA = defer("miasma", new MiasmaEffect());

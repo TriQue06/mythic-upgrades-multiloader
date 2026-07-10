@@ -19,8 +19,8 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 public class MythicBiomeBootstrap {
 
     public static void bootstrap(BootstapContext<Biome> ctx) {
-        HolderGetter<PlacedFeature>           features = ctx.lookup(Registries.PLACED_FEATURE);
-        HolderGetter<ConfiguredWorldCarver<?>> carvers  = ctx.lookup(Registries.CONFIGURED_CARVER);
+        HolderGetter<PlacedFeature> features = ctx.lookup(Registries.PLACED_FEATURE);
+        HolderGetter<ConfiguredWorldCarver<?>> carvers = ctx.lookup(Registries.CONFIGURED_CARVER);
 
         for (CaveGemType gem : CaveGemType.values()) {
             ctx.register(gem.biome(), buildBiome(gem, features, carvers));
@@ -33,26 +33,17 @@ public class MythicBiomeBootstrap {
 
         BiomeGenerationSettings.Builder gen = new BiomeGenerationSettings.Builder(features, carvers);
 
-        // Vanilla underground variety (andesite, granite, diorite, tuff, calcite, gravel)
-        // and vanilla ores — must come FIRST so FeatureSorter sees the same ordering
-        // as vanilla cave biomes that share chunk columns with these biomes.
         BiomeDefaultFeatures.addDefaultUndergroundVariety(gen);
         BiomeDefaultFeatures.addDefaultOres(gen);
 
-        // Extra necoium ore density — unique to mythic cave biomes
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(MythicPlacedFeatures.NECOIUM_ORE_EXTRA_PF));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(MythicPlacedFeatures.DEEPSLATE_NECOIUM_ORE_EXTRA_PF));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(MythicPlacedFeatures.RAW_NECOIUM_BLOCK_CAVES_PF));
 
-        // Gem stone blobs and ore veins — unique to each cave biome
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.stoneBlobsPF()));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.orePF()));
 
-        // Crystal decoration — unique to each cave biome
-        // glow_lichen, crystal_buds_rare, and geodes are added via BiomeModifier/BiomeModifications
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBlobsPF()));
-
-        // spring_water and spring_lava are added via BiomeModifier/BiomeModifications
 
         MobSpawnSettings spawns = new MobSpawnSettings.Builder()
                 .creatureGenerationProbability(0.07f)

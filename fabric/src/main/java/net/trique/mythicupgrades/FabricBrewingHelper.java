@@ -5,9 +5,6 @@ import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.Potions;
 import net.trique.mythicupgrades.item.MythicItems;
 
-// PotionBrewing.addMix is widened by mythicupgrades.accesswidener so Loom can compile
-// this direct call and correctly remap it in the production JAR.
-// Forge uses BrewingRecipeRegistry instead (PotionBrewing.addMix was removed in 47.3+).
 public final class FabricBrewingHelper {
 
     private FabricBrewingHelper() {}
@@ -48,22 +45,21 @@ public final class FabricBrewingHelper {
         PotionBrewing.addMix(Potions.AWKWARD, MythicItems.NECOIUM_INGOT, MythicPotions.NECOIUM_SHARE);
         PotionBrewing.addMix(MythicPotions.NECOIUM_SHARE, Items.REDSTONE, MythicPotions.NECOIUM_SHARE_LONG);
 
-        // Negative potions (fermented spider eye)
-        PotionBrewing.addMix(MythicPotions.ICE_SHIELD,        Items.FERMENTED_SPIDER_EYE, MythicPotions.ICE_BOMB);
-        PotionBrewing.addMix(MythicPotions.ICE_BOMB,          Items.REDSTONE,             MythicPotions.ICE_BOMB_LONG);
-        PotionBrewing.addMix(MythicPotions.ICE_BOMB,          Items.GLOWSTONE_DUST,       MythicPotions.ICE_BOMB_STRONG);
+        PotionBrewing.addMix(MythicPotions.ICE_SHIELD, Items.FERMENTED_SPIDER_EYE, MythicPotions.ICE_BOMB);
+        PotionBrewing.addMix(MythicPotions.ICE_BOMB, Items.REDSTONE, MythicPotions.ICE_BOMB_LONG);
+        PotionBrewing.addMix(MythicPotions.ICE_BOMB, Items.GLOWSTONE_DUST, MythicPotions.ICE_BOMB_STRONG);
 
-        PotionBrewing.addMix(MythicPotions.ICE_BOMB,          Items.FERMENTED_SPIDER_EYE, MythicPotions.FREEZE);
-        PotionBrewing.addMix(MythicPotions.FREEZE,            Items.REDSTONE,             MythicPotions.FREEZE_LONG);
-        PotionBrewing.addMix(MythicPotions.FREEZE,            Items.GLOWSTONE_DUST,       MythicPotions.FREEZE_STRONG);
+        PotionBrewing.addMix(MythicPotions.ICE_BOMB, Items.FERMENTED_SPIDER_EYE, MythicPotions.FREEZE);
+        PotionBrewing.addMix(MythicPotions.FREEZE, Items.REDSTONE, MythicPotions.FREEZE_LONG);
+        PotionBrewing.addMix(MythicPotions.FREEZE, Items.GLOWSTONE_DUST, MythicPotions.FREEZE_STRONG);
 
-        PotionBrewing.addMix(MythicPotions.STATIC_FIELD,      Items.FERMENTED_SPIDER_EYE, MythicPotions.CHARGED);
-        PotionBrewing.addMix(MythicPotions.CHARGED,           Items.REDSTONE,             MythicPotions.CHARGED_LONG);
-        PotionBrewing.addMix(MythicPotions.CHARGED,           Items.GLOWSTONE_DUST,       MythicPotions.CHARGED_STRONG);
+        PotionBrewing.addMix(MythicPotions.STATIC_FIELD, Items.FERMENTED_SPIDER_EYE, MythicPotions.CHARGED);
+        PotionBrewing.addMix(MythicPotions.CHARGED, Items.REDSTONE, MythicPotions.CHARGED_LONG);
+        PotionBrewing.addMix(MythicPotions.CHARGED, Items.GLOWSTONE_DUST, MythicPotions.CHARGED_STRONG);
 
-        PotionBrewing.addMix(MythicPotions.MIASMA,            Items.FERMENTED_SPIDER_EYE, MythicPotions.LETHAL_INCUBATION);
-        PotionBrewing.addMix(MythicPotions.LETHAL_INCUBATION, Items.REDSTONE,             MythicPotions.LETHAL_INCUBATION_LONG);
-        PotionBrewing.addMix(MythicPotions.LETHAL_INCUBATION, Items.GLOWSTONE_DUST,       MythicPotions.LETHAL_INCUBATION_STRONG);
+        PotionBrewing.addMix(MythicPotions.MIASMA, Items.FERMENTED_SPIDER_EYE, MythicPotions.LETHAL_INCUBATION);
+        PotionBrewing.addMix(MythicPotions.LETHAL_INCUBATION, Items.REDSTONE, MythicPotions.LETHAL_INCUBATION_LONG);
+        PotionBrewing.addMix(MythicPotions.LETHAL_INCUBATION, Items.GLOWSTONE_DUST, MythicPotions.LETHAL_INCUBATION_STRONG);
 
         Constants.LOG.info("MythicPotions brewing recipes registered (Fabric).");
     }

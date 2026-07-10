@@ -58,7 +58,6 @@ public abstract class LivingEntityMixin {
     @Unique private float mu_jadeJumpFallCredit = 0f;
     @Unique private Map<UUID, Integer> mu_staticFieldStacks = new HashMap<>();
     @Unique private Map<UUID, Integer> mu_staticFieldLastHitTick = new HashMap<>();
-    // each entry: {createdTick, x, y, z, lingerTicks, auraLevel}
     @Unique private List<float[]> mu_jadeLingerTrail = new ArrayList<>();
 
     @Unique private int mu_arcaneWaveTick = -1;
@@ -87,7 +86,6 @@ public abstract class LivingEntityMixin {
     @Unique private float mu_iceBombWaveMaxRadius = 0f;
     @Unique private double mu_iceBombWaveX = 0, mu_iceBombWaveY = 0, mu_iceBombWaveZ = 0;
 
-    // Saved effect state captured just before dying, so Player respawn clearing effects doesn't matter
     @Unique private boolean mu_deathHadLethalIncubation = false;
     @Unique private int mu_deathLethalIncubationLevel = 0;
     @Unique private boolean mu_deathHadIceBomb = false;
@@ -158,7 +156,6 @@ public abstract class LivingEntityMixin {
             if (peridotLevel > 0)
                 self.addEffect(new MobEffectInstance(MythicEffects.MIASMA, -1, peridotLevel - 1, false, false, true));
         }
-        // Miasma behavior is effect-driven: works whether from armor, potion, or command
         MobEffectInstance miasmaEff = self.getEffect(MythicEffects.MIASMA);
         if (miasmaEff != null) {
             int miasmaLevel = miasmaEff.getAmplifier() + 1;
@@ -202,7 +199,6 @@ public abstract class LivingEntityMixin {
             if (citrineLevel > 0)
                 self.addEffect(new MobEffectInstance(MythicEffects.STATIC_FIELD, -1, citrineLevel - 1, false, false, true));
         }
-        // Static field behavior is effect-driven: works whether from armor, potion, or command
         MobEffectInstance staticFieldEff = self.getEffect(MythicEffects.STATIC_FIELD);
         if (staticFieldEff != null && self.level() instanceof ServerLevel citrineSLevel) {
             int staticLevel = staticFieldEff.getAmplifier() + 1;
@@ -249,7 +245,6 @@ public abstract class LivingEntityMixin {
             if (jadeLevel > 0)
                 self.addEffect(new MobEffectInstance(MythicEffects.JADE_AURA, -1, jadeLevel - 1, false, false, true));
         }
-        // Linger trail processing runs regardless of current effect state so laid trail persists
         if (!mu_jadeLingerTrail.isEmpty() && self.level() instanceof ServerLevel jadeLingerLevel) {
             mu_jadeLingerTrail.removeIf(p -> self.tickCount - p[0] >= p[4]);
             for (float[] p : mu_jadeLingerTrail) {
@@ -269,7 +264,6 @@ public abstract class LivingEntityMixin {
                 }
             }
         }
-        // Jade trail behavior is effect-driven: works whether from armor, potion, or command
         MobEffectInstance jadeAuraActive = self.getEffect(MythicEffects.JADE_AURA);
         if (jadeAuraActive != null && self.tickCount % MythicStats.JADE_TRAIL_INTERVAL_TICKS == 0
                 && self.level() instanceof ServerLevel jadeSLevel) {
@@ -366,7 +360,6 @@ public abstract class LivingEntityMixin {
             }
         }
         mu_healthBefore = self.getHealth();
-        // Accumulate flags on every hit so multi-tick (lava/void) damage can't miss the window.
         MobEffectInstance liEffect = self.getEffect(MythicEffects.LETHAL_INCUBATION);
         if (liEffect != null) { mu_deathHadLethalIncubation = true; mu_deathLethalIncubationLevel = liEffect.getAmplifier() + 1; }
         if (self.getEffect(MythicEffects.ICE_BOMB) != null)          mu_deathHadIceBomb = true;
@@ -558,8 +551,6 @@ public abstract class LivingEntityMixin {
 
         }
 
-        // Fire death-on-hit effects here instead of in die() — more reliable across Forge/Fabric
-        // since hurt() is the one place guaranteed to run before any respawn/effect-clear logic.
         if (self.isDeadOrDying() && self.level() instanceof ServerLevel deathLevel
                 && (mu_deathHadLethalIncubation || mu_deathHadIceBomb || mu_deathHadCharged)) {
             triggerDeathEffects(self, deathLevel);
@@ -576,8 +567,6 @@ public abstract class LivingEntityMixin {
         if (extra > 0) {
             Vec3 v = self.getDeltaMovement();
             self.setDeltaMovement(v.x, v.y + extra, v.z);
-            // Credit the extra height this boost will add so it doesn't cause fall damage.
-            // Extra blocks gained ≈ extra * 7 (derived from Minecraft's 0.08 gravity + 0.98 drag).
             mu_jadeJumpFallCredit = extra * 7f;
         }
     }
@@ -594,14 +583,14 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private void triggerDeathEffects(LivingEntity self, ServerLevel serverLevel) {
-        boolean hadIncub   = mu_deathHadLethalIncubation;
+        boolean hadIncub = mu_deathHadLethalIncubation;
         boolean hadIceBomb = mu_deathHadIceBomb;
         boolean hadCharged = mu_deathHadCharged;
         int incubLevel = mu_deathLethalIncubationLevel;
 
         mu_deathHadLethalIncubation = false;
-        mu_deathHadIceBomb          = false;
-        mu_deathHadCharged          = false;
+        mu_deathHadIceBomb = false;
+        mu_deathHadCharged = false;
         mu_deathLethalIncubationLevel = 0;
 
         if (hadIncub) {
@@ -860,7 +849,6 @@ public abstract class LivingEntityMixin {
     private static void applyChainLightning(ServerLevel level, LivingEntity victim, LivingEntity attacker, float damage) {
         float chainDamage = damage * MythicStats.CITRINE_TOOL_CHAIN_FRACTION;
         float range = MythicStats.CITRINE_TOOL_CHAIN_RANGE;
-        // Search near the attacker so that nearby enemies get chained regardless of where the victim is
         double cx = attacker != null ? attacker.getX() : victim.getX();
         double cy = attacker != null ? attacker.getY() : victim.getY();
         double cz = attacker != null ? attacker.getZ() : victim.getZ();
@@ -954,7 +942,7 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void applyJadeTrail(ServerLevel level, LivingEntity owner, int jadeLevel) {
-        int trailAmplifier = ((jadeLevel + 1) / 2) - 1; // ceiling(jadeLevel/2) - 1
+        int trailAmplifier = ((jadeLevel + 1) / 2) - 1;
         float radius = MythicStats.JADE_TRAIL_RADIUS;
         AABB bb = new AABB(owner.getX() - radius, owner.getY() - radius, owner.getZ() - radius,
             owner.getX() + radius, owner.getY() + radius, owner.getZ() + radius);

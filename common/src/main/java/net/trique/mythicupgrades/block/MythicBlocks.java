@@ -548,7 +548,6 @@ public class MythicBlocks {
         POLISHED_AMETRINE_SCHIST.defaultBlockState(),
         BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_PURPLE).strength(1.5F, 6.0F)));
 
-    // Crystal bricks walls
     public static final Block AQUAMARINE_CRYSTAL_BRICKS_WALL = defer("aquamarine_crystal_bricks_wall", new WallBlock(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final Block CITRINE_CRYSTAL_BRICKS_WALL = defer("citrine_crystal_bricks_wall", new WallBlock(
@@ -566,7 +565,6 @@ public class MythicBlocks {
     public static final Block AMETRINE_CRYSTAL_BRICKS_WALL = defer("ametrine_crystal_bricks_wall", new WallBlock(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
 
-    // Schist walls
     public static final Block AQUAMARINE_SCHIST_WALL = defer("aquamarine_schist_wall", new WallBlock(
         BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(MapColor.COLOR_LIGHT_BLUE).strength(1.5F, 6.0F)));
     public static final Block CITRINE_SCHIST_WALL = defer("citrine_schist_wall", new WallBlock(

@@ -42,12 +42,11 @@ public class MythicConfiguredFeatures {
         HolderGetter<Block> blocks = ctx.lookup(Registries.BLOCK);
 
         for (CaveGemType gem : CaveGemType.values()) {
-            Block stone    = blocks.getOrThrow(gem.stoneBlock()).value();
-            Block crystal  = blocks.getOrThrow(gem.crystalBlock()).value();
-            Block ore      = blocks.getOrThrow(gem.oreBlock()).value();
-            Block dsOre    = blocks.getOrThrow(gem.deepslateOre()).value();
+            Block stone = blocks.getOrThrow(gem.stoneBlock()).value();
+            Block crystal = blocks.getOrThrow(gem.crystalBlock()).value();
+            Block ore = blocks.getOrThrow(gem.oreBlock()).value();
+            Block dsOre = blocks.getOrThrow(gem.deepslateOre()).value();
 
-            // Stone blobs — fill stone and deepslate with gem stone (size 64)
             ctx.register(gem.stoneBlobsCF(), new ConfiguredFeature<>(Feature.ORE,
                 new OreConfiguration(List.of(
                     OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES),    stone.defaultBlockState()),
@@ -55,7 +54,6 @@ public class MythicConfiguredFeatures {
                 ), 64)
             ));
 
-            // Crystal blobs — replace stone, gem stone, and deepslate with crystal block (size 20)
             ctx.register(gem.crystalBlobsCF(), new ConfiguredFeature<>(Feature.ORE,
                 new OreConfiguration(List.of(
                     OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES),    crystal.defaultBlockState()),
@@ -64,7 +62,6 @@ public class MythicConfiguredFeatures {
                 ), 20)
             ));
 
-            // Crystal buds — weighted mix of all 4 bud sizes (tries 96)
             ctx.register(gem.crystalBudsCF(), new ConfiguredFeature<>(MythicFeatures.CRYSTAL_BUD,
                 new CrystalBudFeatureConfig(
                     new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
@@ -77,7 +74,6 @@ public class MythicConfiguredFeatures {
                 )
             ));
 
-            // Crystal buds rare — smaller patch, no cluster variant (tries 16)
             ctx.register(gem.crystalBudsRareCF(), new ConfiguredFeature<>(MythicFeatures.CRYSTAL_BUD,
                 new CrystalBudFeatureConfig(
                     new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
@@ -89,8 +85,6 @@ public class MythicConfiguredFeatures {
                 )
             ));
 
-            // Ore — replaces stone_ore_replaceables with stone variant, deepslate_ore_replaceables
-            // and gem stone with deepslate variant; one generation covers the full y -64 to 30 range
             ctx.register(gem.oreCF(), new ConfiguredFeature<>(Feature.ORE,
                 new OreConfiguration(List.of(
                     OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES),     ore.defaultBlockState()),
@@ -100,13 +94,12 @@ public class MythicConfiguredFeatures {
             ));
         }
 
-        // Geodes — hollow crystal-lined caves matching amethyst geode rarity and structure
         for (CaveGemType gem : CaveGemType.values()) {
             Block crystalBlock = blocks.getOrThrow(gem.crystalBlock()).value();
             Block buddingBlock = blocks.getOrThrow(gem.buddingCrystal()).value();
-            Block smallBud     = blocks.getOrThrow(gem.smallBud()).value();
-            Block mediumBud    = blocks.getOrThrow(gem.mediumBud()).value();
-            Block largeBud     = blocks.getOrThrow(gem.largeBud()).value();
+            Block smallBud = blocks.getOrThrow(gem.smallBud()).value();
+            Block mediumBud = blocks.getOrThrow(gem.mediumBud()).value();
+            Block largeBud = blocks.getOrThrow(gem.largeBud()).value();
             Block clusterBlock = blocks.getOrThrow(gem.cluster()).value();
 
             ctx.register(gem.geodeCF(), new ConfiguredFeature<>(Feature.GEODE,
@@ -135,12 +128,11 @@ public class MythicConfiguredFeatures {
             ));
         }
 
-        // Necoium ores — diamond-level rarity, no biome restriction
         ResourceKey<Block> necoiumOreKey = ResourceKey.create(Registries.BLOCK,
                 new ResourceLocation(Constants.MOD_ID, "necoium_ore"));
         ResourceKey<Block> deepslateNecoiumKey = ResourceKey.create(Registries.BLOCK,
                 new ResourceLocation(Constants.MOD_ID, "deepslate_necoium_ore"));
-        Block necoiumOre        = blocks.getOrThrow(necoiumOreKey).value();
+        Block necoiumOre = blocks.getOrThrow(necoiumOreKey).value();
         Block deepslateNecoiumOre = blocks.getOrThrow(deepslateNecoiumKey).value();
 
         ctx.register(NECOIUM_ORE_CF, new ConfiguredFeature<>(Feature.ORE,

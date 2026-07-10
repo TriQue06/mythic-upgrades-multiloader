@@ -70,32 +70,25 @@ public class MythicBiomeDataProvider implements DataProvider {
 
     private static JsonArray features(CaveGemType gem) {
         JsonArray steps = new JsonArray();
-        // steps 0-3: empty
         for (int i = 0; i < 4; i++) steps.add(new JsonArray());
-        // step 4: SURFACE_STRUCTURES — monster room
         JsonArray step4 = new JsonArray();
         step4.add("minecraft:monster_room");
         steps.add(step4);
-        // step 5: STRONGHOLDS — empty
         steps.add(new JsonArray());
-        // step 6: UNDERGROUND_ORES — stone blobs, ore, deepslate ore
         JsonArray step6 = new JsonArray();
         step6.add(mod(gem.id + "_stone_blobs"));
         step6.add(mod(gem.id + "_ore"));
         step6.add(mod(gem.id + "_deepslate_ore"));
         steps.add(step6);
-        // step 7: UNDERGROUND_DECORATION — crystal blobs, buds
         JsonArray step7 = new JsonArray();
         step7.add(mod(gem.id + "_crystal_blobs"));
         step7.add(mod(gem.id + "_crystal_buds"));
         step7.add(mod(gem.id + "_crystal_buds_rare"));
         steps.add(step7);
-        // step 8: FLUID_SPRINGS — springs
         JsonArray step8 = new JsonArray();
         step8.add("minecraft:spring_water");
         step8.add("minecraft:spring_lava");
         steps.add(step8);
-        // steps 9-10: empty
         steps.add(new JsonArray());
         steps.add(new JsonArray());
         return steps;
@@ -104,7 +97,7 @@ public class MythicBiomeDataProvider implements DataProvider {
     private static JsonObject emptySpawners() {
         JsonObject obj = new JsonObject();
         for (String category : new String[]{"ambient","axolotls","creature","misc","monster",
-                                            "underground_water_creature","water_ambient","water_creature"}) {
+                                             "underground_water_creature","water_ambient","water_creature"}) {
             obj.add(category, new JsonArray());
         }
         return obj;

@@ -9,9 +9,7 @@ plugins {
 def tbJiJDir = layout.buildDirectory.dir('terrablender-jij')
 
 def extractTBJiJ = tasks.register('extractTerraBlenderJiJ') {
-    def tbJar = rootProject.fileTree('libs').find {
-        it.name.startsWith('TerraBlender-fabric-') && it.name.endsWith('.jar')
-    }
+    def tbJar = rootProject.file("libs/TerraBlender-fabric-${terrablender_fabric_version}.jar")
     inputs.file(tbJar)
     outputs.dir(tbJiJDir)
     doLast {
@@ -44,7 +42,7 @@ dependencies {
     implementation project(":common")
     // modImplementation remaps TerraBlender-fabric (intermediary→Mojmap) via Loom.
     // fabric.mod.json does not list TerraBlender in 'depends', so it stays optional.
-    modImplementation fileTree(dir: rootProject.file('libs'), include: ['TerraBlender-fabric-*.jar'])
+    modImplementation files(rootProject.file("libs/TerraBlender-fabric-${terrablender_fabric_version}.jar"))
     // nightconfig JARs extracted from TerraBlender's JiJ bundle — required at runtime
     runtimeOnly(fileTree(tbJiJDir) { builtBy extractTBJiJ })
 }

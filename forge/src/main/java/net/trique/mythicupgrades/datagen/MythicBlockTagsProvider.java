@@ -19,10 +19,7 @@ public class MythicBlockTagsProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider p) {
 
-        // ── PICKAXE MINEABLE ──────────────────────────────────────────────────
-        // Her yeni blok buraya eklenecek.
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
-            // Ores
             .add(MythicBlocks.AQUAMARINE_ORE, MythicBlocks.DEEPSLATE_AQUAMARINE_ORE)
             .add(MythicBlocks.CITRINE_ORE, MythicBlocks.DEEPSLATE_CITRINE_ORE)
             .add(MythicBlocks.TOPAZ_ORE, MythicBlocks.DEEPSLATE_TOPAZ_ORE)
@@ -30,12 +27,10 @@ public class MythicBlockTagsProvider extends BlockTagsProvider {
             .add(MythicBlocks.RUBY_ORE, MythicBlocks.SAPPHIRE_ORE)
             .add(MythicBlocks.JADE_ORE, MythicBlocks.AMETRINE_ORE)
             .add(MythicBlocks.NECOIUM_ORE, MythicBlocks.DEEPSLATE_NECOIUM_ORE)
-            // Gem blocks
             .add(MythicBlocks.AQUAMARINE_BLOCK, MythicBlocks.CITRINE_BLOCK, MythicBlocks.TOPAZ_BLOCK)
             .add(MythicBlocks.PERIDOT_BLOCK, MythicBlocks.RUBY_BLOCK, MythicBlocks.SAPPHIRE_BLOCK)
             .add(MythicBlocks.JADE_BLOCK, MythicBlocks.AMETRINE_BLOCK, MythicBlocks.NECOIUM_BLOCK)
             .add(MythicBlocks.RAW_NECOIUM_BLOCK)
-            // Crystal blocks & decorative
             .add(MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK, MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK_SLAB, MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK_STAIRS)
             .add(MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK, MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK_SLAB, MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK_STAIRS)
             .add(MythicBlocks.AQUAMARINE_CRYSTAL_BRICKS, MythicBlocks.AQUAMARINE_CRYSTAL_BRICKS_SLAB, MythicBlocks.AQUAMARINE_CRYSTAL_BRICKS_STAIRS, MythicBlocks.AQUAMARINE_CRYSTAL_BRICKS_WALL)
@@ -92,7 +87,6 @@ public class MythicBlockTagsProvider extends BlockTagsProvider {
             .add(MythicBlocks.AMETRINE_CRYSTAL_CLUSTER, MythicBlocks.LARGE_AMETRINE_CRYSTAL_BUD, MythicBlocks.MEDIUM_AMETRINE_CRYSTAL_BUD, MythicBlocks.SMALL_AMETRINE_CRYSTAL_BUD)
             .add(MythicBlocks.BUDDING_AMETRINE_CRYSTAL)
 
-            // Stone blocks (all gems)
             .add(MythicBlocks.AQUAMARINE_SCHIST, MythicBlocks.AQUAMARINE_SCHIST_SLAB, MythicBlocks.AQUAMARINE_SCHIST_STAIRS, MythicBlocks.AQUAMARINE_SCHIST_WALL)
             .add(MythicBlocks.POLISHED_AQUAMARINE_SCHIST, MythicBlocks.POLISHED_AQUAMARINE_SCHIST_SLAB, MythicBlocks.POLISHED_AQUAMARINE_SCHIST_STAIRS)
             .add(MythicBlocks.CITRINE_SCHIST, MythicBlocks.CITRINE_SCHIST_SLAB, MythicBlocks.CITRINE_SCHIST_STAIRS, MythicBlocks.CITRINE_SCHIST_WALL)
@@ -110,8 +104,6 @@ public class MythicBlockTagsProvider extends BlockTagsProvider {
             .add(MythicBlocks.AMETRINE_SCHIST, MythicBlocks.AMETRINE_SCHIST_SLAB, MythicBlocks.AMETRINE_SCHIST_STAIRS, MythicBlocks.AMETRINE_SCHIST_WALL)
             .add(MythicBlocks.POLISHED_AMETRINE_SCHIST, MythicBlocks.POLISHED_AMETRINE_SCHIST_SLAB, MythicBlocks.POLISHED_AMETRINE_SCHIST_STAIRS);
 
-        // ── NEEDS IRON TOOL (en az demir kazma gerektirir) ───────────────────
-        // Cevherler, külçe blokları ve ham cevher blokları buraya.
         tag(BlockTags.NEEDS_IRON_TOOL)
             .add(MythicBlocks.AQUAMARINE_ORE, MythicBlocks.DEEPSLATE_AQUAMARINE_ORE, MythicBlocks.AQUAMARINE_BLOCK)
             .add(MythicBlocks.CITRINE_ORE, MythicBlocks.DEEPSLATE_CITRINE_ORE, MythicBlocks.CITRINE_BLOCK)
@@ -123,12 +115,6 @@ public class MythicBlockTagsProvider extends BlockTagsProvider {
             .add(MythicBlocks.AMETRINE_ORE, MythicBlocks.AMETRINE_BLOCK)
             .add(MythicBlocks.NECOIUM_ORE, MythicBlocks.DEEPSLATE_NECOIUM_ORE, MythicBlocks.NECOIUM_BLOCK, MythicBlocks.RAW_NECOIUM_BLOCK);
 
-        // ── NEEDS DIAMOND TOOL (en az elmas kazma gerektirir) ────────────────
-        // Gerekirse buraya ekle.
-        // tag(BlockTags.NEEDS_DIAMOND_TOOL)
-        //     .add(MythicBlocks.NECOIUM_ORE);
-
-        // ── WALLS ─────────────────────────────────────────────────────────────
         tag(BlockTags.WALLS)
             .add(MythicBlocks.AQUAMARINE_CRYSTAL_BRICKS_WALL, MythicBlocks.CITRINE_CRYSTAL_BRICKS_WALL)
             .add(MythicBlocks.TOPAZ_CRYSTAL_BRICKS_WALL, MythicBlocks.PERIDOT_CRYSTAL_BRICKS_WALL)

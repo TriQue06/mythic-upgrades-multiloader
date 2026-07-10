@@ -24,9 +24,8 @@ public class MixinTheEndBiomeSource {
 
     @Unique private static final Logger LOGGER = LoggerFactory.getLogger("MythicUpgrades/EndBiome");
 
-    // Ametrine replaces END_HIGHLANDS; Jade replaces END_MIDLANDS.
     @Unique private Holder<Biome> mythicupgrades$ametrineBarrens = null;
-    @Unique private Holder<Biome> mythicupgrades$jadeBarrens     = null;
+    @Unique private Holder<Biome> mythicupgrades$jadeBarrens = null;
 
     @Inject(
         method = "<init>(Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;)V",
@@ -36,7 +35,6 @@ public class MixinTheEndBiomeSource {
             Holder<Biome> end, Holder<Biome> highlands, Holder<Biome> midlands,
             Holder<Biome> islands, Holder<Biome> barrens, CallbackInfo ci) {
 
-        // Skip during Forge datagen
         try {
             boolean isDatagen = (boolean) Class
                     .forName("net.minecraftforge.data.loading.DatagenModLoader")
@@ -45,8 +43,6 @@ public class MixinTheEndBiomeSource {
             if (isDatagen) return;
         } catch (Throwable ignored) {}
 
-        // MappedRegistry$1 is the anonymous HolderOwner stored in Holder.Reference.owner.
-        // Walk its enclosing fields to reach the actual Registry<Biome>.
         Registry<Biome> biomeReg = mythicupgrades$findRegistry(highlands);
         if (biomeReg == null) {
             LOGGER.warn("Could not locate biome Registry — End biomes will not generate");
@@ -54,7 +50,7 @@ public class MixinTheEndBiomeSource {
         }
 
         mythicupgrades$ametrineBarrens = biomeReg.getHolder(MythicBiomes.AMETRINE_BARRENS).orElse(null);
-        mythicupgrades$jadeBarrens     = biomeReg.getHolder(MythicBiomes.JADE_BARRENS).orElse(null);
+        mythicupgrades$jadeBarrens = biomeReg.getHolder(MythicBiomes.JADE_BARRENS).orElse(null);
         LOGGER.info("End biomes resolved — ametrine={} jade={}", mythicupgrades$ametrineBarrens, mythicupgrades$jadeBarrens);
     }
 
@@ -67,7 +63,6 @@ public class MixinTheEndBiomeSource {
                 Object val = f.get(holder);
                 if (val == null) continue;
                 if (val instanceof Registry<?> r) return (Registry<Biome>) r;
-                // Anonymous inner class wrapping the registry (MappedRegistry$1)
                 for (Field inner : val.getClass().getDeclaredFields()) {
                     inner.setAccessible(true);
                     Object innerVal = inner.get(val);
@@ -84,7 +79,7 @@ public class MixinTheEndBiomeSource {
     private void mythicupgrades$addPossibleBiomes(CallbackInfoReturnable<Stream<Holder<Biome>>> cir) {
         Stream<Holder<Biome>> extra = Stream.empty();
         if (mythicupgrades$ametrineBarrens != null) extra = Stream.concat(extra, Stream.of(mythicupgrades$ametrineBarrens));
-        if (mythicupgrades$jadeBarrens     != null) extra = Stream.concat(extra, Stream.of(mythicupgrades$jadeBarrens));
+        if (mythicupgrades$jadeBarrens != null) extra = Stream.concat(extra, Stream.of(mythicupgrades$jadeBarrens));
         cir.setReturnValue(Stream.concat(cir.getReturnValue(), extra));
     }
 
@@ -107,11 +102,6 @@ public class MixinTheEndBiomeSource {
         }
     }
 
-    /**
-     * Divides the world into GRID×GRID biome-unit cells (~384 blocks wide each).
-     * Roughly 1/8 of cells become a mythic biome zone, producing large contiguous blobs.
-     * The blob boundary is softened by checking up to 1 cell of overlap with neighbours.
-     */
     @Unique
     private static final int GRID = 96;
 
@@ -120,21 +110,18 @@ public class MixinTheEndBiomeSource {
         int cellX = Math.floorDiv(x, GRID);
         int cellZ = Math.floorDiv(z, GRID);
 
-        // Check the cell we're in and immediate neighbours so blobs can overlap borders
         for (int dx = -1; dx <= 1; dx++) {
             for (int dz = -1; dz <= 1; dz++) {
                 int cx = cellX + dx;
                 int cz = cellZ + dz;
                 long h = cellHash(cx, cz, salt);
-                if ((h & 0b11111L) != 0L) continue; // ~1/32 cells are active
+                if ((h & 0b11111L) != 0L) continue;
 
-                // Jittered centre of this active cell
                 int centreX = cx * GRID + (int) ((h >>> 8) & (GRID - 1));
                 int centreZ = cz * GRID + (int) ((h >>> 24) & (GRID - 1));
 
                 int distX = x - centreX;
                 int distZ = z - centreZ;
-                // Blob radius: 44 biome-units (~176 blocks)
                 if (distX * distX + distZ * distZ < 44 * 44) return true;
             }
         }

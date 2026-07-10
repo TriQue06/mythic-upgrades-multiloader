@@ -11,16 +11,16 @@ import java.util.List;
 
 public class MythicUpgradeTemplateItem extends SmithingTemplateItem {
 
-    private static final ResourceLocation EMPTY_SLOT_HELMET     = new ResourceLocation("item/empty_armor_slot_helmet");
+    private static final ResourceLocation EMPTY_SLOT_HELMET = new ResourceLocation("item/empty_armor_slot_helmet");
     private static final ResourceLocation EMPTY_SLOT_CHESTPLATE = new ResourceLocation("item/empty_armor_slot_chestplate");
-    private static final ResourceLocation EMPTY_SLOT_LEGGINGS   = new ResourceLocation("item/empty_armor_slot_leggings");
-    private static final ResourceLocation EMPTY_SLOT_BOOTS      = new ResourceLocation("item/empty_armor_slot_boots");
-    private static final ResourceLocation EMPTY_SLOT_SWORD      = new ResourceLocation("item/empty_slot_sword");
-    private static final ResourceLocation EMPTY_SLOT_PICKAXE    = new ResourceLocation("item/empty_slot_pickaxe");
-    private static final ResourceLocation EMPTY_SLOT_AXE        = new ResourceLocation("item/empty_slot_axe");
-    private static final ResourceLocation EMPTY_SLOT_HOE        = new ResourceLocation("item/empty_slot_hoe");
-    private static final ResourceLocation EMPTY_SLOT_SHOVEL     = new ResourceLocation("item/empty_slot_shovel");
-    private static final ResourceLocation EMPTY_SLOT_INGOT      = new ResourceLocation("item/empty_slot_ingot");
+    private static final ResourceLocation EMPTY_SLOT_LEGGINGS = new ResourceLocation("item/empty_armor_slot_leggings");
+    private static final ResourceLocation EMPTY_SLOT_BOOTS = new ResourceLocation("item/empty_armor_slot_boots");
+    private static final ResourceLocation EMPTY_SLOT_SWORD = new ResourceLocation("item/empty_slot_sword");
+    private static final ResourceLocation EMPTY_SLOT_PICKAXE = new ResourceLocation("item/empty_slot_pickaxe");
+    private static final ResourceLocation EMPTY_SLOT_AXE = new ResourceLocation("item/empty_slot_axe");
+    private static final ResourceLocation EMPTY_SLOT_HOE = new ResourceLocation("item/empty_slot_hoe");
+    private static final ResourceLocation EMPTY_SLOT_SHOVEL = new ResourceLocation("item/empty_slot_shovel");
+    private static final ResourceLocation EMPTY_SLOT_INGOT = new ResourceLocation("item/empty_slot_ingot");
 
     private static final String DESC_ID = Util.makeDescriptionId("item",
             new ResourceLocation(Constants.MOD_ID, "mythic_upgrade_smithing_template"));

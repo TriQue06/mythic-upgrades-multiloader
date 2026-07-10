@@ -4,11 +4,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
@@ -16,7 +13,7 @@ import net.minecraft.world.level.material.Fluids;
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
-public class MythicBuddingCrystalBlock extends Block implements BonemealableBlock {
+public class MythicBuddingCrystalBlock extends Block {
 
     private static final Direction[] DIRECTIONS = Direction.values();
 
@@ -49,38 +46,6 @@ public class MythicBuddingCrystalBlock extends Block implements BonemealableBloc
         }
     }
 
-    @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
-        for (Direction dir : DIRECTIONS) {
-            BlockPos neighbor = pos.relative(dir);
-            BlockState nState = level.getBlockState(neighbor);
-            if (canGrow(nState) || nextStage(nState, dir) != null) return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
-        return true;
-    }
-
-    @Override
-    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
-        for (Direction dir : DIRECTIONS) {
-            BlockPos neighbor = pos.relative(dir);
-            BlockState nState = level.getBlockState(neighbor);
-            Block next = nextStage(nState, dir);
-            if (next != null) {
-                placeGrowth(level, next, neighbor, nState, dir);
-                return;
-            }
-            if (canGrow(nState)) {
-                placeGrowth(level, smallBud.get(), neighbor, nState, dir);
-                return;
-            }
-        }
-    }
-
     @Nullable
     private Block nextStage(BlockState state, Direction facing) {
         Block b = state.getBlock();
@@ -97,6 +62,6 @@ public class MythicBuddingCrystalBlock extends Block implements BonemealableBloc
     }
 
     private static boolean canGrow(BlockState state) {
-        return state.isAir() || state.getFluidState().getType() == Fluids.WATER;
+        return state.isAir() || (state.getFluidState().getType() == Fluids.WATER && state.getFluidState().getAmount() == 8);
     }
 }
