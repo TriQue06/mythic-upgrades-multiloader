@@ -119,13 +119,13 @@ public class MythicBlocks {
     public static final Block AQUAMARINE_CRYSTAL_BLOCK = defer("aquamarine_crystal_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final Block AQUAMARINE_CRYSTAL_CLUSTER = defer("aquamarine_crystal_cluster", new AmethystClusterBlock(7, 3,
-        BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).lightLevel(state -> 6).mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final Block LARGE_AQUAMARINE_CRYSTAL_BUD = defer("large_aquamarine_crystal_bud", new AmethystClusterBlock(5, 3,
-        BlockBehaviour.Properties.copy(Blocks.LARGE_AMETHYST_BUD).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+        BlockBehaviour.Properties.copy(Blocks.LARGE_AMETHYST_BUD).lightLevel(state -> 5).mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final Block MEDIUM_AQUAMARINE_CRYSTAL_BUD = defer("medium_aquamarine_crystal_bud", new AmethystClusterBlock(4, 3,
-        BlockBehaviour.Properties.copy(Blocks.MEDIUM_AMETHYST_BUD).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+        BlockBehaviour.Properties.copy(Blocks.MEDIUM_AMETHYST_BUD).lightLevel(state -> 3).mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final Block SMALL_AQUAMARINE_CRYSTAL_BUD = defer("small_aquamarine_crystal_bud", new AmethystClusterBlock(3, 4,
-        BlockBehaviour.Properties.copy(Blocks.SMALL_AMETHYST_BUD).mapColor(MapColor.COLOR_LIGHT_BLUE)));
+        BlockBehaviour.Properties.copy(Blocks.SMALL_AMETHYST_BUD).lightLevel(state -> 2).mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final Block BUDDING_AQUAMARINE_CRYSTAL = defer("budding_aquamarine_crystal", new MythicBuddingCrystalBlock(
         () -> SMALL_AQUAMARINE_CRYSTAL_BUD, () -> MEDIUM_AQUAMARINE_CRYSTAL_BUD,
         () -> LARGE_AQUAMARINE_CRYSTAL_BUD, () -> AQUAMARINE_CRYSTAL_CLUSTER,
@@ -134,13 +134,13 @@ public class MythicBlocks {
     public static final Block CITRINE_CRYSTAL_BLOCK = defer("citrine_crystal_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_YELLOW)));
     public static final Block CITRINE_CRYSTAL_CLUSTER = defer("citrine_crystal_cluster", new AmethystClusterBlock(7, 3,
-        BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).mapColor(MapColor.COLOR_YELLOW)));
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).lightLevel(state -> 6).mapColor(MapColor.COLOR_YELLOW)));
     public static final Block LARGE_CITRINE_CRYSTAL_BUD = defer("large_citrine_crystal_bud", new AmethystClusterBlock(5, 3,
-        BlockBehaviour.Properties.copy(Blocks.LARGE_AMETHYST_BUD).mapColor(MapColor.COLOR_YELLOW)));
+        BlockBehaviour.Properties.copy(Blocks.LARGE_AMETHYST_BUD).lightLevel(state -> 5).mapColor(MapColor.COLOR_YELLOW)));
     public static final Block MEDIUM_CITRINE_CRYSTAL_BUD = defer("medium_citrine_crystal_bud", new AmethystClusterBlock(4, 3,
-        BlockBehaviour.Properties.copy(Blocks.MEDIUM_AMETHYST_BUD).mapColor(MapColor.COLOR_YELLOW)));
+        BlockBehaviour.Properties.copy(Blocks.MEDIUM_AMETHYST_BUD).lightLevel(state -> 3).mapColor(MapColor.COLOR_YELLOW)));
     public static final Block SMALL_CITRINE_CRYSTAL_BUD = defer("small_citrine_crystal_bud", new AmethystClusterBlock(3, 4,
-        BlockBehaviour.Properties.copy(Blocks.SMALL_AMETHYST_BUD).mapColor(MapColor.COLOR_YELLOW)));
+        BlockBehaviour.Properties.copy(Blocks.SMALL_AMETHYST_BUD).lightLevel(state -> 2).mapColor(MapColor.COLOR_YELLOW)));
     public static final Block BUDDING_CITRINE_CRYSTAL = defer("budding_citrine_crystal", new MythicBuddingCrystalBlock(
         () -> SMALL_CITRINE_CRYSTAL_BUD, () -> MEDIUM_CITRINE_CRYSTAL_BUD,
         () -> LARGE_CITRINE_CRYSTAL_BUD, () -> CITRINE_CRYSTAL_CLUSTER,
@@ -149,13 +149,13 @@ public class MythicBlocks {
     public static final Block TOPAZ_CRYSTAL_BLOCK = defer("topaz_crystal_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_ORANGE)));
     public static final Block TOPAZ_CRYSTAL_CLUSTER = defer("topaz_crystal_cluster", new AmethystClusterBlock(7, 3,
-        BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).mapColor(MapColor.COLOR_ORANGE)));
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).lightLevel(state -> 6).mapColor(MapColor.COLOR_ORANGE)));
     public static final Block LARGE_TOPAZ_CRYSTAL_BUD = defer("large_topaz_crystal_bud", new AmethystClusterBlock(5, 3,
-        BlockBehaviour.Properties.copy(Blocks.LARGE_AMETHYST_BUD).mapColor(MapColor.COLOR_ORANGE)));
+        BlockBehaviour.Properties.copy(Blocks.LARGE_AMETHYST_BUD).lightLevel(state -> 5).mapColor(MapColor.COLOR_ORANGE)));
     public static final Block MEDIUM_TOPAZ_CRYSTAL_BUD = defer("medium_topaz_crystal_bud", new AmethystClusterBlock(4, 3,
-        BlockBehaviour.Properties.copy(Blocks.MEDIUM_AMETHYST_BUD).mapColor(MapColor.COLOR_ORANGE)));
+        BlockBehaviour.Properties.copy(Blocks.MEDIUM_AMETHYST_BUD).lightLevel(state -> 3).mapColor(MapColor.COLOR_ORANGE)));
     public static final Block SMALL_TOPAZ_CRYSTAL_BUD = defer("small_topaz_crystal_bud", new AmethystClusterBlock(3, 4,
-        BlockBehaviour.Properties.copy(Blocks.SMALL_AMETHYST_BUD).mapColor(MapColor.COLOR_ORANGE)));
+        BlockBehaviour.Properties.copy(Blocks.SMALL_AMETHYST_BUD).lightLevel(state -> 2).mapColor(MapColor.COLOR_ORANGE)));
     public static final Block BUDDING_TOPAZ_CRYSTAL = defer("budding_topaz_crystal", new MythicBuddingCrystalBlock(
         () -> SMALL_TOPAZ_CRYSTAL_BUD, () -> MEDIUM_TOPAZ_CRYSTAL_BUD,
         () -> LARGE_TOPAZ_CRYSTAL_BUD, () -> TOPAZ_CRYSTAL_CLUSTER,
@@ -164,13 +164,13 @@ public class MythicBlocks {
     public static final Block PERIDOT_CRYSTAL_BLOCK = defer("peridot_crystal_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_GREEN)));
     public static final Block PERIDOT_CRYSTAL_CLUSTER = defer("peridot_crystal_cluster", new AmethystClusterBlock(7, 3,
-        BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).mapColor(MapColor.COLOR_LIGHT_GREEN)));
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).lightLevel(state -> 6).mapColor(MapColor.COLOR_LIGHT_GREEN)));
     public static final Block LARGE_PERIDOT_CRYSTAL_BUD = defer("large_peridot_crystal_bud", new AmethystClusterBlock(5, 3,
-        BlockBehaviour.Properties.copy(Blocks.LARGE_AMETHYST_BUD).mapColor(MapColor.COLOR_LIGHT_GREEN)));
+        BlockBehaviour.Properties.copy(Blocks.LARGE_AMETHYST_BUD).lightLevel(state -> 5).mapColor(MapColor.COLOR_LIGHT_GREEN)));
     public static final Block MEDIUM_PERIDOT_CRYSTAL_BUD = defer("medium_peridot_crystal_bud", new AmethystClusterBlock(4, 3,
-        BlockBehaviour.Properties.copy(Blocks.MEDIUM_AMETHYST_BUD).mapColor(MapColor.COLOR_LIGHT_GREEN)));
+        BlockBehaviour.Properties.copy(Blocks.MEDIUM_AMETHYST_BUD).lightLevel(state -> 3).mapColor(MapColor.COLOR_LIGHT_GREEN)));
     public static final Block SMALL_PERIDOT_CRYSTAL_BUD = defer("small_peridot_crystal_bud", new AmethystClusterBlock(3, 4,
-        BlockBehaviour.Properties.copy(Blocks.SMALL_AMETHYST_BUD).mapColor(MapColor.COLOR_LIGHT_GREEN)));
+        BlockBehaviour.Properties.copy(Blocks.SMALL_AMETHYST_BUD).lightLevel(state -> 2).mapColor(MapColor.COLOR_LIGHT_GREEN)));
     public static final Block BUDDING_PERIDOT_CRYSTAL = defer("budding_peridot_crystal", new MythicBuddingCrystalBlock(
         () -> SMALL_PERIDOT_CRYSTAL_BUD, () -> MEDIUM_PERIDOT_CRYSTAL_BUD,
         () -> LARGE_PERIDOT_CRYSTAL_BUD, () -> PERIDOT_CRYSTAL_CLUSTER,
@@ -179,13 +179,13 @@ public class MythicBlocks {
     public static final Block RUBY_CRYSTAL_BLOCK = defer("ruby_crystal_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_RED)));
     public static final Block RUBY_CRYSTAL_CLUSTER = defer("ruby_crystal_cluster", new AmethystClusterBlock(7, 3,
-        BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).mapColor(MapColor.COLOR_RED)));
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).lightLevel(state -> 6).mapColor(MapColor.COLOR_RED)));
     public static final Block LARGE_RUBY_CRYSTAL_BUD = defer("large_ruby_crystal_bud", new AmethystClusterBlock(5, 3,
-        BlockBehaviour.Properties.copy(Blocks.LARGE_AMETHYST_BUD).mapColor(MapColor.COLOR_RED)));
+        BlockBehaviour.Properties.copy(Blocks.LARGE_AMETHYST_BUD).lightLevel(state -> 5).mapColor(MapColor.COLOR_RED)));
     public static final Block MEDIUM_RUBY_CRYSTAL_BUD = defer("medium_ruby_crystal_bud", new AmethystClusterBlock(4, 3,
-        BlockBehaviour.Properties.copy(Blocks.MEDIUM_AMETHYST_BUD).mapColor(MapColor.COLOR_RED)));
+        BlockBehaviour.Properties.copy(Blocks.MEDIUM_AMETHYST_BUD).lightLevel(state -> 3).mapColor(MapColor.COLOR_RED)));
     public static final Block SMALL_RUBY_CRYSTAL_BUD = defer("small_ruby_crystal_bud", new AmethystClusterBlock(3, 4,
-        BlockBehaviour.Properties.copy(Blocks.SMALL_AMETHYST_BUD).mapColor(MapColor.COLOR_RED)));
+        BlockBehaviour.Properties.copy(Blocks.SMALL_AMETHYST_BUD).lightLevel(state -> 2).mapColor(MapColor.COLOR_RED)));
     public static final Block BUDDING_RUBY_CRYSTAL = defer("budding_ruby_crystal", new MythicBuddingCrystalBlock(
         () -> SMALL_RUBY_CRYSTAL_BUD, () -> MEDIUM_RUBY_CRYSTAL_BUD,
         () -> LARGE_RUBY_CRYSTAL_BUD, () -> RUBY_CRYSTAL_CLUSTER,
@@ -194,13 +194,13 @@ public class MythicBlocks {
     public static final Block SAPPHIRE_CRYSTAL_BLOCK = defer("sapphire_crystal_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.LAPIS)));
     public static final Block SAPPHIRE_CRYSTAL_CLUSTER = defer("sapphire_crystal_cluster", new AmethystClusterBlock(7, 3,
-        BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).mapColor(MapColor.LAPIS)));
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).lightLevel(state -> 6).mapColor(MapColor.LAPIS)));
     public static final Block LARGE_SAPPHIRE_CRYSTAL_BUD = defer("large_sapphire_crystal_bud", new AmethystClusterBlock(5, 3,
-        BlockBehaviour.Properties.copy(Blocks.LARGE_AMETHYST_BUD).mapColor(MapColor.LAPIS)));
+        BlockBehaviour.Properties.copy(Blocks.LARGE_AMETHYST_BUD).lightLevel(state -> 5).mapColor(MapColor.LAPIS)));
     public static final Block MEDIUM_SAPPHIRE_CRYSTAL_BUD = defer("medium_sapphire_crystal_bud", new AmethystClusterBlock(4, 3,
-        BlockBehaviour.Properties.copy(Blocks.MEDIUM_AMETHYST_BUD).mapColor(MapColor.LAPIS)));
+        BlockBehaviour.Properties.copy(Blocks.MEDIUM_AMETHYST_BUD).lightLevel(state -> 3).mapColor(MapColor.LAPIS)));
     public static final Block SMALL_SAPPHIRE_CRYSTAL_BUD = defer("small_sapphire_crystal_bud", new AmethystClusterBlock(3, 4,
-        BlockBehaviour.Properties.copy(Blocks.SMALL_AMETHYST_BUD).mapColor(MapColor.LAPIS)));
+        BlockBehaviour.Properties.copy(Blocks.SMALL_AMETHYST_BUD).lightLevel(state -> 2).mapColor(MapColor.LAPIS)));
     public static final Block BUDDING_SAPPHIRE_CRYSTAL = defer("budding_sapphire_crystal", new MythicBuddingCrystalBlock(
         () -> SMALL_SAPPHIRE_CRYSTAL_BUD, () -> MEDIUM_SAPPHIRE_CRYSTAL_BUD,
         () -> LARGE_SAPPHIRE_CRYSTAL_BUD, () -> SAPPHIRE_CRYSTAL_CLUSTER,
@@ -209,13 +209,13 @@ public class MythicBlocks {
     public static final Block JADE_CRYSTAL_BLOCK = defer("jade_crystal_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.PLANT)));
     public static final Block JADE_CRYSTAL_CLUSTER = defer("jade_crystal_cluster", new AmethystClusterBlock(7, 3,
-        BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).mapColor(MapColor.PLANT)));
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).lightLevel(state -> 6).mapColor(MapColor.PLANT)));
     public static final Block LARGE_JADE_CRYSTAL_BUD = defer("large_jade_crystal_bud", new AmethystClusterBlock(5, 3,
-        BlockBehaviour.Properties.copy(Blocks.LARGE_AMETHYST_BUD).mapColor(MapColor.PLANT)));
+        BlockBehaviour.Properties.copy(Blocks.LARGE_AMETHYST_BUD).lightLevel(state -> 5).mapColor(MapColor.PLANT)));
     public static final Block MEDIUM_JADE_CRYSTAL_BUD = defer("medium_jade_crystal_bud", new AmethystClusterBlock(4, 3,
-        BlockBehaviour.Properties.copy(Blocks.MEDIUM_AMETHYST_BUD).mapColor(MapColor.PLANT)));
+        BlockBehaviour.Properties.copy(Blocks.MEDIUM_AMETHYST_BUD).lightLevel(state -> 3).mapColor(MapColor.PLANT)));
     public static final Block SMALL_JADE_CRYSTAL_BUD = defer("small_jade_crystal_bud", new AmethystClusterBlock(3, 4,
-        BlockBehaviour.Properties.copy(Blocks.SMALL_AMETHYST_BUD).mapColor(MapColor.PLANT)));
+        BlockBehaviour.Properties.copy(Blocks.SMALL_AMETHYST_BUD).lightLevel(state -> 2).mapColor(MapColor.PLANT)));
     public static final Block BUDDING_JADE_CRYSTAL = defer("budding_jade_crystal", new MythicBuddingCrystalBlock(
         () -> SMALL_JADE_CRYSTAL_BUD, () -> MEDIUM_JADE_CRYSTAL_BUD,
         () -> LARGE_JADE_CRYSTAL_BUD, () -> JADE_CRYSTAL_CLUSTER,
@@ -224,13 +224,13 @@ public class MythicBlocks {
     public static final Block AMETRINE_CRYSTAL_BLOCK = defer("ametrine_crystal_block", new Block(
         BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
     public static final Block AMETRINE_CRYSTAL_CLUSTER = defer("ametrine_crystal_cluster", new AmethystClusterBlock(7, 3,
-        BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).mapColor(MapColor.COLOR_PURPLE)));
+        BlockBehaviour.Properties.copy(Blocks.AMETHYST_CLUSTER).lightLevel(state -> 6).mapColor(MapColor.COLOR_PURPLE)));
     public static final Block LARGE_AMETRINE_CRYSTAL_BUD = defer("large_ametrine_crystal_bud", new AmethystClusterBlock(5, 3,
-        BlockBehaviour.Properties.copy(Blocks.LARGE_AMETHYST_BUD).mapColor(MapColor.COLOR_PURPLE)));
+        BlockBehaviour.Properties.copy(Blocks.LARGE_AMETHYST_BUD).lightLevel(state -> 5).mapColor(MapColor.COLOR_PURPLE)));
     public static final Block MEDIUM_AMETRINE_CRYSTAL_BUD = defer("medium_ametrine_crystal_bud", new AmethystClusterBlock(4, 3,
-        BlockBehaviour.Properties.copy(Blocks.MEDIUM_AMETHYST_BUD).mapColor(MapColor.COLOR_PURPLE)));
+        BlockBehaviour.Properties.copy(Blocks.MEDIUM_AMETHYST_BUD).lightLevel(state -> 3).mapColor(MapColor.COLOR_PURPLE)));
     public static final Block SMALL_AMETRINE_CRYSTAL_BUD = defer("small_ametrine_crystal_bud", new AmethystClusterBlock(3, 4,
-        BlockBehaviour.Properties.copy(Blocks.SMALL_AMETHYST_BUD).mapColor(MapColor.COLOR_PURPLE)));
+        BlockBehaviour.Properties.copy(Blocks.SMALL_AMETHYST_BUD).lightLevel(state -> 2).mapColor(MapColor.COLOR_PURPLE)));
     public static final Block BUDDING_AMETRINE_CRYSTAL = defer("budding_ametrine_crystal", new MythicBuddingCrystalBlock(
         () -> SMALL_AMETRINE_CRYSTAL_BUD, () -> MEDIUM_AMETRINE_CRYSTAL_BUD,
         () -> LARGE_AMETRINE_CRYSTAL_BUD, () -> AMETRINE_CRYSTAL_CLUSTER,
