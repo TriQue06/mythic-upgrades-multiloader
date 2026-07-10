@@ -73,7 +73,6 @@ public class MythicWorldgenProvider implements DataProvider {
         JsonObject cfg = new JsonObject();
 
         JsonArray entries = new JsonArray();
-        entries.add(weightedEntry(budState(mod("small_" + g + "_crystal_bud")), withCluster ? 4 : 3));
         entries.add(weightedEntry(budState(mod("medium_" + g + "_crystal_bud")), withCluster ? 3 : 2));
         entries.add(weightedEntry(budState(mod("large_" + g + "_crystal_bud")), withCluster ? 2 : 1));
         if (withCluster) entries.add(weightedEntry(budState(mod(g + "_crystal_cluster")), 1));

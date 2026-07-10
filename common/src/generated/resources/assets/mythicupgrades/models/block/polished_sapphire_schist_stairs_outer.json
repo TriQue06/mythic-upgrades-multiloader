@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "mythicupgrades:block/polished_sapphire_schist",
-    "side": "mythicupgrades:block/polished_sapphire_schist",
-    "top": "mythicupgrades:block/polished_sapphire_schist"
-  }
-}

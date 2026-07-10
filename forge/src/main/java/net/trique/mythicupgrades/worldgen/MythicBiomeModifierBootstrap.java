@@ -56,17 +56,6 @@ public class MythicBiomeModifierBootstrap {
             GenerationStep.Decoration.UNDERGROUND_ORES
         ));
 
-        ctx.register(key("add_crystal_buds_to_overworld"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-            overworld,
-            HolderSet.direct(
-                pfLookup.getOrThrow(pf("aquamarine_crystal_buds_rare")),
-                pfLookup.getOrThrow(pf("citrine_crystal_buds_rare")),
-                pfLookup.getOrThrow(pf("peridot_crystal_buds_rare")),
-                pfLookup.getOrThrow(pf("topaz_crystal_buds_rare"))
-            ),
-            GenerationStep.Decoration.UNDERGROUND_DECORATION
-        ));
-
         ctx.register(key("add_end_geodes"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
             end,
             HolderSet.direct(
@@ -87,25 +76,25 @@ public class MythicBiomeModifierBootstrap {
 
         ctx.register(key("add_aquamarine_geode_home"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
             HolderSet.direct(biomeLookup.getOrThrow(biome("aquamarine_caves"))),
-            HolderSet.direct(pfLookup.getOrThrow(pf("aquamarine_geode_extra"))),
+            HolderSet.direct(pfLookup.getOrThrow(pf("aquamarine_geode_extra")), pfLookup.getOrThrow(pf("aquamarine_crystal_buds_rare"))),
             GenerationStep.Decoration.UNDERGROUND_DECORATION
         ));
 
         ctx.register(key("add_citrine_geode_home"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
             HolderSet.direct(biomeLookup.getOrThrow(biome("citrine_caves"))),
-            HolderSet.direct(pfLookup.getOrThrow(pf("citrine_geode_extra"))),
+            HolderSet.direct(pfLookup.getOrThrow(pf("citrine_geode_extra")), pfLookup.getOrThrow(pf("citrine_crystal_buds_rare"))),
             GenerationStep.Decoration.UNDERGROUND_DECORATION
         ));
 
         ctx.register(key("add_peridot_geode_home"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
             HolderSet.direct(biomeLookup.getOrThrow(biome("peridot_caves"))),
-            HolderSet.direct(pfLookup.getOrThrow(pf("peridot_geode_extra"))),
+            HolderSet.direct(pfLookup.getOrThrow(pf("peridot_geode_extra")), pfLookup.getOrThrow(pf("peridot_crystal_buds_rare"))),
             GenerationStep.Decoration.UNDERGROUND_DECORATION
         ));
 
         ctx.register(key("add_topaz_geode_home"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
             HolderSet.direct(biomeLookup.getOrThrow(biome("topaz_caves"))),
-            HolderSet.direct(pfLookup.getOrThrow(pf("topaz_geode_extra"))),
+            HolderSet.direct(pfLookup.getOrThrow(pf("topaz_geode_extra")), pfLookup.getOrThrow(pf("topaz_crystal_buds_rare"))),
             GenerationStep.Decoration.UNDERGROUND_DECORATION
         ));
 

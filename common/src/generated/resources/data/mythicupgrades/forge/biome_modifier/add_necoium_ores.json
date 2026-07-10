@@ -1,9 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#minecraft:is_overworld",
-  "features": [
-    "mythicupgrades:necoium_ore",
-    "mythicupgrades:deepslate_necoium_ore"
-  ],
-  "step": "underground_ores"
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "mythicupgrades:block/topaz_schist",
-    "side": "mythicupgrades:block/topaz_schist",
-    "top": "mythicupgrades:block/topaz_schist"
-  }
-}

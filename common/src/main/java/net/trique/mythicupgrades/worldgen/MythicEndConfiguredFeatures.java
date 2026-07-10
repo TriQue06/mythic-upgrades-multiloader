@@ -52,7 +52,6 @@ public class MythicEndConfiguredFeatures {
             ctx.register(gem.crystalBudsCF(), new ConfiguredFeature<>(MythicFeatures.CRYSTAL_BUD,
                 new CrystalBudFeatureConfig(
                     new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                        .add(budState(blocks, gem.smallBud()), 4)
                         .add(budState(blocks, gem.mediumBud()), 3)
                         .add(budState(blocks, gem.largeBud()), 2)
                         .add(budState(blocks, gem.cluster()), 1)
@@ -64,7 +63,6 @@ public class MythicEndConfiguredFeatures {
             ctx.register(gem.crystalBudsRareCF(), new ConfiguredFeature<>(MythicFeatures.CRYSTAL_BUD,
                 new CrystalBudFeatureConfig(
                     new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                        .add(budState(blocks, gem.smallBud()), 3)
                         .add(budState(blocks, gem.mediumBud()), 2)
                         .add(budState(blocks, gem.largeBud()), 1)
                         .build()),

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "mythicupgrades:ametrine_crystal_bricks"
-  },
-  "result": "mythicupgrades:ametrine_crystal_bricks_stairs"
-}

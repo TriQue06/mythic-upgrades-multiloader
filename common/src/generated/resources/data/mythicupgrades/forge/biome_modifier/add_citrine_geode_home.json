@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "mythicupgrades:citrine_caves",
-  "features": "mythicupgrades:citrine_geode_extra",
-  "step": "underground_decoration"
-}
