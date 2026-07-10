@@ -84,7 +84,7 @@ public class MythicTrimAtlasProvider implements DataProvider {
         root.add("sources", sources);
 
         Path assetPath = output.getOutputFolder(PackOutput.Target.RESOURCE_PACK);
-        Path filePath = assetPath.resolve("assets/minecraft/atlases/armor_trims.json");
+        Path filePath = assetPath.resolve("minecraft/atlases/armor_trims.json");
         return DataProvider.saveStable(cache, GSON.toJsonTree(root), filePath);
     }
 
