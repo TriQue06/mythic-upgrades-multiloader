@@ -24,10 +24,6 @@ public class MythicBiomeModifierBootstrap {
         return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Constants.MOD_ID, name));
     }
 
-    private static ResourceKey<Biome> biome(String name) {
-        return ResourceKey.create(Registries.BIOME, new ResourceLocation(Constants.MOD_ID, name));
-    }
-
     public static void bootstrap(BootstapContext<BiomeModifier> ctx) {
         var pfLookup = ctx.lookup(Registries.PLACED_FEATURE);
         var biomeLookup = ctx.lookup(Registries.BIOME);
@@ -72,54 +68,6 @@ public class MythicBiomeModifierBootstrap {
                 pfLookup.getOrThrow(pf("sapphire_geode"))
             ),
             GenerationStep.Decoration.UNDERGROUND_ORES
-        ));
-
-        ctx.register(key("add_aquamarine_geode_home"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-            HolderSet.direct(biomeLookup.getOrThrow(biome("aquamarine_caves"))),
-            HolderSet.direct(pfLookup.getOrThrow(pf("aquamarine_geode_extra")), pfLookup.getOrThrow(pf("aquamarine_crystal_buds_rare"))),
-            GenerationStep.Decoration.UNDERGROUND_DECORATION
-        ));
-
-        ctx.register(key("add_citrine_geode_home"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-            HolderSet.direct(biomeLookup.getOrThrow(biome("citrine_caves"))),
-            HolderSet.direct(pfLookup.getOrThrow(pf("citrine_geode_extra")), pfLookup.getOrThrow(pf("citrine_crystal_buds_rare"))),
-            GenerationStep.Decoration.UNDERGROUND_DECORATION
-        ));
-
-        ctx.register(key("add_peridot_geode_home"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-            HolderSet.direct(biomeLookup.getOrThrow(biome("peridot_caves"))),
-            HolderSet.direct(pfLookup.getOrThrow(pf("peridot_geode_extra")), pfLookup.getOrThrow(pf("peridot_crystal_buds_rare"))),
-            GenerationStep.Decoration.UNDERGROUND_DECORATION
-        ));
-
-        ctx.register(key("add_topaz_geode_home"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-            HolderSet.direct(biomeLookup.getOrThrow(biome("topaz_caves"))),
-            HolderSet.direct(pfLookup.getOrThrow(pf("topaz_geode_extra")), pfLookup.getOrThrow(pf("topaz_crystal_buds_rare"))),
-            GenerationStep.Decoration.UNDERGROUND_DECORATION
-        ));
-
-        ctx.register(key("add_ruby_geode_home"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-            HolderSet.direct(biomeLookup.getOrThrow(biome("ruby_rift"))),
-            HolderSet.direct(pfLookup.getOrThrow(pf("ruby_geode_extra"))),
-            GenerationStep.Decoration.UNDERGROUND_DECORATION
-        ));
-
-        ctx.register(key("add_sapphire_geode_home"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-            HolderSet.direct(biomeLookup.getOrThrow(biome("sapphire_rift"))),
-            HolderSet.direct(pfLookup.getOrThrow(pf("sapphire_geode_extra"))),
-            GenerationStep.Decoration.UNDERGROUND_DECORATION
-        ));
-
-        ctx.register(key("add_ametrine_geode_home"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-            HolderSet.direct(biomeLookup.getOrThrow(biome("ametrine_barrens"))),
-            HolderSet.direct(pfLookup.getOrThrow(pf("ametrine_geode_extra"))),
-            GenerationStep.Decoration.UNDERGROUND_DECORATION
-        ));
-
-        ctx.register(key("add_jade_geode_home"), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-            HolderSet.direct(biomeLookup.getOrThrow(biome("jade_barrens"))),
-            HolderSet.direct(pfLookup.getOrThrow(pf("jade_geode_extra"))),
-            GenerationStep.Decoration.UNDERGROUND_DECORATION
         ));
     }
 }

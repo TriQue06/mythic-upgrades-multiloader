@@ -27,11 +27,11 @@ public class MythicNetherRegion extends Region {
         addBiome(mapper, Climate.parameters(
                 Climate.Parameter.span(-1.0f, -0.85f),
                 full, full, full, full, full, 0.0f),
-                MythicBiomes.RUBY_RIFT);
+                MythicBiomes.MYTHIC_RIFTS);
 
         addBiome(mapper, Climate.parameters(
                 Climate.Parameter.span(0.85f, 1.0f),
                 full, full, full, full, full, 0.0f),
-                MythicBiomes.SAPPHIRE_RIFT);
+                MythicBiomes.MYTHIC_RIFTS);
     }
 }

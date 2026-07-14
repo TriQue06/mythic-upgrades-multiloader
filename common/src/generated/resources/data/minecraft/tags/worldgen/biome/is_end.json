@@ -1,11 +1,7 @@
 {
   "values": [
     {
-      "id": "mythicupgrades:ametrine_barrens",
-      "required": false
-    },
-    {
-      "id": "mythicupgrades:jade_barrens",
+      "id": "mythicupgrades:mythic_barrens",
       "required": false
     }
   ]

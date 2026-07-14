@@ -1,4 +1,4 @@
-// 1.20.1	2026-07-03T15:05:48.5835528	Tags for minecraft:worldgen/biome mod id vanilla
-fc011ea47341debf1d4b58c058e49b2dfcca9d54 data/minecraft/tags/worldgen/biome/is_end.json
-9b8216d66e8c049b2725102216d2f2bc2854f68f data/minecraft/tags/worldgen/biome/is_nether.json
-85a4264bdb849df26a951257baccde444bd1132e data/minecraft/tags/worldgen/biome/is_overworld.json
+// 1.20.1	2026-07-14T13:51:49.904717	Tags for minecraft:worldgen/biome mod id vanilla
+bfd38ebe4ace78a6b688e31e918ac9c3afcfd5ab data/minecraft/tags/worldgen/biome/is_end.json
+85a545d5e0a46fd8eb537e1539c3cdc29524756d data/minecraft/tags/worldgen/biome/is_nether.json
+5b673b5ea3e91c6be09ed7538018eb58df086a0a data/minecraft/tags/worldgen/biome/is_overworld.json

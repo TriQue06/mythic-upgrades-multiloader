@@ -10,21 +10,13 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.trique.mythicupgrades.Constants;
 
 public enum NetherGemType {
-    RUBY    ("ruby",     2.0f, 0.0f, false, 0xFC4747),
-    SAPPHIRE("sapphire", 2.0f, 0.0f, false, 0x4747FC);
+    RUBY    ("ruby"),
+    SAPPHIRE("sapphire");
 
-    public final String  id;
-    public final float   temperature;
-    public final float   downfall;
-    public final boolean precipitation;
-    public final int     waterColor;
+    public final String id;
 
-    NetherGemType(String id, float temperature, float downfall, boolean precipitation, int waterColor) {
-        this.id            = id;
-        this.temperature   = temperature;
-        this.downfall      = downfall;
-        this.precipitation = precipitation;
-        this.waterColor    = waterColor;
+    NetherGemType(String id) {
+        this.id = id;
     }
 
     public ResourceKey<Block> stoneBlock()      { return block(id + "_schist"); }
@@ -41,13 +33,12 @@ public enum NetherGemType {
     }
 
     public ResourceKey<Biome> netherBiome() {
-        return ResourceKey.create(Registries.BIOME, new ResourceLocation(Constants.MOD_ID, id + "_rift"));
+        return MythicBiomes.MYTHIC_RIFTS;
     }
 
     public ResourceKey<ConfiguredFeature<?, ?>> stoneBlobsCF()      { return cf(id + "_stone_blobs"); }
     public ResourceKey<ConfiguredFeature<?, ?>> crystalBlobsCF()    { return cf(id + "_crystal_blobs"); }
     public ResourceKey<ConfiguredFeature<?, ?>> crystalBudsCF()     { return cf(id + "_crystal_buds"); }
-    public ResourceKey<ConfiguredFeature<?, ?>> crystalBudsRareCF() { return cf(id + "_crystal_buds_rare"); }
     public ResourceKey<ConfiguredFeature<?, ?>> oreCF()             { return cf(id + "_ore"); }
     public ResourceKey<ConfiguredFeature<?, ?>> geodeCF()           { return cf(id + "_geode"); }
 
@@ -58,10 +49,8 @@ public enum NetherGemType {
     public ResourceKey<PlacedFeature> stoneBlobsPF()      { return pf(id + "_stone_blobs"); }
     public ResourceKey<PlacedFeature> crystalBlobsPF()    { return pf(id + "_crystal_blobs"); }
     public ResourceKey<PlacedFeature> crystalBudsPF()     { return pf(id + "_crystal_buds"); }
-    public ResourceKey<PlacedFeature> crystalBudsRarePF() { return pf(id + "_crystal_buds_rare"); }
     public ResourceKey<PlacedFeature> orePF()             { return pf(id + "_ore"); }
     public ResourceKey<PlacedFeature> geodePF()           { return pf(id + "_geode"); }
-    public ResourceKey<PlacedFeature> geodeExtraPF()      { return pf(id + "_geode_extra"); }
 
     private ResourceKey<PlacedFeature> pf(String name) {
         return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Constants.MOD_ID, name));

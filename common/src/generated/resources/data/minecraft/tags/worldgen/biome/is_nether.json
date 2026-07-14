@@ -1,11 +1,7 @@
 {
   "values": [
     {
-      "id": "mythicupgrades:ruby_rift",
-      "required": false
-    },
-    {
-      "id": "mythicupgrades:sapphire_rift",
+      "id": "mythicupgrades:mythic_rifts",
       "required": false
     }
   ]

@@ -41,15 +41,7 @@ public class MythicEndPlacedFeatures {
 
             ctx.register(gem.crystalBudsPF(), new PlacedFeature(
                 features.getOrThrow(gem.crystalBudsCF()), List.of(
-                    CountPlacement.of(16),
-                    InSquarePlacement.spread(),
-                    HeightRangePlacement.uniform(VerticalAnchor.absolute(END_MIN_Y), VerticalAnchor.absolute(END_MAX_Y)),
-                    BiomeFilter.biome()
-            )));
-
-            ctx.register(gem.crystalBudsRarePF(), new PlacedFeature(
-                features.getOrThrow(gem.crystalBudsRareCF()), List.of(
-                    RarityFilter.onAverageOnceEvery(15),
+                    CountPlacement.of(18),
                     InSquarePlacement.spread(),
                     HeightRangePlacement.uniform(VerticalAnchor.absolute(END_MIN_Y), VerticalAnchor.absolute(END_MAX_Y)),
                     BiomeFilter.biome()
@@ -66,13 +58,6 @@ public class MythicEndPlacedFeatures {
             var geodeH = features.getOrThrow(gem.geodeCF());
             ctx.register(gem.geodePF(), new PlacedFeature(geodeH, List.of(
                 RarityFilter.onAverageOnceEvery(24),
-                InSquarePlacement.spread(),
-                HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(64)),
-                BiomeFilter.biome()
-            )));
-
-            ctx.register(gem.geodeExtraPF(), new PlacedFeature(geodeH, List.of(
-                RarityFilter.onAverageOnceEvery(12),
                 InSquarePlacement.spread(),
                 HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(64)),
                 BiomeFilter.biome()

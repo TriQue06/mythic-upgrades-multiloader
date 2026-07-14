@@ -6,9 +6,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biome;
-import net.trique.mythicupgrades.worldgen.CaveGemType;
-import net.trique.mythicupgrades.worldgen.EndGemType;
-import net.trique.mythicupgrades.worldgen.NetherGemType;
+import net.trique.mythicupgrades.worldgen.MythicBiomes;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -20,19 +18,14 @@ public class MythicBiomeTagsProvider extends TagsProvider<Biome> {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        TagAppender<Biome> overworld = tag(BiomeTags.IS_OVERWORLD);
-        for (CaveGemType gem : CaveGemType.values()) {
-            overworld.addOptional(gem.biome().location());
-        }
+        tag(BiomeTags.IS_OVERWORLD)
+                .addOptional(MythicBiomes.COLD_MYTHIC_CAVES.location())
+                .addOptional(MythicBiomes.WARM_MYTHIC_CAVES.location());
 
-        TagAppender<Biome> nether = tag(BiomeTags.IS_NETHER);
-        for (NetherGemType gem : NetherGemType.values()) {
-            nether.addOptional(gem.netherBiome().location());
-        }
+        tag(BiomeTags.IS_NETHER)
+                .addOptional(MythicBiomes.MYTHIC_RIFTS.location());
 
-        TagAppender<Biome> end = tag(BiomeTags.IS_END);
-        for (EndGemType gem : EndGemType.values()) {
-            end.addOptional(gem.endBiome().location());
-        }
+        tag(BiomeTags.IS_END)
+                .addOptional(MythicBiomes.MYTHIC_BARRENS.location());
     }
 }

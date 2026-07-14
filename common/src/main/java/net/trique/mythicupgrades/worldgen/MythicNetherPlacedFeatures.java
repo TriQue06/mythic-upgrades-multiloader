@@ -23,7 +23,6 @@ public class MythicNetherPlacedFeatures {
             var stoneBlobsH = features.getOrThrow(gem.stoneBlobsCF());
             var crystalBlobsH = features.getOrThrow(gem.crystalBlobsCF());
             var crystalBudsH = features.getOrThrow(gem.crystalBudsCF());
-            var crystalBudsRH = features.getOrThrow(gem.crystalBudsRareCF());
             var oreH = features.getOrThrow(gem.oreCF());
 
             ctx.register(gem.stoneBlobsPF(), new PlacedFeature(stoneBlobsH, List.of(
@@ -41,16 +40,9 @@ public class MythicNetherPlacedFeatures {
             )));
 
             ctx.register(gem.crystalBudsPF(), new PlacedFeature(crystalBudsH, List.of(
-                CountPlacement.of(12),
+                CountPlacement.of(14),
                 InSquarePlacement.spread(),
                 HeightRangePlacement.uniform(VerticalAnchor.absolute(5), VerticalAnchor.absolute(120)),
-                BiomeFilter.biome()
-            )));
-
-            ctx.register(gem.crystalBudsRarePF(), new PlacedFeature(crystalBudsRH, List.of(
-                RarityFilter.onAverageOnceEvery(20),
-                InSquarePlacement.spread(),
-                HeightRangePlacement.uniform(VerticalAnchor.absolute(5), VerticalAnchor.absolute(110)),
                 BiomeFilter.biome()
             )));
 
@@ -64,13 +56,6 @@ public class MythicNetherPlacedFeatures {
             var geodeH = features.getOrThrow(gem.geodeCF());
             ctx.register(gem.geodePF(), new PlacedFeature(geodeH, List.of(
                 RarityFilter.onAverageOnceEvery(24),
-                InSquarePlacement.spread(),
-                HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(64)),
-                BiomeFilter.biome()
-            )));
-
-            ctx.register(gem.geodeExtraPF(), new PlacedFeature(geodeH, List.of(
-                RarityFilter.onAverageOnceEvery(12),
                 InSquarePlacement.spread(),
                 HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(64)),
                 BiomeFilter.biome()

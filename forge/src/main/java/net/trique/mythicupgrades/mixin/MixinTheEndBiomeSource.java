@@ -24,8 +24,7 @@ public class MixinTheEndBiomeSource {
 
     @Unique private static final Logger LOGGER = LoggerFactory.getLogger("MythicUpgrades/EndBiome");
 
-    @Unique private Holder<Biome> mythicupgrades$ametrineBarrens = null;
-    @Unique private Holder<Biome> mythicupgrades$jadeBarrens = null;
+    @Unique private Holder<Biome> mythicupgrades$mythicBarrens = null;
 
     @Inject(
         method = "<init>(Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;)V",
@@ -49,9 +48,8 @@ public class MixinTheEndBiomeSource {
             return;
         }
 
-        mythicupgrades$ametrineBarrens = biomeReg.getHolder(MythicBiomes.AMETRINE_BARRENS).orElse(null);
-        mythicupgrades$jadeBarrens = biomeReg.getHolder(MythicBiomes.JADE_BARRENS).orElse(null);
-        LOGGER.info("End biomes resolved — ametrine={} jade={}", mythicupgrades$ametrineBarrens, mythicupgrades$jadeBarrens);
+        mythicupgrades$mythicBarrens = biomeReg.getHolder(MythicBiomes.MYTHIC_BARRENS).orElse(null);
+        LOGGER.info("End biome resolved — mythic_barrens={}", mythicupgrades$mythicBarrens);
     }
 
     @Unique
@@ -77,27 +75,27 @@ public class MixinTheEndBiomeSource {
 
     @Inject(method = "collectPossibleBiomes", at = @At("RETURN"), cancellable = true)
     private void mythicupgrades$addPossibleBiomes(CallbackInfoReturnable<Stream<Holder<Biome>>> cir) {
-        Stream<Holder<Biome>> extra = Stream.empty();
-        if (mythicupgrades$ametrineBarrens != null) extra = Stream.concat(extra, Stream.of(mythicupgrades$ametrineBarrens));
-        if (mythicupgrades$jadeBarrens != null) extra = Stream.concat(extra, Stream.of(mythicupgrades$jadeBarrens));
-        cir.setReturnValue(Stream.concat(cir.getReturnValue(), extra));
+        if (mythicupgrades$mythicBarrens != null) {
+            cir.setReturnValue(Stream.concat(cir.getReturnValue(), Stream.of(mythicupgrades$mythicBarrens)));
+        }
     }
 
     @Inject(method = "getNoiseBiome", at = @At("RETURN"), cancellable = true)
     private void mythicupgrades$injectEndBiomes(int x, int y, int z, Climate.Sampler sampler,
                                                  CallbackInfoReturnable<Holder<Biome>> cir) {
         Holder<Biome> current = cir.getReturnValue();
+        if (mythicupgrades$mythicBarrens == null) return;
 
-        if (mythicupgrades$ametrineBarrens != null && current.is(Biomes.END_HIGHLANDS)) {
+        if (current.is(Biomes.END_HIGHLANDS)) {
             if (mythicupgrades$inRegion(x, z, 0)) {
-                cir.setReturnValue(mythicupgrades$ametrineBarrens);
+                cir.setReturnValue(mythicupgrades$mythicBarrens);
                 return;
             }
         }
 
-        if (mythicupgrades$jadeBarrens != null && current.is(Biomes.END_MIDLANDS)) {
+        if (current.is(Biomes.END_MIDLANDS)) {
             if (mythicupgrades$inRegion(x, z, 1)) {
-                cir.setReturnValue(mythicupgrades$jadeBarrens);
+                cir.setReturnValue(mythicupgrades$mythicBarrens);
             }
         }
     }

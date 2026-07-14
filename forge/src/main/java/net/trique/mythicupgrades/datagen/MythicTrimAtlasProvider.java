@@ -30,6 +30,13 @@ public class MythicTrimAtlasProvider implements DataProvider {
         "trims/models/armor/wild",           "trims/models/armor/wild_leggings",
     };
 
+    private static final String[] VANILLA_ITEM_TRIM_TEXTURES = {
+        "trims/items/helmet_trim",
+        "trims/items/chestplate_trim",
+        "trims/items/leggings_trim",
+        "trims/items/boots_trim",
+    };
+
     private final PackOutput output;
 
     public MythicTrimAtlasProvider(PackOutput output) {
@@ -38,11 +45,23 @@ public class MythicTrimAtlasProvider implements DataProvider {
 
     @Override
     public CompletableFuture<?> run(CachedOutput cache) {
+        Path assets = output.getOutputFolder(PackOutput.Target.RESOURCE_PACK);
+        return CompletableFuture.allOf(
+            DataProvider.saveStable(cache,
+                atlasJson(VANILLA_TRIM_TEXTURES),
+                assets.resolve("minecraft/atlases/armor_trims.json")),
+            DataProvider.saveStable(cache,
+                atlasJson(VANILLA_ITEM_TRIM_TEXTURES),
+                assets.resolve("minecraft/atlases/blocks.json"))
+        );
+    }
+
+    private static JsonObject atlasJson(String[] textureList) {
         JsonObject source = new JsonObject();
         source.addProperty("type", "minecraft:paletted_permutations");
 
         JsonArray textures = new JsonArray();
-        for (String tex : VANILLA_TRIM_TEXTURES) textures.add(tex);
+        for (String tex : textureList) textures.add(tex);
         source.add("textures", textures);
 
         source.addProperty("palette_key", "trims/color_palettes/trim_palette");
@@ -60,11 +79,7 @@ public class MythicTrimAtlasProvider implements DataProvider {
 
         JsonObject root = new JsonObject();
         root.add("sources", sources);
-
-        Path path = output.getOutputFolder(PackOutput.Target.RESOURCE_PACK)
-                .resolve("minecraft/atlases/armor_trims.json");
-
-        return DataProvider.saveStable(cache, root, path);
+        return root;
     }
 
     @Override

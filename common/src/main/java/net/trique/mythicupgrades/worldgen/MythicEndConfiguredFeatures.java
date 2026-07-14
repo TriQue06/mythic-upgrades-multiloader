@@ -60,16 +60,6 @@ public class MythicEndConfiguredFeatures {
                 )
             ));
 
-            ctx.register(gem.crystalBudsRareCF(), new ConfiguredFeature<>(MythicFeatures.CRYSTAL_BUD,
-                new CrystalBudFeatureConfig(
-                    new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                        .add(budState(blocks, gem.mediumBud()), 2)
-                        .add(budState(blocks, gem.largeBud()), 1)
-                        .build()),
-                    16, 4, 3
-                )
-            ));
-
             ctx.register(gem.oreCF(), new ConfiguredFeature<>(Feature.ORE,
                 new OreConfiguration(List.of(
                     OreConfiguration.target(new BlockMatchTest(endStone), ore.defaultBlockState()),

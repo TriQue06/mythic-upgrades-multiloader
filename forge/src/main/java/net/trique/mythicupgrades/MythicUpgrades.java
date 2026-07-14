@@ -13,13 +13,9 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.common.brewing.IBrewingRecipe;
 import net.minecraftforge.event.LootTableLoadEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.level.ChunkEvent;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
@@ -30,7 +26,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegisterEvent;
 import net.trique.mythicupgrades.MythicEffects;
 import net.trique.mythicupgrades.MythicSounds;
-import net.trique.mythicupgrades.MythicLegacyMigration;
 import net.trique.mythicupgrades.MythicPotions;
 import net.trique.mythicupgrades.block.MythicBlocks;
 import net.trique.mythicupgrades.item.MythicItems;
@@ -193,25 +188,6 @@ public class MythicUpgrades {
 
     @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static class ForgeEvents {
-        @SubscribeEvent
-        public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-            MythicLegacyMigration.migratePlayer(event.getEntity());
-        }
-
-        @SubscribeEvent
-        public static void onChunkLoad(ChunkEvent.Load event) {
-            if (!event.getLevel().isClientSide() && event.getChunk() instanceof LevelChunk levelChunk) {
-                MythicLegacyMigration.PENDING_CHUNKS.add(levelChunk);
-            }
-        }
-
-        @SubscribeEvent
-        public static void onServerTick(TickEvent.ServerTickEvent event) {
-            if (event.phase == TickEvent.Phase.END) {
-                MythicLegacyMigration.drainPendingChunks();
-            }
-        }
-
         @SubscribeEvent
         public static void onLootTableLoad(LootTableLoadEvent event) {
             if (event.getName().equals(new ResourceLocation("chests/end_city_treasure"))) {

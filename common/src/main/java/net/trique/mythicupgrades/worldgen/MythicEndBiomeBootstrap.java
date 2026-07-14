@@ -21,21 +21,19 @@ public class MythicEndBiomeBootstrap {
         HolderGetter<PlacedFeature> features = ctx.lookup(Registries.PLACED_FEATURE);
         HolderGetter<ConfiguredWorldCarver<?>> carvers = ctx.lookup(Registries.CONFIGURED_CARVER);
 
-        for (EndGemType gem : EndGemType.values()) {
-            ctx.register(gem.endBiome(), buildBiome(gem, features, carvers));
-        }
+        ctx.register(MythicBiomes.MYTHIC_BARRENS, buildBiome(features, carvers));
     }
 
-    private static Biome buildBiome(EndGemType gem,
-                                    HolderGetter<PlacedFeature> features,
+    private static Biome buildBiome(HolderGetter<PlacedFeature> features,
                                     HolderGetter<ConfiguredWorldCarver<?>> carvers) {
 
         BiomeGenerationSettings.Builder gen = new BiomeGenerationSettings.Builder(features, carvers);
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.stoneBlobsPF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.orePF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBlobsPF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsPF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsRarePF()));
+        for (EndGemType gem : EndGemType.values()) {
+            gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.stoneBlobsPF()));
+            gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.orePF()));
+            gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBlobsPF()));
+            gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsPF()));
+        }
 
         MobSpawnSettings spawns = new MobSpawnSettings.Builder()
                 .creatureGenerationProbability(0.0f)
@@ -44,16 +42,16 @@ public class MythicEndBiomeBootstrap {
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
                 .fogColor(0x0B0E2E)
                 .skyColor(0x0B0E2E)
-                .waterColor(gem.waterColor)
+                .waterColor(10518688)
                 .waterFogColor(0x050533)
                 .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                 .ambientAdditionsSound(new AmbientAdditionsSettings(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(MythicSounds.AMBIENT_MYTHIC_CHIME), 0.0111))
                 .build();
 
         return new Biome.BiomeBuilder()
-                .hasPrecipitation(gem.precipitation)
-                .temperature(gem.temperature)
-                .downfall(gem.downfall)
+                .hasPrecipitation(false)
+                .temperature(0.5f)
+                .downfall(0.0f)
                 .specialEffects(effects)
                 .mobSpawnSettings(spawns)
                 .generationSettings(gen.build())

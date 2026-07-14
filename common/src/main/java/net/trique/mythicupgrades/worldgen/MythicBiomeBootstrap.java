@@ -22,12 +22,11 @@ public class MythicBiomeBootstrap {
         HolderGetter<PlacedFeature> features = ctx.lookup(Registries.PLACED_FEATURE);
         HolderGetter<ConfiguredWorldCarver<?>> carvers = ctx.lookup(Registries.CONFIGURED_CARVER);
 
-        for (CaveGemType gem : CaveGemType.values()) {
-            ctx.register(gem.biome(), buildBiome(gem, features, carvers));
-        }
+        ctx.register(MythicBiomes.COLD_MYTHIC_CAVES, buildBiome(true, features, carvers));
+        ctx.register(MythicBiomes.WARM_MYTHIC_CAVES, buildBiome(false, features, carvers));
     }
 
-    private static Biome buildBiome(CaveGemType gem,
+    private static Biome buildBiome(boolean cold,
                                     HolderGetter<PlacedFeature> features,
                                     HolderGetter<ConfiguredWorldCarver<?>> carvers) {
 
@@ -40,11 +39,13 @@ public class MythicBiomeBootstrap {
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(MythicPlacedFeatures.DEEPSLATE_NECOIUM_ORE_EXTRA_PF));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(MythicPlacedFeatures.RAW_NECOIUM_BLOCK_CAVES_PF));
 
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.stoneBlobsPF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.orePF()));
-
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBlobsPF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsPF()));
+        for (CaveGemType gem : CaveGemType.values()) {
+            if (gem.cold != cold) continue;
+            gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.stoneBlobsPF()));
+            gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.orePF()));
+            gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBlobsPF()));
+            gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsPF()));
+        }
 
         MobSpawnSettings spawns = new MobSpawnSettings.Builder()
                 .creatureGenerationProbability(0.07f)
@@ -53,16 +54,16 @@ public class MythicBiomeBootstrap {
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
                 .fogColor(12638463)
                 .skyColor(8103167)
-                .waterColor(gem.waterColor)
+                .waterColor(cold ? 3850191 : 4159204)
                 .waterFogColor(329011)
                 .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                 .ambientAdditionsSound(new AmbientAdditionsSettings(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(MythicSounds.AMBIENT_MYTHIC_CHIME), 0.0111))
                 .build();
 
         return new Biome.BiomeBuilder()
-                .hasPrecipitation(gem.precipitation)
-                .temperature(gem.temperature)
-                .downfall(gem.downfall)
+                .hasPrecipitation(cold)
+                .temperature(cold ? 0.4f : 1.2f)
+                .downfall(cold ? 0.45f : 0.1f)
                 .specialEffects(effects)
                 .mobSpawnSettings(spawns)
                 .generationSettings(gen.build())
