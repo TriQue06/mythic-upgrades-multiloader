@@ -30,6 +30,8 @@ public class MythicUpgrades implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        MythicConfig.load(net.fabricmc.loader.api.FabricLoader.getInstance().getConfigDir());
+
         MythicEffects.register((name, effect) -> {
             ResourceKey<MobEffect> key = ResourceKey.create(
                 BuiltInRegistries.MOB_EFFECT.key(),

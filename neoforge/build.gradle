@@ -35,4 +35,5 @@ neoForge {
 
 dependencies {
     implementation fileTree(dir: rootProject.file('libs'), include: ['TerraBlender-neoforge-*.jar'])
+    implementation "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}"
 }

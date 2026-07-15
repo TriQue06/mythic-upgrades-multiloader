@@ -20,6 +20,8 @@ dependencies {
     compileOnly group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
     annotationProcessor group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
     compileOnly fileTree(dir: rootProject.file('libs'), include: ['TerraBlender-neoforge-*.jar'])
+    // Cloth Config API surface only; each loader module supplies its own flavor at runtime
+    compileOnly "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}"
 }
 
 configurations {

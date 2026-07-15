@@ -25,10 +25,18 @@ import net.trique.mythicupgrades.worldgen.TerraBlenderCompat;
 @Mod(Constants.MOD_ID)
 public class MythicUpgrades {
 
-    public MythicUpgrades(IEventBus modEventBus) {
+    public MythicUpgrades(IEventBus modEventBus, net.neoforged.fml.ModContainer container) {
+        MythicConfig.load(net.neoforged.fml.loading.FMLPaths.CONFIGDIR.get());
+
         modEventBus.addListener(this::onRegister);
         modEventBus.addListener(this::onCommonSetup);
         modEventBus.addListener(this::onClientSetup);
+
+        if (net.neoforged.fml.loading.FMLEnvironment.dist.isClient()) {
+            container.registerExtensionPoint(
+                net.neoforged.neoforge.client.gui.IConfigScreenFactory.class,
+                (modContainer, parent) -> net.trique.mythicupgrades.client.MythicConfigScreen.create(parent));
+        }
     }
 
     private void onRegister(RegisterEvent event) {
