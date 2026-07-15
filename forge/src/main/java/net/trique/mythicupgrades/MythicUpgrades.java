@@ -36,10 +36,19 @@ import net.trique.mythicupgrades.worldgen.TerraBlenderCompat;
 public class MythicUpgrades {
 
     public MythicUpgrades() {
+        MythicConfig.load(net.minecraftforge.fml.loading.FMLPaths.CONFIGDIR.get());
+
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::onRegister);
         bus.addListener(this::onCommonSetup);
         bus.addListener(this::onClientSetup);
+
+        if (net.minecraftforge.fml.loading.FMLEnvironment.dist.isClient()) {
+            net.minecraftforge.fml.ModLoadingContext.get().registerExtensionPoint(
+                net.minecraftforge.client.ConfigScreenHandler.ConfigScreenFactory.class,
+                () -> new net.minecraftforge.client.ConfigScreenHandler.ConfigScreenFactory(
+                    (minecraft, parent) -> net.trique.mythicupgrades.client.MythicConfigScreen.create(parent)));
+        }
     }
 
     private void onRegister(RegisterEvent event) {

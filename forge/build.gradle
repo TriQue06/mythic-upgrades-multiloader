@@ -136,6 +136,8 @@ dependencies {
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
     compileOnly fileTree(dir: rootProject.file('libs'), include: ['TerraBlender-forge-*.jar'])
     runtimeOnly(files(patchedTBJar) { builtBy patchTerraBlender })
+    // remapped (SRG->Mojmap) for the dev runtime by the legacyforge plugin
+    modImplementation "me.shedaniel.cloth:cloth-config-forge:${cloth_config_version}"
 }
 
 jar {

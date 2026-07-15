@@ -28,6 +28,8 @@ public class MythicUpgrades implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        MythicConfig.load(net.fabricmc.loader.api.FabricLoader.getInstance().getConfigDir());
+
         MythicBlocks.register((name, block) ->
             Registry.register(BuiltInRegistries.BLOCK, new ResourceLocation(Constants.MOD_ID, name), block));
 

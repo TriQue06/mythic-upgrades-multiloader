@@ -23,6 +23,9 @@
         ],
         "terrablender": [
             "net.trique.mythicupgrades.FabricTerraBlenderAddon"
+        ],
+        "modmenu": [
+            "net.trique.mythicupgrades.MythicModMenu"
         ]
     },
     "accessWidener": "${mod_id}.accesswidener",
@@ -34,10 +37,11 @@
         "fabricloader": ">=0.14",
         "fabric": "*",
         "minecraft": "${minecraft_version}",
-        "java": ">=17"
+        "java": ">=17",
+        "cloth-config": ">=11.0.0"
     },
     "suggests": {
-        "another-mod": "*"
+        "modmenu": "*"
     }
 }
   
