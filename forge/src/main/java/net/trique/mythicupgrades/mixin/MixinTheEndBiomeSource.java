@@ -1,11 +1,13 @@
 package net.trique.mythicupgrades.mixin;
 
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderOwner;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.biome.TheEndBiomeSource;
+import net.trique.mythicupgrades.mixin.accessor.HolderReferenceAccessor;
 import net.trique.mythicupgrades.worldgen.MythicBiomes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +18,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.lang.reflect.Field;
 import java.util.stream.Stream;
 
 @Mixin(TheEndBiomeSource.class)
@@ -55,22 +56,9 @@ public class MixinTheEndBiomeSource {
     @Unique
     @SuppressWarnings("unchecked")
     private static Registry<Biome> mythicupgrades$findRegistry(Holder<Biome> holder) {
-        try {
-            for (Field f : Holder.Reference.class.getDeclaredFields()) {
-                f.setAccessible(true);
-                Object val = f.get(holder);
-                if (val == null) continue;
-                if (val instanceof Registry<?> r) return (Registry<Biome>) r;
-                for (Field inner : val.getClass().getDeclaredFields()) {
-                    inner.setAccessible(true);
-                    Object innerVal = inner.get(val);
-                    if (innerVal instanceof Registry<?> r) return (Registry<Biome>) r;
-                }
-            }
-        } catch (Throwable e) {
-            LOGGER.error("Registry reflection failed", e);
-        }
-        return null;
+        if (!(holder instanceof Holder.Reference<Biome> ref)) return null;
+        HolderOwner<?> owner = ((HolderReferenceAccessor) ref).mythicupgrades$getOwner();
+        return owner instanceof Registry<?> r ? (Registry<Biome>) r : null;
     }
 
     @Inject(method = "collectPossibleBiomes", at = @At("RETURN"), cancellable = true)
