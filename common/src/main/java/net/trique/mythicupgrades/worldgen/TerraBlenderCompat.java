@@ -8,7 +8,7 @@ public class TerraBlenderCompat {
     public static void init() {
         Regions.register(new MythicOverworldRegion());
         Regions.register(new MythicNetherRegion());
-        EndBiomeRegistry.registerHighlandsBiome(MythicBiomes.AMETRINE_BARRENS, 2);
-        EndBiomeRegistry.registerMidlandsBiome(MythicBiomes.JADE_BARRENS, 2);
+        EndBiomeRegistry.registerHighlandsBiome(MythicBiomes.MYTHIC_BARRENS, 2);
+        EndBiomeRegistry.registerMidlandsBiome(MythicBiomes.MYTHIC_BARRENS, 2);
     }
 }

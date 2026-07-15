@@ -176,24 +176,6 @@ public class MythicItems {
     public static final Item JADE_CRYSTAL_SHARD = defer("jade_crystal_shard", new Item(new Item.Properties().food(shardFood(MythicEffects.JADE_AURA))));
     public static final Item AMETRINE_CRYSTAL_SHARD = defer("ametrine_crystal_shard", new Item(new Item.Properties().food(shardFood(MythicEffects.ARCANE_AURA))));
 
-    public static final Item LEGACY_AQUAMARINE_POTION = defer("aquamarine_potion", new Item(new Item.Properties()));
-    public static final Item LEGACY_CITRINE_POTION = defer("citrine_potion", new Item(new Item.Properties()));
-    public static final Item LEGACY_TOPAZ_POTION = defer("topaz_potion", new Item(new Item.Properties()));
-    public static final Item LEGACY_PERIDOT_POTION = defer("peridot_potion", new Item(new Item.Properties()));
-    public static final Item LEGACY_RUBY_POTION = defer("ruby_potion", new Item(new Item.Properties()));
-    public static final Item LEGACY_SAPPHIRE_POTION = defer("sapphire_potion", new Item(new Item.Properties()));
-    public static final Item LEGACY_JADE_POTION = defer("jade_potion", new Item(new Item.Properties()));
-    public static final Item LEGACY_AMETRINE_POTION = defer("ametrine_potion", new Item(new Item.Properties()));
-
-    public static final Item LEGACY_AQUAMARINE_TEMPLATE = defer("aquamarine_upgrade_smithing_template", new Item(new Item.Properties()));
-    public static final Item LEGACY_CITRINE_TEMPLATE = defer("citrine_upgrade_smithing_template", new Item(new Item.Properties()));
-    public static final Item LEGACY_TOPAZ_TEMPLATE = defer("topaz_upgrade_smithing_template", new Item(new Item.Properties()));
-    public static final Item LEGACY_PERIDOT_TEMPLATE = defer("peridot_upgrade_smithing_template", new Item(new Item.Properties()));
-    public static final Item LEGACY_RUBY_TEMPLATE = defer("ruby_upgrade_smithing_template", new Item(new Item.Properties()));
-    public static final Item LEGACY_SAPPHIRE_TEMPLATE = defer("sapphire_upgrade_smithing_template", new Item(new Item.Properties()));
-    public static final Item LEGACY_JADE_TEMPLATE = defer("jade_upgrade_smithing_template", new Item(new Item.Properties()));
-    public static final Item LEGACY_AMETRINE_TEMPLATE = defer("ametrine_upgrade_smithing_template", new Item(new Item.Properties()));
-
     public static void register(BiFunction<String, Item, Item> reg) {
         DEFERRED.forEach(e -> reg.apply(e.getKey(), e.getValue()));
         Constants.LOG.info("MythicItems registered.");

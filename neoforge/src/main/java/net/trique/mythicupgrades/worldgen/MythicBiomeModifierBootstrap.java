@@ -58,35 +58,6 @@ public class MythicBiomeModifierBootstrap {
                     features.getOrThrow(NetherGemType.SAPPHIRE.geodePF())
                 ),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
-
-        for (CaveGemType gem : CaveGemType.values()) {
-            ctx.register(key("add_" + gem.id + "_geode_extra"),
-                new BiomeModifiers.AddFeaturesBiomeModifier(
-                    HolderSet.direct(biomes.getOrThrow(gem.biome())),
-                    HolderSet.direct(features.getOrThrow(gem.geodeExtraPF())),
-                    GenerationStep.Decoration.UNDERGROUND_ORES));
-            ctx.register(key("add_" + gem.id + "_crystal_buds_rare"),
-                new BiomeModifiers.AddFeaturesBiomeModifier(
-                    HolderSet.direct(biomes.getOrThrow(gem.biome())),
-                    HolderSet.direct(features.getOrThrow(gem.crystalBudsRarePF())),
-                    GenerationStep.Decoration.UNDERGROUND_DECORATION));
-        }
-
-        for (NetherGemType gem : NetherGemType.values()) {
-            ctx.register(key("add_" + gem.id + "_rift_geode_extra"),
-                new BiomeModifiers.AddFeaturesBiomeModifier(
-                    HolderSet.direct(biomes.getOrThrow(gem.netherBiome())),
-                    HolderSet.direct(features.getOrThrow(gem.geodeExtraPF())),
-                    GenerationStep.Decoration.UNDERGROUND_ORES));
-        }
-
-        for (EndGemType gem : EndGemType.values()) {
-            ctx.register(key("add_" + gem.id + "_end_geode_extra"),
-                new BiomeModifiers.AddFeaturesBiomeModifier(
-                    HolderSet.direct(biomes.getOrThrow(gem.endBiome())),
-                    HolderSet.direct(features.getOrThrow(gem.geodeExtraPF())),
-                    GenerationStep.Decoration.UNDERGROUND_ORES));
-        }
     }
 
     private static ResourceKey<BiomeModifier> key(String name) {

@@ -58,8 +58,27 @@ public class MythicTrimAtlasProvider implements DataProvider {
         this.output = output;
     }
 
+    private static final List<String> VANILLA_ITEM_TRIM_TEXTURES = List.of(
+        "trims/items/helmet_trim",
+        "trims/items/chestplate_trim",
+        "trims/items/leggings_trim",
+        "trims/items/boots_trim"
+    );
+
     @Override
     public CompletableFuture<?> run(CachedOutput cache) {
+        Path assetPath = output.getOutputFolder(PackOutput.Target.RESOURCE_PACK);
+        return CompletableFuture.allOf(
+            DataProvider.saveStable(cache,
+                GSON.toJsonTree(atlasJson(VANILLA_TRIM_TEXTURES)),
+                assetPath.resolve("minecraft/atlases/armor_trims.json")),
+            DataProvider.saveStable(cache,
+                GSON.toJsonTree(atlasJson(VANILLA_ITEM_TRIM_TEXTURES)),
+                assetPath.resolve("minecraft/atlases/blocks.json"))
+        );
+    }
+
+    private static JsonObject atlasJson(List<String> textureList) {
         JsonObject permutations = new JsonObject();
         for (TrimColor color : COLORS) {
             permutations.addProperty(color.name(), Constants.MOD_ID + ":trims/color_palettes/" + color.name());
@@ -69,7 +88,7 @@ public class MythicTrimAtlasProvider implements DataProvider {
         }
 
         JsonArray textures = new JsonArray();
-        for (String tex : VANILLA_TRIM_TEXTURES) textures.add("minecraft:" + tex);
+        for (String tex : textureList) textures.add("minecraft:" + tex);
 
         JsonObject source = new JsonObject();
         source.addProperty("type", "minecraft:paletted_permutations");
@@ -82,10 +101,7 @@ public class MythicTrimAtlasProvider implements DataProvider {
 
         JsonObject root = new JsonObject();
         root.add("sources", sources);
-
-        Path assetPath = output.getOutputFolder(PackOutput.Target.RESOURCE_PACK);
-        Path filePath = assetPath.resolve("minecraft/atlases/armor_trims.json");
-        return DataProvider.saveStable(cache, GSON.toJsonTree(root), filePath);
+        return root;
     }
 
     @Override

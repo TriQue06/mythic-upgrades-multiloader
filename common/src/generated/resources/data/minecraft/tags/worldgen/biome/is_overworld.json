@@ -1,19 +1,11 @@
 {
   "values": [
     {
-      "id": "mythicupgrades:aquamarine_caves",
+      "id": "mythicupgrades:cold_mythic_caves",
       "required": false
     },
     {
-      "id": "mythicupgrades:citrine_caves",
-      "required": false
-    },
-    {
-      "id": "mythicupgrades:peridot_caves",
-      "required": false
-    },
-    {
-      "id": "mythicupgrades:topaz_caves",
+      "id": "mythicupgrades:warm_mythic_caves",
       "required": false
     }
   ]

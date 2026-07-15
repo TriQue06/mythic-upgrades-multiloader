@@ -48,11 +48,12 @@ public class MixinTheEndBiomeSource {
             return;
         }
 
-        Holder<Biome> ametrine = biomeReg.getHolder(MythicBiomes.AMETRINE_BARRENS).orElse(null);
-        Holder<Biome> jade     = biomeReg.getHolder(MythicBiomes.JADE_BARRENS).orElse(null);
+        Holder<Biome> mythicBarrens = biomeReg.getHolder(MythicBiomes.MYTHIC_BARRENS).orElse(null);
 
-        if (ametrine != null) this.highlands = ametrine;
-        if (jade     != null) this.midlands  = jade;
+        if (mythicBarrens != null) {
+            this.highlands = mythicBarrens;
+            this.midlands  = mythicBarrens;
+        }
 
         LOGGER.info("End biomes injected — highlands={} midlands={}", this.highlands, this.midlands);
     }

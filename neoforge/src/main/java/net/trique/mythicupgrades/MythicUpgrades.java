@@ -8,7 +8,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.level.chunk.LevelChunk;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
@@ -17,8 +16,6 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
-import net.neoforged.neoforge.event.level.ChunkEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import net.trique.mythicupgrades.block.MythicBlocks;
 import net.trique.mythicupgrades.item.MythicItems;
@@ -166,22 +163,5 @@ public class MythicUpgrades {
             builder.addMix(BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.LETHAL_INCUBATION), Items.GLOWSTONE_DUST, BuiltInRegistries.POTION.wrapAsHolder(MythicPotions.LETHAL_INCUBATION_STRONG));
         }
 
-        @SubscribeEvent
-        public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-            MythicLegacyMigration.migratePlayer(event.getEntity());
-            MythicLegacyMigration.drainPendingChunks();
-        }
-
-        @SubscribeEvent
-        public static void onServerTick(net.neoforged.neoforge.event.tick.ServerTickEvent.Post event) {
-            MythicLegacyMigration.drainPendingChunks();
-        }
-
-        @SubscribeEvent
-        public static void onChunkLoad(ChunkEvent.Load event) {
-            if (event.getLevel().isClientSide()) return;
-            if (!(event.getChunk() instanceof LevelChunk levelChunk)) return;
-            MythicLegacyMigration.PENDING_CHUNKS.offer(levelChunk);
-        }
     }
 }

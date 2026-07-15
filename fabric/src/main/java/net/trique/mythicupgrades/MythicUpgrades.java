@@ -3,10 +3,7 @@ package net.trique.mythicupgrades;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistrationInfo;
 import net.minecraft.core.WritableRegistry;
@@ -19,7 +16,6 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.trique.mythicupgrades.MythicEffects;
-import net.trique.mythicupgrades.MythicLegacyMigration;
 import net.trique.mythicupgrades.MythicPotions;
 import net.trique.mythicupgrades.MythicSounds;
 import net.trique.mythicupgrades.block.MythicBlocks;
@@ -63,11 +59,6 @@ public class MythicUpgrades implements ModInitializer {
         MythicSounds.register((name, sound) ->
             Registry.register(BuiltInRegistries.SOUND_EVENT, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), sound));
 
-        for (CaveGemType gem : CaveGemType.values()) {
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(gem.biome()),
-                GenerationStep.Decoration.UNDERGROUND_DECORATION, gem.crystalBudsRarePF());
-        }
-
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
             GenerationStep.Decoration.UNDERGROUND_ORES, MythicPlacedFeatures.NECOIUM_ORE_PF);
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
@@ -76,22 +67,16 @@ public class MythicUpgrades implements ModInitializer {
         for (CaveGemType gem : CaveGemType.values()) {
             BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
                 GenerationStep.Decoration.UNDERGROUND_ORES, gem.geodePF());
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(gem.biome()),
-                GenerationStep.Decoration.UNDERGROUND_DECORATION, gem.geodeExtraPF());
         }
 
         for (NetherGemType gem : NetherGemType.values()) {
             BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(),
                 GenerationStep.Decoration.UNDERGROUND_ORES, gem.geodePF());
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(gem.netherBiome()),
-                GenerationStep.Decoration.UNDERGROUND_DECORATION, gem.geodeExtraPF());
         }
 
         for (EndGemType gem : EndGemType.values()) {
             BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
                 GenerationStep.Decoration.UNDERGROUND_ORES, gem.geodePF());
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(gem.endBiome()),
-                GenerationStep.Decoration.UNDERGROUND_DECORATION, gem.geodeExtraPF());
         }
 
         LootTableEvents.MODIFY.register((key, tableBuilder, source) -> {
@@ -105,16 +90,6 @@ public class MythicUpgrades implements ModInitializer {
         });
 
         FabricBrewingHelper.register();
-
-        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
-            MythicLegacyMigration.migratePlayer(handler.player);
-        });
-
-        ServerChunkEvents.CHUNK_LOAD.register((world, chunk) ->
-            MythicLegacyMigration.PENDING_CHUNKS.offer(chunk));
-
-        ServerTickEvents.END_SERVER_TICK.register(server ->
-            MythicLegacyMigration.drainPendingChunks());
 
         CommonClass.init();
     }

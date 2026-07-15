@@ -22,36 +22,31 @@ public class MythicNetherBiomeBootstrap {
         HolderGetter<PlacedFeature> features = ctx.lookup(Registries.PLACED_FEATURE);
         HolderGetter<ConfiguredWorldCarver<?>> carvers = ctx.lookup(Registries.CONFIGURED_CARVER);
 
-        for (NetherGemType gem : NetherGemType.values()) {
-            ctx.register(gem.netherBiome(), buildBiome(gem, features, carvers));
-        }
+        ctx.register(MythicBiomes.MYTHIC_RIFTS, buildBiome(features, carvers));
     }
 
-    private static Biome buildBiome(NetherGemType gem,
-                                    HolderGetter<PlacedFeature> features,
+    private static Biome buildBiome(HolderGetter<PlacedFeature> features,
                                     HolderGetter<ConfiguredWorldCarver<?>> carvers) {
 
         BiomeGenerationSettings.Builder gen = new BiomeGenerationSettings.Builder(features, carvers);
 
         BiomeDefaultFeatures.addNetherDefaultOres(gen);
 
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.stoneBlobsPF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.orePF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBlobsPF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsPF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsRarePF()));
+        for (NetherGemType gem : NetherGemType.values()) {
+            gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.stoneBlobsPF()));
+            gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.orePF()));
+            gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBlobsPF()));
+            gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsPF()));
+        }
 
         MobSpawnSettings spawns = new MobSpawnSettings.Builder()
                 .creatureGenerationProbability(0.0f)
                 .build();
 
-        int fogColor = gem == NetherGemType.RUBY ? 0xBF3030 : 0x3030BF;
-        int skyColor = gem == NetherGemType.RUBY ? 0x420000 : 0x000042;
-
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
-                .fogColor(fogColor)
-                .skyColor(skyColor)
-                .waterColor(gem.waterColor)
+                .fogColor(0x78307B)
+                .skyColor(0x210021)
+                .waterColor(0xA147FC)
                 .waterFogColor(0x050533)
                 .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                 .ambientAdditionsSound(new AmbientAdditionsSettings(
@@ -59,9 +54,9 @@ public class MythicNetherBiomeBootstrap {
                 .build();
 
         return new Biome.BiomeBuilder()
-                .hasPrecipitation(gem.precipitation)
-                .temperature(gem.temperature)
-                .downfall(gem.downfall)
+                .hasPrecipitation(false)
+                .temperature(2.0f)
+                .downfall(0.0f)
                 .specialEffects(effects)
                 .mobSpawnSettings(spawns)
                 .generationSettings(gen.build())

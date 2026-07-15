@@ -19,16 +19,19 @@ public class MythicTrimMaterialProvider implements DataProvider {
 
     private record TrimEntry(String name, String color, float modelIndex, String armorMaterial) {}
 
+    // trim_type item property is clamped to [0.0, 1.0], so indices must stay
+    // below 1.0. The 0.2063x block is a mod-specific niche to avoid colliding
+    // with other mods' trim material indices.
     private static final List<TrimEntry> ENTRIES = List.of(
-        new TrimEntry("aquamarine", "#057B9E", 1.1f, "mythicupgrades:aquamarine"),
-        new TrimEntry("citrine", "#DCB40A", 1.3f, null),
-        new TrimEntry("topaz", "#D1480D", 1.4f, "mythicupgrades:topaz"),
-        new TrimEntry("peridot", "#61AD0F", 1.5f, "mythicupgrades:peridot"),
-        new TrimEntry("ruby", "#A90C37", 1.6f, "mythicupgrades:ruby"),
-        new TrimEntry("sapphire", "#0C46B2", 1.7f, "mythicupgrades:sapphire"),
-        new TrimEntry("jade", "#1D8B30", 1.8f, "mythicupgrades:jade"),
-        new TrimEntry("ametrine", "#8422AE", 1.9f, "mythicupgrades:ametrine"),
-        new TrimEntry("necoium", "#9F1C73", 2.0f, null)
+        new TrimEntry("aquamarine", "#057B9E", 0.20631f, "mythicupgrades:aquamarine"),
+        new TrimEntry("citrine", "#DCB40A", 0.20632f, null),
+        new TrimEntry("topaz", "#D1480D", 0.20633f, "mythicupgrades:topaz"),
+        new TrimEntry("peridot", "#61AD0F", 0.20634f, "mythicupgrades:peridot"),
+        new TrimEntry("ruby", "#A90C37", 0.20635f, "mythicupgrades:ruby"),
+        new TrimEntry("sapphire", "#0C46B2", 0.20636f, "mythicupgrades:sapphire"),
+        new TrimEntry("jade", "#1D8B30", 0.20637f, "mythicupgrades:jade"),
+        new TrimEntry("ametrine", "#8422AE", 0.20638f, "mythicupgrades:ametrine"),
+        new TrimEntry("necoium", "#9F1C73", 0.20639f, null)
     );
 
     private final PackOutput output;

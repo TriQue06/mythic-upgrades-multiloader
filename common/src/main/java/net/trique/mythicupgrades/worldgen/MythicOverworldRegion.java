@@ -27,23 +27,13 @@ public class MythicOverworldRegion extends Region {
 
         addBiome(mapper, Climate.parameters(
                 Climate.Parameter.span(-1.0f, 0.0f), full, full, full, depth,
-                Climate.Parameter.span(-1.0f, 0.0f), 0.0f),
-                MythicBiomes.AQUAMARINE_CAVES);
-
-        addBiome(mapper, Climate.parameters(
-                Climate.Parameter.span(-1.0f, 0.0f), full, full, full, depth,
-                Climate.Parameter.span( 0.0f, 1.0f), 0.0f),
-                MythicBiomes.CITRINE_CAVES);
+                full, 0.0f),
+                MythicBiomes.COLD_MYTHIC_CAVES);
 
         addBiome(mapper, Climate.parameters(
                 Climate.Parameter.span( 0.0f, 1.0f), full, full, full, depth,
-                Climate.Parameter.span(-1.0f, 0.0f), 0.0f),
-                MythicBiomes.PERIDOT_CAVES);
-
-        addBiome(mapper, Climate.parameters(
-                Climate.Parameter.span( 0.0f, 1.0f), full, full, full, depth,
-                Climate.Parameter.span( 0.0f, 1.0f), 0.0f),
-                MythicBiomes.TOPAZ_CAVES);
+                full, 0.0f),
+                MythicBiomes.WARM_MYTHIC_CAVES);
 
         this.addModifiedVanillaOverworldBiomes(mapper, builder -> {});
     }
