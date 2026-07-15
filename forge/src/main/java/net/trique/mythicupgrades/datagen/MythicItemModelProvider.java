@@ -38,6 +38,8 @@ public class MythicItemModelProvider extends ItemModelProvider {
         for (MythicTrimMaterialProvider.Entry e : MythicTrimMaterialProvider.ENTRIES) {
             mats.add(new TrimMat(e.name(), e.itemModelIndex(), e.armorMaterial() != null));
         }
+        // override resolution is order-sensitive: predicates must be ascending
+        mats.sort(java.util.Comparator.comparingDouble(TrimMat::index));
         return mats;
     }
 

@@ -5,7 +5,7 @@
     "translate": "trim_material.mythicupgrades.peridot"
   },
   "ingredient": "mythicupgrades:peridot_crystal_shard",
-  "item_model_index": 1.5,
+  "item_model_index": 0.20634,
   "override_armor_materials": {
     "mythicupgrades:peridot": {
       "asset_name": "peridot_darker"

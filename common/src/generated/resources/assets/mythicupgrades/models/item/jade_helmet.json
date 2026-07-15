@@ -14,6 +14,60 @@
       }
     },
     {
+      "model": "mythicupgrades:item/jade_helmet_aquamarine_trim",
+      "predicate": {
+        "minecraft:trim_type": 0.20631
+      }
+    },
+    {
+      "model": "mythicupgrades:item/jade_helmet_citrine_trim",
+      "predicate": {
+        "minecraft:trim_type": 0.20632
+      }
+    },
+    {
+      "model": "mythicupgrades:item/jade_helmet_topaz_trim",
+      "predicate": {
+        "minecraft:trim_type": 0.20633
+      }
+    },
+    {
+      "model": "mythicupgrades:item/jade_helmet_peridot_trim",
+      "predicate": {
+        "minecraft:trim_type": 0.20634
+      }
+    },
+    {
+      "model": "mythicupgrades:item/jade_helmet_ruby_trim",
+      "predicate": {
+        "minecraft:trim_type": 0.20635
+      }
+    },
+    {
+      "model": "mythicupgrades:item/jade_helmet_sapphire_trim",
+      "predicate": {
+        "minecraft:trim_type": 0.20636
+      }
+    },
+    {
+      "model": "mythicupgrades:item/jade_helmet_jade_trim",
+      "predicate": {
+        "minecraft:trim_type": 0.20637
+      }
+    },
+    {
+      "model": "mythicupgrades:item/jade_helmet_ametrine_trim",
+      "predicate": {
+        "minecraft:trim_type": 0.20638
+      }
+    },
+    {
+      "model": "mythicupgrades:item/jade_helmet_necoium_trim",
+      "predicate": {
+        "minecraft:trim_type": 0.20639
+      }
+    },
+    {
       "model": "mythicupgrades:item/jade_helmet_netherite_trim",
       "predicate": {
         "minecraft:trim_type": 0.3
@@ -59,60 +113,6 @@
       "model": "mythicupgrades:item/jade_helmet_amethyst_trim",
       "predicate": {
         "minecraft:trim_type": 1.0
-      }
-    },
-    {
-      "model": "mythicupgrades:item/jade_helmet_aquamarine_trim",
-      "predicate": {
-        "minecraft:trim_type": 1.1
-      }
-    },
-    {
-      "model": "mythicupgrades:item/jade_helmet_citrine_trim",
-      "predicate": {
-        "minecraft:trim_type": 1.3
-      }
-    },
-    {
-      "model": "mythicupgrades:item/jade_helmet_topaz_trim",
-      "predicate": {
-        "minecraft:trim_type": 1.4
-      }
-    },
-    {
-      "model": "mythicupgrades:item/jade_helmet_peridot_trim",
-      "predicate": {
-        "minecraft:trim_type": 1.5
-      }
-    },
-    {
-      "model": "mythicupgrades:item/jade_helmet_ruby_trim",
-      "predicate": {
-        "minecraft:trim_type": 1.6
-      }
-    },
-    {
-      "model": "mythicupgrades:item/jade_helmet_sapphire_trim",
-      "predicate": {
-        "minecraft:trim_type": 1.7
-      }
-    },
-    {
-      "model": "mythicupgrades:item/jade_helmet_jade_trim",
-      "predicate": {
-        "minecraft:trim_type": 1.8
-      }
-    },
-    {
-      "model": "mythicupgrades:item/jade_helmet_ametrine_trim",
-      "predicate": {
-        "minecraft:trim_type": 1.9
-      }
-    },
-    {
-      "model": "mythicupgrades:item/jade_helmet_necoium_trim",
-      "predicate": {
-        "minecraft:trim_type": 2.0
       }
     }
   ],
