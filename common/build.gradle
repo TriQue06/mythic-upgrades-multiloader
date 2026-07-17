@@ -17,7 +17,7 @@ legacyForge {
 dependencies {
     compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
-    compileOnly fileTree(dir: rootProject.file('libs'), include: ['TerraBlender-forge-*.jar'])
+    compileOnly "com.github.glitchfiend:TerraBlender-forge:${terrablender_forge_version}"
     // Cloth Config API surface only; each loader module supplies its own flavor at runtime
     compileOnly "me.shedaniel.cloth:cloth-config-forge:${cloth_config_version}"
 }

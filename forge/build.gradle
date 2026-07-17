@@ -53,18 +53,20 @@ legacyForge {
 // This task replicates it using intermediateToNamed.srg so the dev run works identically.
 def patchedTBJar = layout.buildDirectory.file('terrablender/terrablender-forge-patched.jar')
 
+configurations {
+    terrablenderJar { transitive = false }
+}
+
 def patchTerraBlender = tasks.register('patchTerraBlender') {
-    def sourceJar = rootProject.fileTree('libs').find {
-        it.name.startsWith('TerraBlender-forge-') && it.name.endsWith('.jar')
-    }
     def srgFile = layout.buildDirectory.file('moddev/artifacts/intermediateToNamed.srg')
 
-    inputs.file(sourceJar)
+    inputs.files(configurations.terrablenderJar)
     inputs.file(srgFile)
     outputs.file(patchedTBJar)
     dependsOn 'createMinecraftArtifacts'
 
     doLast {
+        def sourceJar = configurations.terrablenderJar.singleFile
         def outputFile = patchedTBJar.get().asFile
         outputFile.parentFile.mkdirs()
 
@@ -134,7 +136,8 @@ def patchTerraBlender = tasks.register('patchTerraBlender') {
 dependencies {
     compileOnly project(":common")
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
-    compileOnly fileTree(dir: rootProject.file('libs'), include: ['TerraBlender-forge-*.jar'])
+    terrablenderJar "com.github.glitchfiend:TerraBlender-forge:${terrablender_forge_version}"
+    compileOnly "com.github.glitchfiend:TerraBlender-forge:${terrablender_forge_version}"
     runtimeOnly(files(patchedTBJar) { builtBy patchTerraBlender })
     // remapped (SRG->Mojmap) for the dev runtime by the legacyforge plugin
     modImplementation "me.shedaniel.cloth:cloth-config-forge:${cloth_config_version}"
