@@ -49,6 +49,15 @@ repositories {
         name = 'TerraformersMC'
         url = 'https://maven.terraformersmc.com/releases/'
     }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Glitchfiend'
+                url = 'https://maven.minecraftforge.net'
+            }
+        }
+        filter { includeGroup('com.github.glitchfiend') }
+    }
 }
 
 ['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements'].each { variant ->
