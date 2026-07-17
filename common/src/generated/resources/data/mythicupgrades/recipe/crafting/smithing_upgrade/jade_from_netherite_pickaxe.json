@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:jade_ingot",
+  "base": "minecraft:netherite_pickaxe",
+  "result": {
+    "id": "mythicupgrades:jade_pickaxe"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

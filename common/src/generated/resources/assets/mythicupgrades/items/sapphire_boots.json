@@ -1,0 +1,152 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_quartz_trim"
+        },
+        "when": "minecraft:quartz"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_iron_trim"
+        },
+        "when": "minecraft:iron"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_netherite_trim"
+        },
+        "when": "minecraft:netherite"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_redstone_trim"
+        },
+        "when": "minecraft:redstone"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_copper_trim"
+        },
+        "when": "minecraft:copper"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_gold_trim"
+        },
+        "when": "minecraft:gold"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_emerald_trim"
+        },
+        "when": "minecraft:emerald"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_diamond_trim"
+        },
+        "when": "minecraft:diamond"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_lapis_trim"
+        },
+        "when": "minecraft:lapis"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_amethyst_trim"
+        },
+        "when": "minecraft:amethyst"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_resin_trim"
+        },
+        "when": "minecraft:resin"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_aquamarine_trim"
+        },
+        "when": "mythicupgrades:aquamarine"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_citrine_trim"
+        },
+        "when": "mythicupgrades:citrine"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_topaz_trim"
+        },
+        "when": "mythicupgrades:topaz"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_peridot_trim"
+        },
+        "when": "mythicupgrades:peridot"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_ruby_trim"
+        },
+        "when": "mythicupgrades:ruby"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_sapphire_trim"
+        },
+        "when": "mythicupgrades:sapphire"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_jade_trim"
+        },
+        "when": "mythicupgrades:jade"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_ametrine_trim"
+        },
+        "when": "mythicupgrades:ametrine"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "mythicupgrades:item/sapphire_boots_necoium_trim"
+        },
+        "when": "mythicupgrades:necoium"
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "mythicupgrades:item/sapphire_boots"
+    },
+    "property": "minecraft:trim_material"
+  }
+}

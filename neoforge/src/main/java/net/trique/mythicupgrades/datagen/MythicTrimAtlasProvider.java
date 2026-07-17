@@ -1,7 +1,5 @@
 package net.trique.mythicupgrades.datagen;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.data.CachedOutput;
@@ -10,47 +8,29 @@ import net.minecraft.data.PackOutput;
 import net.trique.mythicupgrades.Constants;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Emits the mod-side atlas fragments that palette-swap the vanilla trim art with
+ * our gem palettes. Atlas JSONs merge across packs, so these only add sources.
+ * 26.2 layout: armor overlays live in the armor_trims atlas, item overlays in items.
+ */
 public class MythicTrimAtlasProvider implements DataProvider {
 
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    private static final String[] MATERIALS = {
+        "aquamarine", "citrine", "topaz", "peridot", "ruby", "sapphire", "jade", "ametrine", "necoium"
+    };
+    // citrine and necoium have no darker palette variant
+    private static final String[] DARKER = {
+        "aquamarine", "topaz", "peridot", "ruby", "sapphire", "jade", "ametrine"
+    };
 
-    private static final List<String> VANILLA_TRIM_TEXTURES = List.of(
-        "trims/models/armor/coast", "trims/models/armor/coast_leggings",
-        "trims/models/armor/dune", "trims/models/armor/dune_leggings",
-        "trims/models/armor/eye", "trims/models/armor/eye_leggings",
-        "trims/models/armor/host", "trims/models/armor/host_leggings",
-        "trims/models/armor/raiser", "trims/models/armor/raiser_leggings",
-        "trims/models/armor/rib", "trims/models/armor/rib_leggings",
-        "trims/models/armor/sentry", "trims/models/armor/sentry_leggings",
-        "trims/models/armor/shaper", "trims/models/armor/shaper_leggings",
-        "trims/models/armor/silence", "trims/models/armor/silence_leggings",
-        "trims/models/armor/snout", "trims/models/armor/snout_leggings",
-        "trims/models/armor/spire", "trims/models/armor/spire_leggings",
-        "trims/models/armor/tide", "trims/models/armor/tide_leggings",
-        "trims/models/armor/vex", "trims/models/armor/vex_leggings",
-        "trims/models/armor/ward", "trims/models/armor/ward_leggings",
-        "trims/models/armor/wayfinder", "trims/models/armor/wayfinder_leggings",
-        "trims/models/armor/wild", "trims/models/armor/wild_leggings",
-        "trims/models/armor/flow", "trims/models/armor/flow_leggings",
-        "trims/models/armor/bolt", "trims/models/armor/bolt_leggings"
-    );
-
-    private record TrimColor(String name, String armorMaterial) {}
-
-    private static final List<TrimColor> COLORS = List.of(
-        new TrimColor("aquamarine", "mythicupgrades:aquamarine"),
-        new TrimColor("citrine", null),
-        new TrimColor("topaz", "mythicupgrades:topaz"),
-        new TrimColor("peridot", "mythicupgrades:peridot"),
-        new TrimColor("ruby", "mythicupgrades:ruby"),
-        new TrimColor("sapphire", "mythicupgrades:sapphire"),
-        new TrimColor("jade", "mythicupgrades:jade"),
-        new TrimColor("ametrine", "mythicupgrades:ametrine"),
-        new TrimColor("necoium", null)
-    );
+    private static final String[] PATTERNS = {
+        "sentry", "dune", "coast", "wild", "ward", "eye", "vex", "tide", "snout",
+        "rib", "spire", "wayfinder", "shaper", "silence", "raiser", "host", "flow", "bolt"
+    };
 
     private final PackOutput output;
 
@@ -58,54 +38,56 @@ public class MythicTrimAtlasProvider implements DataProvider {
         this.output = output;
     }
 
-    private static final List<String> VANILLA_ITEM_TRIM_TEXTURES = List.of(
-        "trims/items/helmet_trim",
-        "trims/items/chestplate_trim",
-        "trims/items/leggings_trim",
-        "trims/items/boots_trim"
-    );
-
-    @Override
-    public CompletableFuture<?> run(CachedOutput cache) {
-        Path assetPath = output.getOutputFolder(PackOutput.Target.RESOURCE_PACK);
-        return CompletableFuture.allOf(
-            DataProvider.saveStable(cache,
-                GSON.toJsonTree(atlasJson(VANILLA_TRIM_TEXTURES)),
-                assetPath.resolve("minecraft/atlases/armor_trims.json")),
-            DataProvider.saveStable(cache,
-                GSON.toJsonTree(atlasJson(VANILLA_ITEM_TRIM_TEXTURES)),
-                assetPath.resolve("minecraft/atlases/blocks.json"))
-        );
+    private static JsonObject permutations() {
+        JsonObject permutations = new JsonObject();
+        for (String material : MATERIALS) {
+            permutations.addProperty(material, Constants.MOD_ID + ":trims/color_palettes/" + material);
+        }
+        for (String material : DARKER) {
+            permutations.addProperty(material + "_darker", Constants.MOD_ID + ":trims/color_palettes/" + material + "_darker");
+        }
+        return permutations;
     }
 
-    private static JsonObject atlasJson(List<String> textureList) {
-        JsonObject permutations = new JsonObject();
-        for (TrimColor color : COLORS) {
-            permutations.addProperty(color.name(), Constants.MOD_ID + ":trims/color_palettes/" + color.name());
-            if (color.armorMaterial() != null) {
-                permutations.addProperty(color.name() + "_darker", Constants.MOD_ID + ":trims/color_palettes/" + color.name() + "_darker");
-            }
-        }
-
-        JsonArray textures = new JsonArray();
-        for (String tex : textureList) textures.add("minecraft:" + tex);
-
+    private static JsonObject atlas(JsonArray textures) {
         JsonObject source = new JsonObject();
         source.addProperty("type", "minecraft:paletted_permutations");
-        source.add("textures", textures);
         source.addProperty("palette_key", "minecraft:trims/color_palettes/trim_palette");
-        source.add("permutations", permutations);
-
-        JsonArray sources = new JsonArray();
-        sources.add(source);
+        source.add("permutations", permutations());
+        source.add("textures", textures);
 
         JsonObject root = new JsonObject();
+        JsonArray sources = new JsonArray();
+        sources.add(source);
         root.add("sources", sources);
         return root;
     }
 
     @Override
+    public CompletableFuture<?> run(CachedOutput cache) {
+        List<CompletableFuture<?>> futures = new ArrayList<>();
+        Path assets = output.getOutputFolder(PackOutput.Target.RESOURCE_PACK);
+
+        JsonArray armorTextures = new JsonArray();
+        for (String pattern : PATTERNS) {
+            armorTextures.add("minecraft:trims/entity/humanoid/" + pattern);
+            armorTextures.add("minecraft:trims/entity/humanoid_leggings/" + pattern);
+        }
+        futures.add(DataProvider.saveStable(cache, atlas(armorTextures),
+                assets.resolve("minecraft/atlases/armor_trims.json")));
+
+        JsonArray itemTextures = new JsonArray();
+        for (String type : new String[]{"helmet", "chestplate", "leggings", "boots"}) {
+            itemTextures.add("minecraft:trims/items/" + type + "_trim");
+        }
+        futures.add(DataProvider.saveStable(cache, atlas(itemTextures),
+                assets.resolve("minecraft/atlases/items.json")));
+
+        return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
+    }
+
+    @Override
     public String getName() {
-        return "MythicUpgrades Trim Atlas";
+        return "MythicUpgrades Trim Atlases";
     }
 }

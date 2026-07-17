@@ -66,8 +66,8 @@ public abstract class ServerPlayerGameModeMixin {
             for (LivingEntity entity : serverLevel.getEntitiesOfClass(LivingEntity.class, bb)) {
                 if (entity == player) continue;
                 if (entity.distanceTo(player) <= shockRadius) {
-                    entity.hurt(MUDamageTypes.topazShock(player), shockDamage);
-                    entity.knockback(knockback, cx - entity.getX(), cz - entity.getZ());
+                    entity.hurtOrSimulate(MUDamageTypes.topazShock(player), shockDamage);
+                    entity.knockback(knockback, cx - entity.getX(), cz - entity.getZ(), entity.damageSources().generic(), 0.0F);
                 }
             }
 

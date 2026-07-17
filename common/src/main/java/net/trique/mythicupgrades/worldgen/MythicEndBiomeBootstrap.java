@@ -4,8 +4,13 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.world.level.biome.AmbientAdditionsSettings;
-import net.minecraft.world.level.biome.AmbientMoodSettings;
+import net.minecraft.world.attribute.AmbientAdditionsSettings;
+import net.minecraft.world.attribute.AmbientMoodSettings;
+import net.minecraft.world.attribute.AmbientSounds;
+import net.minecraft.world.attribute.EnvironmentAttributes;
+
+import java.util.List;
+import java.util.Optional;
 import net.trique.mythicupgrades.MythicSounds;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
@@ -40,19 +45,21 @@ public class MythicEndBiomeBootstrap {
                 .build();
 
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
-                .fogColor(0x0B0E2E)
-                .skyColor(0x0B0E2E)
                 .waterColor(10518688)
-                .waterFogColor(0x050533)
-                .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
-                .ambientAdditionsSound(new AmbientAdditionsSettings(
-                    BuiltInRegistries.SOUND_EVENT.wrapAsHolder(MythicSounds.AMBIENT_MYTHIC_CHIME), 0.0111))
                 .build();
 
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(false)
                 .temperature(0.5f)
                 .downfall(0.0f)
+                .setAttribute(EnvironmentAttributes.FOG_COLOR, 0xFF0B0E2E)
+                .setAttribute(EnvironmentAttributes.SKY_COLOR, 0xFF0B0E2E)
+                .setAttribute(EnvironmentAttributes.WATER_FOG_COLOR, 0xFF050533)
+                .setAttribute(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(
+                    Optional.empty(),
+                    Optional.of(AmbientMoodSettings.LEGACY_CAVE_SETTINGS),
+                    List.of(new AmbientAdditionsSettings(
+                        BuiltInRegistries.SOUND_EVENT.wrapAsHolder(MythicSounds.AMBIENT_MYTHIC_CHIME), 0.0111))))
                 .specialEffects(effects)
                 .mobSpawnSettings(spawns)
                 .generationSettings(gen.build())

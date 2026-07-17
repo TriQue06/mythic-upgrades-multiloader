@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:ametrine_ingot",
+  "base": "minecraft:netherite_pickaxe",
+  "result": {
+    "id": "mythicupgrades:ametrine_pickaxe"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

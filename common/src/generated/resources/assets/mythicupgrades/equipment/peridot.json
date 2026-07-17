@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "mythicupgrades:peridot"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "mythicupgrades:peridot"
+      }
+    ]
+  }
+}

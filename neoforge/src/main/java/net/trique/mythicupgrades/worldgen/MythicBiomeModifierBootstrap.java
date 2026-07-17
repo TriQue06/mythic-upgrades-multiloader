@@ -5,7 +5,7 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
@@ -62,6 +62,6 @@ public class MythicBiomeModifierBootstrap {
 
     private static ResourceKey<BiomeModifier> key(String name) {
         return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS,
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+            Identifier.fromNamespaceAndPath(Constants.MOD_ID, name));
     }
 }

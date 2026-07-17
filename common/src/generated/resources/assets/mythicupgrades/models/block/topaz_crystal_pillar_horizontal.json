@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column_horizontal",
-  "textures": {
-    "end": "mythicupgrades:block/topaz_crystal_pillar_top",
-    "side": "mythicupgrades:block/topaz_crystal_pillar"
-  }
-}

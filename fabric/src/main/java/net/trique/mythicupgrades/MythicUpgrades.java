@@ -3,13 +3,13 @@ package net.trique.mythicupgrades;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistrationInfo;
 import net.minecraft.core.WritableRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -35,31 +35,31 @@ public class MythicUpgrades implements ModInitializer {
         MythicEffects.register((name, effect) -> {
             ResourceKey<MobEffect> key = ResourceKey.create(
                 BuiltInRegistries.MOB_EFFECT.key(),
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, name));
             return ((WritableRegistry<MobEffect>) BuiltInRegistries.MOB_EFFECT)
                 .register(key, effect, RegistrationInfo.BUILT_IN);
         });
 
         MythicBlocks.register((name, block) ->
-            Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), block));
+            Registry.register(BuiltInRegistries.BLOCK, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), block));
 
         MythicBlocks.registerItems((name, item) ->
-            Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), item));
+            Registry.register(BuiltInRegistries.ITEM, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), item));
 
         MythicItems.register((name, item) ->
-            Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), item));
+            Registry.register(BuiltInRegistries.ITEM, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), item));
 
         MythicCreativeTabs.register((name, tab) ->
-            Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), tab));
+            Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), tab));
 
         MythicPotions.register((name, potion) ->
-            Registry.register(BuiltInRegistries.POTION, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), potion));
+            Registry.register(BuiltInRegistries.POTION, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), potion));
 
         MythicFeatures.register((name, feature) ->
-            Registry.register(BuiltInRegistries.FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), feature));
+            Registry.register(BuiltInRegistries.FEATURE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), feature));
 
         MythicSounds.register((name, sound) ->
-            Registry.register(BuiltInRegistries.SOUND_EVENT, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), sound));
+            Registry.register(BuiltInRegistries.SOUND_EVENT, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), sound));
 
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
             GenerationStep.Decoration.UNDERGROUND_ORES, MythicPlacedFeatures.NECOIUM_ORE_PF);
@@ -81,8 +81,8 @@ public class MythicUpgrades implements ModInitializer {
                 GenerationStep.Decoration.UNDERGROUND_ORES, gem.geodePF());
         }
 
-        LootTableEvents.MODIFY.register((key, tableBuilder, source) -> {
-            if (key.location().equals(ResourceLocation.withDefaultNamespace("chests/end_city_treasure"))) {
+        LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
+            if (key.identifier().equals(Identifier.withDefaultNamespace("chests/end_city_treasure"))) {
                 tableBuilder.withPool(
                     LootPool.lootPool()
                         .add(LootItem.lootTableItem(MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE)

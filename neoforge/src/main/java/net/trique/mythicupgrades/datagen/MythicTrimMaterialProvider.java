@@ -17,21 +17,20 @@ public class MythicTrimMaterialProvider implements DataProvider {
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-    private record TrimEntry(String name, String color, float modelIndex, String armorMaterial) {}
+    private record TrimEntry(String name, String color, String armorMaterial) {}
 
-    // trim_type item property is clamped to [0.0, 1.0], so indices must stay
-    // below 1.0. The 0.2063x block is a mod-specific niche to avoid colliding
-    // with other mods' trim material indices.
+    // 26.2: trim materials are purely asset-driven; items link to materials via the
+    // provides_trim_material component set in MythicItems.
     private static final List<TrimEntry> ENTRIES = List.of(
-        new TrimEntry("aquamarine", "#057B9E", 0.20631f, "mythicupgrades:aquamarine"),
-        new TrimEntry("citrine", "#DCB40A", 0.20632f, null),
-        new TrimEntry("topaz", "#D1480D", 0.20633f, "mythicupgrades:topaz"),
-        new TrimEntry("peridot", "#61AD0F", 0.20634f, "mythicupgrades:peridot"),
-        new TrimEntry("ruby", "#A90C37", 0.20635f, "mythicupgrades:ruby"),
-        new TrimEntry("sapphire", "#0C46B2", 0.20636f, "mythicupgrades:sapphire"),
-        new TrimEntry("jade", "#1D8B30", 0.20637f, "mythicupgrades:jade"),
-        new TrimEntry("ametrine", "#8422AE", 0.20638f, "mythicupgrades:ametrine"),
-        new TrimEntry("necoium", "#9F1C73", 0.20639f, null)
+        new TrimEntry("aquamarine", "#057B9E", "mythicupgrades:aquamarine"),
+        new TrimEntry("citrine", "#DCB40A", null),
+        new TrimEntry("topaz", "#D1480D", "mythicupgrades:topaz"),
+        new TrimEntry("peridot", "#61AD0F", "mythicupgrades:peridot"),
+        new TrimEntry("ruby", "#A90C37", "mythicupgrades:ruby"),
+        new TrimEntry("sapphire", "#0C46B2", "mythicupgrades:sapphire"),
+        new TrimEntry("jade", "#1D8B30", "mythicupgrades:jade"),
+        new TrimEntry("ametrine", "#8422AE", "mythicupgrades:ametrine"),
+        new TrimEntry("necoium", "#9F1C73", null)
     );
 
     private final PackOutput output;
@@ -54,18 +53,9 @@ public class MythicTrimMaterialProvider implements DataProvider {
             description.addProperty("translate", "trim_material." + Constants.MOD_ID + "." + entry.name());
             json.add("description", description);
 
-            json.addProperty("ingredient", Constants.MOD_ID + ":" + entry.name() + "_crystal_shard");
-            if (entry.name().equals("necoium")) {
-                json.addProperty("ingredient", Constants.MOD_ID + ":necoium_ingot");
-            }
-
-            json.addProperty("item_model_index", entry.modelIndex());
-
             if (entry.armorMaterial() != null) {
                 JsonObject overrides = new JsonObject();
-                JsonObject assetOverride = new JsonObject();
-                assetOverride.addProperty("asset_name", entry.name() + "_darker");
-                overrides.add(entry.armorMaterial(), assetOverride);
+                overrides.addProperty(entry.armorMaterial(), entry.name() + "_darker");
                 json.add("override_armor_assets", overrides);
             }
 

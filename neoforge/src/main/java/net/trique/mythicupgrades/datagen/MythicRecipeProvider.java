@@ -1,15 +1,16 @@
 package net.trique.mythicupgrades.datagen;
 
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.world.item.crafting.CookingBookCategory;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -24,12 +25,29 @@ import java.util.concurrent.CompletableFuture;
 
 public class MythicRecipeProvider extends RecipeProvider {
 
-    public MythicRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
-        super(output, lookupProvider);
+    public MythicRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
+        super(registries, output);
+    }
+
+    public static class Runner extends RecipeProvider.Runner {
+        public Runner(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries) {
+            super(packOutput, registries);
+        }
+
+        @Override
+        protected RecipeProvider createRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
+            return new MythicRecipeProvider(registries, output);
+        }
+
+        @Override
+        public String getName() {
+            return "MythicUpgrades Recipes";
+        }
     }
 
     @Override
-    protected void buildRecipes(RecipeOutput output) {
+    protected void buildRecipes() {
+        RecipeOutput output = this.output;
         gemGroup(output, "aquamarine",
             MythicItems.AQUAMARINE, MythicItems.AQUAMARINE_INGOT, MythicItems.AQUAMARINE_CRYSTAL_SHARD,
             MythicBlocks.AQUAMARINE_ORE, MythicBlocks.DEEPSLATE_AQUAMARINE_ORE, MythicBlocks.AQUAMARINE_BLOCK,
@@ -71,23 +89,23 @@ public class MythicRecipeProvider extends RecipeProvider {
             stoneBlocks(output, gem);
         }
 
-        oreSmelting(output, List.of(MythicBlocks.NECOIUM_ORE, MythicBlocks.DEEPSLATE_NECOIUM_ORE, MythicItems.RAW_NECOIUM), RecipeCategory.MISC, MythicItems.NECOIUM_INGOT, 1.4f, 200, "necoium");
-        oreBlasting(output, List.of(MythicBlocks.NECOIUM_ORE, MythicBlocks.DEEPSLATE_NECOIUM_ORE, MythicItems.RAW_NECOIUM), RecipeCategory.MISC, MythicItems.NECOIUM_INGOT, 1.4f, 100, "necoium");
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MythicBlocks.NECOIUM_BLOCK)
+        oreSmelting(List.of(MythicBlocks.NECOIUM_ORE, MythicBlocks.DEEPSLATE_NECOIUM_ORE, MythicItems.RAW_NECOIUM), RecipeCategory.MISC, CookingBookCategory.MISC, MythicItems.NECOIUM_INGOT, 1.4f, 200, "necoium");
+        oreBlasting(List.of(MythicBlocks.NECOIUM_ORE, MythicBlocks.DEEPSLATE_NECOIUM_ORE, MythicItems.RAW_NECOIUM), RecipeCategory.MISC, CookingBookCategory.MISC, MythicItems.NECOIUM_INGOT, 1.4f, 100, "necoium");
+        this.shaped(RecipeCategory.MISC, MythicBlocks.NECOIUM_BLOCK)
             .define('#', MythicItems.NECOIUM_INGOT)
             .pattern("###").pattern("###").pattern("###")
             .unlockedBy("has_necoium_ingot", has(MythicItems.NECOIUM_INGOT))
             .save(output, rl("necoium_block"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MythicItems.NECOIUM_INGOT, 9)
+        this.shapeless(RecipeCategory.MISC, MythicItems.NECOIUM_INGOT, 9)
             .requires(MythicBlocks.NECOIUM_BLOCK)
             .unlockedBy("has_necoium_block", has(MythicBlocks.NECOIUM_BLOCK))
             .save(output, rl("necoium_ingot_from_block"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MythicBlocks.RAW_NECOIUM_BLOCK)
+        this.shaped(RecipeCategory.MISC, MythicBlocks.RAW_NECOIUM_BLOCK)
             .define('#', MythicItems.RAW_NECOIUM)
             .pattern("###").pattern("###").pattern("###")
             .unlockedBy("has_raw_necoium", has(MythicItems.RAW_NECOIUM))
             .save(output, rl("raw_necoium_block"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MythicItems.RAW_NECOIUM, 9)
+        this.shapeless(RecipeCategory.MISC, MythicItems.RAW_NECOIUM, 9)
             .requires(MythicBlocks.RAW_NECOIUM_BLOCK)
             .unlockedBy("has_raw_necoium_block", has(MythicBlocks.RAW_NECOIUM_BLOCK))
             .save(output, rl("raw_necoium_from_block"));
@@ -101,13 +119,13 @@ public class MythicRecipeProvider extends RecipeProvider {
         mythicIngot(output, MythicItems.JADE, MythicItems.JADE_INGOT, "jade");
         mythicIngot(output, MythicItems.AMETRINE, MythicItems.AMETRINE_INGOT, "ametrine");
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MythicItems.NECOIUM_CARROT)
+        this.shaped(RecipeCategory.MISC, MythicItems.NECOIUM_CARROT)
             .define('N', MythicBlocks.NECOIUM_BLOCK)
             .define('C', Items.CARROT)
             .pattern("NNN").pattern("NCN").pattern("NNN")
             .unlockedBy("has_necoium_block", has(MythicBlocks.NECOIUM_BLOCK))
             .save(output, rl("necoium_carrot"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MythicItems.NECOIUM_CARROT)
+        this.shaped(RecipeCategory.MISC, MythicItems.NECOIUM_CARROT)
             .define('N', MythicBlocks.NECOIUM_BLOCK)
             .define('C', Items.GOLDEN_CARROT)
             .pattern("NNN").pattern("NCN").pattern("NNN")
@@ -116,7 +134,7 @@ public class MythicRecipeProvider extends RecipeProvider {
 
         mythicUpgradeSmithing(output);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE)
+        this.shaped(RecipeCategory.MISC, MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE)
             .define('I', MythicItems.NECOIUM_INGOT)
             .define('T', Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE)
             .define('B', MythicBlocks.NECOIUM_BLOCK)
@@ -184,8 +202,8 @@ public class MythicRecipeProvider extends RecipeProvider {
                           Item gemItem, Item ingot, Item shard,
                           Block ore, Block deepslateOre, Block storageBlock, Block crystalBlock,
                           boolean hasCaveOres) {
-        oreSmelting(output, List.of(ore, deepslateOre), RecipeCategory.MISC, gemItem, 1.4f, 200, gem);
-        oreBlasting(output, List.of(ore, deepslateOre), RecipeCategory.MISC, gemItem, 1.4f, 100, gem);
+        oreSmelting(List.of(ore, deepslateOre), RecipeCategory.MISC, CookingBookCategory.MISC, gemItem, 1.4f, 200, gem);
+        oreBlasting(List.of(ore, deepslateOre), RecipeCategory.MISC, CookingBookCategory.MISC, gemItem, 1.4f, 100, gem);
         storageAndUnpack(output, gem, ingot, storageBlock);
         crystalBlockRecipes(output, gem, shard, crystalBlock);
     }
@@ -193,26 +211,26 @@ public class MythicRecipeProvider extends RecipeProvider {
     private void gemGroupNether(RecipeOutput output, String gem,
                                 Item gemItem, Item ingot, Item shard,
                                 Block ore, Block storageBlock, Block crystalBlock) {
-        oreSmelting(output, List.of(ore), RecipeCategory.MISC, gemItem, 1.4f, 200, gem);
-        oreBlasting(output, List.of(ore), RecipeCategory.MISC, gemItem, 1.4f, 100, gem);
+        oreSmelting(List.of(ore), RecipeCategory.MISC, CookingBookCategory.MISC, gemItem, 1.4f, 200, gem);
+        oreBlasting(List.of(ore), RecipeCategory.MISC, CookingBookCategory.MISC, gemItem, 1.4f, 100, gem);
         storageAndUnpack(output, gem, ingot, storageBlock);
         crystalBlockRecipes(output, gem, shard, crystalBlock);
     }
 
     private void storageAndUnpack(RecipeOutput output, String gem, Item ingotItem, Block storageBlock) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, storageBlock)
+        this.shaped(RecipeCategory.MISC, storageBlock)
             .define('#', ingotItem)
             .pattern("###").pattern("###").pattern("###")
             .unlockedBy("has_" + gem + "_ingot", has(ingotItem))
             .save(output, rl(gem + "_block"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ingotItem, 9)
+        this.shapeless(RecipeCategory.MISC, ingotItem, 9)
             .requires(storageBlock)
             .unlockedBy("has_" + gem + "_block", has(storageBlock))
             .save(output, rl(gem + "_from_block"));
     }
 
     private void crystalBlockRecipes(RecipeOutput output, String gem, Item shard, Block crystalBlock) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, crystalBlock)
+        this.shaped(RecipeCategory.MISC, crystalBlock)
             .define('#', shard)
             .pattern("##").pattern("##")
             .unlockedBy("has_" + gem + "_shard", has(shard))
@@ -226,25 +244,25 @@ public class MythicRecipeProvider extends RecipeProvider {
         Block crystalPillar = getBlock(gem + "_crystal_pillar");
         Block cutCrystalPillar = getBlock("cut_" + gem + "_crystal_pillar");
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, polishedCrystalBlock, 4)
+        this.shaped(RecipeCategory.BUILDING_BLOCKS, polishedCrystalBlock, 4)
             .define('#', crystalBlock)
             .pattern("##").pattern("##")
             .unlockedBy("has_crystal", has(crystalBlock))
             .save(output, rl(gem + "_polished_crystal_block"));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, crystalBricks, 4)
+        this.shaped(RecipeCategory.BUILDING_BLOCKS, crystalBricks, 4)
             .define('#', polishedCrystalBlock)
             .pattern("##").pattern("##")
             .unlockedBy("has_crystal", has(polishedCrystalBlock))
             .save(output, rl(gem + "_crystal_bricks"));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, crystalPillar, 2)
+        this.shaped(RecipeCategory.BUILDING_BLOCKS, crystalPillar, 2)
             .define('#', crystalBlock)
             .pattern("#").pattern("#")
             .unlockedBy("has_crystal", has(crystalBlock))
             .save(output, rl(gem + "_crystal_pillar"));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, cutCrystalPillar, 2)
+        this.shaped(RecipeCategory.BUILDING_BLOCKS, cutCrystalPillar, 2)
             .define('#', polishedCrystalBlock)
             .pattern("#").pattern("#")
             .unlockedBy("has_crystal", has(polishedCrystalBlock))
@@ -261,23 +279,23 @@ public class MythicRecipeProvider extends RecipeProvider {
     }
 
     private void wallRecipe(RecipeOutput output, String name, Block source, Block wall) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, wall, 6)
+        this.shaped(RecipeCategory.BUILDING_BLOCKS, wall, 6)
             .define('#', source)
             .pattern("###").pattern("###")
             .unlockedBy("has_block", has(source))
             .save(output, rl(name + "_wall"));
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(source), RecipeCategory.BUILDING_BLOCKS, wall)
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(source), RecipeCategory.BUILDING_BLOCKS, wall, 1)
             .unlockedBy("has_block", has(source))
             .save(output, rl(name + "_wall_stonecutting"));
     }
 
     private void stonecutAndSlabStairs(RecipeOutput output, String name, Block source, Block slab, Block stairs) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, slab, 6)
+        this.shaped(RecipeCategory.BUILDING_BLOCKS, slab, 6)
             .define('#', source)
             .pattern("###")
             .unlockedBy("has_block", has(source))
             .save(output, rl(name + "_slab"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, stairs, 4)
+        this.shaped(RecipeCategory.BUILDING_BLOCKS, stairs, 4)
             .define('#', source)
             .pattern("#  ").pattern("## ").pattern("###")
             .unlockedBy("has_block", has(source))
@@ -285,7 +303,7 @@ public class MythicRecipeProvider extends RecipeProvider {
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(source), RecipeCategory.BUILDING_BLOCKS, slab, 2)
             .unlockedBy("has_block", has(source))
             .save(output, rl(name + "_slab_stonecutting"));
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(source), RecipeCategory.BUILDING_BLOCKS, stairs)
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(source), RecipeCategory.BUILDING_BLOCKS, stairs, 1)
             .unlockedBy("has_block", has(source))
             .save(output, rl(name + "_stairs_stonecutting"));
     }
@@ -295,14 +313,14 @@ public class MythicRecipeProvider extends RecipeProvider {
         Block stone = getBlock(gem + "_schist");
         Block polishedStone = getBlock("polished_" + gem + "_schist");
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, stone)
+        this.shaped(RecipeCategory.BUILDING_BLOCKS, stone)
             .define('C', Items.COBBLESTONE)
             .define('S', shard)
             .pattern("CS")
             .unlockedBy("has_shard", has(shard))
             .save(output, rl(gem + "_schist"));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, polishedStone, 4)
+        this.shaped(RecipeCategory.BUILDING_BLOCKS, polishedStone, 4)
             .define('#', stone)
             .pattern("##").pattern("##")
             .unlockedBy("has_schist", has(stone))
@@ -494,15 +512,15 @@ public class MythicRecipeProvider extends RecipeProvider {
         };
     }
 
-    private static void mythicIngot(RecipeOutput output, Item gem, Item ingot, String name) {
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ingot)
+    private void mythicIngot(RecipeOutput output, Item gem, Item ingot, String name) {
+        this.shapeless(RecipeCategory.MISC, ingot)
             .requires(gem, 4)
             .requires(MythicItems.NECOIUM_INGOT, 4)
             .unlockedBy("has_" + name, has(gem))
             .save(output, rl(name + "_ingot_from_" + name + "_and_necoium"));
     }
 
-    private static ResourceLocation rl(String name) {
-        return ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name);
+    private static String rl(String name) {
+        return Constants.MOD_ID + ":crafting/" + name;
     }
 }

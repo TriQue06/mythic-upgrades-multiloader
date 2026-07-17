@@ -3,7 +3,7 @@ package net.trique.mythicupgrades.worldgen;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.damagesource.DamageScaling;
 import net.minecraft.world.damagesource.DamageType;
 import net.trique.mythicupgrades.Constants;
@@ -32,6 +32,6 @@ public class MythicDamageTypeBootstrap {
 
     private static ResourceKey<DamageType> key(String name) {
         return ResourceKey.create(Registries.DAMAGE_TYPE,
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+            Identifier.fromNamespaceAndPath(Constants.MOD_ID, name));
     }
 }

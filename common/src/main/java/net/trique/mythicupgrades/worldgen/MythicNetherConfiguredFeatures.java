@@ -5,7 +5,7 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -50,7 +50,7 @@ public class MythicNetherConfiguredFeatures {
 
             ctx.register(gem.crystalBudsCF(), new ConfiguredFeature<>(MythicFeatures.CRYSTAL_BUD,
                 new CrystalBudFeatureConfig(
-                    new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                    new WeightedStateProvider(WeightedList.<BlockState>builder()
                         .add(budState(blocks, gem.mediumBud()), 3)
                         .add(budState(blocks, gem.largeBud()), 2)
                         .add(budState(blocks, gem.cluster()), 1)
@@ -86,8 +86,8 @@ public class MythicNetherConfiguredFeatures {
                             largeBud.defaultBlockState(),
                             clusterBlock.defaultBlockState()
                         ),
-                        BlockTags.FEATURES_CANNOT_REPLACE,
-                        BlockTags.GEODE_INVALID_BLOCKS
+                        blocks.getOrThrow(BlockTags.FEATURES_CANNOT_REPLACE),
+                        blocks.getOrThrow(BlockTags.GEODE_INVALID_BLOCKS)
                     ),
                     new GeodeLayerSettings(1.7, 2.2, 3.2, 4.2),
                     new GeodeCrackSettings(0.95, 2.0, 2),

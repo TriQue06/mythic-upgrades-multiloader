@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:topaz_ingot",
+  "base": "mythicupgrades:citrine_pickaxe",
+  "result": {
+    "id": "mythicupgrades:topaz_pickaxe"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

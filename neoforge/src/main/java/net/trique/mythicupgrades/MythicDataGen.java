@@ -2,20 +2,16 @@ package net.trique.mythicupgrades;
 
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.trique.mythicupgrades.datagen.MythicBiomeTagsProvider;
 import net.trique.mythicupgrades.datagen.MythicBlockLootTableProvider;
-import net.trique.mythicupgrades.datagen.MythicBlockStateProvider;
+import net.trique.mythicupgrades.datagen.MythicBlockModelProvider;
 import net.trique.mythicupgrades.datagen.MythicBlockTagsProvider;
 import net.trique.mythicupgrades.datagen.MythicDamageTypeTagsProvider;
 import net.trique.mythicupgrades.datagen.MythicItemModelProvider;
@@ -39,7 +35,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-@EventBusSubscriber(modid = Constants.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Constants.MOD_ID)
 public class MythicDataGen {
 
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
@@ -62,32 +58,27 @@ public class MythicDataGen {
         .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, MythicBiomeModifierBootstrap::bootstrap);
 
     @SubscribeEvent
-    public static void onGatherData(GatherDataEvent event) {
-        DataGenerator gen = event.getGenerator();
-        PackOutput output = gen.getPackOutput();
-        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+    public static void onGatherData(GatherDataEvent.Client event) {
+        PackOutput output = event.getGenerator().getPackOutput();
         CompletableFuture<net.minecraft.core.HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        gen.addProvider(event.includeServer(), new DatapackBuiltinEntriesProvider(
-            output, lookupProvider, BUILDER, Set.of(Constants.MOD_ID)
-        ));
+        event.createDatapackRegistryObjects(BUILDER, Set.of(Constants.MOD_ID));
 
-        var blockTags = new MythicBlockTagsProvider(output, lookupProvider, existingFileHelper);
-        gen.addProvider(event.includeServer(), blockTags);
-        gen.addProvider(event.includeServer(), new MythicItemTagsProvider(output, lookupProvider, existingFileHelper));
-        gen.addProvider(event.includeServer(), new MythicBiomeTagsProvider(output, lookupProvider, existingFileHelper));
-        gen.addProvider(event.includeServer(), new MythicDamageTypeTagsProvider(output, lookupProvider, existingFileHelper));
+        event.createProvider(MythicBlockTagsProvider::new);
+        event.createProvider(MythicItemTagsProvider::new);
+        event.createProvider(MythicBiomeTagsProvider::new);
+        event.createProvider(MythicDamageTypeTagsProvider::new);
 
-        gen.addProvider(event.includeServer(), new LootTableProvider(output, Set.of(),
+        event.addProvider(new LootTableProvider(output, Set.of(),
             List.of(new LootTableProvider.SubProviderEntry(MythicBlockLootTableProvider::new, LootContextParamSets.BLOCK)),
             lookupProvider));
 
-        gen.addProvider(event.includeServer(), new MythicRecipeProvider(output, lookupProvider));
+        event.createProvider(MythicRecipeProvider.Runner::new);
 
-        gen.addProvider(event.includeServer(), new MythicTrimMaterialProvider(output));
-        gen.addProvider(event.includeClient(), new MythicTrimAtlasProvider(output));
+        event.addProvider(new MythicTrimMaterialProvider(output));
+        event.addProvider(new MythicTrimAtlasProvider(output));
 
-        gen.addProvider(event.includeClient(), new MythicBlockStateProvider(output, existingFileHelper));
-        gen.addProvider(event.includeClient(), new MythicItemModelProvider(output, existingFileHelper));
+        event.addProvider(new MythicItemModelProvider(output));
+        event.addProvider(new MythicBlockModelProvider(output));
     }
 }

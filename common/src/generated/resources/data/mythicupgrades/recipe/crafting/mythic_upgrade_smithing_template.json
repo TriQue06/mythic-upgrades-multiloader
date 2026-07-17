@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": "mythicupgrades:necoium_block",
+    "I": "mythicupgrades:necoium_ingot",
+    "T": "minecraft:netherite_upgrade_smithing_template"
+  },
+  "pattern": [
+    "ITI",
+    "IBI",
+    "III"
+  ],
+  "result": {
+    "id": "mythicupgrades:mythic_upgrade_smithing_template"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:aquamarine_ingot",
+  "base": "minecraft:netherite_pickaxe",
+  "result": {
+    "id": "mythicupgrades:aquamarine_pickaxe"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

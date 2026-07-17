@@ -1,7 +1,7 @@
 {
   "variants": {
     "axis=x": {
-      "model": "mythicupgrades:block/cut_ruby_crystal_pillar_horizontal",
+      "model": "mythicupgrades:block/cut_ruby_crystal_pillar",
       "x": 90,
       "y": 90
     },
@@ -9,7 +9,7 @@
       "model": "mythicupgrades:block/cut_ruby_crystal_pillar"
     },
     "axis=z": {
-      "model": "mythicupgrades:block/cut_ruby_crystal_pillar_horizontal",
+      "model": "mythicupgrades:block/cut_ruby_crystal_pillar",
       "x": 90
     }
   }

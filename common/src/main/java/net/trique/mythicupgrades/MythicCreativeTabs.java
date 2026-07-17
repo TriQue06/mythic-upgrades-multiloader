@@ -26,7 +26,7 @@ public class MythicCreativeTabs {
         return s;
     }
 
-    private static void addPotionGroup(CreativeModeTab.Output output, Potion normal, Potion extended, Potion strong) {
+    private static void addPotionGroup(java.util.function.Consumer<ItemStack> output, Potion normal, Potion extended, Potion strong) {
         for (Potion p : new Potion[]{normal, extended, strong}) {
             if (p == null) continue;
             output.accept(potion(Items.POTION, p));
@@ -70,19 +70,19 @@ public class MythicCreativeTabs {
                     output.accept(MythicItems.NECOIUM_INGOT);
                     output.accept(MythicItems.NECOIUM_CARROT);
                     output.accept(MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE);
-                    addPotionGroup(output, MythicPotions.ICE_SHIELD,        MythicPotions.ICE_SHIELD_LONG,        MythicPotions.ICE_SHIELD_STRONG);
-                    addPotionGroup(output, MythicPotions.STATIC_FIELD,      MythicPotions.STATIC_FIELD_LONG,      MythicPotions.STATIC_FIELD_STRONG);
-                    addPotionGroup(output, MythicPotions.TOPAZ_REACTION,    MythicPotions.TOPAZ_REACTION_LONG,    MythicPotions.TOPAZ_REACTION_STRONG);
-                    addPotionGroup(output, MythicPotions.MIASMA,            MythicPotions.MIASMA_LONG,            MythicPotions.MIASMA_STRONG);
-                    addPotionGroup(output, MythicPotions.BLOOD_THIRST,      MythicPotions.BLOOD_THIRST_LONG,      MythicPotions.BLOOD_THIRST_STRONG);
-                    addPotionGroup(output, MythicPotions.DAMAGE_DEFLECTION, MythicPotions.DAMAGE_DEFLECTION_LONG, MythicPotions.DAMAGE_DEFLECTION_STRONG);
-                    addPotionGroup(output, MythicPotions.JADE_AURA,         MythicPotions.JADE_AURA_LONG,         MythicPotions.JADE_AURA_STRONG);
-                    addPotionGroup(output, MythicPotions.ARCANE_AURA,       MythicPotions.ARCANE_AURA_LONG,       MythicPotions.ARCANE_AURA_STRONG);
-                    addPotionGroup(output, MythicPotions.NECOIUM_SHARE,     MythicPotions.NECOIUM_SHARE_LONG,     null);
-                    addPotionGroup(output, MythicPotions.ICE_BOMB,          MythicPotions.ICE_BOMB_LONG,          MythicPotions.ICE_BOMB_STRONG);
-                    addPotionGroup(output, MythicPotions.FREEZE,            MythicPotions.FREEZE_LONG,            MythicPotions.FREEZE_STRONG);
-                    addPotionGroup(output, MythicPotions.CHARGED,           MythicPotions.CHARGED_LONG,           MythicPotions.CHARGED_STRONG);
-                    addPotionGroup(output, MythicPotions.LETHAL_INCUBATION, MythicPotions.LETHAL_INCUBATION_LONG, MythicPotions.LETHAL_INCUBATION_STRONG);
+                    addPotionGroup(output::accept, MythicPotions.ICE_SHIELD,        MythicPotions.ICE_SHIELD_LONG,        MythicPotions.ICE_SHIELD_STRONG);
+                    addPotionGroup(output::accept, MythicPotions.STATIC_FIELD,      MythicPotions.STATIC_FIELD_LONG,      MythicPotions.STATIC_FIELD_STRONG);
+                    addPotionGroup(output::accept, MythicPotions.TOPAZ_REACTION,    MythicPotions.TOPAZ_REACTION_LONG,    MythicPotions.TOPAZ_REACTION_STRONG);
+                    addPotionGroup(output::accept, MythicPotions.MIASMA,            MythicPotions.MIASMA_LONG,            MythicPotions.MIASMA_STRONG);
+                    addPotionGroup(output::accept, MythicPotions.BLOOD_THIRST,      MythicPotions.BLOOD_THIRST_LONG,      MythicPotions.BLOOD_THIRST_STRONG);
+                    addPotionGroup(output::accept, MythicPotions.DAMAGE_DEFLECTION, MythicPotions.DAMAGE_DEFLECTION_LONG, MythicPotions.DAMAGE_DEFLECTION_STRONG);
+                    addPotionGroup(output::accept, MythicPotions.JADE_AURA,         MythicPotions.JADE_AURA_LONG,         MythicPotions.JADE_AURA_STRONG);
+                    addPotionGroup(output::accept, MythicPotions.ARCANE_AURA,       MythicPotions.ARCANE_AURA_LONG,       MythicPotions.ARCANE_AURA_STRONG);
+                    addPotionGroup(output::accept, MythicPotions.NECOIUM_SHARE,     MythicPotions.NECOIUM_SHARE_LONG,     null);
+                    addPotionGroup(output::accept, MythicPotions.ICE_BOMB,          MythicPotions.ICE_BOMB_LONG,          MythicPotions.ICE_BOMB_STRONG);
+                    addPotionGroup(output::accept, MythicPotions.FREEZE,            MythicPotions.FREEZE_LONG,            MythicPotions.FREEZE_STRONG);
+                    addPotionGroup(output::accept, MythicPotions.CHARGED,           MythicPotions.CHARGED_LONG,           MythicPotions.CHARGED_STRONG);
+                    addPotionGroup(output::accept, MythicPotions.LETHAL_INCUBATION, MythicPotions.LETHAL_INCUBATION_LONG, MythicPotions.LETHAL_INCUBATION_STRONG);
                 })
                 .build()
         );

@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "mythicupgrades:aquamarine"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "mythicupgrades:aquamarine"
+      }
+    ]
+  }
+}

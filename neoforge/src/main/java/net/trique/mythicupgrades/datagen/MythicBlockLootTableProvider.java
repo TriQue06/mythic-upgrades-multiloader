@@ -1,6 +1,6 @@
 package net.trique.mythicupgrades.datagen;
 
-import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.advancements.predicates.ItemPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -194,7 +194,7 @@ public class MythicBlockLootTableProvider extends BlockLootSubProvider {
                 .apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F)))
                 .apply(ApplyBonusCount.addOreBonusCount(
                     this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE)))
-                .when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ItemTags.PICKAXES)))
+                .when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(this.registries.lookupOrThrow(Registries.ITEM), ItemTags.PICKAXES)))
                 .otherwise(applyExplosionDecay(block,
                     LootItem.lootTableItem(shard)
                         .apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F))))));

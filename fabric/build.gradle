@@ -1,53 +1,55 @@
 plugins {
     id 'multiloader-loader'
-    id 'fabric-loom'
+    id 'net.fabricmc.fabric-loom'
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings loom.layered {
-        officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${parchment_minecraft}:${parchment_version}@zip")
-    }
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
-    modImplementation "me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}"
-    modCompileOnly "com.terraformersmc:modmenu:${modmenu_version}"
-    modLocalRuntime "com.terraformersmc:modmenu:${modmenu_version}"
-    modImplementation fileTree(dir: rootProject.file('libs'), include: ["TerraBlender-fabric-${minecraft_version}-*.jar"])
-    // TerraBlender bundles NightConfig as JiJ but Loom doesn't unpack it from local file deps
-    modRuntimeOnly "com.electronwill.night-config:core:3.6.7"
-    modRuntimeOnly "com.electronwill.night-config:toml:3.6.7"
+    minecraft("com.mojang:minecraft:${minecraft_version}")
+    implementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
+    implementation("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
+
+    implementation "me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}"
+    compileOnly "com.terraformersmc:modmenu:${modmenu_version}"
+    runtimeOnly "com.terraformersmc:modmenu:${modmenu_version}"
+    implementation "com.github.glitchfiend:TerraBlender-fabric:${terrablender_version}"
 }
 
 loom {
-    if (project(":common").file("src/main/resources/${mod_id}.accesswidener").exists()) {
-        accessWidenerPath.set(project(":common").file("src/main/resources/${mod_id}.accesswidener"))
-    }
-    mixin {
-        defaultRefmapName.set("${mod_id}.refmap.json")
+    def aw = project(':common').file("src/main/resources/${mod_id}.accesswidener")
+    if (aw.exists()) {
+        accessWidenerPath.set(aw)
     }
     runs {
         client {
             client()
-            setConfigName("Fabric Client")
+            setConfigName('Fabric Client')
             ideConfigGenerated(true)
-            runDir("run")
+            runDir('runs/client')
         }
         server {
             server()
-            setConfigName("Fabric Server")
+            setConfigName('Fabric Server')
             ideConfigGenerated(true)
-            runDir("run")
+            runDir('runs/server')
         }
     }
 }
 
-// Loom's run tasks otherwise pick up whatever JVM launched Gradle (e.g. system JAVA_HOME),
-// which can be newer than what Minecraft/Mixin support. Force them onto the project's
-// toolchain JDK regardless of the environment.
-tasks.withType(JavaExec).configureEach {
-    javaLauncher.set(javaToolchains.launcherFor {
-        languageVersion.set(JavaLanguageVersion.of(java_version.toInteger()))
-    })
+// Implement mcgradleconventions loader attribute
+def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
+['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements', 'includeInternal', 'modCompileClasspath'].each { variant ->
+    configurations.named(variant) {
+        attributes {
+            attribute(loaderAttribute, 'fabric')
+        }
+    }
+}
+sourceSets.configureEach {
+    [it.compileClasspathConfigurationName, it.runtimeClasspathConfigurationName].each { variant->
+        configurations.named(variant) {
+            attributes {
+                attribute(loaderAttribute, 'fabric')
+            }
+        }
+    }
 }

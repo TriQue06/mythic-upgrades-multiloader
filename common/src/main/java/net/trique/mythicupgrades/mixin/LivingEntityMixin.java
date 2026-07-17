@@ -19,7 +19,6 @@ import net.trique.mythicupgrades.MythicState;
 import net.trique.mythicupgrades.MythicStats;
 import net.trique.mythicupgrades.item.MythicItems;
 import net.trique.mythicupgrades.util.MUDamageTypes;
-import org.joml.Vector3f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -28,7 +27,8 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.level.Level;
@@ -223,7 +223,7 @@ public abstract class LivingEntityMixin {
                         UUID entityId = entity.getUUID();
                         int stacks = mu_staticFieldStacks.getOrDefault(entityId, 0);
                         float multiplier = (float)Math.pow(1.0 + MythicStats.STATIC_FIELD_STACK_DAMAGE_INCREASE, stacks);
-                        entity.hurt(MUDamageTypes.staticField(self), fieldDamage * multiplier);
+                        entity.hurtOrSimulate(MUDamageTypes.staticField(self), fieldDamage * multiplier);
                         mu_staticFieldStacks.put(entityId, stacks + 1);
                         mu_staticFieldLastHitTick.put(entityId, currentTick);
                     }
@@ -259,8 +259,8 @@ public abstract class LivingEntityMixin {
                     int dur = MythicStats.JADE_TRAIL_CONTACT_EFFECT_DURATION_TICKS;
                     int spAmp = Math.min(aLvl - 1, 9);
                     int jpAmp = Math.min(aLvl / 2, 9);
-                    touched.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, dur, spAmp, false, true, false));
-                    touched.addEffect(new MobEffectInstance(MobEffects.JUMP, dur, jpAmp, false, true, false));
+                    touched.addEffect(new MobEffectInstance(MobEffects.SPEED, dur, spAmp, false, true, false));
+                    touched.addEffect(new MobEffectInstance(MobEffects.JUMP_BOOST, dur, jpAmp, false, true, false));
                 }
             }
         }
@@ -346,8 +346,8 @@ public abstract class LivingEntityMixin {
         }
     }
 
-    @Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
-    private void captureHealth(DamageSource source, float amount, CallbackInfoReturnable<Boolean> ci) {
+    @Inject(method = "hurtServer", at = @At("HEAD"), cancellable = true)
+    private void captureHealth(ServerLevel level, DamageSource source, float amount, CallbackInfoReturnable<Boolean> ci) {
         LivingEntity self = (LivingEntity)(Object)this;
         if (self.level().isClientSide()) return;
         mu_topazFallBlocked = 0f;
@@ -366,8 +366,8 @@ public abstract class LivingEntityMixin {
         if (self.getEffect(MythicEffects.CHARGED) != null) mu_deathHadCharged = true;
     }
 
-    @Inject(method = "hurt", at = @At("TAIL"))
-    private void onHurt(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    @Inject(method = "hurtServer", at = @At("TAIL"))
+    private void onHurt(ServerLevel level, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         LivingEntity self = (LivingEntity)(Object)this;
         if (self.level().isClientSide() || !cir.getReturnValue()) return;
 
@@ -384,9 +384,9 @@ public abstract class LivingEntityMixin {
                 Entity rawAttacker = source.getEntity();
                 if (rawAttacker instanceof LivingEntity attacker) {
                     float reflectAmount = (deflection.getAmplifier() + 1) * MythicStats.DEFLECT_PER_LEVEL * actualDamage;
-                    attacker.hurt(MUDamageTypes.deflecting(self), reflectAmount);
+                    attacker.hurtOrSimulate(MUDamageTypes.deflecting(self), reflectAmount);
                     float bonusDamage = Math.min((deflection.getAmplifier() + 1) * MythicStats.DEFLECT_BONUS_DAMAGE_PER_LEVEL, MythicStats.DEFLECT_BONUS_DAMAGE_MAX);
-                    attacker.hurt(MUDamageTypes.deflecting(self), bonusDamage);
+                    attacker.hurtOrSimulate(MUDamageTypes.deflecting(self), bonusDamage);
                 }
             }
         }
@@ -473,7 +473,7 @@ public abstract class LivingEntityMixin {
                     self.getMaxHealth() * MythicStats.SAPPHIRE_TOOL_PERCENT_DAMAGE,
                     MythicStats.SAPPHIRE_TOOL_PERCENT_DAMAGE_CAP
                 );
-                self.hurt(MUDamageTypes.percentage(directAttacker), bonusDamage);
+                self.hurtOrSimulate(MUDamageTypes.percentage(directAttacker), bonusDamage);
             }
 
             if (isAmetrineTool(weapon)) {
@@ -524,7 +524,7 @@ public abstract class LivingEntityMixin {
 
             if (isAquamarineTool(weapon) && self.level() instanceof ServerLevel serverLevel) {
                 self.addEffect(new MobEffectInstance(MythicEffects.FREEZE, MythicStats.AQUAMARINE_TOOL_FREEZE_TICKS, 0));
-                self.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, MythicStats.AQUAMARINE_TOOL_SLOWNESS_DURATION_TICKS, MythicStats.AQUAMARINE_TOOL_SLOWNESS_AMPLIFIER));
+                self.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, MythicStats.AQUAMARINE_TOOL_SLOWNESS_DURATION_TICKS, MythicStats.AQUAMARINE_TOOL_SLOWNESS_AMPLIFIER));
                 self.addEffect(new MobEffectInstance(MythicEffects.ICE_BOMB, MythicStats.ICE_BOMB_TOOL_DURATION_TICKS, 0));
                 emitAquamarineHitParticles(serverLevel, self);
             }
@@ -572,11 +572,11 @@ public abstract class LivingEntityMixin {
     }
 
     @ModifyVariable(method = "causeFallDamage", at = @At("HEAD"), argsOnly = true, ordinal = 0)
-    private float reduceJadeJumpFallDamage(float fallDistance) {
+    private double reduceJadeJumpFallDamage(double fallDistance) {
         if (mu_jadeJumpFallCredit > 0) {
             float credit = mu_jadeJumpFallCredit;
             mu_jadeJumpFallCredit = 0f;
-            return Math.max(0f, fallDistance - credit);
+            return Math.max(0.0, fallDistance - credit);
         }
         return fallDistance;
     }
@@ -618,9 +618,9 @@ public abstract class LivingEntityMixin {
             for (int i = 0; i < count; i++) {
                 double ox = (self.getRandom().nextDouble() - 0.5) * 2.0 * MythicStats.CITRINE_CHARGED_LIGHTNING_SPREAD;
                 double oz = (self.getRandom().nextDouble() - 0.5) * 2.0 * MythicStats.CITRINE_CHARGED_LIGHTNING_SPREAD;
-                LightningBolt bolt = EntityType.LIGHTNING_BOLT.create(serverLevel);
+                LightningBolt bolt = EntityTypes.LIGHTNING_BOLT.create(serverLevel, EntitySpawnReason.TRIGGERED);
                 if (bolt != null) {
-                    bolt.moveTo(self.getX() + ox, self.getY(), self.getZ() + oz);
+                    bolt.snapTo(self.getX() + ox, self.getY(), self.getZ() + oz);
                     serverLevel.addFreshEntity(bolt);
                 }
             }
@@ -629,9 +629,9 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitArcaneAuraWaveRing(ServerLevel level, double cx, double cy, double cz, float radius) {
-        DustParticleOptions c1 = new DustParticleOptions(colorFromHex(MythicAnims.ARCANE_AURA_COLOR_1), MythicAnims.ARCANE_AURA_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c2 = new DustParticleOptions(colorFromHex(MythicAnims.ARCANE_AURA_COLOR_2), MythicAnims.ARCANE_AURA_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c3 = new DustParticleOptions(colorFromHex(MythicAnims.ARCANE_AURA_COLOR_3), MythicAnims.ARCANE_AURA_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c1 = new DustParticleOptions(MythicAnims.ARCANE_AURA_COLOR_1, MythicAnims.ARCANE_AURA_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c2 = new DustParticleOptions(MythicAnims.ARCANE_AURA_COLOR_2, MythicAnims.ARCANE_AURA_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c3 = new DustParticleOptions(MythicAnims.ARCANE_AURA_COLOR_3, MythicAnims.ARCANE_AURA_WAVE_PARTICLE_SCALE);
         int step = MythicAnims.ARCANE_AURA_WAVE_STEP_DEGREES;
         int segment = step * 3;
         for (int angle = 0; angle < 360; angle += step) {
@@ -645,15 +645,10 @@ public abstract class LivingEntityMixin {
     }
 
     @Unique
-    private static Vector3f colorFromHex(int hex) {
-        return new Vector3f((hex >> 16 & 0xFF) / 255f, (hex >> 8 & 0xFF) / 255f, (hex & 0xFF) / 255f);
-    }
-
-    @Unique
     private static void emitTopazWaveRing(ServerLevel level, double cx, double cy, double cz, float radius) {
-        DustParticleOptions c1 = new DustParticleOptions(colorFromHex(MythicAnims.TOPAZ_COLOR_1), MythicAnims.TOPAZ_ARMOR_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c2 = new DustParticleOptions(colorFromHex(MythicAnims.TOPAZ_COLOR_2), MythicAnims.TOPAZ_ARMOR_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c3 = new DustParticleOptions(colorFromHex(MythicAnims.TOPAZ_COLOR_3), MythicAnims.TOPAZ_ARMOR_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c1 = new DustParticleOptions(MythicAnims.TOPAZ_COLOR_1, MythicAnims.TOPAZ_ARMOR_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c2 = new DustParticleOptions(MythicAnims.TOPAZ_COLOR_2, MythicAnims.TOPAZ_ARMOR_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c3 = new DustParticleOptions(MythicAnims.TOPAZ_COLOR_3, MythicAnims.TOPAZ_ARMOR_WAVE_PARTICLE_SCALE);
         int step = MythicAnims.TOPAZ_ARMOR_WAVE_STEP_DEGREES;
         int segment = step * 3;
         for (int angle = 0; angle < 360; angle += step) {
@@ -676,7 +671,7 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitLifestealParticles(ServerLevel level, LivingEntity from, LivingEntity to) {
-        DustParticleOptions dust = new DustParticleOptions(colorFromHex(MythicAnims.RUBY_COLOR), MythicAnims.RUBY_LIFESTEAL_PARTICLE_SCALE);
+        DustParticleOptions dust = new DustParticleOptions(MythicAnims.RUBY_COLOR, MythicAnims.RUBY_LIFESTEAL_PARTICLE_SCALE);
         double fx = from.getX(), fy = from.getY() + from.getBbHeight() * 0.5, fz = from.getZ();
         double tx = to.getX(), ty = to.getY() + to.getBbHeight() * 0.5, tz = to.getZ();
         int count = MythicStats.RUBY_TOOL_LIFESTEAL_PARTICLE_COUNT;
@@ -688,7 +683,7 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitBloodThirstParticles(ServerLevel level, LivingEntity from, LivingEntity to, int btLevel) {
-        DustParticleOptions dust = new DustParticleOptions(colorFromHex(MythicAnims.RUBY_COLOR), MythicAnims.RUBY_BLOOD_THIRST_PARTICLE_SCALE);
+        DustParticleOptions dust = new DustParticleOptions(MythicAnims.RUBY_COLOR, MythicAnims.RUBY_BLOOD_THIRST_PARTICLE_SCALE);
         double fx = from.getX(), fy = from.getY() + from.getBbHeight() * 0.5, fz = from.getZ();
         double tx = to.getX(), ty = to.getY() + to.getBbHeight() * 0.5, tz = to.getZ();
         int count = btLevel * MythicStats.BLOOD_THIRST_PARTICLES_PER_LEVEL;
@@ -702,9 +697,9 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitMiasmaWaveRing(ServerLevel level, double cx, double cy, double cz, float radius, int waveLevel) {
-        DustParticleOptions c1 = new DustParticleOptions(colorFromHex(MythicAnims.MIASMA_COLOR_1), MythicAnims.MIASMA_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c2 = new DustParticleOptions(colorFromHex(MythicAnims.MIASMA_COLOR_2), MythicAnims.MIASMA_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c3 = new DustParticleOptions(colorFromHex(MythicAnims.MIASMA_COLOR_3), MythicAnims.MIASMA_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c1 = new DustParticleOptions(MythicAnims.MIASMA_COLOR_1, MythicAnims.MIASMA_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c2 = new DustParticleOptions(MythicAnims.MIASMA_COLOR_2, MythicAnims.MIASMA_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c3 = new DustParticleOptions(MythicAnims.MIASMA_COLOR_3, MythicAnims.MIASMA_WAVE_PARTICLE_SCALE);
         int step = MythicAnims.MIASMA_WAVE_STEP_DEGREES;
         int segment = step * 3;
         int ppp = Math.max(1, waveLevel * MythicAnims.MIASMA_WAVE_PARTICLES_PER_LEVEL);
@@ -720,9 +715,9 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitLethalIncubationWaveRing(ServerLevel level, double cx, double cy, double cz, float radius, int waveLevel) {
-        DustParticleOptions c1 = new DustParticleOptions(colorFromHex(MythicAnims.MIASMA_COLOR_1), MythicAnims.LETHAL_INCUBATION_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c2 = new DustParticleOptions(colorFromHex(MythicAnims.MIASMA_COLOR_2), MythicAnims.LETHAL_INCUBATION_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c3 = new DustParticleOptions(colorFromHex(MythicAnims.MIASMA_COLOR_3), MythicAnims.LETHAL_INCUBATION_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c1 = new DustParticleOptions(MythicAnims.MIASMA_COLOR_1, MythicAnims.LETHAL_INCUBATION_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c2 = new DustParticleOptions(MythicAnims.MIASMA_COLOR_2, MythicAnims.LETHAL_INCUBATION_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c3 = new DustParticleOptions(MythicAnims.MIASMA_COLOR_3, MythicAnims.LETHAL_INCUBATION_WAVE_PARTICLE_SCALE);
         int step = MythicAnims.LETHAL_INCUBATION_WAVE_STEP_DEGREES;
         int segment = step * 3;
         int ppp = Math.max(1, waveLevel * MythicAnims.LETHAL_INCUBATION_WAVE_PARTICLES_PER_LEVEL);
@@ -738,7 +733,7 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitCitrineChainParticles(ServerLevel level, LivingEntity from, LivingEntity to) {
-        DustParticleOptions dust = new DustParticleOptions(colorFromHex(MythicAnims.CITRINE_COLOR), MythicAnims.CITRINE_CHAIN_PARTICLE_SCALE);
+        DustParticleOptions dust = new DustParticleOptions(MythicAnims.CITRINE_COLOR, MythicAnims.CITRINE_CHAIN_PARTICLE_SCALE);
         double fx = from.getX(), fy = from.getY() + from.getBbHeight() * 0.5, fz = from.getZ();
         double tx = to.getX(), ty = to.getY() + to.getBbHeight() * 0.5, tz = to.getZ();
         int count = MythicAnims.CITRINE_CHAIN_PARTICLE_COUNT;
@@ -750,7 +745,7 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitStaticFieldParticles(ServerLevel level, LivingEntity self, float radius, int waveLevel) {
-        DustParticleOptions dust = new DustParticleOptions(colorFromHex(MythicAnims.CITRINE_COLOR), MythicAnims.CITRINE_STATIC_FIELD_PARTICLE_SCALE);
+        DustParticleOptions dust = new DustParticleOptions(MythicAnims.CITRINE_COLOR, MythicAnims.CITRINE_STATIC_FIELD_PARTICLE_SCALE);
         int count = waveLevel * MythicAnims.CITRINE_STATIC_FIELD_PARTICLES_PER_TICK_PER_LEVEL;
         double cx = self.getX(), cy = self.getY() + self.getBbHeight() * 0.5, cz = self.getZ();
         for (int i = 0; i < count; i++) {
@@ -765,7 +760,7 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitAquamarineHitParticles(ServerLevel level, LivingEntity entity) {
-        DustParticleOptions dust = new DustParticleOptions(colorFromHex(MythicAnims.AQUAMARINE_COLOR), MythicAnims.AQUAMARINE_PARTICLE_SCALE);
+        DustParticleOptions dust = new DustParticleOptions(MythicAnims.AQUAMARINE_COLOR, MythicAnims.AQUAMARINE_PARTICLE_SCALE);
         level.sendParticles(dust, entity.getX(), entity.getY() + entity.getBbHeight() * 0.5, entity.getZ(), 12, 0.3, 0.4, 0.3, 0);
     }
 
@@ -778,18 +773,18 @@ public abstract class LivingEntityMixin {
         for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, bb)) {
             if (entity == center) continue;
             if (entity.distanceTo(center) > radius) continue;
-            entity.hurt(MUDamageTypes.peridotIncubation(center), MythicStats.LETHAL_INCUBATION_SHOCK_DAMAGE);
+            entity.hurtOrSimulate(MUDamageTypes.peridotIncubation(center), MythicStats.LETHAL_INCUBATION_SHOCK_DAMAGE);
             entity.addEffect(new MobEffectInstance(MobEffects.POISON, MythicStats.LETHAL_INCUBATION_POISON_DURATION_TICKS, poisonAmplifier));
-            entity.knockback(1.0, center.getX() - entity.getX(), center.getZ() - entity.getZ());
+            entity.knockback(1.0, center.getX() - entity.getX(), center.getZ() - entity.getZ(), entity.damageSources().generic(), 0.0F);
         }
         level.explode(null, center.getX(), center.getY(), center.getZ(), 2.0f, Level.ExplosionInteraction.NONE);
     }
 
     @Unique
     private static void emitIceBombWaveRing(ServerLevel level, double cx, double cy, double cz, float radius) {
-        DustParticleOptions c1 = new DustParticleOptions(colorFromHex(MythicAnims.ICE_BOMB_COLOR_1), MythicAnims.ICE_BOMB_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c2 = new DustParticleOptions(colorFromHex(MythicAnims.ICE_BOMB_COLOR_2), MythicAnims.ICE_BOMB_WAVE_PARTICLE_SCALE);
-        DustParticleOptions c3 = new DustParticleOptions(colorFromHex(MythicAnims.ICE_BOMB_COLOR_3), MythicAnims.ICE_BOMB_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c1 = new DustParticleOptions(MythicAnims.ICE_BOMB_COLOR_1, MythicAnims.ICE_BOMB_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c2 = new DustParticleOptions(MythicAnims.ICE_BOMB_COLOR_2, MythicAnims.ICE_BOMB_WAVE_PARTICLE_SCALE);
+        DustParticleOptions c3 = new DustParticleOptions(MythicAnims.ICE_BOMB_COLOR_3, MythicAnims.ICE_BOMB_WAVE_PARTICLE_SCALE);
         int step = MythicAnims.ICE_BOMB_WAVE_STEP_DEGREES;
         int segment = step * 3;
         for (int angle = 0; angle < 360; angle += step) {
@@ -810,9 +805,9 @@ public abstract class LivingEntityMixin {
         for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, bb)) {
             if (entity == center) continue;
             if (entity.distanceTo(center) > radius) continue;
-            entity.hurt(MUDamageTypes.iceBombBurst(center), MythicStats.ICE_BOMB_BURST_DAMAGE);
+            entity.hurtOrSimulate(MUDamageTypes.iceBombBurst(center), MythicStats.ICE_BOMB_BURST_DAMAGE);
             entity.addEffect(new MobEffectInstance(MythicEffects.FREEZE, MythicStats.ICE_BOMB_BURST_FREEZE_TICKS, 0));
-            entity.knockback(1.0, center.getX() - entity.getX(), center.getZ() - entity.getZ());
+            entity.knockback(1.0, center.getX() - entity.getX(), center.getZ() - entity.getZ(), entity.damageSources().generic(), 0.0F);
         }
         level.explode(null, center.getX(), center.getY(), center.getZ(), 2.0f, Level.ExplosionInteraction.NONE);
     }
@@ -826,7 +821,7 @@ public abstract class LivingEntityMixin {
             owner.getX() + radius, owner.getY() + radius, owner.getZ() + radius);
         for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, bb)) {
             if (entity == owner) continue;
-            if (entity instanceof TamableAnimal tamed && Objects.equals(tamed.getOwnerUUID(), owner.getUUID())) continue;
+            if (entity instanceof TamableAnimal tamed && Objects.equals(tamed.getOwner(), owner)) continue;
             if (owner.getTeam() != null && owner.getTeam() == entity.getTeam()) continue;
             if (entity.distanceTo(owner) > radius) continue;
             entity.addEffect(new MobEffectInstance(MobEffects.POISON, poisonDuration, poisonAmplifier));
@@ -859,7 +854,7 @@ public abstract class LivingEntityMixin {
         for (LivingEntity target : nearby) {
             if (count >= MythicStats.CITRINE_TOOL_CHAIN_TARGETS) break;
             if (target == victim || target == attacker) continue;
-            target.hurt(MUDamageTypes.citrineChain(attacker), chainDamage);
+            target.hurtOrSimulate(MUDamageTypes.citrineChain(attacker), chainDamage);
             emitCitrineChainParticles(level, victim, target);
             count++;
         }
@@ -875,8 +870,8 @@ public abstract class LivingEntityMixin {
             if (excludeCenter && entity == center) continue;
             if (excluded != null && entity == excluded) continue;
             if (entity.distanceTo(center) <= radius) {
-                entity.hurt(MUDamageTypes.topazShock(source), damage);
-                entity.knockback(knockback, center.getX() - entity.getX(), center.getZ() - entity.getZ());
+                entity.hurtOrSimulate(MUDamageTypes.topazShock(source), damage);
+                entity.knockback(knockback, center.getX() - entity.getX(), center.getZ() - entity.getZ(), entity.damageSources().generic(), 0.0F);
             }
         }
     }
@@ -886,7 +881,7 @@ public abstract class LivingEntityMixin {
         for (int i = 0; i < 16; i++) {
             double x = entity.getX() + (entity.getRandom().nextDouble() - 0.5) * 16.0;
             double y = Mth.clamp(entity.getY() + (entity.getRandom().nextInt(16) - 8),
-                entity.level().getMinBuildHeight(), entity.level().getMaxBuildHeight() - 1);
+                entity.level().getMinY(), entity.level().getMaxY());
             double z = entity.getZ() + (entity.getRandom().nextDouble() - 0.5) * 16.0;
             if (entity.randomTeleport(x, y, z, true)) break;
         }
@@ -953,9 +948,9 @@ public abstract class LivingEntityMixin {
             if (current != null && current.getAmplifier() >= trailAmplifier) continue;
             entity.addEffect(new MobEffectInstance(MythicEffects.JADE_AURA, MythicStats.JADE_TRAIL_EFFECT_DURATION_TICKS, trailAmplifier));
         }
-        DustParticleOptions d1 = new DustParticleOptions(colorFromHex(MythicAnims.JADE_COLOR_1), MythicAnims.JADE_TRAIL_PARTICLE_SCALE);
-        DustParticleOptions d2 = new DustParticleOptions(colorFromHex(MythicAnims.JADE_COLOR_2), MythicAnims.JADE_TRAIL_PARTICLE_SCALE);
-        DustParticleOptions d3 = new DustParticleOptions(colorFromHex(MythicAnims.JADE_COLOR_3), MythicAnims.JADE_TRAIL_PARTICLE_SCALE);
+        DustParticleOptions d1 = new DustParticleOptions(MythicAnims.JADE_COLOR_1, MythicAnims.JADE_TRAIL_PARTICLE_SCALE);
+        DustParticleOptions d2 = new DustParticleOptions(MythicAnims.JADE_COLOR_2, MythicAnims.JADE_TRAIL_PARTICLE_SCALE);
+        DustParticleOptions d3 = new DustParticleOptions(MythicAnims.JADE_COLOR_3, MythicAnims.JADE_TRAIL_PARTICLE_SCALE);
         level.sendParticles(d1, owner.getX(), owner.getY() + 0.1, owner.getZ(), 6, 0.4, 0.1, 0.4, 0);
         level.sendParticles(d2, owner.getX(), owner.getY() + 0.4, owner.getZ(), 8, 0.35, 0.2, 0.35, 0);
         level.sendParticles(d3, owner.getX(), owner.getY() + 0.8, owner.getZ(), 5, 0.25, 0.3, 0.25, 0);
@@ -963,9 +958,9 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitJadeLingerParticles(ServerLevel level, float x, float y, float z) {
-        DustParticleOptions c1 = new DustParticleOptions(colorFromHex(MythicAnims.JADE_COLOR_1), MythicAnims.JADE_TRAIL_PARTICLE_SCALE);
-        DustParticleOptions c2 = new DustParticleOptions(colorFromHex(MythicAnims.JADE_COLOR_2), MythicAnims.JADE_TRAIL_PARTICLE_SCALE);
-        DustParticleOptions c3 = new DustParticleOptions(colorFromHex(MythicAnims.JADE_COLOR_3), MythicAnims.JADE_TRAIL_PARTICLE_SCALE);
+        DustParticleOptions c1 = new DustParticleOptions(MythicAnims.JADE_COLOR_1, MythicAnims.JADE_TRAIL_PARTICLE_SCALE);
+        DustParticleOptions c2 = new DustParticleOptions(MythicAnims.JADE_COLOR_2, MythicAnims.JADE_TRAIL_PARTICLE_SCALE);
+        DustParticleOptions c3 = new DustParticleOptions(MythicAnims.JADE_COLOR_3, MythicAnims.JADE_TRAIL_PARTICLE_SCALE);
         level.sendParticles(c1, x, y + 0.1, z, 2, 0.3, 0.05, 0.3, 0);
         level.sendParticles(c2, x, y + 0.4, z, 2, 0.25, 0.05, 0.25, 0);
         level.sendParticles(c3, x, y + 0.7, z, 1, 0.2, 0.05, 0.2, 0);
@@ -973,9 +968,9 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitJadeAuraAmbientParticles(ServerLevel level, LivingEntity entity, int auraLevel) {
-        DustParticleOptions c1 = new DustParticleOptions(colorFromHex(MythicAnims.JADE_COLOR_1), MythicAnims.JADE_TRAIL_PARTICLE_SCALE);
-        DustParticleOptions c2 = new DustParticleOptions(colorFromHex(MythicAnims.JADE_COLOR_2), MythicAnims.JADE_TRAIL_PARTICLE_SCALE);
-        DustParticleOptions c3 = new DustParticleOptions(colorFromHex(MythicAnims.JADE_COLOR_3), MythicAnims.JADE_TRAIL_PARTICLE_SCALE);
+        DustParticleOptions c1 = new DustParticleOptions(MythicAnims.JADE_COLOR_1, MythicAnims.JADE_TRAIL_PARTICLE_SCALE);
+        DustParticleOptions c2 = new DustParticleOptions(MythicAnims.JADE_COLOR_2, MythicAnims.JADE_TRAIL_PARTICLE_SCALE);
+        DustParticleOptions c3 = new DustParticleOptions(MythicAnims.JADE_COLOR_3, MythicAnims.JADE_TRAIL_PARTICLE_SCALE);
         int count = Math.min(auraLevel * 2, 10);
         double cx = entity.getX(), cy = entity.getY() + entity.getBbHeight() * 0.5, cz = entity.getZ();
         for (int i = 0; i < count; i++) {
@@ -986,7 +981,7 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitIceShieldStreamParticles(ServerLevel level, LivingEntity from, LivingEntity to) {
-        DustParticleOptions dust = new DustParticleOptions(colorFromHex(MythicAnims.AQUAMARINE_COLOR), MythicAnims.ICE_SHIELD_STREAM_PARTICLE_SCALE);
+        DustParticleOptions dust = new DustParticleOptions(MythicAnims.AQUAMARINE_COLOR, MythicAnims.ICE_SHIELD_STREAM_PARTICLE_SCALE);
         double fx = from.getX(), fy = from.getY() + from.getBbHeight() * 0.5, fz = from.getZ();
         double tx = to.getX(), ty = to.getY() + to.getBbHeight() * 0.5, tz = to.getZ();
         int count = 20;
@@ -998,7 +993,7 @@ public abstract class LivingEntityMixin {
 
     @Unique
     private static void emitIceFreezeOrbitParticles(ServerLevel level, LivingEntity entity) {
-        DustParticleOptions dust = new DustParticleOptions(colorFromHex(MythicAnims.AQUAMARINE_COLOR), MythicAnims.ICE_FREEZE_ORBIT_PARTICLE_SCALE);
+        DustParticleOptions dust = new DustParticleOptions(MythicAnims.AQUAMARINE_COLOR, MythicAnims.ICE_FREEZE_ORBIT_PARTICLE_SCALE);
         int baseAngle = (entity.tickCount * 7) % 360;
         float r = 0.75f;
         double midY = entity.getY() + entity.getBbHeight() * 0.5;

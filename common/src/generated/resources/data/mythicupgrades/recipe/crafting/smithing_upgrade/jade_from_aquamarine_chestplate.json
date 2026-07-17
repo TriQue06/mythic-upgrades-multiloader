@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:jade_ingot",
+  "base": "mythicupgrades:aquamarine_chestplate",
+  "result": {
+    "id": "mythicupgrades:jade_chestplate"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

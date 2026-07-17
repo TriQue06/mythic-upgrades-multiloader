@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:ametrine_ingot",
+  "base": "mythicupgrades:ruby_hoe",
+  "result": {
+    "id": "mythicupgrades:ametrine_hoe"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

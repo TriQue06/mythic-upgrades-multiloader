@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "mythicupgrades:ametrine"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "mythicupgrades:ametrine"
+      }
+    ]
+  }
+}

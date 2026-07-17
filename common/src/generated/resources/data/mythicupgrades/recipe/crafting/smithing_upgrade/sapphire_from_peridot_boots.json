@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:sapphire_ingot",
+  "base": "mythicupgrades:peridot_boots",
+  "result": {
+    "id": "mythicupgrades:sapphire_boots"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

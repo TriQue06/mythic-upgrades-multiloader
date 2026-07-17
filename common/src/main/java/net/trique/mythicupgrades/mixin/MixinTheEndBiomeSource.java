@@ -48,7 +48,7 @@ public class MixinTheEndBiomeSource {
             return;
         }
 
-        Holder<Biome> mythicBarrens = biomeReg.getHolder(MythicBiomes.MYTHIC_BARRENS).orElse(null);
+        Holder<Biome> mythicBarrens = biomeReg.get(MythicBiomes.MYTHIC_BARRENS).orElse(null);
 
         if (mythicBarrens != null) {
             this.highlands = mythicBarrens;

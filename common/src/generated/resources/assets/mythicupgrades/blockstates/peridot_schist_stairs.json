@@ -28,7 +28,7 @@
       "model": "mythicupgrades:block/peridot_schist_stairs_inner",
       "uvlock": true,
       "x": 180,
-      "y": 90
+      "y": 270
     },
     "facing=east,half=top,shape=outer_left": {
       "model": "mythicupgrades:block/peridot_schist_stairs_outer",
@@ -39,7 +39,7 @@
       "model": "mythicupgrades:block/peridot_schist_stairs_outer",
       "uvlock": true,
       "x": 180,
-      "y": 90
+      "y": 270
     },
     "facing=east,half=top,shape=straight": {
       "model": "mythicupgrades:block/peridot_schist_stairs",
@@ -80,7 +80,8 @@
     "facing=north,half=top,shape=inner_right": {
       "model": "mythicupgrades:block/peridot_schist_stairs_inner",
       "uvlock": true,
-      "x": 180
+      "x": 180,
+      "y": 180
     },
     "facing=north,half=top,shape=outer_left": {
       "model": "mythicupgrades:block/peridot_schist_stairs_outer",
@@ -91,7 +92,8 @@
     "facing=north,half=top,shape=outer_right": {
       "model": "mythicupgrades:block/peridot_schist_stairs_outer",
       "uvlock": true,
-      "x": 180
+      "x": 180,
+      "y": 180
     },
     "facing=north,half=top,shape=straight": {
       "model": "mythicupgrades:block/peridot_schist_stairs",
@@ -100,7 +102,8 @@
       "y": 270
     },
     "facing=south,half=bottom,shape=inner_left": {
-      "model": "mythicupgrades:block/peridot_schist_stairs_inner"
+      "model": "mythicupgrades:block/peridot_schist_stairs_inner",
+      "uvlock": true
     },
     "facing=south,half=bottom,shape=inner_right": {
       "model": "mythicupgrades:block/peridot_schist_stairs_inner",
@@ -108,7 +111,8 @@
       "y": 90
     },
     "facing=south,half=bottom,shape=outer_left": {
-      "model": "mythicupgrades:block/peridot_schist_stairs_outer"
+      "model": "mythicupgrades:block/peridot_schist_stairs_outer",
+      "uvlock": true
     },
     "facing=south,half=bottom,shape=outer_right": {
       "model": "mythicupgrades:block/peridot_schist_stairs_outer",
@@ -129,8 +133,7 @@
     "facing=south,half=top,shape=inner_right": {
       "model": "mythicupgrades:block/peridot_schist_stairs_inner",
       "uvlock": true,
-      "x": 180,
-      "y": 180
+      "x": 180
     },
     "facing=south,half=top,shape=outer_left": {
       "model": "mythicupgrades:block/peridot_schist_stairs_outer",
@@ -141,8 +144,7 @@
     "facing=south,half=top,shape=outer_right": {
       "model": "mythicupgrades:block/peridot_schist_stairs_outer",
       "uvlock": true,
-      "x": 180,
-      "y": 180
+      "x": 180
     },
     "facing=south,half=top,shape=straight": {
       "model": "mythicupgrades:block/peridot_schist_stairs",
@@ -185,7 +187,7 @@
       "model": "mythicupgrades:block/peridot_schist_stairs_inner",
       "uvlock": true,
       "x": 180,
-      "y": 270
+      "y": 90
     },
     "facing=west,half=top,shape=outer_left": {
       "model": "mythicupgrades:block/peridot_schist_stairs_outer",
@@ -197,7 +199,7 @@
       "model": "mythicupgrades:block/peridot_schist_stairs_outer",
       "uvlock": true,
       "x": 180,
-      "y": 270
+      "y": 90
     },
     "facing=west,half=top,shape=straight": {
       "model": "mythicupgrades:block/peridot_schist_stairs",

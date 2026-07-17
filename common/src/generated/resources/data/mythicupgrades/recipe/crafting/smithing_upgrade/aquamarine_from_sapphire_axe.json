@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:aquamarine_ingot",
+  "base": "mythicupgrades:sapphire_axe",
+  "result": {
+    "id": "mythicupgrades:aquamarine_axe"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

@@ -3,7 +3,5 @@
   "description": {
     "color": "#DCB40A",
     "translate": "trim_material.mythicupgrades.citrine"
-  },
-  "ingredient": "mythicupgrades:citrine_crystal_shard",
-  "item_model_index": 0.20632
+  }
 }

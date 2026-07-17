@@ -4,7 +4,7 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
@@ -20,15 +20,15 @@ import java.util.List;
 public class MythicPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> NECOIUM_ORE_PF = ResourceKey.create(
-            Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "necoium_ore"));
+            Registries.PLACED_FEATURE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "necoium_ore"));
     public static final ResourceKey<PlacedFeature> DEEPSLATE_NECOIUM_ORE_PF = ResourceKey.create(
-            Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "deepslate_necoium_ore"));
+            Registries.PLACED_FEATURE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "deepslate_necoium_ore"));
     public static final ResourceKey<PlacedFeature> NECOIUM_ORE_EXTRA_PF = ResourceKey.create(
-            Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "necoium_ore_extra"));
+            Registries.PLACED_FEATURE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "necoium_ore_extra"));
     public static final ResourceKey<PlacedFeature> DEEPSLATE_NECOIUM_ORE_EXTRA_PF = ResourceKey.create(
-            Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "deepslate_necoium_ore_extra"));
+            Registries.PLACED_FEATURE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "deepslate_necoium_ore_extra"));
     public static final ResourceKey<PlacedFeature> RAW_NECOIUM_BLOCK_CAVES_PF = ResourceKey.create(
-            Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "raw_necoium_block_caves"));
+            Registries.PLACED_FEATURE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "raw_necoium_block_caves"));
 
     public static void bootstrap(BootstrapContext<PlacedFeature> ctx) {
         HolderGetter<ConfiguredFeature<?, ?>> features = ctx.lookup(Registries.CONFIGURED_FEATURE);

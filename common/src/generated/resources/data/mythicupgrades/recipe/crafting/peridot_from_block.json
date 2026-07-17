@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "mythicupgrades:peridot_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "mythicupgrades:peridot_ingot"
+  }
+}

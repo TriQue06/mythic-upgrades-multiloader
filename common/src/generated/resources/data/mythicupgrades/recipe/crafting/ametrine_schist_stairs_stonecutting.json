@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "mythicupgrades:ametrine_schist",
+  "result": {
+    "id": "mythicupgrades:ametrine_schist_stairs"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:topaz_ingot",
+  "base": "mythicupgrades:jade_shovel",
+  "result": {
+    "id": "mythicupgrades:topaz_shovel"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:jade_ingot",
+  "base": "mythicupgrades:aquamarine_leggings",
+  "result": {
+    "id": "mythicupgrades:jade_leggings"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

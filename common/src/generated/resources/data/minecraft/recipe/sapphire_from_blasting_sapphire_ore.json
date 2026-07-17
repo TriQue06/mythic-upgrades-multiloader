@@ -1,14 +1,9 @@
 {
   "type": "minecraft:blasting",
-  "category": "misc",
-  "cookingtime": 100,
   "experience": 1.4,
   "group": "sapphire",
-  "ingredient": {
-    "item": "mythicupgrades:sapphire_ore"
-  },
+  "ingredient": "mythicupgrades:sapphire_ore",
   "result": {
-    "count": 1,
     "id": "mythicupgrades:sapphire"
   }
 }

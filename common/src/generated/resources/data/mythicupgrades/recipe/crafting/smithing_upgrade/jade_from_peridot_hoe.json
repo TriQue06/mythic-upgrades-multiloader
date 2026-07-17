@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:jade_ingot",
+  "base": "mythicupgrades:peridot_hoe",
+  "result": {
+    "id": "mythicupgrades:jade_hoe"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

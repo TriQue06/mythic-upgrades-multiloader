@@ -4,7 +4,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
@@ -32,7 +32,7 @@ public class MythicUpgrades {
         modEventBus.addListener(this::onCommonSetup);
         modEventBus.addListener(this::onClientSetup);
 
-        if (net.neoforged.fml.loading.FMLEnvironment.dist.isClient()) {
+        if (net.neoforged.fml.loading.FMLEnvironment.getDist().isClient()) {
             container.registerExtensionPoint(
                 net.neoforged.neoforge.client.gui.IConfigScreenFactory.class,
                 (modContainer, parent) -> net.trique.mythicupgrades.client.MythicConfigScreen.create(parent));
@@ -43,25 +43,25 @@ public class MythicUpgrades {
         if (event.getRegistryKey().equals(Registries.BLOCK)) {
             event.register(Registries.BLOCK, helper ->
                 MythicBlocks.register((name, block) -> {
-                    helper.register(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), block);
+                    helper.register(Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), block);
                     return block;
                 })
             );
         } else if (event.getRegistryKey().equals(Registries.ITEM)) {
             event.register(Registries.ITEM, helper -> {
                 MythicBlocks.registerItems((name, item) -> {
-                    helper.register(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), item);
+                    helper.register(Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), item);
                     return item;
                 });
                 MythicItems.register((name, item) -> {
-                    helper.register(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), item);
+                    helper.register(Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), item);
                     return item;
                 });
             });
         } else if (event.getRegistryKey().equals(Registries.CREATIVE_MODE_TAB)) {
             event.register(Registries.CREATIVE_MODE_TAB, helper ->
                 MythicCreativeTabs.register((name, tab) -> {
-                    helper.register(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), tab);
+                    helper.register(Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), tab);
                     return tab;
                 })
             );
@@ -70,30 +70,30 @@ public class MythicUpgrades {
                 MythicEffects.register((name, effect) -> {
                     ResourceKey<MobEffect> key = ResourceKey.create(
                         BuiltInRegistries.MOB_EFFECT.key(),
-                        ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
-                    helper.register(key.location(), effect);
-                    return BuiltInRegistries.MOB_EFFECT.getHolder(key).orElseThrow(
+                        Identifier.fromNamespaceAndPath(Constants.MOD_ID, name));
+                    helper.register(key.identifier(), effect);
+                    return BuiltInRegistries.MOB_EFFECT.get(key).orElseThrow(
                         () -> new IllegalStateException("MythicEffects: unregistered on NeoForge: " + name));
                 })
             );
         } else if (event.getRegistryKey().equals(Registries.POTION)) {
             event.register(Registries.POTION, helper ->
                 MythicPotions.register((name, potion) -> {
-                    helper.register(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), potion);
+                    helper.register(Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), potion);
                     return potion;
                 })
             );
         } else if (event.getRegistryKey().equals(Registries.FEATURE)) {
             event.register(Registries.FEATURE, helper ->
                 MythicFeatures.register((name, feature) -> {
-                    helper.register(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), feature);
+                    helper.register(Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), feature);
                     return feature;
                 })
             );
         } else if (event.getRegistryKey().equals(Registries.SOUND_EVENT)) {
             event.register(Registries.SOUND_EVENT, helper ->
                 MythicSounds.register((name, sound) -> {
-                    helper.register(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), sound);
+                    helper.register(Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), sound);
                     return sound;
                 })
             );
@@ -112,7 +112,7 @@ public class MythicUpgrades {
     private void onClientSetup(FMLClientSetupEvent event) {
     }
 
-    @EventBusSubscriber(modid = Constants.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
+    @EventBusSubscriber(modid = Constants.MOD_ID)
     public static class NeoForgeEvents {
 
         @SubscribeEvent

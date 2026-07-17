@@ -4,11 +4,7 @@
     "color": "#1D8B30",
     "translate": "trim_material.mythicupgrades.jade"
   },
-  "ingredient": "mythicupgrades:jade_crystal_shard",
-  "item_model_index": 0.20637,
   "override_armor_assets": {
-    "mythicupgrades:jade": {
-      "asset_name": "jade_darker"
-    }
+    "mythicupgrades:jade": "jade_darker"
   }
 }

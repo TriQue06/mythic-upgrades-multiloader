@@ -30,7 +30,7 @@ public class LightningBoltMixin {
         if (hasCitrineWearer) {
             double angle = serverLevel.getRandom().nextDouble() * 2 * Math.PI;
             double dist = MythicStats.CITRINE_LIGHTNING_REDIRECT_DISTANCE;
-            self.moveTo(self.getX() + dist * Math.cos(angle), self.getY(), self.getZ() + dist * Math.sin(angle));
+            self.snapTo(self.getX() + dist * Math.cos(angle), self.getY(), self.getZ() + dist * Math.sin(angle));
         }
     }
 }

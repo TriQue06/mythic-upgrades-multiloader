@@ -1,14 +1,9 @@
 {
   "type": "minecraft:smelting",
-  "category": "misc",
-  "cookingtime": 200,
   "experience": 1.4,
   "group": "necoium",
-  "ingredient": {
-    "item": "mythicupgrades:necoium_ore"
-  },
+  "ingredient": "mythicupgrades:necoium_ore",
   "result": {
-    "count": 1,
     "id": "mythicupgrades:necoium_ingot"
   }
 }

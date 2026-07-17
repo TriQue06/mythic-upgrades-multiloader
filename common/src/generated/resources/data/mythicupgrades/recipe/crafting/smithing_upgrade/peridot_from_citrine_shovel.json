@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:peridot_ingot",
+  "base": "mythicupgrades:citrine_shovel",
+  "result": {
+    "id": "mythicupgrades:peridot_shovel"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

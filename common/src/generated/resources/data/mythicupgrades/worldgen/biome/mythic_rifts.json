@@ -1,22 +1,26 @@
 {
-  "carvers": {},
+  "attributes": {
+    "minecraft:audio/ambient_sounds": {
+      "additions": {
+        "sound": "mythicupgrades:ambient.mythic_chime",
+        "tick_chance": 0.0111
+      },
+      "mood": {
+        "block_search_extent": 8,
+        "offset": 2.0,
+        "sound": "minecraft:ambient.cave",
+        "tick_delay": 6000
+      }
+    },
+    "minecraft:visual/fog_color": "#78307b",
+    "minecraft:visual/sky_color": "#210021",
+    "minecraft:visual/water_fog_color": "#050533"
+  },
+  "carvers": [],
   "creature_spawn_probability": 0.0,
   "downfall": 0.0,
   "effects": {
-    "additions_sound": {
-      "sound": "mythicupgrades:ambient.mythic_chime",
-      "tick_chance": 0.0111
-    },
-    "fog_color": 7876731,
-    "mood_sound": {
-      "block_search_extent": 8,
-      "offset": 2.0,
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000
-    },
-    "sky_color": 2162721,
-    "water_color": 10569724,
-    "water_fog_color": 329011
+    "water_color": "#a147fc"
   },
   "features": [
     [],

@@ -2,10 +2,28 @@
   "multipart": [
     {
       "apply": {
-        "model": "mythicupgrades:block/ametrine_crystal_bricks_wall_post"
+        "model": "mythicupgrades:block/ametrine_crystal_bricks_wall"
       },
       "when": {
         "up": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "mythicupgrades:block/ametrine_crystal_bricks_wall_side",
+        "uvlock": true
+      },
+      "when": {
+        "north": "low"
+      }
+    },
+    {
+      "apply": {
+        "model": "mythicupgrades:block/ametrine_crystal_bricks_wall_side_tall",
+        "uvlock": true
+      },
+      "when": {
+        "north": "tall"
       }
     },
     {
@@ -26,24 +44,6 @@
       },
       "when": {
         "east": "tall"
-      }
-    },
-    {
-      "apply": {
-        "model": "mythicupgrades:block/ametrine_crystal_bricks_wall_side",
-        "uvlock": true
-      },
-      "when": {
-        "north": "low"
-      }
-    },
-    {
-      "apply": {
-        "model": "mythicupgrades:block/ametrine_crystal_bricks_wall_side_tall",
-        "uvlock": true
-      },
-      "when": {
-        "north": "tall"
       }
     },
     {

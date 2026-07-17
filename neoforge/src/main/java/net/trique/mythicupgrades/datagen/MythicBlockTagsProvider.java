@@ -2,25 +2,30 @@ package net.trique.mythicupgrades.datagen;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.tags.TagAppender;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.trique.mythicupgrades.Constants;
 import net.trique.mythicupgrades.block.MythicBlocks;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
 public class MythicBlockTagsProvider extends BlockTagsProvider {
 
-    public MythicBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider,
-                                   @Nullable ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, Constants.MOD_ID, existingFileHelper);
+    public MythicBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+        super(output, lookupProvider, Constants.MOD_ID);
+    }
+
+    private ModTagAppender<Block> tagB(TagKey<Block> key) {
+        return new ModTagAppender<>(tag(key), BuiltInRegistries.BLOCK);
     }
 
     @Override
     protected void addTags(HolderLookup.Provider registries) {
-        tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        tagB(BlockTags.MINEABLE_WITH_PICKAXE)
             .add(MythicBlocks.AQUAMARINE_ORE, MythicBlocks.DEEPSLATE_AQUAMARINE_ORE)
             .add(MythicBlocks.CITRINE_ORE, MythicBlocks.DEEPSLATE_CITRINE_ORE)
             .add(MythicBlocks.TOPAZ_ORE, MythicBlocks.DEEPSLATE_TOPAZ_ORE)
@@ -82,13 +87,13 @@ public class MythicBlockTagsProvider extends BlockTagsProvider {
             .add(MythicBlocks.AQUAMARINE_SCHIST_WALL, MythicBlocks.CITRINE_SCHIST_WALL, MythicBlocks.TOPAZ_SCHIST_WALL, MythicBlocks.PERIDOT_SCHIST_WALL)
             .add(MythicBlocks.RUBY_SCHIST_WALL, MythicBlocks.SAPPHIRE_SCHIST_WALL, MythicBlocks.JADE_SCHIST_WALL, MythicBlocks.AMETRINE_SCHIST_WALL);
 
-        tag(BlockTags.WALLS)
+        tagB(BlockTags.WALLS)
             .add(MythicBlocks.AQUAMARINE_CRYSTAL_BRICKS_WALL, MythicBlocks.CITRINE_CRYSTAL_BRICKS_WALL, MythicBlocks.TOPAZ_CRYSTAL_BRICKS_WALL, MythicBlocks.PERIDOT_CRYSTAL_BRICKS_WALL)
             .add(MythicBlocks.RUBY_CRYSTAL_BRICKS_WALL, MythicBlocks.SAPPHIRE_CRYSTAL_BRICKS_WALL, MythicBlocks.JADE_CRYSTAL_BRICKS_WALL, MythicBlocks.AMETRINE_CRYSTAL_BRICKS_WALL)
             .add(MythicBlocks.AQUAMARINE_SCHIST_WALL, MythicBlocks.CITRINE_SCHIST_WALL, MythicBlocks.TOPAZ_SCHIST_WALL, MythicBlocks.PERIDOT_SCHIST_WALL)
             .add(MythicBlocks.RUBY_SCHIST_WALL, MythicBlocks.SAPPHIRE_SCHIST_WALL, MythicBlocks.JADE_SCHIST_WALL, MythicBlocks.AMETRINE_SCHIST_WALL);
 
-        tag(BlockTags.NEEDS_IRON_TOOL)
+        tagB(BlockTags.NEEDS_IRON_TOOL)
             .add(MythicBlocks.AQUAMARINE_ORE, MythicBlocks.DEEPSLATE_AQUAMARINE_ORE)
             .add(MythicBlocks.CITRINE_ORE, MythicBlocks.DEEPSLATE_CITRINE_ORE)
             .add(MythicBlocks.TOPAZ_ORE, MythicBlocks.DEEPSLATE_TOPAZ_ORE)

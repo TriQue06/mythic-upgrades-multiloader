@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": "minecraft:golden_carrot",
+    "N": "mythicupgrades:necoium_block"
+  },
+  "pattern": [
+    "NNN",
+    "NCN",
+    "NNN"
+  ],
+  "result": {
+    "id": "mythicupgrades:necoium_carrot"
+  }
+}

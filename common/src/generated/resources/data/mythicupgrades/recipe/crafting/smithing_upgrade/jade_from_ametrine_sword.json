@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:jade_ingot",
+  "base": "mythicupgrades:ametrine_sword",
+  "result": {
+    "id": "mythicupgrades:jade_sword"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

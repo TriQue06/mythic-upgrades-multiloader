@@ -9,7 +9,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.trique.mythicupgrades.MythicConfig;
 
 import java.lang.reflect.Field;
@@ -43,7 +43,7 @@ public final class MythicConfigScreen {
         ConfigBuilder builder = ConfigBuilder.create()
             .setParentScreen(parent)
             .setTitle(Component.literal("Mythic Upgrades").withStyle(ChatFormatting.BOLD))
-            .setDefaultBackgroundTexture(ResourceLocation.fromNamespaceAndPath("minecraft", "textures/block/amethyst_block.png"))
+            .setDefaultBackgroundTexture(Identifier.fromNamespaceAndPath("minecraft", "textures/block/amethyst_block.png"))
             .setSavingRunnable(MythicConfig::save);
 
         ConfigEntryBuilder entries = builder.entryBuilder();

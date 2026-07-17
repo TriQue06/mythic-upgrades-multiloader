@@ -10,7 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.scores.Team;
 import net.trique.mythicupgrades.MythicEffects;
-import org.joml.Vector3f;
+
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -21,9 +21,9 @@ public class NecoiumShareHandler {
     private static final int SHARE_DURATION = 100;
 
     private static final DustParticleOptions[] COLORS = {
-        new DustParticleOptions(new Vector3f(0.651f, 0.055f, 0.416f), 1.4f),
-        new DustParticleOptions(new Vector3f(0.902f, 0.102f, 0.561f), 1.4f),
-        new DustParticleOptions(new Vector3f(0.957f, 0.490f, 0.627f), 1.4f),
+        new DustParticleOptions(0xA60E6A, 1.4f),
+        new DustParticleOptions(0xE61A8F, 1.4f),
+        new DustParticleOptions(0xF47DA0, 1.4f),
     };
 
     private static final List<Holder<MobEffect>> SHAREABLE_EFFECTS = Arrays.asList(

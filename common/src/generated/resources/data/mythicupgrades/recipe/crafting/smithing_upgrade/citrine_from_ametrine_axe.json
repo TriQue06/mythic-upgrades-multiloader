@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:citrine_ingot",
+  "base": "mythicupgrades:ametrine_axe",
+  "result": {
+    "id": "mythicupgrades:citrine_axe"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

@@ -3,7 +3,7 @@ package net.trique.mythicupgrades.util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.LivingEntity;
@@ -12,28 +12,28 @@ import net.trique.mythicupgrades.Constants;
 public class MUDamageTypes {
 
     public static final ResourceKey<DamageType> DEFLECTING = ResourceKey.create(
-        Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "deflecting_damage_type"));
+        Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "deflecting_damage_type"));
 
     public static final ResourceKey<DamageType> PERCENTAGE = ResourceKey.create(
-        Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "percentage_damage_type"));
+        Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "percentage_damage_type"));
 
     public static final ResourceKey<DamageType> TOPAZ_SHOCK = ResourceKey.create(
-        Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "topaz_shock_damage_type"));
+        Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "topaz_shock_damage_type"));
 
     public static final ResourceKey<DamageType> PERIDOT_INCUBATION = ResourceKey.create(
-        Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "peridot_incubation_damage_type"));
+        Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "peridot_incubation_damage_type"));
 
     public static final ResourceKey<DamageType> ICE_SHIELD_REFLECT = ResourceKey.create(
-        Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "ice_shield_reflect_damage_type"));
+        Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "ice_shield_reflect_damage_type"));
 
     public static final ResourceKey<DamageType> CITRINE_CHAIN = ResourceKey.create(
-        Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "citrine_chain_damage_type"));
+        Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "citrine_chain_damage_type"));
 
     public static final ResourceKey<DamageType> STATIC_FIELD = ResourceKey.create(
-        Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "static_field_damage_type"));
+        Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "static_field_damage_type"));
 
     public static final ResourceKey<DamageType> ICE_BOMB_BURST = ResourceKey.create(
-        Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "ice_bomb_burst_damage_type"));
+        Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "ice_bomb_burst_damage_type"));
 
     public static DamageSource deflecting(LivingEntity source) {
         return build(DEFLECTING, source);
@@ -69,15 +69,15 @@ public class MUDamageTypes {
 
     public static DamageSource topazShockEffect(LivingEntity target) {
         Holder<DamageType> holder = target.level().registryAccess()
-            .registryOrThrow(Registries.DAMAGE_TYPE)
-            .getHolderOrThrow(TOPAZ_SHOCK);
+            .lookupOrThrow(Registries.DAMAGE_TYPE)
+            .getOrThrow(TOPAZ_SHOCK);
         return new DamageSource(holder);
     }
 
     private static DamageSource build(ResourceKey<DamageType> key, LivingEntity source) {
         Holder<DamageType> holder = source.level().registryAccess()
-            .registryOrThrow(Registries.DAMAGE_TYPE)
-            .getHolderOrThrow(key);
+            .lookupOrThrow(Registries.DAMAGE_TYPE)
+            .getOrThrow(key);
         return new DamageSource(holder, source, source);
     }
 }

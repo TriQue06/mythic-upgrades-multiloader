@@ -5,9 +5,9 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -32,11 +32,11 @@ import java.util.List;
 public class MythicConfiguredFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> NECOIUM_ORE_CF = ResourceKey.create(
-            Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "necoium_ore"));
+            Registries.CONFIGURED_FEATURE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "necoium_ore"));
     public static final ResourceKey<ConfiguredFeature<?, ?>> DEEPSLATE_NECOIUM_ORE_CF = ResourceKey.create(
-            Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "deepslate_necoium_ore"));
+            Registries.CONFIGURED_FEATURE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "deepslate_necoium_ore"));
     public static final ResourceKey<ConfiguredFeature<?, ?>> RAW_NECOIUM_BLOCK_IN_CAVES_CF = ResourceKey.create(
-            Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "raw_necoium_block_in_caves"));
+            Registries.CONFIGURED_FEATURE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "raw_necoium_block_in_caves"));
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> ctx) {
         HolderGetter<Block> blocks = ctx.lookup(Registries.BLOCK);
@@ -64,7 +64,7 @@ public class MythicConfiguredFeatures {
 
             ctx.register(gem.crystalBudsCF(), new ConfiguredFeature<>(MythicFeatures.CRYSTAL_BUD,
                 new CrystalBudFeatureConfig(
-                    new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                    new WeightedStateProvider(WeightedList.<BlockState>builder()
                         .add(budState(blocks, gem.mediumBud()), 3)
                         .add(budState(blocks, gem.largeBud()), 2)
                         .add(budState(blocks, gem.cluster()), 1)
@@ -105,8 +105,8 @@ public class MythicConfiguredFeatures {
                             largeBud.defaultBlockState(),
                             clusterBlock.defaultBlockState()
                         ),
-                        BlockTags.FEATURES_CANNOT_REPLACE,
-                        BlockTags.GEODE_INVALID_BLOCKS
+                        blocks.getOrThrow(BlockTags.FEATURES_CANNOT_REPLACE),
+                        blocks.getOrThrow(BlockTags.GEODE_INVALID_BLOCKS)
                     ),
                     new GeodeLayerSettings(1.7, 2.2, 3.2, 4.2),
                     new GeodeCrackSettings(0.95, 2.0, 2),
@@ -118,9 +118,9 @@ public class MythicConfiguredFeatures {
         }
 
         ResourceKey<Block> necoiumOreKey = ResourceKey.create(Registries.BLOCK,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "necoium_ore"));
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "necoium_ore"));
         ResourceKey<Block> deepslateNecoiumKey = ResourceKey.create(Registries.BLOCK,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "deepslate_necoium_ore"));
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "deepslate_necoium_ore"));
         Block necoiumOre = blocks.getOrThrow(necoiumOreKey).value();
         Block deepslateNecoiumOre = blocks.getOrThrow(deepslateNecoiumKey).value();
 
@@ -137,7 +137,7 @@ public class MythicConfiguredFeatures {
 
         var rawNecoiumBlockKey = net.minecraft.core.registries.Registries.BLOCK;
         Block rawNecoiumBlock = blocks.getOrThrow(net.minecraft.resources.ResourceKey.create(
-            rawNecoiumBlockKey, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "raw_necoium_block"))).value();
+            rawNecoiumBlockKey, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "raw_necoium_block"))).value();
         ctx.register(RAW_NECOIUM_BLOCK_IN_CAVES_CF, new ConfiguredFeature<>(Feature.ORE,
             new OreConfiguration(List.of(
                 OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), rawNecoiumBlock.defaultBlockState()),

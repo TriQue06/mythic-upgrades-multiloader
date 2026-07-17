@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "mythicupgrades:sapphire_schist",
+  "result": {
+    "id": "mythicupgrades:sapphire_schist_wall"
+  }
+}

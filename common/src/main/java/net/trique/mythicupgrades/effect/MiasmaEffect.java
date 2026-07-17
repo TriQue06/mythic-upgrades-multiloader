@@ -12,7 +12,7 @@ public class MiasmaEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(net.minecraft.server.level.ServerLevel level, LivingEntity entity, int amplifier) {
         entity.removeEffect(MobEffects.POISON);
         return true;
     }

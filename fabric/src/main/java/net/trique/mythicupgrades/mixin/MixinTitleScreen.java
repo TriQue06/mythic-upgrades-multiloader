@@ -15,6 +15,6 @@ public class MixinTitleScreen {
     private void init(CallbackInfo info) {
 
         Constants.LOG.info("MythicUpgrades Fabric mixin loaded!");
-        Constants.LOG.info("MC Version: {}", Minecraft.getInstance().getVersionType());
+        Constants.LOG.info("MC Version: {}", Minecraft.getInstance().getLaunchedVersion());
     }
 }

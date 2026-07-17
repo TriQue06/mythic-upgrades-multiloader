@@ -1,7 +1,7 @@
 package net.trique.mythicupgrades.effect;
 import net.trique.mythicupgrades.MythicAnims;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
@@ -11,7 +11,7 @@ import net.trique.mythicupgrades.Constants;
 import net.trique.mythicupgrades.MythicStats;
 
 public class JadeAuraEffect extends MobEffect {
-    private static final ResourceLocation SPEED_ID = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "jade_aura_speed");
+    private static final Identifier SPEED_ID = Identifier.fromNamespaceAndPath(Constants.MOD_ID, "jade_aura_speed");
 
     public JadeAuraEffect() {
         super(MobEffectCategory.BENEFICIAL, MythicAnims.JADE_AURA_EFFECT_COLOR);

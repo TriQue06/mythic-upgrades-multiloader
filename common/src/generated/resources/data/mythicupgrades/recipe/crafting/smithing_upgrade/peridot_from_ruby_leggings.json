@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:peridot_ingot",
+  "base": "mythicupgrades:ruby_leggings",
+  "result": {
+    "id": "mythicupgrades:peridot_leggings"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}
