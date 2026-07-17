@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "mythicupgrades:ruby_schist",
+  "result": {
+    "id": "mythicupgrades:ruby_schist_wall"
+  }
+}

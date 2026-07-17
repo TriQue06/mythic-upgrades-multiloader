@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:ruby_ingot",
+  "base": "mythicupgrades:citrine_sword",
+  "result": {
+    "id": "mythicupgrades:ruby_sword"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

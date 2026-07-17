@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "mythicupgrades:sapphire",
+    "mythicupgrades:sapphire",
+    "mythicupgrades:sapphire",
+    "mythicupgrades:sapphire",
+    "mythicupgrades:necoium_ingot",
+    "mythicupgrades:necoium_ingot",
+    "mythicupgrades:necoium_ingot",
+    "mythicupgrades:necoium_ingot"
+  ],
+  "result": {
+    "id": "mythicupgrades:sapphire_ingot"
+  }
+}

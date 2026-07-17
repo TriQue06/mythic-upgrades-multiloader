@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:citrine_ingot",
+  "base": "mythicupgrades:topaz_sword",
+  "result": {
+    "id": "mythicupgrades:citrine_sword"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

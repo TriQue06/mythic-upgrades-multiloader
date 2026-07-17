@@ -3,22 +3,19 @@ package net.trique.mythicupgrades;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.core.Registry;
+import net.minecraft.core.RegistrationInfo;
+import net.minecraft.core.WritableRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.trique.mythicupgrades.MythicEffects;
-import net.trique.mythicupgrades.MythicLegacyMigration;
 import net.trique.mythicupgrades.MythicPotions;
 import net.trique.mythicupgrades.MythicSounds;
 import net.trique.mythicupgrades.block.MythicBlocks;
@@ -33,78 +30,59 @@ public class MythicUpgrades implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        MythicConfig.load(net.fabricmc.loader.api.FabricLoader.getInstance().getConfigDir());
+
+        MythicEffects.register((name, effect) -> {
+            ResourceKey<MobEffect> key = ResourceKey.create(
+                BuiltInRegistries.MOB_EFFECT.key(),
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, name));
+            return ((WritableRegistry<MobEffect>) BuiltInRegistries.MOB_EFFECT)
+                .register(key, effect, RegistrationInfo.BUILT_IN);
+        });
+
         MythicBlocks.register((name, block) ->
-            Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), block));
+            Registry.register(BuiltInRegistries.BLOCK, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), block));
 
         MythicBlocks.registerItems((name, item) ->
-            Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), item));
+            Registry.register(BuiltInRegistries.ITEM, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), item));
 
         MythicItems.register((name, item) ->
-            Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), item));
+            Registry.register(BuiltInRegistries.ITEM, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), item));
 
         MythicCreativeTabs.register((name, tab) ->
-            Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), tab));
-
-        MythicEffects.register((name, effect) ->
-            Registry.register(BuiltInRegistries.MOB_EFFECT, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), effect));
+            Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), tab));
 
         MythicPotions.register((name, potion) ->
-            Registry.register(BuiltInRegistries.POTION, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), potion));
+            Registry.register(BuiltInRegistries.POTION, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), potion));
 
         MythicFeatures.register((name, feature) ->
-            Registry.register(BuiltInRegistries.FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), feature));
+            Registry.register(BuiltInRegistries.FEATURE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), feature));
 
         MythicSounds.register((name, sound) ->
-            Registry.register(BuiltInRegistries.SOUND_EVENT, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name), sound));
+            Registry.register(BuiltInRegistries.SOUND_EVENT, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), sound));
 
-        // FeatureSorter cycle prevention:
-        // Cave biome JSONs already contain ALL features (glow_lichen, vanilla ores, monster_room,
-        // springs, gem ores) in their bootstrap in vanilla-compatible order.
-        // BiomeModifications only adds features that are ALWAYS appended last across ALL overworld
-        // biomes — so they can never conflict with bootstrap feature ordering.
-
-        // crystal_buds_rare: appended last in UNDERGROUND_DECORATION for all overworld biomes.
-        // In vanilla biomes: bootstrap features come first, then this is appended after.
-        // In cave biomes: same — JSON bootstrap first, then this appended after.
-        for (String gem : new String[]{"aquamarine", "citrine", "peridot", "topaz"}) {
-            ResourceKey<PlacedFeature> key = ResourceKey.create(Registries.PLACED_FEATURE,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, gem + "_crystal_buds_rare"));
-            BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
-                GenerationStep.Decoration.UNDERGROUND_DECORATION, key);
-        }
-
-        // necoium: appended last in UNDERGROUND_ORES for all overworld biomes.
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
             GenerationStep.Decoration.UNDERGROUND_ORES, MythicPlacedFeatures.NECOIUM_ORE_PF);
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
             GenerationStep.Decoration.UNDERGROUND_ORES, MythicPlacedFeatures.DEEPSLATE_NECOIUM_ORE_PF);
 
-        // overworld geodes: global (all overworld) + extra in home cave biome
         for (CaveGemType gem : CaveGemType.values()) {
             BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
                 GenerationStep.Decoration.UNDERGROUND_ORES, gem.geodePF());
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(gem.biome()),
-                GenerationStep.Decoration.UNDERGROUND_DECORATION, gem.geodeExtraPF());
         }
 
-        // nether geodes: global (all nether) + extra in home rift biome
         for (NetherGemType gem : NetherGemType.values()) {
             BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(),
                 GenerationStep.Decoration.UNDERGROUND_ORES, gem.geodePF());
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(gem.netherBiome()),
-                GenerationStep.Decoration.UNDERGROUND_DECORATION, gem.geodeExtraPF());
         }
 
-        // end geodes: global (all end) + extra in home barren biome
         for (EndGemType gem : EndGemType.values()) {
             BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
                 GenerationStep.Decoration.UNDERGROUND_ORES, gem.geodePF());
-            BiomeModifications.addFeature(BiomeSelectors.includeByKey(gem.endBiome()),
-                GenerationStep.Decoration.UNDERGROUND_DECORATION, gem.geodeExtraPF());
         }
 
-        LootTableEvents.MODIFY.register((key, tableBuilder, source) -> {
-            if (key.location().equals(ResourceLocation.withDefaultNamespace("chests/end_city_treasure"))) {
+        LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
+            if (key.identifier().equals(Identifier.withDefaultNamespace("chests/end_city_treasure"))) {
                 tableBuilder.withPool(
                     LootPool.lootPool()
                         .add(LootItem.lootTableItem(MythicItems.MYTHIC_UPGRADE_SMITHING_TEMPLATE)
@@ -114,20 +92,6 @@ public class MythicUpgrades implements ModInitializer {
         });
 
         FabricBrewingHelper.register();
-
-        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
-            MythicLegacyMigration.migratePlayer(handler.player);
-            MythicLegacyMigration.drainPendingChunks();
-        });
-
-        // Always queue — never call migrateChunk() directly from CHUNK_LOAD.
-        // Accessing container items unpacks loot tables → setChanged() → getChunkAt()
-        // → deadlock while the chunk is still being registered. Drain safely on tick end.
-        ServerChunkEvents.CHUNK_LOAD.register((world, chunk) ->
-            MythicLegacyMigration.PENDING_CHUNKS.offer(chunk));
-
-        ServerTickEvents.END_SERVER_TICK.register(server ->
-            MythicLegacyMigration.drainPendingChunks());
 
         CommonClass.init();
     }

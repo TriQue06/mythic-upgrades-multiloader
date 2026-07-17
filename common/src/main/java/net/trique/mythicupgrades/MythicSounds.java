@@ -1,6 +1,6 @@
 package net.trique.mythicupgrades;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
 
 import java.util.AbstractMap;
@@ -14,7 +14,7 @@ public class MythicSounds {
     private static final List<Map.Entry<String, SoundEvent>> DEFERRED = new ArrayList<>();
 
     private static SoundEvent defer(String name) {
-        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name);
+        Identifier id = Identifier.fromNamespaceAndPath(Constants.MOD_ID, name);
         SoundEvent event = SoundEvent.createVariableRangeEvent(id);
         DEFERRED.add(new AbstractMap.SimpleEntry<>(name, event));
         return event;

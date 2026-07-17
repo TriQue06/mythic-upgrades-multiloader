@@ -5,9 +5,9 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -32,81 +32,63 @@ import java.util.List;
 public class MythicConfiguredFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> NECOIUM_ORE_CF = ResourceKey.create(
-            Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "necoium_ore"));
+            Registries.CONFIGURED_FEATURE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "necoium_ore"));
     public static final ResourceKey<ConfiguredFeature<?, ?>> DEEPSLATE_NECOIUM_ORE_CF = ResourceKey.create(
-            Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "deepslate_necoium_ore"));
+            Registries.CONFIGURED_FEATURE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "deepslate_necoium_ore"));
     public static final ResourceKey<ConfiguredFeature<?, ?>> RAW_NECOIUM_BLOCK_IN_CAVES_CF = ResourceKey.create(
-            Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "raw_necoium_block_in_caves"));
+            Registries.CONFIGURED_FEATURE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "raw_necoium_block_in_caves"));
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> ctx) {
         HolderGetter<Block> blocks = ctx.lookup(Registries.BLOCK);
 
         for (CaveGemType gem : CaveGemType.values()) {
-            Block stone    = blocks.getOrThrow(gem.stoneBlock()).value();
-            Block crystal  = blocks.getOrThrow(gem.crystalBlock()).value();
-            Block ore      = blocks.getOrThrow(gem.oreBlock()).value();
-            Block dsOre    = blocks.getOrThrow(gem.deepslateOre()).value();
+            Block stone = blocks.getOrThrow(gem.stoneBlock()).value();
+            Block crystal = blocks.getOrThrow(gem.crystalBlock()).value();
+            Block ore = blocks.getOrThrow(gem.oreBlock()).value();
+            Block dsOre = blocks.getOrThrow(gem.deepslateOre()).value();
 
-            // Stone blobs — fill stone and deepslate with gem stone (size 64)
             ctx.register(gem.stoneBlobsCF(), new ConfiguredFeature<>(Feature.ORE,
                 new OreConfiguration(List.of(
-                    OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES),    stone.defaultBlockState()),
+                    OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), stone.defaultBlockState()),
                     OreConfiguration.target(new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES), stone.defaultBlockState())
                 ), 64)
             ));
 
-            // Crystal blobs — replace stone, gem stone, and deepslate with crystal block (size 20)
             ctx.register(gem.crystalBlobsCF(), new ConfiguredFeature<>(Feature.ORE,
                 new OreConfiguration(List.of(
-                    OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES),    crystal.defaultBlockState()),
-                    OreConfiguration.target(new BlockMatchTest(stone),                              crystal.defaultBlockState()),
+                    OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), crystal.defaultBlockState()),
+                    OreConfiguration.target(new BlockMatchTest(stone), crystal.defaultBlockState()),
                     OreConfiguration.target(new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES), crystal.defaultBlockState())
                 ), 20)
             ));
 
-            // Crystal buds — weighted mix of all 4 bud sizes (tries 96)
             ctx.register(gem.crystalBudsCF(), new ConfiguredFeature<>(MythicFeatures.CRYSTAL_BUD,
                 new CrystalBudFeatureConfig(
-                    new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                        .add(budState(blocks, gem.smallBud()),  4)
+                    new WeightedStateProvider(WeightedList.<BlockState>builder()
                         .add(budState(blocks, gem.mediumBud()), 3)
-                        .add(budState(blocks, gem.largeBud()),  2)
-                        .add(budState(blocks, gem.cluster()),   1)
+                        .add(budState(blocks, gem.largeBud()), 2)
+                        .add(budState(blocks, gem.cluster()), 1)
                         .build()),
                     96, 5, 4
                 )
             ));
 
-            // Crystal buds rare — smaller patch, no cluster variant (tries 16)
-            ctx.register(gem.crystalBudsRareCF(), new ConfiguredFeature<>(MythicFeatures.CRYSTAL_BUD,
-                new CrystalBudFeatureConfig(
-                    new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                        .add(budState(blocks, gem.smallBud()),  3)
-                        .add(budState(blocks, gem.mediumBud()), 2)
-                        .add(budState(blocks, gem.largeBud()),  1)
-                        .build()),
-                    16, 4, 3
-                )
-            ));
 
-            // Ore — replaces stone_ore_replaceables with stone variant, deepslate_ore_replaceables
-            // and gem stone with deepslate variant; one generation covers the full y -64 to 30 range
             ctx.register(gem.oreCF(), new ConfiguredFeature<>(Feature.ORE,
                 new OreConfiguration(List.of(
-                    OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES),     ore.defaultBlockState()),
+                    OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), ore.defaultBlockState()),
                     OreConfiguration.target(new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES), dsOre.defaultBlockState()),
-                    OreConfiguration.target(new BlockMatchTest(stone),                               dsOre.defaultBlockState())
+                    OreConfiguration.target(new BlockMatchTest(stone), dsOre.defaultBlockState())
                 ), 7)
             ));
         }
 
-        // Geodes — hollow crystal-lined caves matching amethyst geode rarity and structure
         for (CaveGemType gem : CaveGemType.values()) {
             Block crystalBlock = blocks.getOrThrow(gem.crystalBlock()).value();
             Block buddingBlock = blocks.getOrThrow(gem.buddingCrystal()).value();
-            Block smallBud     = blocks.getOrThrow(gem.smallBud()).value();
-            Block mediumBud    = blocks.getOrThrow(gem.mediumBud()).value();
-            Block largeBud     = blocks.getOrThrow(gem.largeBud()).value();
+            Block smallBud = blocks.getOrThrow(gem.smallBud()).value();
+            Block mediumBud = blocks.getOrThrow(gem.mediumBud()).value();
+            Block largeBud = blocks.getOrThrow(gem.largeBud()).value();
             Block clusterBlock = blocks.getOrThrow(gem.cluster()).value();
 
             ctx.register(gem.geodeCF(), new ConfiguredFeature<>(Feature.GEODE,
@@ -123,8 +105,8 @@ public class MythicConfiguredFeatures {
                             largeBud.defaultBlockState(),
                             clusterBlock.defaultBlockState()
                         ),
-                        BlockTags.FEATURES_CANNOT_REPLACE,
-                        BlockTags.GEODE_INVALID_BLOCKS
+                        blocks.getOrThrow(BlockTags.FEATURES_CANNOT_REPLACE),
+                        blocks.getOrThrow(BlockTags.GEODE_INVALID_BLOCKS)
                     ),
                     new GeodeLayerSettings(1.7, 2.2, 3.2, 4.2),
                     new GeodeCrackSettings(0.95, 2.0, 2),
@@ -135,18 +117,17 @@ public class MythicConfiguredFeatures {
             ));
         }
 
-        // Necoium ores — diamond-level rarity, no biome restriction
         ResourceKey<Block> necoiumOreKey = ResourceKey.create(Registries.BLOCK,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "necoium_ore"));
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "necoium_ore"));
         ResourceKey<Block> deepslateNecoiumKey = ResourceKey.create(Registries.BLOCK,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "deepslate_necoium_ore"));
-        Block necoiumOre        = blocks.getOrThrow(necoiumOreKey).value();
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "deepslate_necoium_ore"));
+        Block necoiumOre = blocks.getOrThrow(necoiumOreKey).value();
         Block deepslateNecoiumOre = blocks.getOrThrow(deepslateNecoiumKey).value();
 
         ctx.register(NECOIUM_ORE_CF, new ConfiguredFeature<>(Feature.ORE,
             new OreConfiguration(List.of(
                 OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), necoiumOre.defaultBlockState())
-            ), 6)
+            ), 5)
         ));
         ctx.register(DEEPSLATE_NECOIUM_ORE_CF, new ConfiguredFeature<>(Feature.ORE,
             new OreConfiguration(List.of(
@@ -156,12 +137,12 @@ public class MythicConfiguredFeatures {
 
         var rawNecoiumBlockKey = net.minecraft.core.registries.Registries.BLOCK;
         Block rawNecoiumBlock = blocks.getOrThrow(net.minecraft.resources.ResourceKey.create(
-            rawNecoiumBlockKey, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "raw_necoium_block"))).value();
+            rawNecoiumBlockKey, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "raw_necoium_block"))).value();
         ctx.register(RAW_NECOIUM_BLOCK_IN_CAVES_CF, new ConfiguredFeature<>(Feature.ORE,
             new OreConfiguration(List.of(
                 OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), rawNecoiumBlock.defaultBlockState()),
                 OreConfiguration.target(new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES), rawNecoiumBlock.defaultBlockState())
-            ), 4)
+            ), 3)
         ));
     }
 

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:citrine_ingot",
+  "base": "minecraft:netherite_chestplate",
+  "result": {
+    "id": "mythicupgrades:citrine_chestplate"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

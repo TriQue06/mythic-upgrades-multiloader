@@ -56,7 +56,7 @@ public abstract class ServerPlayerGameModeMixin {
             double cy = pos.getY() + 0.5;
             double cz = pos.getZ() + 0.5;
             int shockLevel = MythicStats.TOPAZ_TOOL_EFFECTIVE_LEVEL;
-            float shockRadius = Math.min(shockLevel * MythicStats.TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL, MythicStats.TOPAZ_ARMOR_SHOCK_MAX_RADIUS);
+            float shockRadius = shockLevel * MythicStats.TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL;
 
             MythicState.TOPAZ_PENDING_WAVES.put(player, new float[]{(float)cx, (float)cy, (float)cz, shockRadius});
 
@@ -66,8 +66,8 @@ public abstract class ServerPlayerGameModeMixin {
             for (LivingEntity entity : serverLevel.getEntitiesOfClass(LivingEntity.class, bb)) {
                 if (entity == player) continue;
                 if (entity.distanceTo(player) <= shockRadius) {
-                    entity.hurt(MUDamageTypes.topazShock(player), shockDamage);
-                    entity.knockback(knockback, cx - entity.getX(), cz - entity.getZ());
+                    entity.hurtOrSimulate(MUDamageTypes.topazShock(player), shockDamage);
+                    entity.knockback(knockback, cx - entity.getX(), cz - entity.getZ(), entity.damageSources().generic(), 0.0F);
                 }
             }
 

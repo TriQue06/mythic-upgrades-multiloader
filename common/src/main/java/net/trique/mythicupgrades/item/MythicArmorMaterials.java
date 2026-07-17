@@ -1,58 +1,48 @@
 package net.trique.mythicupgrades.item;
 
-import net.minecraft.core.Holder;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.equipment.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.item.equipment.EquipmentAsset;
+import net.minecraft.world.item.equipment.EquipmentAssets;
+import net.trique.mythicupgrades.Constants;
 
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 
 public class MythicArmorMaterials {
 
-    private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
-
-    private static Map<ArmorItem.Type, Integer> defense(int[] protection) {
-        Map<ArmorItem.Type, Integer> map = new EnumMap<>(ArmorItem.Type.class);
-        ArmorItem.Type[] types = ArmorItem.Type.values();
-        for (int i = 0; i < types.length; i++) {
-            map.put(types[i], protection[types[i].getSlot().getIndex()]);
-        }
+    private static Map<ArmorType, Integer> defense(int boots, int leggings, int chestplate, int helmet) {
+        Map<ArmorType, Integer> map = new EnumMap<>(ArmorType.class);
+        map.put(ArmorType.BOOTS, boots);
+        map.put(ArmorType.LEGGINGS, leggings);
+        map.put(ArmorType.CHESTPLATE, chestplate);
+        map.put(ArmorType.HELMET, helmet);
+        map.put(ArmorType.BODY, chestplate);
         return map;
     }
 
-    private static final java.util.IdentityHashMap<Holder<ArmorMaterial>, Integer> DUR_MULTS = new java.util.IdentityHashMap<>();
-
-    public static int getDurability(Holder<ArmorMaterial> material, ArmorItem.Type type) {
-        int mult = DUR_MULTS.getOrDefault(material, 37);
-        int idx = type.getSlot().getIndex();
-        return (idx >= 0 && idx < HEALTH_PER_SLOT.length) ? HEALTH_PER_SLOT[idx] * mult : mult * 13;
+    private static ArmorMaterial make(String gem) {
+        ResourceKey<EquipmentAsset> asset = ResourceKey.create(EquipmentAssets.ROOT_ID,
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, gem));
+        TagKey<Item> repair = TagKey.create(Registries.ITEM,
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "repairs_" + gem + "_armor"));
+        // Netherite-tier stats, matching the old 1.21.1 values (durability mult 37, protection 3/6/8/3)
+        return new ArmorMaterial(37, defense(3, 6, 8, 3), 15,
+                SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, repair, asset);
     }
 
-    private static Holder<ArmorMaterial> make(String name, int durMult, int[] protection, int enchant, float toughness, float kbRes, Ingredient repair) {
-        ResourceLocation id = ResourceLocation.fromNamespaceAndPath("mythicupgrades", name);
-        Holder<ArmorMaterial> holder = Holder.direct(new ArmorMaterial(
-            defense(protection),
-            enchant,
-            SoundEvents.ARMOR_EQUIP_NETHERITE,
-            () -> repair,
-            List.of(new ArmorMaterial.Layer(id)),
-            toughness,
-            kbRes
-        ));
-        DUR_MULTS.put(holder, durMult);
-        return holder;
-    }
-
-    public static final Holder<ArmorMaterial> AQUAMARINE = make("aquamarine", 37, new int[]{3, 6, 8, 3}, 15, 3.0F, 0.1F, Ingredient.of(MythicItems.AQUAMARINE_INGOT));
-    public static final Holder<ArmorMaterial> CITRINE    = make("citrine",    37, new int[]{3, 6, 8, 3}, 15, 3.0F, 0.1F, Ingredient.of(MythicItems.CITRINE_INGOT));
-    public static final Holder<ArmorMaterial> TOPAZ      = make("topaz",      37, new int[]{3, 6, 8, 3}, 15, 3.0F, 0.1F, Ingredient.of(MythicItems.TOPAZ_INGOT));
-    public static final Holder<ArmorMaterial> PERIDOT    = make("peridot",    37, new int[]{3, 6, 8, 3}, 15, 3.0F, 0.1F, Ingredient.of(MythicItems.PERIDOT_INGOT));
-    public static final Holder<ArmorMaterial> RUBY       = make("ruby",       37, new int[]{3, 6, 8, 3}, 15, 3.0F, 0.1F, Ingredient.of(MythicItems.RUBY_INGOT));
-    public static final Holder<ArmorMaterial> SAPPHIRE   = make("sapphire",   37, new int[]{3, 6, 8, 3}, 15, 3.0F, 0.1F, Ingredient.of(MythicItems.SAPPHIRE_INGOT));
-    public static final Holder<ArmorMaterial> JADE       = make("jade",       37, new int[]{3, 6, 8, 3}, 15, 3.0F, 0.1F, Ingredient.of(MythicItems.JADE_INGOT));
-    public static final Holder<ArmorMaterial> AMETRINE   = make("ametrine",   37, new int[]{3, 6, 8, 3}, 15, 3.0F, 0.1F, Ingredient.of(MythicItems.AMETRINE_INGOT));
+    public static final ArmorMaterial AQUAMARINE = make("aquamarine");
+    public static final ArmorMaterial CITRINE = make("citrine");
+    public static final ArmorMaterial TOPAZ = make("topaz");
+    public static final ArmorMaterial PERIDOT = make("peridot");
+    public static final ArmorMaterial RUBY = make("ruby");
+    public static final ArmorMaterial SAPPHIRE = make("sapphire");
+    public static final ArmorMaterial JADE = make("jade");
+    public static final ArmorMaterial AMETRINE = make("ametrine");
 }

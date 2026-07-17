@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "C": "minecraft:cobblestone",
+    "S": "mythicupgrades:citrine_crystal_shard"
+  },
+  "pattern": [
+    "CS"
+  ],
+  "result": {
+    "id": "mythicupgrades:citrine_schist"
+  }
+}

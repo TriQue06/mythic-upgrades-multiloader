@@ -8,16 +8,6 @@
       "entries": [
         {
           "data": {
-            "Name": "mythicupgrades:small_ruby_crystal_bud",
-            "Properties": {
-              "facing": "up",
-              "waterlogged": "false"
-            }
-          },
-          "weight": 4
-        },
-        {
-          "data": {
             "Name": "mythicupgrades:medium_ruby_crystal_bud",
             "Properties": {
               "facing": "up",

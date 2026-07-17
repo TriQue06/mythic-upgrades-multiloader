@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:peridot_ingot",
+  "base": "mythicupgrades:sapphire_pickaxe",
+  "result": {
+    "id": "mythicupgrades:peridot_pickaxe"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

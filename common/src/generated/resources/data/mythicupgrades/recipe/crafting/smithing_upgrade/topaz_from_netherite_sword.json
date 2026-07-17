@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:topaz_ingot",
+  "base": "minecraft:netherite_sword",
+  "result": {
+    "id": "mythicupgrades:topaz_sword"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

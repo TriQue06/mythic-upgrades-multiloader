@@ -5,8 +5,13 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.world.level.biome.AmbientAdditionsSettings;
-import net.minecraft.world.level.biome.AmbientMoodSettings;
+import net.minecraft.world.attribute.AmbientAdditionsSettings;
+import net.minecraft.world.attribute.AmbientMoodSettings;
+import net.minecraft.world.attribute.AmbientSounds;
+import net.minecraft.world.attribute.EnvironmentAttributes;
+
+import java.util.List;
+import java.util.Optional;
 import net.trique.mythicupgrades.MythicSounds;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
@@ -19,60 +24,54 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 public class MythicBiomeBootstrap {
 
     public static void bootstrap(BootstrapContext<Biome> ctx) {
-        HolderGetter<PlacedFeature>           features = ctx.lookup(Registries.PLACED_FEATURE);
-        HolderGetter<ConfiguredWorldCarver<?>> carvers  = ctx.lookup(Registries.CONFIGURED_CARVER);
+        HolderGetter<PlacedFeature> features = ctx.lookup(Registries.PLACED_FEATURE);
+        HolderGetter<ConfiguredWorldCarver<?>> carvers = ctx.lookup(Registries.CONFIGURED_CARVER);
 
-        for (CaveGemType gem : CaveGemType.values()) {
-            ctx.register(gem.biome(), buildBiome(gem, features, carvers));
-        }
+        ctx.register(MythicBiomes.COLD_MYTHIC_CAVES, buildBiome(true, features, carvers));
+        ctx.register(MythicBiomes.WARM_MYTHIC_CAVES, buildBiome(false, features, carvers));
     }
 
-    private static Biome buildBiome(CaveGemType gem,
+    private static Biome buildBiome(boolean cold,
                                     HolderGetter<PlacedFeature> features,
                                     HolderGetter<ConfiguredWorldCarver<?>> carvers) {
 
         BiomeGenerationSettings.Builder gen = new BiomeGenerationSettings.Builder(features, carvers);
 
-        // Vanilla underground variety (andesite, granite, diorite, tuff, calcite, gravel)
-        // and vanilla ores — must come FIRST so FeatureSorter sees the same ordering
-        // as vanilla cave biomes that share chunk columns with these biomes.
         BiomeDefaultFeatures.addDefaultUndergroundVariety(gen);
         BiomeDefaultFeatures.addDefaultOres(gen);
 
-        // Extra necoium ore density — unique to mythic cave biomes
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(MythicPlacedFeatures.NECOIUM_ORE_EXTRA_PF));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(MythicPlacedFeatures.DEEPSLATE_NECOIUM_ORE_EXTRA_PF));
         gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(MythicPlacedFeatures.RAW_NECOIUM_BLOCK_CAVES_PF));
 
-        // Gem stone blobs and ore veins — unique to each cave biome
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.stoneBlobsPF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.orePF()));
-
-        // Crystal decoration — unique to each cave biome
-        // glow_lichen, crystal_buds_rare, and geodes are added via BiomeModifier/BiomeModifications
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBlobsPF()));
-        gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsPF()));
-
-        // spring_water and spring_lava are added via BiomeModifier/BiomeModifications
+        for (CaveGemType gem : CaveGemType.values()) {
+            if (gem.cold != cold) continue;
+            gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.stoneBlobsPF()));
+            gen.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, features.getOrThrow(gem.orePF()));
+            gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBlobsPF()));
+            gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, features.getOrThrow(gem.crystalBudsPF()));
+        }
 
         MobSpawnSettings spawns = new MobSpawnSettings.Builder()
                 .creatureGenerationProbability(0.07f)
                 .build();
 
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
-                .fogColor(12638463)
-                .skyColor(8103167)
-                .waterColor(gem.waterColor)
-                .waterFogColor(329011)
-                .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
-                .ambientAdditionsSound(new AmbientAdditionsSettings(
-                    BuiltInRegistries.SOUND_EVENT.wrapAsHolder(MythicSounds.AMBIENT_MYTHIC_CHIME), 0.0111))
+                .waterColor(cold ? 3850191 : 4159204)
                 .build();
 
         return new Biome.BiomeBuilder()
-                .hasPrecipitation(gem.precipitation)
-                .temperature(gem.temperature)
-                .downfall(gem.downfall)
+                .hasPrecipitation(cold)
+                .temperature(cold ? 0.4f : 1.2f)
+                .downfall(cold ? 0.45f : 0.1f)
+                .setAttribute(EnvironmentAttributes.FOG_COLOR, 0xFFC0D8FF)
+                .setAttribute(EnvironmentAttributes.SKY_COLOR, 0xFF7BA4FF)
+                .setAttribute(EnvironmentAttributes.WATER_FOG_COLOR, 0xFF050533)
+                .setAttribute(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(
+                    Optional.empty(),
+                    Optional.of(AmbientMoodSettings.LEGACY_CAVE_SETTINGS),
+                    List.of(new AmbientAdditionsSettings(
+                        BuiltInRegistries.SOUND_EVENT.wrapAsHolder(MythicSounds.AMBIENT_MYTHIC_CHIME), 0.0111))))
                 .specialEffects(effects)
                 .mobSpawnSettings(spawns)
                 .generationSettings(gen.build())

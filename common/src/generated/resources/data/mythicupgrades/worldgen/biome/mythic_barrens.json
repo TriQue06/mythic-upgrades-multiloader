@@ -1,0 +1,58 @@
+{
+  "attributes": {
+    "minecraft:audio/ambient_sounds": {
+      "additions": {
+        "sound": "mythicupgrades:ambient.mythic_chime",
+        "tick_chance": 0.0111
+      },
+      "mood": {
+        "block_search_extent": 8,
+        "offset": 2.0,
+        "sound": "minecraft:ambient.cave",
+        "tick_delay": 6000
+      }
+    },
+    "minecraft:visual/fog_color": "#0b0e2e",
+    "minecraft:visual/sky_color": "#0b0e2e",
+    "minecraft:visual/water_fog_color": "#050533"
+  },
+  "carvers": [],
+  "creature_spawn_probability": 0.0,
+  "downfall": 0.0,
+  "effects": {
+    "water_color": "#a080a0"
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "mythicupgrades:ametrine_schist_blobs",
+      "mythicupgrades:ametrine_ore",
+      "mythicupgrades:jade_schist_blobs",
+      "mythicupgrades:jade_ore"
+    ],
+    [
+      "mythicupgrades:ametrine_crystal_blobs",
+      "mythicupgrades:ametrine_crystal_buds",
+      "mythicupgrades:jade_crystal_blobs",
+      "mythicupgrades:jade_crystal_buds"
+    ]
+  ],
+  "has_precipitation": false,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.5
+}

@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "mythicupgrades:topaz_crystal_bricks",
+  "result": {
+    "id": "mythicupgrades:topaz_crystal_bricks_wall"
+  }
+}

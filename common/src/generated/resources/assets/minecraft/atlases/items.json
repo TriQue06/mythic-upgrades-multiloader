@@ -1,0 +1,32 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:paletted_permutations",
+      "palette_key": "minecraft:trims/color_palettes/trim_palette",
+      "permutations": {
+        "ametrine": "mythicupgrades:trims/color_palettes/ametrine",
+        "ametrine_darker": "mythicupgrades:trims/color_palettes/ametrine_darker",
+        "aquamarine": "mythicupgrades:trims/color_palettes/aquamarine",
+        "aquamarine_darker": "mythicupgrades:trims/color_palettes/aquamarine_darker",
+        "citrine": "mythicupgrades:trims/color_palettes/citrine",
+        "jade": "mythicupgrades:trims/color_palettes/jade",
+        "jade_darker": "mythicupgrades:trims/color_palettes/jade_darker",
+        "necoium": "mythicupgrades:trims/color_palettes/necoium",
+        "peridot": "mythicupgrades:trims/color_palettes/peridot",
+        "peridot_darker": "mythicupgrades:trims/color_palettes/peridot_darker",
+        "ruby": "mythicupgrades:trims/color_palettes/ruby",
+        "ruby_darker": "mythicupgrades:trims/color_palettes/ruby_darker",
+        "sapphire": "mythicupgrades:trims/color_palettes/sapphire",
+        "sapphire_darker": "mythicupgrades:trims/color_palettes/sapphire_darker",
+        "topaz": "mythicupgrades:trims/color_palettes/topaz",
+        "topaz_darker": "mythicupgrades:trims/color_palettes/topaz_darker"
+      },
+      "textures": [
+        "minecraft:trims/items/helmet_trim",
+        "minecraft:trims/items/chestplate_trim",
+        "minecraft:trims/items/leggings_trim",
+        "minecraft:trims/items/boots_trim"
+      ]
+    }
+  ]
+}

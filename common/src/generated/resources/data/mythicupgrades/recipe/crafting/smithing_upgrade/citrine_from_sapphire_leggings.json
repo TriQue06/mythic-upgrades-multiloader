@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:citrine_ingot",
+  "base": "mythicupgrades:sapphire_leggings",
+  "result": {
+    "id": "mythicupgrades:citrine_leggings"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "mythicupgrades:topaz_schist",
+  "result": {
+    "id": "mythicupgrades:topaz_schist_stairs"
+  }
+}

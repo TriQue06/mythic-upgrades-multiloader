@@ -4,11 +4,7 @@
     "color": "#A90C37",
     "translate": "trim_material.mythicupgrades.ruby"
   },
-  "ingredient": "mythicupgrades:ruby_crystal_shard",
-  "item_model_index": 1.6,
   "override_armor_assets": {
-    "mythicupgrades:ruby": {
-      "asset_name": "ruby_darker"
-    }
+    "mythicupgrades:ruby": "ruby_darker"
   }
 }

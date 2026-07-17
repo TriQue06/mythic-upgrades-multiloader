@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:aquamarine_ingot",
+  "base": "mythicupgrades:ruby_shovel",
+  "result": {
+    "id": "mythicupgrades:aquamarine_shovel"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

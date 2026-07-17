@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:ametrine_ingot",
+  "base": "mythicupgrades:ruby_boots",
+  "result": {
+    "id": "mythicupgrades:ametrine_boots"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

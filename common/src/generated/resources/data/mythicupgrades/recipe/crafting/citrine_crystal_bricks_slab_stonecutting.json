@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "mythicupgrades:citrine_crystal_bricks",
+  "result": {
+    "count": 2,
+    "id": "mythicupgrades:citrine_crystal_bricks_slab"
+  }
+}

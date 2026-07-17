@@ -4,11 +4,7 @@
     "color": "#D1480D",
     "translate": "trim_material.mythicupgrades.topaz"
   },
-  "ingredient": "mythicupgrades:topaz_crystal_shard",
-  "item_model_index": 1.4,
   "override_armor_assets": {
-    "mythicupgrades:topaz": {
-      "asset_name": "topaz_darker"
-    }
+    "mythicupgrades:topaz": "topaz_darker"
   }
 }

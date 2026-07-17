@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:aquamarine_ingot",
+  "base": "mythicupgrades:ruby_helmet",
+  "result": {
+    "id": "mythicupgrades:aquamarine_helmet"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

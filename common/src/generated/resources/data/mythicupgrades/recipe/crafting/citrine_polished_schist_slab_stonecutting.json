@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "mythicupgrades:polished_citrine_schist",
+  "result": {
+    "count": 2,
+    "id": "mythicupgrades:polished_citrine_schist_slab"
+  }
+}

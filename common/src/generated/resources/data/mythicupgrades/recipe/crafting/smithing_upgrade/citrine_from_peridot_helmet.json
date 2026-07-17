@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:citrine_ingot",
+  "base": "mythicupgrades:peridot_helmet",
+  "result": {
+    "id": "mythicupgrades:citrine_helmet"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

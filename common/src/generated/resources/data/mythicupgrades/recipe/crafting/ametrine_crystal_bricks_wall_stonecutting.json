@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "mythicupgrades:ametrine_crystal_bricks",
+  "result": {
+    "id": "mythicupgrades:ametrine_crystal_bricks_wall"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:aquamarine_ingot",
+  "base": "mythicupgrades:ametrine_sword",
+  "result": {
+    "id": "mythicupgrades:aquamarine_sword"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

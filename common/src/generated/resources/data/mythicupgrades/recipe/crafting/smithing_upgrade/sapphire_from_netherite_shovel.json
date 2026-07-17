@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "mythicupgrades:sapphire_ingot",
+  "base": "minecraft:netherite_shovel",
+  "result": {
+    "id": "mythicupgrades:sapphire_shovel"
+  },
+  "template": "mythicupgrades:mythic_upgrade_smithing_template"
+}

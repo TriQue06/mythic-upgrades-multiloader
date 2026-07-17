@@ -4,40 +4,29 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.TagsProvider;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biome;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.trique.mythicupgrades.Constants;
-import net.trique.mythicupgrades.worldgen.CaveGemType;
-import net.trique.mythicupgrades.worldgen.EndGemType;
-import net.trique.mythicupgrades.worldgen.NetherGemType;
-import org.jetbrains.annotations.Nullable;
+import net.trique.mythicupgrades.worldgen.MythicBiomes;
 
 import java.util.concurrent.CompletableFuture;
 
 public class MythicBiomeTagsProvider extends TagsProvider<Biome> {
 
-    public MythicBiomeTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider,
-                                   @Nullable ExistingFileHelper existingFileHelper) {
-        super(output, Registries.BIOME, lookupProvider, Constants.MOD_ID, existingFileHelper);
+    public MythicBiomeTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+        super(output, Registries.BIOME, lookupProvider);
     }
 
     @Override
     protected void addTags(HolderLookup.Provider registries) {
-        var overworld = tag(BiomeTags.IS_OVERWORLD);
-        for (CaveGemType gem : CaveGemType.values()) {
-            overworld.addOptional(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, gem.id + "_caves"));
-        }
+        tag(BiomeTags.IS_OVERWORLD)
+                .addOptional(MythicBiomes.COLD_MYTHIC_CAVES)
+                .addOptional(MythicBiomes.WARM_MYTHIC_CAVES);
 
-        var nether = tag(BiomeTags.IS_NETHER);
-        for (NetherGemType gem : NetherGemType.values()) {
-            nether.addOptional(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, gem.id + "_rift"));
-        }
+        tag(BiomeTags.IS_NETHER)
+                .addOptional(MythicBiomes.MYTHIC_RIFTS);
 
-        var end = tag(BiomeTags.IS_END);
-        for (EndGemType gem : EndGemType.values()) {
-            end.addOptional(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, gem.id + "_barrens"));
-        }
+        tag(BiomeTags.IS_END)
+                .addOptional(MythicBiomes.MYTHIC_BARRENS);
     }
 }

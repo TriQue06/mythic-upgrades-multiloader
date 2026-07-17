@@ -14,6 +14,6 @@ public class MixinMinecraft {
     private void init(CallbackInfo info) {
 
         Constants.LOG.info("MythicUpgrades common mixin loaded!");
-        Constants.LOG.info("MC Version: {}", Minecraft.getInstance().getVersionType());
+        Constants.LOG.info("MC Version: {}", Minecraft.getInstance().getLaunchedVersion());
     }
 }

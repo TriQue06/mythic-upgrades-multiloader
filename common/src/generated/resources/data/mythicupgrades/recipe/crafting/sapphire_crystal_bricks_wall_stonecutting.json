@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "mythicupgrades:sapphire_crystal_bricks",
+  "result": {
+    "id": "mythicupgrades:sapphire_crystal_bricks_wall"
+  }
+}

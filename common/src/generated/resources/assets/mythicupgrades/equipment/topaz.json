@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "mythicupgrades:topaz"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "mythicupgrades:topaz"
+      }
+    ]
+  }
+}

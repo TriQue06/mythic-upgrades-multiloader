@@ -11,7 +11,7 @@ public class FreezeEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(net.minecraft.server.level.ServerLevel level, LivingEntity entity, int amplifier) {
         entity.setTicksFrozen(entity.getTicksRequiredToFreeze() + 2);
         return true;
     }
