@@ -21,9 +21,6 @@
         "client": [
             "net.trique.mythicupgrades.FabricClientSetup"
         ],
-        "terrablender": [
-            "net.trique.mythicupgrades.FabricTerraBlenderAddon"
-        ],
         "modmenu": [
             "net.trique.mythicupgrades.MythicModMenu"
         ]

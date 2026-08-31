@@ -13,6 +13,12 @@ java {
     withJavadocJar()
 }
 
+// The javadoc jar is published for completeness, not read as documentation, so
+// doclint's "no comment" warnings for every public member are pure build noise.
+tasks.withType(Javadoc).configureEach {
+    options.addStringOption('Xdoclint:none', '-quiet')
+}
+
 repositories {
     mavenCentral()
     // https://docs.gradle.org/current/userguide/declaring_repositories.html#declaring_content_exclusively_found_in_one_repository

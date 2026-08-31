@@ -9,7 +9,10 @@
         "BlockBehaviourMixin",
         "LightningBoltMixin",
         "LivingEntityMixin",
+        "MixinMultiNoiseBiomeSource",
+        "MixinTheEndBiomeSource",
         "MixinOverworldBiomeBuilder",
+        "accessor.HolderReferenceAccessor",
         "ServerPlayerGameModeMixin"
     ],
     "client": [

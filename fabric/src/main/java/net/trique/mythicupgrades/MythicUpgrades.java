@@ -3,8 +3,6 @@ package net.trique.mythicupgrades;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
-import net.minecraft.world.level.biome.Biomes;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -18,7 +16,6 @@ import net.trique.mythicupgrades.MythicSounds;
 import net.trique.mythicupgrades.block.MythicBlocks;
 import net.trique.mythicupgrades.item.MythicItems;
 import net.trique.mythicupgrades.worldgen.CaveGemType;
-import net.trique.mythicupgrades.worldgen.MythicBiomes;
 import net.trique.mythicupgrades.worldgen.EndGemType;
 import net.trique.mythicupgrades.worldgen.MythicFeatures;
 import net.trique.mythicupgrades.worldgen.MythicPlacedFeatures;
@@ -67,9 +64,6 @@ public class MythicUpgrades implements ModInitializer {
             BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(),
                 GenerationStep.Decoration.UNDERGROUND_ORES, gem.geodePF());
         }
-
-        TheEndBiomes.addHighlandsBiome(MythicBiomes.MYTHIC_BARRENS, 1.0);
-        TheEndBiomes.addMidlandsBiome(Biomes.END_HIGHLANDS, MythicBiomes.MYTHIC_BARRENS, 1.0);
 
         for (EndGemType gem : EndGemType.values()) {
             BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
