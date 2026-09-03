@@ -19,7 +19,6 @@ dependencies {
     compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
     compileOnly group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
     annotationProcessor group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
-    compileOnly "com.github.glitchfiend:TerraBlender-neoforge:${terrablender_version}"
     // Cloth Config API surface only; each loader module supplies its own flavor at runtime
     compileOnly "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}"
 }

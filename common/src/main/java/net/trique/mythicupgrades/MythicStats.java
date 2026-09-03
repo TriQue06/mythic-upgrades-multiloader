@@ -121,4 +121,19 @@ public class MythicStats {
     public static int JADE_TRAIL_EFFECT_DURATION_TICKS = 80;
     public static float JADE_TRAIL_LINGER_CONTACT_RADIUS = 1.0f;
     public static int JADE_TRAIL_CONTACT_EFFECT_DURATION_TICKS = 300;
+
+    // Worldgen — absolute biome coverage, expressed as a fraction of the dimension
+    // and independent of how many other worldgen mods are installed. Patch radius
+    // controls how large a single occurrence is; density controls how much of the
+    // dimension they cover in total. See MythicBiomeOverlay.
+    public static double WORLDGEN_CAVE_DENSITY = 0.04;
+    public static int WORLDGEN_CAVE_RADIUS = 96;
+    public static int WORLDGEN_CAVE_MIN_Y = -60;
+    public static int WORLDGEN_CAVE_MAX_Y = 16;
+
+    public static double WORLDGEN_NETHER_DENSITY = 0.05;
+    public static int WORLDGEN_NETHER_RADIUS = 96;
+
+    public static double WORLDGEN_END_DENSITY = 0.10;
+    public static int WORLDGEN_END_RADIUS = 176;
 }

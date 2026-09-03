@@ -10,6 +10,7 @@
         "BlockBehaviourMixin",
         "LightningBoltMixin",
         "LivingEntityMixin",
+        "MixinMultiNoiseBiomeSource",
         "MixinOverworldBiomeBuilder",
         "MixinTheEndBiomeSource",
         "ServerPlayerGameModeMixin"

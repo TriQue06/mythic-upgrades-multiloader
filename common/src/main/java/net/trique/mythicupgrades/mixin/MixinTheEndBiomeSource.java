@@ -1,68 +1,80 @@
 package net.trique.mythicupgrades.mixin;
 
 import net.minecraft.core.Holder;
-import net.minecraft.core.HolderOwner;
-import net.minecraft.core.Registry;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.BiomeSource;
+import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.biome.TheEndBiomeSource;
-import net.trique.mythicupgrades.mixin.accessor.HolderReferenceAccessor;
+import net.trique.mythicupgrades.MythicStats;
+import net.trique.mythicupgrades.worldgen.MythicBiomeOverlay;
 import net.trique.mythicupgrades.worldgen.MythicBiomes;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.spongepowered.asm.mixin.Final;
+import net.trique.mythicupgrades.worldgen.MythicOverlayLookup;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Mutable;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(TheEndBiomeSource.class)
-public class MixinTheEndBiomeSource {
+import java.util.List;
+import java.util.stream.Stream;
 
-    @Unique private static final Logger LOGGER = LoggerFactory.getLogger("MythicUpgrades/EndBiome");
+/**
+ * Stamps Mythic Barrens over the End's highlands and midlands on a deterministic
+ * grid. Replaces the previous Fabric {@code TheEndBiomes} weighted-pool entry,
+ * whose share collapsed as other mods added End biomes to the same pool.
+ * See {@link MythicBiomeOverlay}.
+ */
+// priority 500: mixins are applied in ascending priority order and HEAD callbacks
+// run in that same order, so a LOW priority is what puts ours first — ahead of
+// mods that inject at HEAD and cancel unconditionally (TerraBlender does exactly
+// this for the Overworld and the Nether). An @At("RETURN") injector cannot work
+// at all against such a mod: it returns before the original returns are reached.
+@Mixin(value = TheEndBiomeSource.class, priority = 500)
+public abstract class MixinTheEndBiomeSource {
 
-    @Mutable @Final @Shadow private Holder<Biome> highlands;
-    @Mutable @Final @Shadow private Holder<Biome> midlands;
+    /** The central island and its surrounding void are left untouched. */
+    @Unique private static final int MAIN_ISLAND_QUARTS = 1024 / 4;
 
-    @Inject(
-        method = "<init>(Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;)V",
-        at = @At("TAIL")
-    )
-    private void mythicupgrades$onInit(
-            Holder<Biome> end, Holder<Biome> highlands, Holder<Biome> midlands,
-            Holder<Biome> islands, Holder<Biome> barrens, CallbackInfo ci) {
+    @Unique private Holder<Biome> mythicupgrades$barrens;
+    @Unique private boolean mythicupgrades$resolved;
 
-        try {
-            boolean isDatagen = (boolean) Class
-                    .forName("net.minecraftforge.data.loading.DatagenModLoader")
-                    .getMethod("isRunningDataGen")
-                    .invoke(null);
-            if (isDatagen) return;
-        } catch (Throwable ignored) {}
+    @Inject(method = "collectPossibleBiomes", at = @At("RETURN"), cancellable = true)
+    private void mythicupgrades$collectPossibleBiomes(CallbackInfoReturnable<Stream<Holder<Biome>>> cir) {
+        mythicupgrades$resolved = true;
 
-        Registry<Biome> biomeReg = mythicupgrades$findRegistry(highlands);
-        if (biomeReg == null) {
-            LOGGER.warn("Could not locate biome Registry — End biomes will not generate");
-            return;
-        }
+        // Reading the stream consumes it, and the caller still needs to run
+        // .distinct() over the result — so every exit below has to hand back a
+        // fresh stream, not the one we drained.
+        List<Holder<Biome>> biomes = cir.getReturnValue().toList();
+        cir.setReturnValue(biomes.stream());
+        if (biomes.isEmpty() || MythicOverlayLookup.isDatagen()) return;
 
-        Holder<Biome> mythicBarrens = biomeReg.getHolder(MythicBiomes.MYTHIC_BARRENS).orElse(null);
+        mythicupgrades$barrens = MythicOverlayLookup.resolve(biomes.get(0), MythicBiomes.MYTHIC_BARRENS);
+        if (mythicupgrades$barrens == null) return;
 
-        if (mythicBarrens != null) {
-            this.highlands = mythicBarrens;
-            this.midlands  = mythicBarrens;
-        }
-
-        LOGGER.info("End biomes injected — highlands={} midlands={}", this.highlands, this.midlands);
+        // /locate biome only searches biomes listed here, so this must not be skipped.
+        cir.setReturnValue(Stream.concat(biomes.stream(), Stream.of(mythicupgrades$barrens)));
     }
 
-    @Unique
-    @SuppressWarnings("unchecked")
-    private static Registry<Biome> mythicupgrades$findRegistry(Holder<Biome> holder) {
-        if (!(holder instanceof Holder.Reference<Biome> ref)) return null;
-        HolderOwner<?> owner = ((HolderReferenceAccessor) ref).mythicupgrades$getOwner();
-        return owner instanceof Registry<?> r ? (Registry<Biome>) r : null;
+    @Inject(method = "getNoiseBiome", at = @At("HEAD"), cancellable = true)
+    private void mythicupgrades$getNoiseBiome(int x, int y, int z, Climate.Sampler sampler,
+                                              CallbackInfoReturnable<Holder<Biome>> cir) {
+        if (!mythicupgrades$resolved) {
+            ((BiomeSource) (Object) this).possibleBiomes();
+            mythicupgrades$resolved = true;
+        }
+        if (mythicupgrades$barrens == null) return;
+
+        // Everything past the central island is outer End terrain. Matching on
+        // END_HIGHLANDS/END_MIDLANDS instead would reintroduce the dilution: mods
+        // that swap those for their own biomes would hide us again.
+        long lx = x, lz = z;
+        if (lx * lx + lz * lz < (long) MAIN_ISLAND_QUARTS * MAIN_ISLAND_QUARTS) return;
+
+        int radius = MythicBiomeOverlay.blocksToQuarts(MythicStats.WORLDGEN_END_RADIUS);
+        int grid = MythicBiomeOverlay.gridFor(radius, MythicStats.WORLDGEN_END_DENSITY);
+        if (MythicBiomeOverlay.inPatch(x, z, 31, radius, grid)) {
+            cir.setReturnValue(mythicupgrades$barrens);
+        }
     }
 }

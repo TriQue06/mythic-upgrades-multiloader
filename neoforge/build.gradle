@@ -34,6 +34,5 @@ neoForge {
 }
 
 dependencies {
-    implementation "com.github.glitchfiend:TerraBlender-neoforge:${terrablender_version}"
     implementation "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}"
 }
