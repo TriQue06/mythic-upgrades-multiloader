@@ -11,7 +11,6 @@
         "LivingEntityMixin",
         "MixinMultiNoiseBiomeSource",
         "MixinTheEndBiomeSource",
-        "MixinOverworldBiomeBuilder",
         "accessor.HolderReferenceAccessor",
         "ServerPlayerGameModeMixin"
     ],
