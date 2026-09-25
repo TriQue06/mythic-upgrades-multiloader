@@ -10,7 +10,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -20,7 +19,6 @@ import net.neoforged.neoforge.registries.RegisterEvent;
 import net.trique.mythicupgrades.block.MythicBlocks;
 import net.trique.mythicupgrades.item.MythicItems;
 import net.trique.mythicupgrades.worldgen.MythicFeatures;
-import net.trique.mythicupgrades.worldgen.TerraBlenderCompat;
 
 @Mod(Constants.MOD_ID)
 public class MythicUpgrades {
@@ -102,9 +100,6 @@ public class MythicUpgrades {
 
     private void onCommonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            if (ModList.get().isLoaded("terrablender")) {
-                TerraBlenderCompat.init();
-            }
         });
         CommonClass.init();
     }

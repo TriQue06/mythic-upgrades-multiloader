@@ -23,9 +23,6 @@
         ],
         "modmenu": [
             "net.trique.mythicupgrades.MythicModMenu"
-        ],
-        "terrablender": [
-            "net.trique.mythicupgrades.FabricTerraBlenderAddon"
         ]
     },
     "accessWidener": "${mod_id}.accesswidener",

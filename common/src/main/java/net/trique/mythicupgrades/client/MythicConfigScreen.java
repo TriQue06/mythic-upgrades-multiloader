@@ -35,6 +35,7 @@ public final class MythicConfigScreen {
         new GemCategory("Sapphire",   0x3B6EE0, "SAPPHIRE_", "DEFLECT_"),
         new GemCategory("Jade",       0x2FAE4C, "JADE_"),
         new GemCategory("Ametrine",   0xA94BD6, "AMETRINE_", "ARCANE_AURA_"),
+        new GemCategory("Worldgen",   0x9E9E9E, "WORLDGEN_"),
     };
 
     private MythicConfigScreen() {}

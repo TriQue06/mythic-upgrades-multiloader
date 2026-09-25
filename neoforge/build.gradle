@@ -42,7 +42,9 @@ neoForge {
 }
 
 dependencies {
-    implementation "com.github.glitchfiend:TerraBlender-neoforge:${terrablender_version}"
+    // Not a dependency of the mod — present in the dev run only, so the overlay
+    // mixins can be regression-tested against TerraBlender's HEAD cancellation.
+    runtimeOnly "com.github.glitchfiend:TerraBlender-neoforge:${terrablender_version}"
     implementation "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}"
 }
 

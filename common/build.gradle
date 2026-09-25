@@ -20,7 +20,6 @@ dependencies {
     // Fabric and NeoForge both bundle MixinExtras, so it is safe to use it in common
     compileOnly(annotationProcessor('io.github.llamalad7:mixinextras-common:0.5.3'))
 
-    compileOnly "com.github.glitchfiend:TerraBlender-neoforge:${terrablender_version}"
     // Cloth Config API surface only; each loader module supplies its own flavor at runtime
     compileOnly "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}"
 }
