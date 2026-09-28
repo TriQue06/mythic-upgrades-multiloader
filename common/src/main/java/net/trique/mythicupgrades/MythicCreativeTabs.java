@@ -203,6 +203,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.POLISHED_AQUAMARINE_SCHIST);
                     output.accept(MythicBlocks.POLISHED_AQUAMARINE_SCHIST_SLAB);
                     output.accept(MythicBlocks.POLISHED_AQUAMARINE_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_AQUAMARINE_SCHIST_WALL);
                     output.accept(MythicBlocks.AQUAMARINE_SCHIST_WALL);
                     output.accept(MythicBlocks.CITRINE_SCHIST);
                     output.accept(MythicBlocks.CITRINE_SCHIST_SLAB);
@@ -210,6 +211,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.POLISHED_CITRINE_SCHIST);
                     output.accept(MythicBlocks.POLISHED_CITRINE_SCHIST_SLAB);
                     output.accept(MythicBlocks.POLISHED_CITRINE_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_CITRINE_SCHIST_WALL);
                     output.accept(MythicBlocks.CITRINE_SCHIST_WALL);
                     output.accept(MythicBlocks.TOPAZ_SCHIST);
                     output.accept(MythicBlocks.TOPAZ_SCHIST_SLAB);
@@ -217,6 +219,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.POLISHED_TOPAZ_SCHIST);
                     output.accept(MythicBlocks.POLISHED_TOPAZ_SCHIST_SLAB);
                     output.accept(MythicBlocks.POLISHED_TOPAZ_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_TOPAZ_SCHIST_WALL);
                     output.accept(MythicBlocks.TOPAZ_SCHIST_WALL);
                     output.accept(MythicBlocks.PERIDOT_SCHIST);
                     output.accept(MythicBlocks.PERIDOT_SCHIST_SLAB);
@@ -224,6 +227,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.POLISHED_PERIDOT_SCHIST);
                     output.accept(MythicBlocks.POLISHED_PERIDOT_SCHIST_SLAB);
                     output.accept(MythicBlocks.POLISHED_PERIDOT_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_PERIDOT_SCHIST_WALL);
                     output.accept(MythicBlocks.PERIDOT_SCHIST_WALL);
                     output.accept(MythicBlocks.RUBY_SCHIST);
                     output.accept(MythicBlocks.RUBY_SCHIST_SLAB);
@@ -231,6 +235,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.POLISHED_RUBY_SCHIST);
                     output.accept(MythicBlocks.POLISHED_RUBY_SCHIST_SLAB);
                     output.accept(MythicBlocks.POLISHED_RUBY_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_RUBY_SCHIST_WALL);
                     output.accept(MythicBlocks.RUBY_SCHIST_WALL);
                     output.accept(MythicBlocks.SAPPHIRE_SCHIST);
                     output.accept(MythicBlocks.SAPPHIRE_SCHIST_SLAB);
@@ -238,6 +243,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.POLISHED_SAPPHIRE_SCHIST);
                     output.accept(MythicBlocks.POLISHED_SAPPHIRE_SCHIST_SLAB);
                     output.accept(MythicBlocks.POLISHED_SAPPHIRE_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_SAPPHIRE_SCHIST_WALL);
                     output.accept(MythicBlocks.SAPPHIRE_SCHIST_WALL);
                     output.accept(MythicBlocks.JADE_SCHIST);
                     output.accept(MythicBlocks.JADE_SCHIST_SLAB);
@@ -245,6 +251,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.POLISHED_JADE_SCHIST);
                     output.accept(MythicBlocks.POLISHED_JADE_SCHIST_SLAB);
                     output.accept(MythicBlocks.POLISHED_JADE_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_JADE_SCHIST_WALL);
                     output.accept(MythicBlocks.JADE_SCHIST_WALL);
                     output.accept(MythicBlocks.AMETRINE_SCHIST);
                     output.accept(MythicBlocks.AMETRINE_SCHIST_SLAB);
@@ -252,6 +259,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.POLISHED_AMETRINE_SCHIST);
                     output.accept(MythicBlocks.POLISHED_AMETRINE_SCHIST_SLAB);
                     output.accept(MythicBlocks.POLISHED_AMETRINE_SCHIST_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_AMETRINE_SCHIST_WALL);
                     output.accept(MythicBlocks.AMETRINE_SCHIST_WALL);
                     output.accept(MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK);
                     output.accept(MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK_SLAB);
@@ -259,6 +267,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK);
                     output.accept(MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK_SLAB);
                     output.accept(MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK_WALL);
                     output.accept(MythicBlocks.AQUAMARINE_CRYSTAL_BRICKS);
                     output.accept(MythicBlocks.AQUAMARINE_CRYSTAL_BRICKS_SLAB);
                     output.accept(MythicBlocks.AQUAMARINE_CRYSTAL_BRICKS_STAIRS);
@@ -276,6 +285,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.POLISHED_CITRINE_CRYSTAL_BLOCK);
                     output.accept(MythicBlocks.POLISHED_CITRINE_CRYSTAL_BLOCK_SLAB);
                     output.accept(MythicBlocks.POLISHED_CITRINE_CRYSTAL_BLOCK_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_CITRINE_CRYSTAL_BLOCK_WALL);
                     output.accept(MythicBlocks.CITRINE_CRYSTAL_BRICKS);
                     output.accept(MythicBlocks.CITRINE_CRYSTAL_BRICKS_SLAB);
                     output.accept(MythicBlocks.CITRINE_CRYSTAL_BRICKS_STAIRS);
@@ -293,6 +303,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.POLISHED_TOPAZ_CRYSTAL_BLOCK);
                     output.accept(MythicBlocks.POLISHED_TOPAZ_CRYSTAL_BLOCK_SLAB);
                     output.accept(MythicBlocks.POLISHED_TOPAZ_CRYSTAL_BLOCK_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_TOPAZ_CRYSTAL_BLOCK_WALL);
                     output.accept(MythicBlocks.TOPAZ_CRYSTAL_BRICKS);
                     output.accept(MythicBlocks.TOPAZ_CRYSTAL_BRICKS_SLAB);
                     output.accept(MythicBlocks.TOPAZ_CRYSTAL_BRICKS_STAIRS);
@@ -310,6 +321,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.POLISHED_PERIDOT_CRYSTAL_BLOCK);
                     output.accept(MythicBlocks.POLISHED_PERIDOT_CRYSTAL_BLOCK_SLAB);
                     output.accept(MythicBlocks.POLISHED_PERIDOT_CRYSTAL_BLOCK_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_PERIDOT_CRYSTAL_BLOCK_WALL);
                     output.accept(MythicBlocks.PERIDOT_CRYSTAL_BRICKS);
                     output.accept(MythicBlocks.PERIDOT_CRYSTAL_BRICKS_SLAB);
                     output.accept(MythicBlocks.PERIDOT_CRYSTAL_BRICKS_STAIRS);
@@ -327,6 +339,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.POLISHED_RUBY_CRYSTAL_BLOCK);
                     output.accept(MythicBlocks.POLISHED_RUBY_CRYSTAL_BLOCK_SLAB);
                     output.accept(MythicBlocks.POLISHED_RUBY_CRYSTAL_BLOCK_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_RUBY_CRYSTAL_BLOCK_WALL);
                     output.accept(MythicBlocks.RUBY_CRYSTAL_BRICKS);
                     output.accept(MythicBlocks.RUBY_CRYSTAL_BRICKS_SLAB);
                     output.accept(MythicBlocks.RUBY_CRYSTAL_BRICKS_STAIRS);
@@ -344,6 +357,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.POLISHED_SAPPHIRE_CRYSTAL_BLOCK);
                     output.accept(MythicBlocks.POLISHED_SAPPHIRE_CRYSTAL_BLOCK_SLAB);
                     output.accept(MythicBlocks.POLISHED_SAPPHIRE_CRYSTAL_BLOCK_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_SAPPHIRE_CRYSTAL_BLOCK_WALL);
                     output.accept(MythicBlocks.SAPPHIRE_CRYSTAL_BRICKS);
                     output.accept(MythicBlocks.SAPPHIRE_CRYSTAL_BRICKS_SLAB);
                     output.accept(MythicBlocks.SAPPHIRE_CRYSTAL_BRICKS_STAIRS);
@@ -361,6 +375,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.POLISHED_JADE_CRYSTAL_BLOCK);
                     output.accept(MythicBlocks.POLISHED_JADE_CRYSTAL_BLOCK_SLAB);
                     output.accept(MythicBlocks.POLISHED_JADE_CRYSTAL_BLOCK_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_JADE_CRYSTAL_BLOCK_WALL);
                     output.accept(MythicBlocks.JADE_CRYSTAL_BRICKS);
                     output.accept(MythicBlocks.JADE_CRYSTAL_BRICKS_SLAB);
                     output.accept(MythicBlocks.JADE_CRYSTAL_BRICKS_STAIRS);
@@ -378,6 +393,7 @@ public class MythicCreativeTabs {
                     output.accept(MythicBlocks.POLISHED_AMETRINE_CRYSTAL_BLOCK);
                     output.accept(MythicBlocks.POLISHED_AMETRINE_CRYSTAL_BLOCK_SLAB);
                     output.accept(MythicBlocks.POLISHED_AMETRINE_CRYSTAL_BLOCK_STAIRS);
+                    output.accept(MythicBlocks.POLISHED_AMETRINE_CRYSTAL_BLOCK_WALL);
                     output.accept(MythicBlocks.AMETRINE_CRYSTAL_BRICKS);
                     output.accept(MythicBlocks.AMETRINE_CRYSTAL_BRICKS_SLAB);
                     output.accept(MythicBlocks.AMETRINE_CRYSTAL_BRICKS_STAIRS);
