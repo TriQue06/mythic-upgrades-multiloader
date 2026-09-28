@@ -56,6 +56,7 @@ public class MythicBlockStateProvider extends BlockStateProvider {
         slabAndStairs("polished_" + gem + "_crystal_block", modLoc("block/polished_" + gem + "_crystal_block"));
         slabAndStairs(gem + "_crystal_bricks", modLoc("block/" + gem + "_crystal_bricks"));
         wallBlock((WallBlock) getBlock(gem + "_crystal_bricks_wall"), modLoc("block/" + gem + "_crystal_bricks"));
+        wallBlock((WallBlock) getBlock("polished_" + gem + "_crystal_block_wall"), modLoc("block/polished_" + gem + "_crystal_block"));
 
         axisBlock((RotatedPillarBlock) getBlock(gem + "_crystal_pillar"),
             modLoc("block/" + gem + "_crystal_pillar"),
@@ -69,6 +70,7 @@ public class MythicBlockStateProvider extends BlockStateProvider {
         slabAndStairs(gem + "_schist", modLoc("block/" + gem + "_schist"));
         slabAndStairs("polished_" + gem + "_schist", modLoc("block/polished_" + gem + "_schist"));
         wallBlock((WallBlock) getBlock(gem + "_schist_wall"), modLoc("block/" + gem + "_schist"));
+        wallBlock((WallBlock) getBlock("polished_" + gem + "_schist_wall"), modLoc("block/polished_" + gem + "_schist"));
     }
 
     private void slabAndStairs(String baseName, ResourceLocation texture) {
@@ -310,6 +312,22 @@ public class MythicBlockStateProvider extends BlockStateProvider {
             case "sapphire_schist_wall" -> MythicBlocks.SAPPHIRE_SCHIST_WALL;
             case "jade_schist_wall" -> MythicBlocks.JADE_SCHIST_WALL;
             case "ametrine_schist_wall" -> MythicBlocks.AMETRINE_SCHIST_WALL;
+            case "polished_aquamarine_crystal_block_wall" -> MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK_WALL;
+            case "polished_citrine_crystal_block_wall" -> MythicBlocks.POLISHED_CITRINE_CRYSTAL_BLOCK_WALL;
+            case "polished_topaz_crystal_block_wall" -> MythicBlocks.POLISHED_TOPAZ_CRYSTAL_BLOCK_WALL;
+            case "polished_peridot_crystal_block_wall" -> MythicBlocks.POLISHED_PERIDOT_CRYSTAL_BLOCK_WALL;
+            case "polished_ruby_crystal_block_wall" -> MythicBlocks.POLISHED_RUBY_CRYSTAL_BLOCK_WALL;
+            case "polished_sapphire_crystal_block_wall" -> MythicBlocks.POLISHED_SAPPHIRE_CRYSTAL_BLOCK_WALL;
+            case "polished_jade_crystal_block_wall" -> MythicBlocks.POLISHED_JADE_CRYSTAL_BLOCK_WALL;
+            case "polished_ametrine_crystal_block_wall" -> MythicBlocks.POLISHED_AMETRINE_CRYSTAL_BLOCK_WALL;
+            case "polished_aquamarine_schist_wall" -> MythicBlocks.POLISHED_AQUAMARINE_SCHIST_WALL;
+            case "polished_citrine_schist_wall" -> MythicBlocks.POLISHED_CITRINE_SCHIST_WALL;
+            case "polished_topaz_schist_wall" -> MythicBlocks.POLISHED_TOPAZ_SCHIST_WALL;
+            case "polished_peridot_schist_wall" -> MythicBlocks.POLISHED_PERIDOT_SCHIST_WALL;
+            case "polished_ruby_schist_wall" -> MythicBlocks.POLISHED_RUBY_SCHIST_WALL;
+            case "polished_sapphire_schist_wall" -> MythicBlocks.POLISHED_SAPPHIRE_SCHIST_WALL;
+            case "polished_jade_schist_wall" -> MythicBlocks.POLISHED_JADE_SCHIST_WALL;
+            case "polished_ametrine_schist_wall" -> MythicBlocks.POLISHED_AMETRINE_SCHIST_WALL;
             default -> throw new IllegalArgumentException("Unknown block: " + name);
         };
         return b;
