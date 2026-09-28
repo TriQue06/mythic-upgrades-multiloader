@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mythic Upgrades Wiki</title>
+<meta name="description" content="The complete guide to Mythic Upgrades: eight mythic gems, their biomes, armor and tool abilities, potions, Necoium and configuration.">
+<style>
+  :root{--bg:#0f1117;--sur:#1a1d27;--sur2:#20242f;--brd:#2d3245;--txt:#dde2f0;--muted:#8a90a8;--link:#7cb4f5;--sans:system-ui,-apple-system,'Segoe UI',sans-serif;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--txt);font-family:Georgia,'Times New Roman',Times,serif;font-size:17px;line-height:1.65;}
+  a{color:var(--link);text-decoration:none;}a:hover{text-decoration:underline;}
+  header{background:var(--sur);border-bottom:1px solid var(--brd);padding:0 28px;display:flex;align-items:center;gap:28px;min-height:52px;position:sticky;top:0;z-index:10;}
+  header .site-title{font-size:1.05rem;font-weight:700;font-family:var(--sans);color:var(--txt);white-space:nowrap;}
+  nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;}
+  nav::-webkit-scrollbar{display:none;}
+  nav button{font-family:var(--sans);font-size:13px;background:none;border:none;border-bottom:2px solid transparent;padding:16px 12px 14px;color:var(--muted);cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s;}
+  nav button:hover{color:var(--txt);}
+  nav button.active{color:var(--txt);border-bottom-color:var(--link);}
+  main{max-width:1180px;margin:0 auto;padding:32px 28px 80px;}
+  .section{display:none;}.section.active{display:block;}
+  h2{font-weight:400;font-size:1.5rem;border-bottom:1px solid var(--brd);padding-bottom:6px;margin:40px 0 16px;}
+  .section>h2:first-child{margin-top:0;}
+  h3{font-family:var(--sans);font-size:.95rem;font-weight:700;margin:26px 0 8px;}
+  p{margin:0 0 12px;max-width:820px;}
+  p.intro{color:var(--muted);font-size:.95rem;margin-bottom:22px;}
+  ul.plain{margin:0 0 14px 20px;max-width:820px;}ul.plain li{margin:3px 0;}
+  code{font-family:ui-monospace,Consolas,monospace;font-size:.82em;background:var(--sur2);border:1px solid var(--brd);border-radius:3px;padding:1px 5px;}
+  .muted{color:var(--muted);}
+  .note{background:var(--sur);border:1px solid var(--brd);border-left:3px solid var(--link);border-radius:5px;padding:12px 16px;margin:14px 0 20px;font-size:.9rem;max-width:860px;}
+  .note b{font-family:var(--sans);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center;margin-bottom:34px;}
+  .hero h1{font-weight:400;font-size:2.3rem;line-height:1.2;margin-bottom:12px;}
+  .hero p{color:var(--muted);}
+  .gem-strip{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+  .gem-strip img{width:36px;height:36px;image-rendering:pixelated;transition:transform .15s;}
+  .gem-strip img:hover{transform:scale(1.25);}
+
+  /* screenshots */
+  figure.shot{margin:0 0 18px;}
+  .shot-frame{position:relative;aspect-ratio:16/9;background:var(--sur);border:1px dashed var(--brd);border-radius:6px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+  .shot-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .shot-frame .ph{font-family:var(--sans);font-size:.78rem;color:var(--muted);text-align:center;padding:16px;line-height:1.5;}
+  .shot-frame .ph b{display:block;color:var(--txt);font-size:.85rem;margin-bottom:4px;}
+  .shot-frame.loaded{border-style:solid;}
+  figure.shot figcaption{font-family:var(--sans);font-size:.75rem;color:var(--muted);margin-top:6px;}
+
+  /* flow */
+  .flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin:10px 0 24px;}
+  .flow .step{flex:1 1 150px;background:var(--sur);border:1px solid var(--brd);border-radius:6px;padding:12px;font-family:var(--sans);font-size:.78rem;color:var(--muted);}
+  .flow .step b{display:block;color:var(--txt);font-size:.82rem;margin-bottom:4px;}
+  .flow .arrow{align-self:center;color:var(--muted);font-family:var(--sans);}
+
+  /* generic cards */
+  .grid{display:grid;gap:14px;}
+  .g2{grid-template-columns:repeat(auto-fill,minmax(340px,1fr));}
+  .g3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));}
+  .card{background:var(--sur);border:1px solid var(--brd);border-radius:6px;padding:14px 16px;}
+  .card:hover{border-color:var(--c,var(--brd));}
+  .card h4{font-family:var(--sans);font-size:.88rem;margin-bottom:6px;display:flex;align-items:center;gap:8px;color:var(--c,var(--txt));}
+  .card h4 img{width:22px;height:22px;image-rendering:pixelated;}
+  .card p{font-size:.86rem;color:var(--muted);margin-bottom:8px;}
+
+  /* tables */
+  table.t{width:100%;border-collapse:collapse;font-size:.84rem;margin:6px 0 22px;}
+  table.t th{font-family:var(--sans);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;border-bottom:1px solid var(--brd);padding:6px 10px 6px 0;font-weight:700;}
+  table.t td{border-bottom:1px solid rgba(255,255,255,.05);padding:7px 10px 7px 0;vertical-align:top;}
+  table.t td img{width:24px;height:24px;image-rendering:pixelated;vertical-align:middle;margin-right:6px;}
+  .table-wrap{overflow-x:auto;}
+  .stat-table{width:100%;border-collapse:collapse;font-size:.8rem;}
+  .stat-table td{padding:3px 0;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top;}
+  .stat-table .sk{color:var(--muted);padding-right:12px;}
+  .stat-table .sv{text-align:right;font-family:var(--sans);font-size:.78rem;}
+
+  .badge{font-family:var(--sans);font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;border-radius:3px;display:inline-block;white-space:nowrap;}
+  .dim-ow{background:#1b3a1b;color:#6dbf6d;}.dim-ne{background:#3a1b1b;color:#e07070;}.dim-end{background:#1a1b3a;color:#9090e0;}
+  .b-good{background:#1b3326;color:#6fd39a;}.b-bad{background:#3a1f1b;color:#e59070;}
+  .swatch{display:inline-block;width:12px;height:12px;border-radius:2px;border:1px solid rgba(255,255,255,.2);vertical-align:-1px;margin-right:5px;}
+
+  /* biomes */
+  .biome{display:grid;grid-template-columns:1.15fr 1fr;gap:22px;margin-bottom:34px;padding-bottom:30px;border-bottom:1px solid var(--brd);}
+  .biome:last-of-type{border-bottom:none;}
+  .biome h3{margin-top:0;font-size:1.05rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .biome .gems{display:flex;gap:10px;margin:8px 0 12px;}
+  .biome .gems span{display:flex;align-items:center;gap:6px;font-family:var(--sans);font-size:.8rem;}
+  .biome .gems img{width:24px;height:24px;image-rendering:pixelated;}
+
+  /* ores */
+  .ore-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-bottom:26px;}
+  .ore-card{background:var(--sur);border:1px solid var(--brd);border-radius:6px;padding:18px 10px 12px;text-align:center;}
+  .ore-card:hover{border-color:var(--c,#555);}
+  .ore-card img{width:72px;height:72px;image-rendering:pixelated;display:block;margin:0 auto 8px;}
+  .ore-card .nm{font-family:var(--sans);font-size:.8rem;font-weight:700;}
+  .ore-card .where{font-family:var(--sans);font-size:.7rem;color:var(--muted);margin-top:4px;line-height:1.4;}
+
+  /* equipment */
+  .equip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:16px;}
+  .equip-card{background:var(--sur);border:1px solid var(--brd);border-radius:6px;overflow:hidden;}
+  .equip-card:hover{border-color:var(--c);}
+  .equip-header{background:var(--sur2);border-bottom:1px solid var(--brd);padding:10px 14px;display:flex;align-items:center;gap:10px;}
+  .equip-header img{width:34px;height:34px;image-rendering:pixelated;}
+  .equip-header .nm{font-family:var(--sans);font-size:.9rem;font-weight:700;color:var(--c);}
+  .equip-header .role{font-family:var(--sans);font-size:.7rem;color:var(--muted);}
+  .equip-body{padding:12px 14px;}
+  .item-row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--brd);}
+  .item-row img{width:32px;height:32px;image-rendering:pixelated;opacity:.8;transition:opacity .12s,transform .12s;}
+  .item-row img:hover{opacity:1;transform:scale(1.3);}
+  .ability-label{font-family:var(--sans);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--c);margin:10px 0 4px;}
+  .ability-desc{font-size:.82rem;color:var(--muted);margin-bottom:6px;}
+
+  /* effects */
+  .effect-list{display:flex;flex-direction:column;gap:14px;}
+  .effect-card{background:var(--sur);border:1px solid var(--brd);border-radius:6px;display:grid;grid-template-columns:96px 1fr;overflow:hidden;}
+  .effect-card:hover{border-color:var(--c);}
+  .effect-icon-col{background:var(--sur2);border-right:1px solid var(--brd);display:flex;align-items:center;justify-content:center;padding:16px;}
+  .effect-icon-col img{width:56px;height:56px;image-rendering:pixelated;}
+  .effect-content{padding:12px 16px;}
+  .effect-name-row{display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap;}
+  .effect-name{font-family:var(--sans);font-size:.92rem;font-weight:700;color:var(--c);}
+  .source-tag{font-family:var(--sans);font-size:.62rem;padding:2px 7px;border-radius:3px;border:1px solid var(--brd);color:var(--muted);}
+  .effect-desc{font-size:.84rem;color:var(--muted);margin-bottom:6px;}
+
+  /* blocks & items */
+  .gem-section{margin-bottom:40px;}
+  .gem-section-header{font-family:var(--sans);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--c);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+  .gem-section-header img{width:20px;height:20px;image-rendering:pixelated;}
+  .block-sub{font-family:var(--sans);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:12px 0 6px;}
+  .tile-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;}
+  .tile{background:var(--sur);border:1px solid var(--brd);border-radius:5px;padding:10px 6px 8px;text-align:center;}
+  .tile:hover{border-color:var(--c,var(--brd));}
+  .tile img{width:52px;height:52px;image-rendering:pixelated;display:block;margin:0 auto 5px;}
+  .tile span{font-family:var(--sans);font-size:.64rem;color:var(--muted);display:block;line-height:1.25;}
+
+  /* recipes */
+  .recipe{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--sur);border:1px solid var(--brd);border-radius:6px;padding:12px 14px;margin-bottom:10px;font-family:var(--sans);font-size:.8rem;}
+  .recipe img{width:30px;height:30px;image-rendering:pixelated;}
+  .recipe .op{color:var(--muted);}
+  .recipe .lbl{color:var(--muted);margin-left:auto;font-size:.72rem;}
+  .ing{display:inline-flex;align-items:center;gap:4px;}
+  .ing small{color:var(--muted);}
+
+  ::-webkit-scrollbar{width:6px;height:6px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--brd);border-radius:3px;}
+  footer{border-top:1px solid var(--brd);padding:20px 28px;font-family:var(--sans);font-size:.78rem;color:var(--muted);text-align:center;}
+
+  @media (max-width:820px){
+    header{padding:0 16px;gap:14px;}
+    main{padding:24px 16px 60px;}
+    .hero,.biome{grid-template-columns:1fr;}
+    .hero h1{font-size:1.8rem;}
+    .equip-grid,.g2{grid-template-columns:1fr;}
+    .effect-card{grid-template-columns:70px 1fr;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <a class="site-title" href="#overview">Mythic Upgrades Wiki</a>
+  <nav id="nav">
+    <button data-s="overview">Overview</button>
+    <button data-s="world">World &amp; Biomes</button>
+    <button data-s="progression">Progression</button>
+    <button data-s="equipment">Armor &amp; Tools</button>
+    <button data-s="effects">Status Effects</button>
+    <button data-s="brewing">Potions &amp; Shards</button>
+    <button data-s="necoium">Necoium Share</button>
+    <button data-s="blocks">Blocks</button>
+    <button data-s="items">Items</button>
+    <button data-s="config">Config &amp; Compatibility</button>
+  </nav>
+</header>
+<main>
+
+<!-- ============================== OVERVIEW ============================== -->
+<section id="overview" class="section">
+  <div class="hero">
+    <div>
+      <h1>Eight mythic gems. Eight ways to fight.</h1>
+      <p>Mythic Upgrades adds eight gems that sit on top of Netherite. None of them is simply "stronger": every set has the same base stats as Netherite, but each one carries its own ability, and choosing a gem means choosing a playstyle.</p>
+      <p>Mine them in new biomes spread across all three dimensions, forge them into ingots with Necoium, and upgrade your gear at the smithing table. In multiplayer, Necoium Share lets a group pool their abilities.</p>
+      <div class="gem-strip" id="gemStrip"></div>
+    </div>
+    <figure class="shot" data-shot="hero"></figure>
+  </div>
+
+  <h2>How it works</h2>
+  <div class="flow">
+    <div class="step"><b>1. Find a Mythic biome</b>Caves in the Overworld, Rifts in the Nether, Barrens in the End.</div>
+    <div class="arrow">→</div>
+    <div class="step"><b>2. Mine gems &amp; Necoium</b>Gem ores live in their biomes; Necoium is found throughout the Overworld.</div>
+    <div class="arrow">→</div>
+    <div class="step"><b>3. Forge ingots</b>4 gems + 4 Necoium Ingots make one Gem Ingot.</div>
+    <div class="arrow">→</div>
+    <div class="step"><b>4. Upgrade at smithing</b>Mythic Upgrade Template + Netherite gear + Gem Ingot.</div>
+    <div class="arrow">→</div>
+    <div class="step"><b>5. Build your set</b>More pieces worn = stronger ability. Swap gems any time.</div>
+  </div>
+
+  <h2>The eight gems at a glance</h2>
+  <div class="grid g3" id="gemGlance"></div>
+
+  <h2>Supported versions</h2>
+  <div class="table-wrap"><table class="t">
+    <tr><th>Minecraft</th><th>Loaders</th><th>Required</th><th>Optional</th></tr>
+    <tr><td>26.3</td><td>NeoForge, Fabric</td><td rowspan="4">Cloth Config<br><span class="muted">Fabric API on Fabric</span></td><td rowspan="4">Mod Menu (Fabric) for the in-game config button</td></tr>
+    <tr><td>26.2</td><td>NeoForge, Fabric</td></tr>
+    <tr><td>1.21.1</td><td>NeoForge, Fabric</td></tr>
+    <tr><td>1.20.1</td><td>Forge, Fabric</td></tr>
+  </table></div>
+  <p class="muted" style="font-size:.85rem">Every version shares the same gameplay and numbers, so everything on this wiki applies to all of them. TerraBlender is <b>not</b> required.</p>
+</section>
+
+<!-- ============================== WORLD ============================== -->
+<section id="world" class="section">
+  <h2>World &amp; Biomes</h2>
+  <p class="intro">Mythic Upgrades adds four biomes: two cave biomes underground in the Overworld, one in the Nether and one in the outer End. Each hosts two gems, their schist stone, crystal formations and ores.</p>
+
+  <div class="note"><b>Works with big biome mods.</b> Mythic biomes are not entered into a shared weighted pool, where they would shrink as more worldgen mods are installed. They are placed on a fixed grid that claims a set share of each dimension, so they keep the same size and frequency alongside Terralith, Biomes O' Plenty and other biome mods. Coverage and patch size can be changed in the config.</div>
+
+  <div id="biomeList"></div>
+
+  <h2>Ores</h2>
+  <p class="intro">Every gem ore drops its raw gem (Fortune applies) and smelts or blasts into it as well. Silk Touch keeps the ore block.</p>
+  <div class="ore-grid" id="oreGrid"></div>
+
+  <h2>Geodes</h2>
+  <p>Each gem also forms geodes, crystal-lined hollows like amethyst geodes with a smooth basalt and calcite shell and budding crystal inside. Unlike the ores, geodes are <b>not</b> tied to Mythic biomes. They appear in any biome of their dimension, about once every 24 chunks.</p>
+  <div class="table-wrap"><table class="t">
+    <tr><th>Dimension</th><th>Gems</th><th>Height</th></tr>
+    <tr><td><span class="badge dim-ow">Overworld</span></td><td>Aquamarine, Citrine, Topaz, Peridot</td><td>6 blocks above bedrock – Y 30</td></tr>
+    <tr><td><span class="badge dim-ne">Nether</span></td><td>Ruby, Sapphire</td><td>Y 0 – 64</td></tr>
+    <tr><td><span class="badge dim-end">The End</span></td><td>Ametrine, Jade</td><td>Y 0 – 64</td></tr>
+  </table></div>
+  <figure class="shot" data-shot="geode" style="max-width:720px"></figure>
+
+  <h2>Growing crystals</h2>
+  <p>Budding crystal blocks work like budding amethyst. They slowly grow small, medium and large buds, then a full <b>crystal cluster</b> on any side facing air or water. Unlike budding amethyst, they <b>accept bone meal</b>, which advances one bud by one stage.</p>
+  <p>Breaking a cluster with a pickaxe drops <b>4 crystal shards</b> (boosted by Fortune); any other tool gives 2. Budding blocks cannot be picked up, even with Silk Touch, so build your crystal farm where the geode is.</p>
+</section>
+
+<!-- ============================== PROGRESSION ============================== -->
+<section id="progression" class="section">
+  <h2>Progression &amp; Crafting</h2>
+  <p class="intro">Mythic gear is an upgrade on top of Netherite. Getting there takes Necoium, gems from the right biome, and one smithing template.</p>
+
+  <h3>1. Necoium</h3>
+  <p>Necoium ore generates throughout the <b>entire Overworld</b> between Y -64 and 16 (deepslate variant below Y -16). It is noticeably richer inside Mythic Caves, which also contain solid <b>raw Necoium blocks</b> embedded in the stone. Mining the ore drops Raw Necoium, which smelts into Necoium Ingots.</p>
+  <div id="recNecoium"></div>
+
+  <h3>2. Gem Ingots</h3>
+  <p>Raw gems cannot be used on their own. Combine them with Necoium into an ingot (shapeless):</p>
+  <div id="recIngot"></div>
+
+  <h3>3. The Mythic Upgrade Smithing Template</h3>
+  <p>A single template works for every gem and every piece of gear. Like the Netherite template, one is consumed per upgrade.</p>
+  <div id="recTemplate"></div>
+
+  <h3>4. Upgrading</h3>
+  <p>At a smithing table, place the template, a Netherite tool or armor piece, and a Gem Ingot. Enchantments and trims are kept.</p>
+  <div id="recSmith"></div>
+  <div class="note"><b>Swapping sets is cheap.</b> Any Mythic item can be re-upgraded directly into another gem (for example a Ruby Chestplate into a Jade Chestplate) with just the template and the new ingot, with no need to go back to Netherite. Reaching your first set is the investment; changing playstyle afterwards is not.</div>
+
+  <h3>Other recipes</h3>
+  <ul class="plain">
+    <li><b>Gem blocks:</b> 9 Gem Ingots ⇄ 1 Block of Gem (also Necoium Ingots ⇄ Block of Necoium, Raw Necoium ⇄ Block of Raw Necoium).</li>
+    <li><b>Crystal blocks:</b> 4 crystal shards (2×2) → 1 crystal block.</li>
+    <li><b>Schist:</b> 1 Cobblestone + 1 crystal shard → 1 schist of that gem.</li>
+    <li><b>Building sets:</b> polished blocks, bricks, pillars, slabs, stairs and walls use vanilla-style patterns and are all available on the stonecutter. See <a href="#blocks">Blocks</a>.</li>
+    <li><b>Necoium Carrot:</b> 8 Blocks of Necoium around a Carrot or Golden Carrot. See <a href="#necoium">Necoium Share</a>.</li>
+  </ul>
+</section>
+
+<!-- ============================== EQUIPMENT ============================== -->
+<section id="equipment" class="section">
+  <h2>Armor &amp; Tools</h2>
+  <p class="intro">Every gem gives a full set: sword, pickaxe, axe, shovel, hoe, and four armor pieces. Base stats equal Netherite. The difference is the ability.</p>
+
+  <h3>How set levels work</h3>
+  <p>Each armor piece adds levels to its gem's ability: <b>Helmet 2 · Chestplate 3 · Leggings 3 · Boots 2</b>, for a maximum of <b>level 10</b> with the full set. Mixing is allowed. Two Ruby pieces and two Jade pieces give you both abilities at lower strength. All numbers below are "per level", so multiply by your level (full set = ×10).</p>
+  <p>Tool abilities trigger when you <b>hit with any tool of that gem</b> (sword, pickaxe, axe, shovel or hoe). They do not scale with armor.</p>
+
+  <h3>Base stats</h3>
+  <div class="table-wrap"><table class="t">
+    <tr><th></th><th>Durability</th><th>Mining speed</th><th>Enchantability</th><th>Armor (H/C/L/B)</th><th>Toughness</th><th>Knockback res.</th></tr>
+    <tr><td>All Mythic gems</td><td>2031 (tools)</td><td>9</td><td>15</td><td>3 / 8 / 6 / 3</td><td>3</td><td>10%</td></tr>
+  </table></div>
+  <p class="muted" style="font-size:.85rem"><b>Sapphire</b> is the one exception: its tools deal <b>+1 extra damage</b> (sword 9, axe 11), fitting its role as the raw-damage gem.</p>
+
+  <div class="equip-grid" id="equipGrid"></div>
+</section>
+
+<!-- ============================== EFFECTS ============================== -->
+<section id="effects" class="section">
+  <h2>Status Effects</h2>
+  <p class="intro">All Mythic abilities are status effects. Armor applies them permanently (hidden, no particles), and tools apply the harmful ones to your target. You can also get them from potions and crystal shards. Values are per level.</p>
+  <div class="effect-list" id="effectList"></div>
+</section>
+
+<!-- ============================== BREWING ============================== -->
+<section id="brewing" class="section">
+  <h2>Potions &amp; Crystal Shards</h2>
+  <p class="intro">You don't need a full armor set to use an ability. Shards and potions give temporary access, which is handy before you have the gear or when you want a second ability on top of your set.</p>
+
+  <h3>Crystal shards (food)</h3>
+  <p>Every crystal shard can be eaten, even on a full stomach. It restores 1 hunger and grants its gem's ability at <b>level III for 1:30</b>. Shards come from crystal clusters (see <a href="#world">World &amp; Biomes</a>).</p>
+  <div class="tile-row" id="shardRow" style="margin-bottom:24px"></div>
+
+  <h3>Brewing</h3>
+  <p>Start from an <b>Awkward Potion</b>. Every potion can be extended with Redstone, strengthened with Glowstone, and turned into splash (Gunpowder) or lingering (Dragon's Breath) form.</p>
+  <div class="table-wrap"><table class="t" id="potionTable"></table></div>
+
+  <h3>Corrupted potions</h3>
+  <p>Adding a <b>Fermented Spider Eye</b> turns some beneficial potions into harmful ones, meant to be thrown at enemies as splash or lingering potions:</p>
+  <div class="table-wrap"><table class="t" id="corruptTable"></table></div>
+  <div class="note"><b>Tip.</b> The on-death bursts of Ice Bomb, Charged and Lethal Incubation also work when the effect comes from a potion. A lingering Charged potion over a mob farm calls down lightning on every kill.</div>
+</section>
+
+<!-- ============================== NECOIUM ============================== -->
+<section id="necoium" class="section">
+  <h2>Necoium Share</h2>
+  <p class="intro">Necoium is the glue of the mod: it goes into every ingot and every template. It also has a use of its own in multiplayer: sharing abilities.</p>
+  <div class="grid g2">
+    <div>
+      <h3 style="margin-top:0">How it works</h3>
+      <ul class="plain">
+        <li>Eat a <b>Necoium Carrot</b> (6 hunger, high saturation) to get <b>Necoium Share for 5 minutes</b>, or drink a Necoium Share potion.</li>
+        <li>Everyone with Necoium Share within <b>30 blocks</b> of each other is linked. Links <b>chain</b>: if A is near B and B is near C, all three share even if A and C are far apart.</li>
+        <li>For each of the eight armor abilities, the <b>highest level</b> anyone in the network has is given to everyone in it.</li>
+        <li>A group of four players wearing four different full sets means everyone gets all four abilities at level 10.</li>
+        <li>Pink particle streams show the active links.</li>
+        <li>Players on <b>different scoreboard teams</b> never link. Tamed animals and other creatures with the effect can join a network.</li>
+        <li>Borrowed effects disappear as soon as you leave the network.</li>
+      </ul>
+    </div>
+    <figure class="shot" data-shot="necoium_share"></figure>
+  </div>
+  <div id="recCarrot" style="margin-top:12px"></div>
+</section>
+
+<!-- ============================== BLOCKS ============================== -->
+<section id="blocks" class="section">
+  <h2>Blocks</h2>
+  <p class="intro">Every gem comes with a full building palette: ores, storage blocks, growable crystals, crystal building blocks and its biome's schist stone. All slabs, stairs and walls can be made on the stonecutter as well as the crafting table.</p>
+  <div id="blockContent"></div>
+</section>
+
+<!-- ============================== ITEMS ============================== -->
+<section id="items" class="section">
+  <h2>Items</h2>
+  <p class="intro">Materials and special items. For the gear itself, see <a href="#equipment">Armor &amp; Tools</a>.</p>
+  <div id="itemContent"></div>
+</section>
+
+<!-- ============================== CONFIG ============================== -->
+<section id="config" class="section">
+  <h2>Configuration</h2>
+  <p class="intro">Nearly every number in the mod can be changed: ability strengths, radii, durations and biome coverage.</p>
+  <ul class="plain">
+    <li>All values live in <code>config/mythicupgrades.json</code>, created on first launch. New options are added to it automatically on update.</li>
+    <li>There is an in-game config screen, grouped by gem, with a reset button per option. Open it from the mod list: <b>Mods</b> on NeoForge/Forge, or through <b>Mod Menu</b> on Fabric.</li>
+    <li>Ability values apply immediately. Worldgen values only affect chunks generated after the change.</li>
+  </ul>
+
+  <h3>Worldgen options</h3>
+  <div class="table-wrap"><table class="t">
+    <tr><th>Option</th><th>Default</th><th>Meaning</th></tr>
+    <tr><td><code>WORLDGEN_CAVE_DENSITY</code></td><td>0.04</td><td>Share of the Overworld (horizontally) covered by Mythic Caves</td></tr>
+    <tr><td><code>WORLDGEN_CAVE_RADIUS</code></td><td>96</td><td>Radius of one cave patch, in blocks</td></tr>
+    <tr><td><code>WORLDGEN_CAVE_MIN_Y</code> / <code>MAX_Y</code></td><td>-60 / 16</td><td>Height band the caves occupy</td></tr>
+    <tr><td><code>WORLDGEN_NETHER_DENSITY</code></td><td>0.05</td><td>Share of the Nether covered by Mythic Rifts</td></tr>
+    <tr><td><code>WORLDGEN_NETHER_RADIUS</code></td><td>96</td><td>Radius of one rift patch</td></tr>
+    <tr><td><code>WORLDGEN_END_DENSITY</code></td><td>0.10</td><td>Share of the outer End covered by Mythic Barrens</td></tr>
+    <tr><td><code>WORLDGEN_END_RADIUS</code></td><td>176</td><td>Radius of one barrens patch</td></tr>
+  </table></div>
+  <p class="muted" style="font-size:.85rem">Density is capped at 0.78, the point where neighbouring patches would start to merge.</p>
+
+  <h2>Compatibility</h2>
+  <ul class="plain">
+    <li><b>Biome mods</b> (Terralith, Biomes O' Plenty, Regions Unexplored…): supported. Mythic biomes keep their configured coverage no matter how many other biome mods are installed.</li>
+    <li><b>TerraBlender:</b> not required, and does not change how Mythic biomes generate. It can be installed alongside.</li>
+    <li><b>Teams:</b> Miasma spares your teammates and your own tamed pets, and Necoium Share never links players on different teams.</li>
+    <li><b>Armor trims:</b> all nine Mythic materials (the eight gems + Necoium) can be used as trim materials. On armor of the same gem, a darker shade is used automatically so the trim stays visible.</li>
+  </ul>
+</section>
+
+</main>
+<footer>Mythic Upgrades by trique &mdash; <a href="https://github.com/TriQue06/mythic-upgrades-multiloader" target="_blank" rel="noopener">GitHub</a></footer>
+
+<script>
+/* ---------------------------------------------------------------------------
+ * Textures are read from the repository; screenshots from ./screenshots/.
+ * To add a screenshot, drop a PNG named after its key into that folder.
+ * ------------------------------------------------------------------------- */
+const RAW='https://raw.githubusercontent.com/TriQue06/mythic-upgrades-multiloader/main/common/src/main/resources/assets/mythicupgrades/textures/';
+const SHOT_DIR='screenshots/';
+const SHOTS={
+  hero:{title:'Mythic Upgrades',caption:'Full Mythic armor sets'},
+  cold_mythic_caves:{title:'Cold Mythic Caves',caption:'Cold Mythic Caves: Aquamarine and Peridot'},
+  warm_mythic_caves:{title:'Warm Mythic Caves',caption:'Warm Mythic Caves: Citrine and Topaz'},
+  mythic_rifts:{title:'Mythic Rifts',caption:'Mythic Rifts in the Nether: Ruby and Sapphire'},
+  mythic_barrens:{title:'Mythic Barrens',caption:'Mythic Barrens in the outer End: Ametrine and Jade'},
+  geode:{title:'Mythic Geode',caption:'A Mythic geode with budding crystal inside'},
+  necoium_share:{title:'Necoium Share',caption:'A Necoium Share network linking three players'}
+};
+
+const COLOR={aquamarine:'#10c8e0',citrine:'#f2a030',topaz:'#f5761b',peridot:'#b9e815',ruby:'#ef3547',sapphire:'#1995ec',jade:'#58cf3e',ametrine:'#d040bf',necoium:'#f04a9a'};
+const GEMS=['aquamarine','citrine','topaz','peridot','ruby','sapphire','jade','ametrine'];
+const CAVE=['aquamarine','citrine','topaz','peridot'];
+const cap=s=>s.split('_').map(w=>w[0].toUpperCase()+w.slice(1)).join(' ');
+const img=(path,alt,extra)=>'<img src="'+RAW+path+'" alt="'+(alt||'')+'" '+(extra||'')+' onerror="this.style.opacity=\'.15\'">';
+
+/* Mirrors MythicStats.java defaults (identical on every Minecraft version). */
+const S={
+  DEFLECT_PER_LEVEL:0.05,DEFLECT_BONUS_DAMAGE_PER_LEVEL:0.5,DEFLECT_BONUS_DAMAGE_MAX:5,
+  SAPPHIRE_TOOL_PERCENT_DAMAGE:0.05,SAPPHIRE_TOOL_PERCENT_DAMAGE_CAP:15,
+  ARCANE_AURA_RADIUS_PER_LEVEL:1,ARCANE_AURA_LEVITATION_DURATION_TICKS:30,
+  AMETRINE_TOOL_LEVITATION_AMPLIFIER:2,AMETRINE_TOOL_LEVITATION_DURATION_TICKS:20,AMETRINE_TOOL_TELEPORT_CHANCE:0.05,
+  TOPAZ_SHOCK_DAMAGE_PER_LEVEL:0.25,TOPAZ_SHOCK_KNOCKBACK_PER_LEVEL:0.25,TOPAZ_FALL_REDUCTION_PER_LEVEL:0.05,TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL:1,
+  TOPAZ_TOOL_SHOCK_INTERVAL:3,TOPAZ_TOOL_EFFECTIVE_LEVEL:5,
+  RUBY_TOOL_LIFESTEAL_FRACTION:0.30,RUBY_TOOL_INTERACTION_HEAL:1,
+  BLOOD_THIRST_RADIUS_PER_LEVEL:3,BLOOD_THIRST_HEAL_FRACTION_PER_LEVEL:0.03,
+  LETHAL_INCUBATION_TOOL_DURATION_TICKS:100,LETHAL_INCUBATION_SHOCK_DAMAGE:1.5,LETHAL_INCUBATION_SHOCK_RADIUS:5,LETHAL_INCUBATION_POISON_DURATION_TICKS:60,
+  MIASMA_CLOUD_RADIUS_PER_LEVEL:1,MIASMA_POISON_DURATION_TICKS:60,MIASMA_INTERVAL_TICKS:200,
+  AQUAMARINE_TOOL_FREEZE_TICKS:18,AQUAMARINE_TOOL_SLOWNESS_DURATION_TICKS:60,ICE_SHIELD_FREEZE_TICKS:10,
+  ICE_BOMB_TOOL_DURATION_TICKS:60,ICE_BOMB_BURST_RADIUS:5,ICE_BOMB_BURST_DAMAGE:4,ICE_BOMB_BURST_FREEZE_TICKS:18,
+  CITRINE_TOOL_CHARGED_DURATION_TICKS:60,CITRINE_TOOL_FREEZE_TICKS:5,CITRINE_TOOL_CHAIN_FRACTION:0.333,CITRINE_TOOL_CHAIN_TARGETS:3,CITRINE_TOOL_CHAIN_RANGE:10,
+  CITRINE_CHARGED_LIGHTNING_MIN:1,CITRINE_CHARGED_LIGHTNING_MAX:3,
+  STATIC_FIELD_RADIUS_PER_LEVEL:0.4,STATIC_FIELD_DAMAGE_PER_LEVEL_PER_SECOND:0.2,CITRINE_LIGHTNING_REDIRECT_DISTANCE:7,
+  STATIC_FIELD_STACK_DAMAGE_INCREASE:0.10,STATIC_FIELD_STACK_RESET_TICKS:60,
+  JADE_TOOL_TELEPORT_CHANCE:0.05,JADE_TOOL_AURA_DURATION_TICKS:20,JADE_AURA_SPEED_PER_LEVEL:0.10,JADE_AURA_JUMP_PER_LEVEL:0.05,
+  JADE_TRAIL_INTERVAL_TICKS:10,JADE_TRAIL_DURATION_TICKS:60,JADE_TRAIL_EFFECT_DURATION_TICKS:80,JADE_TRAIL_CONTACT_EFFECT_DURATION_TICKS:300
+};
+const t=tk=>{const s=tk/20;return (Number.isInteger(s)?s:+s.toFixed(2))+'s';};
+const p=f=>+(f*100).toFixed(1)+'%';
+const hp=v=>v+' HP ('+(+(v/2).toFixed(3))+' ♥)';
+
+/* ---------- screenshots ---------- */
+document.querySelectorAll('figure.shot').forEach(fig=>{
+  const key=fig.dataset.shot,info=SHOTS[key]||{title:key,caption:''};
+  fig.innerHTML='<div class="shot-frame"><div class="ph"><b>'+info.title+'</b>Screenshot coming soon<br><span style="opacity:.7">'+SHOT_DIR+key+'.png</span></div>'
+    +'<img src="'+SHOT_DIR+key+'.png" alt="'+info.caption+'" onload="this.parentElement.classList.add(\'loaded\');this.parentElement.querySelector(\'.ph\').remove()" onerror="this.remove()"></div>'
+    +(info.caption?'<figcaption>'+info.caption+'</figcaption>':'');
+});
+
+/* ---------- overview ---------- */
+document.getElementById('gemStrip').innerHTML=GEMS.concat('necoium').map(g=>img('item/'+(g==='necoium'?'necoium_ingot':g)+'.png',cap(g),'title="'+cap(g)+'"')).join('');
+const ROLE={
+  aquamarine:['Control','Freeze attackers and turn kills into ice explosions.'],
+  citrine:['Area damage','A damaging electric field, chain lightning and lightning strikes on kill.'],
+  topaz:['Retaliation','Shock waves when hit or on landing; less fall damage.'],
+  peridot:['Poison','A poison cloud around you, poison immunity, and explosive kills.'],
+  ruby:['Sustain','Heal from damage dealt nearby and lifesteal on hit.'],
+  sapphire:['Damage','Reflect damage back and hit for a share of the target\'s max health.'],
+  jade:['Mobility','Speed, jump height and a trail that boosts allies.'],
+  ametrine:['Disruption','Levitate everything around you when you are hit.']
+};
+const HOME={aquamarine:'Cold Mythic Caves',peridot:'Cold Mythic Caves',citrine:'Warm Mythic Caves',topaz:'Warm Mythic Caves',ruby:'Mythic Rifts',sapphire:'Mythic Rifts',jade:'Mythic Barrens',ametrine:'Mythic Barrens'};
+const DIMOF={aquamarine:'ow',peridot:'ow',citrine:'ow',topaz:'ow',ruby:'ne',sapphire:'ne',jade:'end',ametrine:'end'};
+const DIMNAME={ow:'Overworld',ne:'Nether',end:'The End'};
+document.getElementById('gemGlance').innerHTML=GEMS.map(g=>'<div class="card" style="--c:'+COLOR[g]+'"><h4>'+img('item/'+g+'.png')+cap(g)+' <span class="badge dim-'+DIMOF[g]+'" style="margin-left:auto">'+DIMNAME[DIMOF[g]]+'</span></h4><p><b style="color:var(--txt)">'+ROLE[g][0]+'.</b> '+ROLE[g][1]+'</p><p style="font-size:.75rem;margin:0">Found in '+HOME[g]+'</p></div>').join('');
+
+/* ---------- biomes ---------- */
+const BIOMES=[
+  {id:'cold_mythic_caves',name:'Cold Mythic Caves',dim:'ow',gems:['aquamarine','peridot'],
+   desc:'An underground biome of pale schist veined with icy crystal. It appears in the colder parts of the Overworld, where the climate temperature is below zero, and replaces the cave biome there.',
+   rows:[['Where','Overworld, Y -60 to 16'],['Coverage','4% of the Overworld, patches ~96 blocks in radius'],['Climate','Cold, with precipitation'],['Fog / Sky','<span class="swatch" style="background:#c0d8ff"></span>#C0D8FF / <span class="swatch" style="background:#7ba4ff"></span>#7BA4FF'],['Water','<span class="swatch" style="background:#3abfcf"></span>#3ABFCF (icy cyan)'],['Also contains','All vanilla ores, extra Necoium ore, raw Necoium blocks'],['Ambience','Mythic chime']]},
+  {id:'warm_mythic_caves',name:'Warm Mythic Caves',dim:'ow',gems:['citrine','topaz'],
+   desc:'The warm counterpart, with amber schist and glowing orange and yellow crystal. It takes the place of the cave biome in warmer regions.',
+   rows:[['Where','Overworld, Y -60 to 16'],['Coverage','Shares the 4% cave coverage with the cold variant'],['Climate','Warm and dry'],['Fog / Sky','<span class="swatch" style="background:#c0d8ff"></span>#C0D8FF / <span class="swatch" style="background:#7ba4ff"></span>#7BA4FF'],['Water','<span class="swatch" style="background:#3f76e4"></span>#3F76E4'],['Also contains','All vanilla ores, extra Necoium ore, raw Necoium blocks'],['Ambience','Mythic chime']]},
+  {id:'mythic_rifts',name:'Mythic Rifts',dim:'ne',gems:['ruby','sapphire'],
+   desc:'Violet-fogged tears in the Nether where ruby and sapphire crystal push through the netherrack. The purple haze makes a rift easy to spot from a distance.',
+   rows:[['Where','Nether, full height'],['Coverage','5% of the Nether, patches ~96 blocks in radius'],['Fog','<span class="swatch" style="background:#78307b"></span>#78307B (violet)'],['Water','<span class="swatch" style="background:#a147fc"></span>#A147FC'],['Also contains','Vanilla Nether ores'],['Ambience','Mythic chime']]},
+  {id:'mythic_barrens',name:'Mythic Barrens',dim:'end',gems:['ametrine','jade'],
+   desc:'Wide stretches of the outer End islands under a deep blue sky instead of the usual black. Ametrine and jade grow from the end stone.',
+   rows:[['Where','Outer End islands, beyond 1024 blocks from the center'],['Coverage','10% of the outer End, patches ~176 blocks in radius'],['Fog / Sky','<span class="swatch" style="background:#0b0e2e"></span>#0B0E2E (deep blue)'],['Water','<span class="swatch" style="background:#a080a0"></span>#A080A0'],['Ambience','Mythic chime']]}
+];
+document.getElementById('biomeList').innerHTML=BIOMES.map(b=>{
+  const rows=b.rows.map(([k,v])=>'<tr><td class="sk">'+k+'</td><td class="sv">'+v+'</td></tr>').join('');
+  const gems=b.gems.map(g=>'<span style="color:'+COLOR[g]+'">'+img('item/'+g+'.png')+cap(g)+'</span>').join('');
+  return '<div class="biome"><div><figure class="shot" data-shot="'+b.id+'"></figure></div><div><h3>'+b.name+' <span class="badge dim-'+b.dim+'">'+DIMNAME[b.dim]+'</span></h3><div class="gems">'+gems+'</div><p style="font-size:.9rem;color:var(--muted)">'+b.desc+'</p><table class="stat-table">'+rows+'</table>'
+    +'<div class="block-sub" style="margin-top:14px">What generates</div><p style="font-size:.82rem;color:var(--muted);margin:0">For each of its gems: large blobs of <b>schist</b>, veins of <b>crystal block</b>, clusters and buds growing on the walls, and <b>gem ore</b> (including a deepslate variant in the Overworld).</p></div></div>';
+}).join('');
+/* figures inside generated markup need the same treatment */
+document.querySelectorAll('#biomeList figure.shot').forEach(fig=>{
+  const key=fig.dataset.shot,info=SHOTS[key];
+  fig.innerHTML='<div class="shot-frame"><div class="ph"><b>'+info.title+'</b>Screenshot coming soon<br><span style="opacity:.7">'+SHOT_DIR+key+'.png</span></div><img src="'+SHOT_DIR+key+'.png" alt="'+info.caption+'" onload="this.parentElement.classList.add(\'loaded\');this.parentElement.querySelector(\'.ph\').remove()" onerror="this.remove()"></div><figcaption>'+info.caption+'</figcaption>';
+});
+
+const ORES=[
+  ...['aquamarine','peridot'].map(g=>({g,where:'Cold Mythic Caves<br>Y -64 to 32 (deepslate variant)'})),
+  ...['citrine','topaz'].map(g=>({g,where:'Warm Mythic Caves<br>Y -64 to 32 (deepslate variant)'})),
+  ...['ruby','sapphire'].map(g=>({g,where:'Mythic Rifts<br>Y 0 to 128'})),
+  ...['ametrine','jade'].map(g=>({g,where:'Mythic Barrens<br>Y 0 to 128'})),
+  {g:'necoium',where:'Entire Overworld, Y -64 to 16<br>Richer in Mythic Caves'}
+];
+document.getElementById('oreGrid').innerHTML=ORES.map(o=>'<div class="ore-card" style="--c:'+COLOR[o.g]+'">'+img('block/'+o.g+'_ore.png',cap(o.g)+' Ore')+'<div class="nm" style="color:'+COLOR[o.g]+'">'+cap(o.g)+' Ore</div><div class="where">'+o.where+'</div></div>').join('');
+
+/* ---------- recipes ---------- */
+const ing=(path,label,n)=>'<span class="ing">'+img(path,label,'title="'+label+'"')+(n?'<small>×'+n+'</small>':'')+'</span>';
+const recipe=(parts,label)=>'<div class="recipe">'+parts.join('')+'<span class="lbl">'+label+'</span></div>';
+const op=s=>'<span class="op">'+s+'</span>';
+document.getElementById('recNecoium').innerHTML=
+  recipe([ing('block/necoium_ore.png','Necoium Ore'),op('→'),ing('item/raw_necoium.png','Raw Necoium'),op('→ smelt →'),ing('item/necoium_ingot.png','Necoium Ingot')],'Furnace / Blast Furnace');
+document.getElementById('recIngot').innerHTML=
+  recipe([ing('item/ruby.png','Gem',4),op('+'),ing('item/necoium_ingot.png','Necoium Ingot',4),op('→'),ing('item/ruby_ingot.png','Gem Ingot')],'Crafting, shapeless (any gem)');
+document.getElementById('recTemplate').innerHTML=
+  recipe([ing('item/necoium_ingot.png','Necoium Ingot',7),op('+'),ing('block/necoium_block.png','Block of Necoium',1),op('+'),'<span class="ing"><img src="https://raw.githubusercontent.com/TriQue06/mythic-upgrades-multiloader/main/common/src/main/resources/assets/mythicupgrades/textures/item/mythic_upgrade_smithing_template.png" style="filter:grayscale(1) brightness(.8)" title="Netherite Upgrade Smithing Template"><small>Netherite template ×1</small></span>',op('→'),ing('item/mythic_upgrade_smithing_template.png','Mythic Upgrade Smithing Template')],'Crafting: I T I / I B I / I I I');
+document.getElementById('recSmith').innerHTML=
+  recipe([ing('item/mythic_upgrade_smithing_template.png','Template'),op('+'),'<span class="ing muted">Netherite or any Mythic item</span>',op('+'),ing('item/sapphire_ingot.png','Gem Ingot'),op('→'),ing('item/sapphire_sword.png','Mythic item')],'Smithing Table');
+document.getElementById('recCarrot').innerHTML=
+  recipe([ing('block/necoium_block.png','Block of Necoium',8),op('+'),'<span class="ing muted">Carrot or Golden Carrot</span>',op('→'),ing('item/necoium_carrot.png','Necoium Carrot')],'Crafting: blocks around the carrot');
+
+/* ---------- equipment ---------- */
+const EQUIP=[
+  {g:'aquamarine',armor:'Ice Shield',armorDesc:'Anything that hits you in melee is frozen in place.',armorStats:[['Attacker frozen for',t(S.ICE_SHIELD_FREEZE_TICKS)]],
+   tool:'Freeze &amp; Ice Bomb',toolDesc:'Freezes and slows the target and plants an Ice Bomb. If it dies while the bomb is active, it bursts: damage, a freeze and knockback to everything nearby.',
+   toolStats:[['Freeze',t(S.AQUAMARINE_TOOL_FREEZE_TICKS)],['Slowness I',t(S.AQUAMARINE_TOOL_SLOWNESS_DURATION_TICKS)],['Ice Bomb window',t(S.ICE_BOMB_TOOL_DURATION_TICKS)],['Burst',hp(S.ICE_BOMB_BURST_DAMAGE)+' in '+S.ICE_BOMB_BURST_RADIUS+' blocks']]},
+  {g:'citrine',armor:'Static Field',armorDesc:'A crackling field around you damages every creature inside once per second. The longer something stays in, the harder it is hit. Lightning striking near you is deflected away.',
+   armorStats:[['Field radius / level',S.STATIC_FIELD_RADIUS_PER_LEVEL+' blocks (4 at full set)'],['Damage / level / second',hp(S.STATIC_FIELD_DAMAGE_PER_LEVEL_PER_SECOND)],['Stacking','+'+p(S.STATIC_FIELD_STACK_DAMAGE_INCREASE)+' per hit, compounding'],['Stacks reset after',t(S.STATIC_FIELD_STACK_RESET_TICKS)+' outside the field'],['Lightning pushed',S.CITRINE_LIGHTNING_REDIRECT_DISTANCE+' blocks away']],
+   tool:'Chain Lightning &amp; Charged',toolDesc:'Arcs a share of your damage to the nearest enemies, briefly stuns the target and Charges it. A Charged target that dies calls down lightning.',
+   toolStats:[['Chain damage',p(S.CITRINE_TOOL_CHAIN_FRACTION)+' of the hit'],['Chain targets / range',S.CITRINE_TOOL_CHAIN_TARGETS+' within '+S.CITRINE_TOOL_CHAIN_RANGE+' blocks'],['Charged',t(S.CITRINE_TOOL_CHARGED_DURATION_TICKS)],['Lightning on kill',S.CITRINE_CHARGED_LIGHTNING_MIN+'–'+S.CITRINE_CHARGED_LIGHTNING_MAX+' bolts']]},
+  {g:'topaz',armor:'Topaz Reaction',armorDesc:'Taking a hit releases a shock wave that damages and knocks back everything around you. Fall damage is reduced, and the damage it saved is healed back as the landing also triggers a shock wave.',
+   armorStats:[['Shock radius / level',S.TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL+' block'],['Shock damage / level',hp(S.TOPAZ_SHOCK_DAMAGE_PER_LEVEL)],['Knockback / level','+'+S.TOPAZ_SHOCK_KNOCKBACK_PER_LEVEL],['Fall damage reduction / level',p(S.TOPAZ_FALL_REDUCTION_PER_LEVEL)+' (50% at full set)']],
+   tool:'Shock Wave',toolDesc:'Every third hit, or every third block broken, releases a full-strength shock wave, equivalent to a level 5 Topaz Reaction.',
+   toolStats:[['Trigger','every '+S.TOPAZ_TOOL_SHOCK_INTERVAL+' hits / blocks'],['Shock radius',S.TOPAZ_TOOL_EFFECTIVE_LEVEL*S.TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL+' blocks'],['Shock damage',hp(S.TOPAZ_TOOL_EFFECTIVE_LEVEL*S.TOPAZ_SHOCK_DAMAGE_PER_LEVEL)]]},
+  {g:'peridot',armor:'Miasma',armorDesc:'Every 10 seconds you exhale a poison cloud. You are immune to poison while wearing it. Your own tamed pets and your teammates are spared.',
+   armorStats:[['Cloud radius / level',S.MIASMA_CLOUD_RADIUS_PER_LEVEL+' block'],['Poison level','equal to your set level'],['Poison duration',t(S.MIASMA_POISON_DURATION_TICKS)],['Interval',t(S.MIASMA_INTERVAL_TICKS)]],
+   tool:'Lethal Incubation',toolDesc:'Infects the target. If it dies while infected, its body bursts, dealing damage, poisoning and knocking back everything nearby.',
+   toolStats:[['Infection',t(S.LETHAL_INCUBATION_TOOL_DURATION_TICKS)+' (level III)'],['Burst',hp(S.LETHAL_INCUBATION_SHOCK_DAMAGE)+' in '+S.LETHAL_INCUBATION_SHOCK_RADIUS+' blocks'],['Burst poison',t(S.LETHAL_INCUBATION_POISON_DURATION_TICKS)]]},
+  {g:'ruby',armor:'Blood Thirst',armorDesc:'Whenever any creature near you takes damage, from you, your allies or anything else, you heal a share of it. Your own hits heal you too.',
+   armorStats:[['Radius / level',S.BLOOD_THIRST_RADIUS_PER_LEVEL+' blocks (30 at full set)'],['Heal / level',p(S.BLOOD_THIRST_HEAL_FRACTION_PER_LEVEL)+' of damage dealt']],
+   tool:'Lifesteal',toolDesc:'Heals you for part of the damage you deal. Breaking blocks or using the tool on blocks also restores a little health.',
+   toolStats:[['Lifesteal',p(S.RUBY_TOOL_LIFESTEAL_FRACTION)+' + 1 HP'],['Block break / use','+'+hp(S.RUBY_TOOL_INTERACTION_HEAL)]]},
+  {g:'sapphire',armor:'Damage Deflection',armorDesc:'Reflects part of the damage you take back to your attacker, plus flat bonus damage.',
+   armorStats:[['Reflected / level',p(S.DEFLECT_PER_LEVEL)+' of damage taken'],['Bonus damage / level',hp(S.DEFLECT_BONUS_DAMAGE_PER_LEVEL)+', max '+S.DEFLECT_BONUS_DAMAGE_MAX]],
+   tool:'Percent Damage',toolDesc:'Every hit deals bonus damage based on the target\'s maximum health, which is strongest against bosses and tanky mobs. Sapphire tools also have +1 base damage.',
+   toolStats:[['Bonus damage',p(S.SAPPHIRE_TOOL_PERCENT_DAMAGE)+' of target max health'],['Cap',hp(S.SAPPHIRE_TOOL_PERCENT_DAMAGE_CAP)]]},
+  {g:'jade',armor:'Jade Aura',armorDesc:'Makes you faster and lets you jump higher, without extra fall damage from the higher jumps. You leave a jade trail: creatures that walk through it get Speed and Jump Boost, and anyone right next to you shares a weaker Jade Aura.',
+   armorStats:[['Speed / level','+'+p(S.JADE_AURA_SPEED_PER_LEVEL)],['Jump / level','+'+S.JADE_AURA_JUMP_PER_LEVEL+' velocity'],['Trail lasts',t(S.JADE_TRAIL_DURATION_TICKS)],['Trail boost duration',t(S.JADE_TRAIL_CONTACT_EFFECT_DURATION_TICKS)]],
+   tool:'Jade Aura Burst',toolDesc:'Hitting, mining or using the tool gives you a short burst of Jade Aura V. Hits have a chance to teleport the target away.',
+   toolStats:[['Jade Aura V',t(S.JADE_TOOL_AURA_DURATION_TICKS)],['Teleport chance',p(S.JADE_TOOL_TELEPORT_CHANCE)]]},
+  {g:'ametrine',armor:'Arcane Aura',armorDesc:'Whenever you are hit, a wave of arcane force lifts every creature around you into the air. Higher levels mean a wider wave and a stronger lift.',
+   armorStats:[['Radius / level',S.ARCANE_AURA_RADIUS_PER_LEVEL+' block'],['Levitation level','equal to your set level'],['Levitation duration',t(S.ARCANE_AURA_LEVITATION_DURATION_TICKS)]],
+   tool:'Levitation',toolDesc:'Sends the target floating upward, with a chance to teleport it away.',
+   toolStats:[['Levitation III',t(S.AMETRINE_TOOL_LEVITATION_DURATION_TICKS)],['Teleport chance',p(S.AMETRINE_TOOL_TELEPORT_CHANCE)]]}
+];
+const AS=['helmet','chestplate','leggings','boots'],TT=['sword','pickaxe','axe','shovel','hoe'],LV=[2,3,3,2];
+const sr=pairs=>pairs.map(([k,v])=>'<tr><td class="sk">'+k+'</td><td class="sv">'+v+'</td></tr>').join('');
+document.getElementById('equipGrid').innerHTML=EQUIP.map(e=>{
+  const c=COLOR[e.g],b='item/'+e.g;
+  return '<div class="equip-card" style="--c:'+c+'"><div class="equip-header">'+img(b+'.png')+'<div><div class="nm">'+cap(e.g)+'</div><div class="role">'+ROLE[e.g][0]+' · '+HOME[e.g]+'</div></div></div><div class="equip-body">'
+   +'<div class="item-row">'+AS.map((s,i)=>img(b+'_'+s+'.png',cap(e.g)+' '+cap(s),'title="'+cap(e.g)+' '+cap(s)+' (+'+LV[i]+' levels)"')).join('')+TT.map(s=>img(b+'_'+s+'.png',cap(e.g)+' '+cap(s),'title="'+cap(e.g)+' '+cap(s)+'"')).join('')+'</div>'
+   +'<div class="ability-label">Armor · '+e.armor+'</div><div class="ability-desc">'+e.armorDesc+'</div><table class="stat-table">'+sr(e.armorStats)+'</table>'
+   +'<div class="ability-label">Tools · '+e.tool+'</div><div class="ability-desc">'+e.toolDesc+'</div><table class="stat-table">'+sr(e.toolStats)+'</table></div></div>';
+}).join('');
+
+/* ---------- effects ---------- */
+const EFF=[
+  {id:'damage_deflection',name:'Damage Deflection',g:'sapphire',good:1,src:'Sapphire armor · potion · shard',desc:'Reflects damage you take back to the attacker, plus flat bonus damage.',stats:[['Reflected / level',p(S.DEFLECT_PER_LEVEL)],['Bonus / level',hp(S.DEFLECT_BONUS_DAMAGE_PER_LEVEL)+' (max '+S.DEFLECT_BONUS_DAMAGE_MAX+')']]},
+  {id:'arcane_aura',name:'Arcane Aura',g:'ametrine',good:1,src:'Ametrine armor · potion · shard',desc:'When hit, applies Levitation to everything nearby.',stats:[['Radius / level',S.ARCANE_AURA_RADIUS_PER_LEVEL+' block'],['Levitation',t(S.ARCANE_AURA_LEVITATION_DURATION_TICKS)]]},
+  {id:'topaz_reaction',name:'Topaz Reaction',g:'topaz',good:1,src:'Topaz armor · potion · shard',desc:'Shock wave when hit or on landing; reduces fall damage.',stats:[['Radius / level',S.TOPAZ_ARMOR_SHOCK_RADIUS_PER_LEVEL+' block'],['Damage / level',hp(S.TOPAZ_SHOCK_DAMAGE_PER_LEVEL)],['Fall reduction / level',p(S.TOPAZ_FALL_REDUCTION_PER_LEVEL)]]},
+  {id:'blood_thirst',name:'Blood Thirst',g:'ruby',good:1,src:'Ruby armor · potion · shard',desc:'Heals you from damage taken by anything nearby, and from your own hits.',stats:[['Radius / level',S.BLOOD_THIRST_RADIUS_PER_LEVEL+' blocks'],['Heal / level',p(S.BLOOD_THIRST_HEAL_FRACTION_PER_LEVEL)]]},
+  {id:'miasma',name:'Miasma',g:'peridot',good:1,src:'Peridot armor · potion · shard',desc:'Periodic poison cloud around you; grants poison immunity.',stats:[['Radius / level',S.MIASMA_CLOUD_RADIUS_PER_LEVEL+' block'],['Every',t(S.MIASMA_INTERVAL_TICKS)]]},
+  {id:'ice_shield',name:'Ice Shield',g:'aquamarine',good:1,src:'Aquamarine armor · potion · shard',desc:'Freezes melee attackers.',stats:[['Freeze',t(S.ICE_SHIELD_FREEZE_TICKS)]]},
+  {id:'static_field',name:'Static Field',g:'citrine',good:1,src:'Citrine armor · potion · shard',desc:'Damaging electric field with stacking damage; deflects lightning.',stats:[['Radius / level',S.STATIC_FIELD_RADIUS_PER_LEVEL+' blocks'],['Damage / level / s',hp(S.STATIC_FIELD_DAMAGE_PER_LEVEL_PER_SECOND)]]},
+  {id:'jade_aura',name:'Jade Aura',g:'jade',good:1,src:'Jade armor & tools · potion · shard',desc:'Speed, jump height and a boosting trail.',stats:[['Speed / level',p(S.JADE_AURA_SPEED_PER_LEVEL)],['Jump / level','+'+S.JADE_AURA_JUMP_PER_LEVEL]]},
+  {id:'necoium_share',name:'Necoium Share',g:'necoium',good:1,src:'Necoium Carrot · potion',desc:'Links you to nearby players with the same effect and shares everyone\'s strongest Mythic abilities. See Necoium Share.',stats:[['Link range','30 blocks, chained'],['From carrot','5:00']]},
+  {id:'freeze',name:'Freeze',g:'aquamarine',good:0,src:'Aquamarine & Citrine tools · Ice Shield · potion',desc:'The target is frozen solid and cannot move, like powder snow.',stats:[['From Aquamarine tools',t(S.AQUAMARINE_TOOL_FREEZE_TICKS)]]},
+  {id:'ice_bomb',name:'Ice Bomb',g:'aquamarine',good:0,src:'Aquamarine tools · potion',desc:'If the target dies with this effect, it explodes into a freezing burst.',stats:[['Burst',hp(S.ICE_BOMB_BURST_DAMAGE)+' in '+S.ICE_BOMB_BURST_RADIUS+' blocks'],['Burst freeze',t(S.ICE_BOMB_BURST_FREEZE_TICKS)]]},
+  {id:'charged',name:'Charged',g:'citrine',good:0,src:'Citrine tools · potion',desc:'If the target dies with this effect, lightning strikes around it.',stats:[['Bolts',S.CITRINE_CHARGED_LIGHTNING_MIN+'–'+S.CITRINE_CHARGED_LIGHTNING_MAX]]},
+  {id:'lethal_incubation',name:'Lethal Incubation',g:'peridot',good:0,src:'Peridot tools · potion',desc:'If the target dies with this effect, it bursts with poison. Poison strength follows the effect level.',stats:[['Burst',hp(S.LETHAL_INCUBATION_SHOCK_DAMAGE)+' in '+S.LETHAL_INCUBATION_SHOCK_RADIUS+' blocks'],['Poison',t(S.LETHAL_INCUBATION_POISON_DURATION_TICKS)]]}
+];
+document.getElementById('effectList').innerHTML=EFF.map(e=>'<div class="effect-card" style="--c:'+COLOR[e.g]+'"><div class="effect-icon-col">'+img('mob_effect/'+e.id+'.png',e.name)+'</div><div class="effect-content"><div class="effect-name-row"><span class="effect-name">'+e.name+'</span><span class="badge '+(e.good?'b-good">Beneficial':'b-bad">Harmful')+'</span><span class="source-tag">'+e.src+'</span></div><div class="effect-desc">'+e.desc+'</div><table class="stat-table">'+sr(e.stats)+'</table></div></div>').join('');
+
+/* ---------- brewing ---------- */
+document.getElementById('shardRow').innerHTML=GEMS.map(g=>'<div class="tile" style="--c:'+COLOR[g]+'">'+img('item/'+g+'_crystal_shard.png',cap(g)+' Crystal Shard')+'<span>'+cap(g)+' Crystal Shard<br><b style="color:'+COLOR[g]+'">'+EFF.find(e=>e.g===g&&e.good).name+'</b></span></div>').join('');
+const POT=[['aquamarine','Ice Shield'],['citrine','Static Field'],['topaz','Topaz Reaction'],['peridot','Miasma'],['ruby','Blood Thirst'],['sapphire','Damage Deflection'],['jade','Jade Aura'],['ametrine','Arcane Aura']];
+document.getElementById('potionTable').innerHTML='<tr><th>Ingredient</th><th>Potion</th><th>Base</th><th>+ Redstone</th><th>+ Glowstone</th></tr>'
+  +POT.map(([g,n])=>'<tr><td>'+img('item/'+g+'_crystal_shard.png')+cap(g)+' Crystal Shard</td><td style="color:'+COLOR[g]+'">'+n+'</td><td>III · 3:00</td><td>III · 8:00</td><td>V · 1:30</td></tr>').join('')
+  +'<tr><td>'+img('item/necoium_ingot.png')+'Necoium Ingot</td><td style="color:'+COLOR.necoium+'">Necoium Share</td><td>1:30</td><td>4:00</td><td>–</td></tr>';
+document.getElementById('corruptTable').innerHTML='<tr><th>From</th><th>+ Fermented Spider Eye</th><th>Levels</th></tr>'
+  +'<tr><td style="color:'+COLOR.aquamarine+'">Ice Shield</td><td>Ice Bomb</td><td rowspan="4">III · 3:00 / III · 8:00 / V · 1:30</td></tr>'
+  +'<tr><td style="color:'+COLOR.aquamarine+'">Ice Bomb</td><td>Freeze</td></tr>'
+  +'<tr><td style="color:'+COLOR.citrine+'">Static Field</td><td>Charged</td></tr>'
+  +'<tr><td style="color:'+COLOR.peridot+'">Miasma</td><td>Lethal Incubation</td></tr>';
+
+/* ---------- blocks ---------- */
+const tile=(tex,label,c)=>'<div class="tile" style="--c:'+c+'"><img src="'+RAW+'block/'+tex+'.png" alt="'+label+'" onerror="this.parentElement.style.display=\'none\'"><span>'+label+'</span></div>';
+const sub=l=>'<div class="block-sub">'+l+'</div><div class="tile-row">';
+function gemBlocks(id){
+  const c=COLOR[id],C=cap(id);
+  let h='<div class="gem-section" style="--c:'+c+'"><div class="gem-section-header">'+img('item/'+id+'.png')+C+'</div>';
+  h+=sub('Ore &amp; Storage')+tile(id+'_ore',C+' Ore',c)+(CAVE.includes(id)?tile('deepslate_'+id+'_ore','Deepslate '+C+' Ore',c):'')+tile(id+'_block','Block of '+C,c)+'</div>';
+  h+=sub('Crystal Growth')+tile('budding_'+id+'_crystal','Budding '+C+' Crystal',c)+tile('small_'+id+'_crystal_bud','Small Bud',c)+tile('medium_'+id+'_crystal_bud','Medium Bud',c)+tile('large_'+id+'_crystal_bud','Large Bud',c)+tile(id+'_crystal_cluster',C+' Crystal Cluster',c)+'</div>';
+  h+=sub('Crystal Building Blocks')
+    +tile(id+'_crystal_block',C+' Crystal Block',c)+tile(id+'_crystal_block',C+' Crystal Block Slab',c)+tile(id+'_crystal_block',C+' Crystal Block Stairs',c)
+    +tile('polished_'+id+'_crystal_block','Polished '+C+' Crystal Block',c)+tile('polished_'+id+'_crystal_block','Polished Slab',c)+tile('polished_'+id+'_crystal_block','Polished Stairs',c)+tile('polished_'+id+'_crystal_block','Polished Wall',c)
+    +tile(id+'_crystal_bricks',C+' Crystal Bricks',c)+tile(id+'_crystal_bricks','Bricks Slab',c)+tile(id+'_crystal_bricks','Bricks Stairs',c)+tile(id+'_crystal_bricks','Bricks Wall',c)
+    +tile(id+'_crystal_pillar',C+' Crystal Pillar',c)+tile('cut_'+id+'_crystal_pillar','Cut '+C+' Crystal Pillar',c)+'</div>';
+  h+=sub('Schist (biome stone)')
+    +tile(id+'_schist',C+' Schist',c)+tile(id+'_schist','Schist Slab',c)+tile(id+'_schist','Schist Stairs',c)+tile(id+'_schist','Schist Wall',c)
+    +tile('polished_'+id+'_schist','Polished '+C+' Schist',c)+tile('polished_'+id+'_schist','Polished Slab',c)+tile('polished_'+id+'_schist','Polished Stairs',c)+tile('polished_'+id+'_schist','Polished Wall',c)+'</div>';
+  return h+'</div>';
+}
+const nc=COLOR.necoium;
+document.getElementById('blockContent').innerHTML=GEMS.map(gemBlocks).join('')
+  +'<div class="gem-section" style="--c:'+nc+'"><div class="gem-section-header">'+img('item/necoium_ingot.png')+'Necoium</div>'+sub('Ore &amp; Storage')
+  +tile('necoium_ore','Necoium Ore',nc)+tile('deepslate_necoium_ore','Deepslate Necoium Ore',nc)+tile('raw_necoium_block','Block of Raw Necoium',nc)+tile('necoium_block','Block of Necoium',nc)+'</div></div>';
+
+/* ---------- items ---------- */
+const itile=(tex,label,c)=>'<div class="tile" style="--c:'+(c||'var(--brd)')+'"><img src="'+RAW+'item/'+tex+'.png" alt="'+label+'" onerror="this.parentElement.style.display=\'none\'"><span>'+label+'</span></div>';
+let ih='<h3 style="margin-top:0">Gems &amp; Ingots</h3><p class="muted" style="font-size:.88rem">Raw gems are mined from ores; ingots are crafted from 4 gems + 4 Necoium Ingots and are what upgrades gear and repairs it.</p><div class="tile-row" style="margin-bottom:26px">';
+GEMS.forEach(g=>{ih+=itile(g,cap(g),COLOR[g])+itile(g+'_ingot',cap(g)+' Ingot',COLOR[g]);});
+ih+='</div><h3>Necoium</h3><div class="tile-row" style="margin-bottom:26px">'+itile('raw_necoium','Raw Necoium',nc)+itile('necoium_ingot','Necoium Ingot',nc)+itile('necoium_carrot','Necoium Carrot',nc)+'</div>';
+ih+='<h3>Crystal Shards</h3><p class="muted" style="font-size:.88rem">Dropped by crystal clusters. Edible (level III ability for 1:30), brewable, and used for crystal blocks and schist.</p><div class="tile-row" style="margin-bottom:26px">';
+GEMS.forEach(g=>{ih+=itile(g+'_crystal_shard',cap(g)+' Crystal Shard',COLOR[g]);});
+ih+='</div><h3>Smithing</h3><div class="tile-row">'+itile('mythic_upgrade_smithing_template','Mythic Upgrade Smithing Template','#c0a020')+'</div>';
+document.getElementById('itemContent').innerHTML=ih;
+
+/* ---------- navigation (hash based, so sections can be linked) ---------- */
+const buttons=[...document.querySelectorAll('#nav button')];
+function show(id){
+  if(!document.getElementById(id)) id='overview';
+  document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id===id));
+  buttons.forEach(b=>b.classList.toggle('active',b.dataset.s===id));
+  window.scrollTo(0,0);
+}
+buttons.forEach(b=>b.addEventListener('click',()=>{location.hash=b.dataset.s;}));
+window.addEventListener('hashchange',()=>show(location.hash.slice(1)));
+show(location.hash.slice(1)||'overview');
+</script>
+</body>
+</html>
