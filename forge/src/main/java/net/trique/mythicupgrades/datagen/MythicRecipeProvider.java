@@ -160,6 +160,23 @@ public class MythicRecipeProvider extends RecipeProvider {
         armorTrim(writer, MythicItems.AMETRINE_LEGGINGS, "ametrine_leggings");
         armorTrim(writer, MythicItems.AMETRINE_BOOTS, "ametrine_boots");
 
+        polishedWall(writer, MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK, MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK_WALL, "polished_aquamarine_crystal_block");
+        polishedWall(writer, MythicBlocks.POLISHED_CITRINE_CRYSTAL_BLOCK, MythicBlocks.POLISHED_CITRINE_CRYSTAL_BLOCK_WALL, "polished_citrine_crystal_block");
+        polishedWall(writer, MythicBlocks.POLISHED_TOPAZ_CRYSTAL_BLOCK, MythicBlocks.POLISHED_TOPAZ_CRYSTAL_BLOCK_WALL, "polished_topaz_crystal_block");
+        polishedWall(writer, MythicBlocks.POLISHED_PERIDOT_CRYSTAL_BLOCK, MythicBlocks.POLISHED_PERIDOT_CRYSTAL_BLOCK_WALL, "polished_peridot_crystal_block");
+        polishedWall(writer, MythicBlocks.POLISHED_RUBY_CRYSTAL_BLOCK, MythicBlocks.POLISHED_RUBY_CRYSTAL_BLOCK_WALL, "polished_ruby_crystal_block");
+        polishedWall(writer, MythicBlocks.POLISHED_SAPPHIRE_CRYSTAL_BLOCK, MythicBlocks.POLISHED_SAPPHIRE_CRYSTAL_BLOCK_WALL, "polished_sapphire_crystal_block");
+        polishedWall(writer, MythicBlocks.POLISHED_JADE_CRYSTAL_BLOCK, MythicBlocks.POLISHED_JADE_CRYSTAL_BLOCK_WALL, "polished_jade_crystal_block");
+        polishedWall(writer, MythicBlocks.POLISHED_AMETRINE_CRYSTAL_BLOCK, MythicBlocks.POLISHED_AMETRINE_CRYSTAL_BLOCK_WALL, "polished_ametrine_crystal_block");
+        polishedWall(writer, MythicBlocks.POLISHED_AQUAMARINE_SCHIST, MythicBlocks.POLISHED_AQUAMARINE_SCHIST_WALL, "polished_aquamarine_schist");
+        polishedWall(writer, MythicBlocks.POLISHED_CITRINE_SCHIST, MythicBlocks.POLISHED_CITRINE_SCHIST_WALL, "polished_citrine_schist");
+        polishedWall(writer, MythicBlocks.POLISHED_TOPAZ_SCHIST, MythicBlocks.POLISHED_TOPAZ_SCHIST_WALL, "polished_topaz_schist");
+        polishedWall(writer, MythicBlocks.POLISHED_PERIDOT_SCHIST, MythicBlocks.POLISHED_PERIDOT_SCHIST_WALL, "polished_peridot_schist");
+        polishedWall(writer, MythicBlocks.POLISHED_RUBY_SCHIST, MythicBlocks.POLISHED_RUBY_SCHIST_WALL, "polished_ruby_schist");
+        polishedWall(writer, MythicBlocks.POLISHED_SAPPHIRE_SCHIST, MythicBlocks.POLISHED_SAPPHIRE_SCHIST_WALL, "polished_sapphire_schist");
+        polishedWall(writer, MythicBlocks.POLISHED_JADE_SCHIST, MythicBlocks.POLISHED_JADE_SCHIST_WALL, "polished_jade_schist");
+        polishedWall(writer, MythicBlocks.POLISHED_AMETRINE_SCHIST, MythicBlocks.POLISHED_AMETRINE_SCHIST_WALL, "polished_ametrine_schist");
+
         stoneBlocks(writer, MythicItems.AQUAMARINE_CRYSTAL_SHARD,
             MythicBlocks.AQUAMARINE_SCHIST, MythicBlocks.AQUAMARINE_SCHIST_SLAB, MythicBlocks.AQUAMARINE_SCHIST_STAIRS, MythicBlocks.AQUAMARINE_SCHIST_WALL,
             MythicBlocks.POLISHED_AQUAMARINE_SCHIST, MythicBlocks.POLISHED_AQUAMARINE_SCHIST_SLAB, MythicBlocks.POLISHED_AQUAMARINE_SCHIST_STAIRS,
@@ -278,6 +295,16 @@ public class MythicRecipeProvider extends RecipeProvider {
                     .unlockedBy("has_" + inputName, has(input))
                     .save(writer, new ResourceLocation(Constants.MOD_ID, idPrefix + "_from_blasting_" + inputName));
         }
+    }
+
+    private void polishedWall(Consumer<FinishedRecipe> writer, Block polished, Block wall, String name) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, wall, 6)
+            .define('B', polished).pattern("BBB").pattern("BBB")
+            .unlockedBy("has_" + name, has(polished))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, name + "_wall_from_" + name));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(polished), RecipeCategory.BUILDING_BLOCKS, wall)
+            .unlockedBy("has_" + name, has(polished))
+            .save(writer, new ResourceLocation(Constants.MOD_ID, name + "_wall_from_stonecutting"));
     }
 
     private void storageBlock(Consumer<FinishedRecipe> writer, Item material, Block block, String name) {

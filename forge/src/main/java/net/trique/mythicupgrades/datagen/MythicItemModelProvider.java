@@ -150,12 +150,14 @@ public class MythicItemModelProvider extends ItemModelProvider {
         blockItem(gem + "_crystal_bricks_slab");
         blockItem(gem + "_crystal_bricks_stairs");
         wallItem(gem + "_crystal_bricks_wall", gem + "_crystal_bricks");
+        wallItem("polished_" + gem + "_crystal_block_wall", "polished_" + gem + "_crystal_block");
         blockItem(gem + "_crystal_pillar");
         blockItem("cut_" + gem + "_crystal_pillar");
         blockItem(gem + "_schist");
         blockItem(gem + "_schist_slab");
         blockItem(gem + "_schist_stairs");
         wallItem(gem + "_schist_wall", gem + "_schist");
+        wallItem("polished_" + gem + "_schist_wall", "polished_" + gem + "_schist");
         blockItem("polished_" + gem + "_schist");
         blockItem("polished_" + gem + "_schist_slab");
         blockItem("polished_" + gem + "_schist_stairs");

@@ -110,6 +110,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         add(MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK);
         dropSelf(MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK_STAIRS);
+        dropSelf(MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK_WALL);
         add(MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.AQUAMARINE_CRYSTAL_BRICKS);
         dropSelf(MythicBlocks.AQUAMARINE_CRYSTAL_BRICKS_STAIRS);
@@ -122,6 +123,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         add(MythicBlocks.CITRINE_CRYSTAL_BLOCK_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.POLISHED_CITRINE_CRYSTAL_BLOCK);
         dropSelf(MythicBlocks.POLISHED_CITRINE_CRYSTAL_BLOCK_STAIRS);
+        dropSelf(MythicBlocks.POLISHED_CITRINE_CRYSTAL_BLOCK_WALL);
         add(MythicBlocks.POLISHED_CITRINE_CRYSTAL_BLOCK_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.CITRINE_CRYSTAL_BRICKS);
         dropSelf(MythicBlocks.CITRINE_CRYSTAL_BRICKS_STAIRS);
@@ -134,6 +136,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         add(MythicBlocks.TOPAZ_CRYSTAL_BLOCK_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.POLISHED_TOPAZ_CRYSTAL_BLOCK);
         dropSelf(MythicBlocks.POLISHED_TOPAZ_CRYSTAL_BLOCK_STAIRS);
+        dropSelf(MythicBlocks.POLISHED_TOPAZ_CRYSTAL_BLOCK_WALL);
         add(MythicBlocks.POLISHED_TOPAZ_CRYSTAL_BLOCK_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.TOPAZ_CRYSTAL_BRICKS);
         dropSelf(MythicBlocks.TOPAZ_CRYSTAL_BRICKS_STAIRS);
@@ -146,6 +149,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         add(MythicBlocks.PERIDOT_CRYSTAL_BLOCK_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.POLISHED_PERIDOT_CRYSTAL_BLOCK);
         dropSelf(MythicBlocks.POLISHED_PERIDOT_CRYSTAL_BLOCK_STAIRS);
+        dropSelf(MythicBlocks.POLISHED_PERIDOT_CRYSTAL_BLOCK_WALL);
         add(MythicBlocks.POLISHED_PERIDOT_CRYSTAL_BLOCK_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.PERIDOT_CRYSTAL_BRICKS);
         dropSelf(MythicBlocks.PERIDOT_CRYSTAL_BRICKS_STAIRS);
@@ -158,6 +162,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         add(MythicBlocks.RUBY_CRYSTAL_BLOCK_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.POLISHED_RUBY_CRYSTAL_BLOCK);
         dropSelf(MythicBlocks.POLISHED_RUBY_CRYSTAL_BLOCK_STAIRS);
+        dropSelf(MythicBlocks.POLISHED_RUBY_CRYSTAL_BLOCK_WALL);
         add(MythicBlocks.POLISHED_RUBY_CRYSTAL_BLOCK_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.RUBY_CRYSTAL_BRICKS);
         dropSelf(MythicBlocks.RUBY_CRYSTAL_BRICKS_STAIRS);
@@ -170,6 +175,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         add(MythicBlocks.SAPPHIRE_CRYSTAL_BLOCK_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.POLISHED_SAPPHIRE_CRYSTAL_BLOCK);
         dropSelf(MythicBlocks.POLISHED_SAPPHIRE_CRYSTAL_BLOCK_STAIRS);
+        dropSelf(MythicBlocks.POLISHED_SAPPHIRE_CRYSTAL_BLOCK_WALL);
         add(MythicBlocks.POLISHED_SAPPHIRE_CRYSTAL_BLOCK_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.SAPPHIRE_CRYSTAL_BRICKS);
         dropSelf(MythicBlocks.SAPPHIRE_CRYSTAL_BRICKS_STAIRS);
@@ -182,6 +188,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         add(MythicBlocks.JADE_CRYSTAL_BLOCK_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.POLISHED_JADE_CRYSTAL_BLOCK);
         dropSelf(MythicBlocks.POLISHED_JADE_CRYSTAL_BLOCK_STAIRS);
+        dropSelf(MythicBlocks.POLISHED_JADE_CRYSTAL_BLOCK_WALL);
         add(MythicBlocks.POLISHED_JADE_CRYSTAL_BLOCK_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.JADE_CRYSTAL_BRICKS);
         dropSelf(MythicBlocks.JADE_CRYSTAL_BRICKS_STAIRS);
@@ -194,6 +201,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         add(MythicBlocks.AMETRINE_CRYSTAL_BLOCK_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.POLISHED_AMETRINE_CRYSTAL_BLOCK);
         dropSelf(MythicBlocks.POLISHED_AMETRINE_CRYSTAL_BLOCK_STAIRS);
+        dropSelf(MythicBlocks.POLISHED_AMETRINE_CRYSTAL_BLOCK_WALL);
         add(MythicBlocks.POLISHED_AMETRINE_CRYSTAL_BLOCK_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.AMETRINE_CRYSTAL_BRICKS);
         dropSelf(MythicBlocks.AMETRINE_CRYSTAL_BRICKS_STAIRS);
@@ -209,6 +217,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         dropSelf(MythicBlocks.POLISHED_AQUAMARINE_SCHIST);
         add(MythicBlocks.POLISHED_AQUAMARINE_SCHIST_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.POLISHED_AQUAMARINE_SCHIST_STAIRS);
+        dropSelf(MythicBlocks.POLISHED_AQUAMARINE_SCHIST_WALL);
 
         dropSelf(MythicBlocks.CITRINE_SCHIST);
         add(MythicBlocks.CITRINE_SCHIST_SLAB, this::createSlabItemTable);
@@ -217,6 +226,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         dropSelf(MythicBlocks.POLISHED_CITRINE_SCHIST);
         add(MythicBlocks.POLISHED_CITRINE_SCHIST_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.POLISHED_CITRINE_SCHIST_STAIRS);
+        dropSelf(MythicBlocks.POLISHED_CITRINE_SCHIST_WALL);
 
         dropSelf(MythicBlocks.TOPAZ_SCHIST);
         add(MythicBlocks.TOPAZ_SCHIST_SLAB, this::createSlabItemTable);
@@ -225,6 +235,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         dropSelf(MythicBlocks.POLISHED_TOPAZ_SCHIST);
         add(MythicBlocks.POLISHED_TOPAZ_SCHIST_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.POLISHED_TOPAZ_SCHIST_STAIRS);
+        dropSelf(MythicBlocks.POLISHED_TOPAZ_SCHIST_WALL);
 
         dropSelf(MythicBlocks.PERIDOT_SCHIST);
         add(MythicBlocks.PERIDOT_SCHIST_SLAB, this::createSlabItemTable);
@@ -233,6 +244,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         dropSelf(MythicBlocks.POLISHED_PERIDOT_SCHIST);
         add(MythicBlocks.POLISHED_PERIDOT_SCHIST_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.POLISHED_PERIDOT_SCHIST_STAIRS);
+        dropSelf(MythicBlocks.POLISHED_PERIDOT_SCHIST_WALL);
 
         dropSelf(MythicBlocks.RUBY_SCHIST);
         add(MythicBlocks.RUBY_SCHIST_SLAB, this::createSlabItemTable);
@@ -241,6 +253,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         dropSelf(MythicBlocks.POLISHED_RUBY_SCHIST);
         add(MythicBlocks.POLISHED_RUBY_SCHIST_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.POLISHED_RUBY_SCHIST_STAIRS);
+        dropSelf(MythicBlocks.POLISHED_RUBY_SCHIST_WALL);
 
         dropSelf(MythicBlocks.SAPPHIRE_SCHIST);
         add(MythicBlocks.SAPPHIRE_SCHIST_SLAB, this::createSlabItemTable);
@@ -249,6 +262,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         dropSelf(MythicBlocks.POLISHED_SAPPHIRE_SCHIST);
         add(MythicBlocks.POLISHED_SAPPHIRE_SCHIST_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.POLISHED_SAPPHIRE_SCHIST_STAIRS);
+        dropSelf(MythicBlocks.POLISHED_SAPPHIRE_SCHIST_WALL);
 
         dropSelf(MythicBlocks.JADE_SCHIST);
         add(MythicBlocks.JADE_SCHIST_SLAB, this::createSlabItemTable);
@@ -257,6 +271,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         dropSelf(MythicBlocks.POLISHED_JADE_SCHIST);
         add(MythicBlocks.POLISHED_JADE_SCHIST_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.POLISHED_JADE_SCHIST_STAIRS);
+        dropSelf(MythicBlocks.POLISHED_JADE_SCHIST_WALL);
 
         dropSelf(MythicBlocks.AMETRINE_SCHIST);
         add(MythicBlocks.AMETRINE_SCHIST_SLAB, this::createSlabItemTable);
@@ -265,6 +280,7 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
         dropSelf(MythicBlocks.POLISHED_AMETRINE_SCHIST);
         add(MythicBlocks.POLISHED_AMETRINE_SCHIST_SLAB, this::createSlabItemTable);
         dropSelf(MythicBlocks.POLISHED_AMETRINE_SCHIST_STAIRS);
+        dropSelf(MythicBlocks.POLISHED_AMETRINE_SCHIST_WALL);
     }
 
     private LootTable.Builder createClusterDrop(Block block, Item shard) {
@@ -319,68 +335,68 @@ public class MythicBlockLootTables extends BlockLootSubProvider {
             MythicBlocks.MEDIUM_AMETRINE_CRYSTAL_BUD, MythicBlocks.SMALL_AMETRINE_CRYSTAL_BUD,
             MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK_SLAB, MythicBlocks.AQUAMARINE_CRYSTAL_BLOCK_STAIRS,
             MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK, MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK_SLAB,
-            MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK_STAIRS,
+            MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK_STAIRS, MythicBlocks.POLISHED_AQUAMARINE_CRYSTAL_BLOCK_WALL,
             MythicBlocks.AQUAMARINE_CRYSTAL_BRICKS, MythicBlocks.AQUAMARINE_CRYSTAL_BRICKS_SLAB,
             MythicBlocks.AQUAMARINE_CRYSTAL_BRICKS_STAIRS, MythicBlocks.AQUAMARINE_CRYSTAL_BRICKS_WALL,
             MythicBlocks.AQUAMARINE_CRYSTAL_PILLAR, MythicBlocks.CUT_AQUAMARINE_CRYSTAL_PILLAR,
             MythicBlocks.CITRINE_CRYSTAL_BLOCK_SLAB, MythicBlocks.CITRINE_CRYSTAL_BLOCK_STAIRS,
             MythicBlocks.POLISHED_CITRINE_CRYSTAL_BLOCK, MythicBlocks.POLISHED_CITRINE_CRYSTAL_BLOCK_SLAB,
-            MythicBlocks.POLISHED_CITRINE_CRYSTAL_BLOCK_STAIRS,
+            MythicBlocks.POLISHED_CITRINE_CRYSTAL_BLOCK_STAIRS, MythicBlocks.POLISHED_CITRINE_CRYSTAL_BLOCK_WALL,
             MythicBlocks.CITRINE_CRYSTAL_BRICKS, MythicBlocks.CITRINE_CRYSTAL_BRICKS_SLAB,
             MythicBlocks.CITRINE_CRYSTAL_BRICKS_STAIRS, MythicBlocks.CITRINE_CRYSTAL_BRICKS_WALL,
             MythicBlocks.CITRINE_CRYSTAL_PILLAR, MythicBlocks.CUT_CITRINE_CRYSTAL_PILLAR,
             MythicBlocks.TOPAZ_CRYSTAL_BLOCK_SLAB, MythicBlocks.TOPAZ_CRYSTAL_BLOCK_STAIRS,
             MythicBlocks.POLISHED_TOPAZ_CRYSTAL_BLOCK, MythicBlocks.POLISHED_TOPAZ_CRYSTAL_BLOCK_SLAB,
-            MythicBlocks.POLISHED_TOPAZ_CRYSTAL_BLOCK_STAIRS,
+            MythicBlocks.POLISHED_TOPAZ_CRYSTAL_BLOCK_STAIRS, MythicBlocks.POLISHED_TOPAZ_CRYSTAL_BLOCK_WALL,
             MythicBlocks.TOPAZ_CRYSTAL_BRICKS, MythicBlocks.TOPAZ_CRYSTAL_BRICKS_SLAB,
             MythicBlocks.TOPAZ_CRYSTAL_BRICKS_STAIRS, MythicBlocks.TOPAZ_CRYSTAL_BRICKS_WALL,
             MythicBlocks.TOPAZ_CRYSTAL_PILLAR, MythicBlocks.CUT_TOPAZ_CRYSTAL_PILLAR,
             MythicBlocks.PERIDOT_CRYSTAL_BLOCK_SLAB, MythicBlocks.PERIDOT_CRYSTAL_BLOCK_STAIRS,
             MythicBlocks.POLISHED_PERIDOT_CRYSTAL_BLOCK, MythicBlocks.POLISHED_PERIDOT_CRYSTAL_BLOCK_SLAB,
-            MythicBlocks.POLISHED_PERIDOT_CRYSTAL_BLOCK_STAIRS,
+            MythicBlocks.POLISHED_PERIDOT_CRYSTAL_BLOCK_STAIRS, MythicBlocks.POLISHED_PERIDOT_CRYSTAL_BLOCK_WALL,
             MythicBlocks.PERIDOT_CRYSTAL_BRICKS, MythicBlocks.PERIDOT_CRYSTAL_BRICKS_SLAB,
             MythicBlocks.PERIDOT_CRYSTAL_BRICKS_STAIRS, MythicBlocks.PERIDOT_CRYSTAL_BRICKS_WALL,
             MythicBlocks.PERIDOT_CRYSTAL_PILLAR, MythicBlocks.CUT_PERIDOT_CRYSTAL_PILLAR,
             MythicBlocks.RUBY_CRYSTAL_BLOCK_SLAB, MythicBlocks.RUBY_CRYSTAL_BLOCK_STAIRS,
             MythicBlocks.POLISHED_RUBY_CRYSTAL_BLOCK, MythicBlocks.POLISHED_RUBY_CRYSTAL_BLOCK_SLAB,
-            MythicBlocks.POLISHED_RUBY_CRYSTAL_BLOCK_STAIRS,
+            MythicBlocks.POLISHED_RUBY_CRYSTAL_BLOCK_STAIRS, MythicBlocks.POLISHED_RUBY_CRYSTAL_BLOCK_WALL,
             MythicBlocks.RUBY_CRYSTAL_BRICKS, MythicBlocks.RUBY_CRYSTAL_BRICKS_SLAB,
             MythicBlocks.RUBY_CRYSTAL_BRICKS_STAIRS, MythicBlocks.RUBY_CRYSTAL_BRICKS_WALL,
             MythicBlocks.RUBY_CRYSTAL_PILLAR, MythicBlocks.CUT_RUBY_CRYSTAL_PILLAR,
             MythicBlocks.SAPPHIRE_CRYSTAL_BLOCK_SLAB, MythicBlocks.SAPPHIRE_CRYSTAL_BLOCK_STAIRS,
             MythicBlocks.POLISHED_SAPPHIRE_CRYSTAL_BLOCK, MythicBlocks.POLISHED_SAPPHIRE_CRYSTAL_BLOCK_SLAB,
-            MythicBlocks.POLISHED_SAPPHIRE_CRYSTAL_BLOCK_STAIRS,
+            MythicBlocks.POLISHED_SAPPHIRE_CRYSTAL_BLOCK_STAIRS, MythicBlocks.POLISHED_SAPPHIRE_CRYSTAL_BLOCK_WALL,
             MythicBlocks.SAPPHIRE_CRYSTAL_BRICKS, MythicBlocks.SAPPHIRE_CRYSTAL_BRICKS_SLAB,
             MythicBlocks.SAPPHIRE_CRYSTAL_BRICKS_STAIRS, MythicBlocks.SAPPHIRE_CRYSTAL_BRICKS_WALL,
             MythicBlocks.SAPPHIRE_CRYSTAL_PILLAR, MythicBlocks.CUT_SAPPHIRE_CRYSTAL_PILLAR,
             MythicBlocks.JADE_CRYSTAL_BLOCK_SLAB, MythicBlocks.JADE_CRYSTAL_BLOCK_STAIRS,
             MythicBlocks.POLISHED_JADE_CRYSTAL_BLOCK, MythicBlocks.POLISHED_JADE_CRYSTAL_BLOCK_SLAB,
-            MythicBlocks.POLISHED_JADE_CRYSTAL_BLOCK_STAIRS,
+            MythicBlocks.POLISHED_JADE_CRYSTAL_BLOCK_STAIRS, MythicBlocks.POLISHED_JADE_CRYSTAL_BLOCK_WALL,
             MythicBlocks.JADE_CRYSTAL_BRICKS, MythicBlocks.JADE_CRYSTAL_BRICKS_SLAB,
             MythicBlocks.JADE_CRYSTAL_BRICKS_STAIRS, MythicBlocks.JADE_CRYSTAL_BRICKS_WALL,
             MythicBlocks.JADE_CRYSTAL_PILLAR, MythicBlocks.CUT_JADE_CRYSTAL_PILLAR,
             MythicBlocks.AMETRINE_CRYSTAL_BLOCK_SLAB, MythicBlocks.AMETRINE_CRYSTAL_BLOCK_STAIRS,
             MythicBlocks.POLISHED_AMETRINE_CRYSTAL_BLOCK, MythicBlocks.POLISHED_AMETRINE_CRYSTAL_BLOCK_SLAB,
-            MythicBlocks.POLISHED_AMETRINE_CRYSTAL_BLOCK_STAIRS,
+            MythicBlocks.POLISHED_AMETRINE_CRYSTAL_BLOCK_STAIRS, MythicBlocks.POLISHED_AMETRINE_CRYSTAL_BLOCK_WALL,
             MythicBlocks.AMETRINE_CRYSTAL_BRICKS, MythicBlocks.AMETRINE_CRYSTAL_BRICKS_SLAB,
             MythicBlocks.AMETRINE_CRYSTAL_BRICKS_STAIRS, MythicBlocks.AMETRINE_CRYSTAL_BRICKS_WALL,
             MythicBlocks.AMETRINE_CRYSTAL_PILLAR, MythicBlocks.CUT_AMETRINE_CRYSTAL_PILLAR,
             MythicBlocks.AQUAMARINE_SCHIST, MythicBlocks.AQUAMARINE_SCHIST_SLAB, MythicBlocks.AQUAMARINE_SCHIST_STAIRS, MythicBlocks.AQUAMARINE_SCHIST_WALL,
-            MythicBlocks.POLISHED_AQUAMARINE_SCHIST, MythicBlocks.POLISHED_AQUAMARINE_SCHIST_SLAB, MythicBlocks.POLISHED_AQUAMARINE_SCHIST_STAIRS,
+            MythicBlocks.POLISHED_AQUAMARINE_SCHIST, MythicBlocks.POLISHED_AQUAMARINE_SCHIST_SLAB, MythicBlocks.POLISHED_AQUAMARINE_SCHIST_STAIRS, MythicBlocks.POLISHED_AQUAMARINE_SCHIST_WALL,
             MythicBlocks.CITRINE_SCHIST, MythicBlocks.CITRINE_SCHIST_SLAB, MythicBlocks.CITRINE_SCHIST_STAIRS, MythicBlocks.CITRINE_SCHIST_WALL,
-            MythicBlocks.POLISHED_CITRINE_SCHIST, MythicBlocks.POLISHED_CITRINE_SCHIST_SLAB, MythicBlocks.POLISHED_CITRINE_SCHIST_STAIRS,
+            MythicBlocks.POLISHED_CITRINE_SCHIST, MythicBlocks.POLISHED_CITRINE_SCHIST_SLAB, MythicBlocks.POLISHED_CITRINE_SCHIST_STAIRS, MythicBlocks.POLISHED_CITRINE_SCHIST_WALL,
             MythicBlocks.TOPAZ_SCHIST, MythicBlocks.TOPAZ_SCHIST_SLAB, MythicBlocks.TOPAZ_SCHIST_STAIRS, MythicBlocks.TOPAZ_SCHIST_WALL,
-            MythicBlocks.POLISHED_TOPAZ_SCHIST, MythicBlocks.POLISHED_TOPAZ_SCHIST_SLAB, MythicBlocks.POLISHED_TOPAZ_SCHIST_STAIRS,
+            MythicBlocks.POLISHED_TOPAZ_SCHIST, MythicBlocks.POLISHED_TOPAZ_SCHIST_SLAB, MythicBlocks.POLISHED_TOPAZ_SCHIST_STAIRS, MythicBlocks.POLISHED_TOPAZ_SCHIST_WALL,
             MythicBlocks.PERIDOT_SCHIST, MythicBlocks.PERIDOT_SCHIST_SLAB, MythicBlocks.PERIDOT_SCHIST_STAIRS, MythicBlocks.PERIDOT_SCHIST_WALL,
-            MythicBlocks.POLISHED_PERIDOT_SCHIST, MythicBlocks.POLISHED_PERIDOT_SCHIST_SLAB, MythicBlocks.POLISHED_PERIDOT_SCHIST_STAIRS,
+            MythicBlocks.POLISHED_PERIDOT_SCHIST, MythicBlocks.POLISHED_PERIDOT_SCHIST_SLAB, MythicBlocks.POLISHED_PERIDOT_SCHIST_STAIRS, MythicBlocks.POLISHED_PERIDOT_SCHIST_WALL,
             MythicBlocks.RUBY_SCHIST, MythicBlocks.RUBY_SCHIST_SLAB, MythicBlocks.RUBY_SCHIST_STAIRS, MythicBlocks.RUBY_SCHIST_WALL,
-            MythicBlocks.POLISHED_RUBY_SCHIST, MythicBlocks.POLISHED_RUBY_SCHIST_SLAB, MythicBlocks.POLISHED_RUBY_SCHIST_STAIRS,
+            MythicBlocks.POLISHED_RUBY_SCHIST, MythicBlocks.POLISHED_RUBY_SCHIST_SLAB, MythicBlocks.POLISHED_RUBY_SCHIST_STAIRS, MythicBlocks.POLISHED_RUBY_SCHIST_WALL,
             MythicBlocks.SAPPHIRE_SCHIST, MythicBlocks.SAPPHIRE_SCHIST_SLAB, MythicBlocks.SAPPHIRE_SCHIST_STAIRS, MythicBlocks.SAPPHIRE_SCHIST_WALL,
-            MythicBlocks.POLISHED_SAPPHIRE_SCHIST, MythicBlocks.POLISHED_SAPPHIRE_SCHIST_SLAB, MythicBlocks.POLISHED_SAPPHIRE_SCHIST_STAIRS,
+            MythicBlocks.POLISHED_SAPPHIRE_SCHIST, MythicBlocks.POLISHED_SAPPHIRE_SCHIST_SLAB, MythicBlocks.POLISHED_SAPPHIRE_SCHIST_STAIRS, MythicBlocks.POLISHED_SAPPHIRE_SCHIST_WALL,
             MythicBlocks.JADE_SCHIST, MythicBlocks.JADE_SCHIST_SLAB, MythicBlocks.JADE_SCHIST_STAIRS, MythicBlocks.JADE_SCHIST_WALL,
-            MythicBlocks.POLISHED_JADE_SCHIST, MythicBlocks.POLISHED_JADE_SCHIST_SLAB, MythicBlocks.POLISHED_JADE_SCHIST_STAIRS,
+            MythicBlocks.POLISHED_JADE_SCHIST, MythicBlocks.POLISHED_JADE_SCHIST_SLAB, MythicBlocks.POLISHED_JADE_SCHIST_STAIRS, MythicBlocks.POLISHED_JADE_SCHIST_WALL,
             MythicBlocks.AMETRINE_SCHIST, MythicBlocks.AMETRINE_SCHIST_SLAB, MythicBlocks.AMETRINE_SCHIST_STAIRS, MythicBlocks.AMETRINE_SCHIST_WALL,
-            MythicBlocks.POLISHED_AMETRINE_SCHIST, MythicBlocks.POLISHED_AMETRINE_SCHIST_SLAB, MythicBlocks.POLISHED_AMETRINE_SCHIST_STAIRS
+            MythicBlocks.POLISHED_AMETRINE_SCHIST, MythicBlocks.POLISHED_AMETRINE_SCHIST_SLAB, MythicBlocks.POLISHED_AMETRINE_SCHIST_STAIRS, MythicBlocks.POLISHED_AMETRINE_SCHIST_WALL
         );
     }
 }

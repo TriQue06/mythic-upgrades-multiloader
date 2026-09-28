@@ -59,6 +59,7 @@ public class MythicBlockStateProvider extends BlockStateProvider {
         slabAndStairs("polished_" + gem + "_crystal_block", modLoc("block/polished_" + gem + "_crystal_block"));
         slabAndStairs(gem + "_crystal_bricks", modLoc("block/" + gem + "_crystal_bricks"));
         wallBlock((WallBlock) block(gem + "_crystal_bricks_wall"), modLoc("block/" + gem + "_crystal_bricks"));
+        wallBlock((WallBlock) block("polished_" + gem + "_crystal_block_wall"), modLoc("block/polished_" + gem + "_crystal_block"));
 
         axisBlock((RotatedPillarBlock) block(gem + "_crystal_pillar"),
             modLoc("block/" + gem + "_crystal_pillar"),
@@ -72,6 +73,7 @@ public class MythicBlockStateProvider extends BlockStateProvider {
         slabAndStairs(gem + "_schist", modLoc("block/" + gem + "_schist"));
         slabAndStairs("polished_" + gem + "_schist", modLoc("block/polished_" + gem + "_schist"));
         wallBlock((WallBlock) block(gem + "_schist_wall"), modLoc("block/" + gem + "_schist"));
+        wallBlock((WallBlock) block("polished_" + gem + "_schist_wall"), modLoc("block/polished_" + gem + "_schist"));
     }
 
     private void slabAndStairs(String baseName, ResourceLocation texture) {
