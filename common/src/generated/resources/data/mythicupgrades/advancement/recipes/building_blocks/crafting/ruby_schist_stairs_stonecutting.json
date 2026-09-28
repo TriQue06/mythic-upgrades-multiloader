@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/ruby_schist_stairs_stonecutting"
+        "recipes": "mythicupgrades:crafting/ruby_schist_stairs_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "experience": 1.4,
-  "group": "peridot",
-  "ingredient": "mythicupgrades:peridot_ore",
-  "result": {
-    "id": "mythicupgrades:peridot"
-  }
-}

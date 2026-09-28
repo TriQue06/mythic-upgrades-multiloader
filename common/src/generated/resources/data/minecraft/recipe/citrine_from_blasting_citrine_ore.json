@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "experience": 1.4,
-  "group": "citrine",
-  "ingredient": "mythicupgrades:citrine_ore",
-  "result": {
-    "id": "mythicupgrades:citrine"
-  }
-}

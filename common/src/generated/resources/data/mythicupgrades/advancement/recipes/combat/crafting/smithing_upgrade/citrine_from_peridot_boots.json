@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/smithing_upgrade/citrine_from_peridot_boots"
+        "recipes": "mythicupgrades:crafting/smithing_upgrade/citrine_from_peridot_boots"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

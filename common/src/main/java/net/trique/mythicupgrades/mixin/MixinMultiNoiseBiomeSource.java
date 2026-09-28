@@ -1,7 +1,9 @@
 package net.trique.mythicupgrades.mixin;
 
 import net.minecraft.core.Holder;
+import net.minecraft.core.QuartPos;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.BiomeResolver;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.Climate;
@@ -28,11 +30,12 @@ import java.util.stream.Stream;
  * <p>The Overworld and the Nether share this class, so the dimension is inferred
  * once from the biomes the source can produce and cached for the hot path.
  */
-// priority 500: mixins are applied in ascending priority order and HEAD callbacks
-// run in that same order, so a LOW priority is what puts ours first — ahead of
-// mods that inject at HEAD and cancel unconditionally (TerraBlender does exactly
-// this for the Overworld and the Nether). An @At("RETURN") injector cannot work
-// at all against such a mod: it returns before the original returns are reached.
+// Since 26.3 the overlay wraps the BiomeResolver returned by createResolver*
+// instead of cancelling a per-position lookup. TerraBlender no longer cancels
+// these methods — it wraps the TargetPoint lookup inside the returned lambdas —
+// so RETURN is reached and our wrapper ends up outermost. A mod that cancelled
+// createResolver at HEAD would bypass the overlay; priority 500 is carried over
+// from earlier versions and does not change that.
 @Mixin(value = MultiNoiseBiomeSource.class, priority = 500)
 public abstract class MixinMultiNoiseBiomeSource {
 
@@ -109,9 +112,27 @@ public abstract class MixinMultiNoiseBiomeSource {
             || holder.is(Biomes.DRIPSTONE_CAVES) || holder.is(Biomes.DEEP_DARK);
     }
 
-    @Inject(method = "getNoiseBiome", at = @At("HEAD"), cancellable = true)
-    private void mythicupgrades$getNoiseBiome(int x, int y, int z, Climate.Sampler sampler,
-                                              CallbackInfoReturnable<Holder<Biome>> cir) {
+    // 26.3 removed getNoiseBiome(int, int, int, Sampler): every lookup — chunk
+    // generation, structures, /locate — now goes through a BiomeResolver built by
+    // one of the two methods below. Wrapping the resolver they return puts the
+    // overlay outside anything other mods do inside it (TerraBlender wraps the
+    // TargetPoint lookup within these lambdas), so the patch always wins.
+    @Inject(method = "createResolver", at = @At("RETURN"), cancellable = true)
+    private void mythicupgrades$createResolver(Climate.Sampler sampler,
+                                               CallbackInfoReturnable<BiomeResolver> cir) {
+        cir.setReturnValue(mythicupgrades$wrap(cir.getReturnValue(), sampler));
+    }
+
+    @Inject(method = "createResolverForChunk", at = @At("RETURN"), cancellable = true)
+    private void mythicupgrades$createResolverForChunk(Climate.Sampler sampler,
+                                                       int minQuartX, int minQuartY, int minQuartZ,
+                                                       int quartSizeX, int quartSizeY, int quartSizeZ,
+                                                       CallbackInfoReturnable<BiomeResolver> cir) {
+        cir.setReturnValue(mythicupgrades$wrap(cir.getReturnValue(), sampler));
+    }
+
+    @Unique
+    private BiomeResolver mythicupgrades$wrap(BiomeResolver original, Climate.Sampler sampler) {
         if (mythicupgrades$kind == KIND_UNKNOWN) {
             // TerraBlender swaps in a fresh biome source for the Overworld and the
             // Nether after ours has already been set up, and never calls
@@ -119,32 +140,38 @@ public abstract class MixinMultiNoiseBiomeSource {
             // which is populated no matter who built the source.
             mythicupgrades$resolveFrom(((BiomeSource) (Object) this).possibleBiomes());
         }
-        if (mythicupgrades$kind == KIND_OTHER) return;
+        if (mythicupgrades$kind == KIND_OTHER) return original;
 
         if (mythicupgrades$kind == KIND_NETHER) {
-            if (mythicupgrades$rifts == null) return;
+            Holder<Biome> rifts = mythicupgrades$rifts;
+            if (rifts == null) return original;
             int radius = MythicBiomeOverlay.blocksToQuarts(MythicStats.WORLDGEN_NETHER_RADIUS);
             int grid = MythicBiomeOverlay.gridFor(radius, MythicStats.WORLDGEN_NETHER_DENSITY);
-            if (MythicBiomeOverlay.inPatch(x, z, 11, radius, grid)) {
-                cir.setReturnValue(mythicupgrades$rifts);
-            }
-            return;
+            return (x, y, z) -> MythicBiomeOverlay.inPatch(x, z, 11, radius, grid)
+                ? rifts
+                : original.getNoiseBiome(x, y, z);
         }
 
-        if (mythicupgrades$coldCaves == null || mythicupgrades$warmCaves == null) return;
+        Holder<Biome> cold = mythicupgrades$coldCaves;
+        Holder<Biome> warm = mythicupgrades$warmCaves;
+        if (cold == null || warm == null) return original;
 
-        int blockY = y << 2;
-        if (blockY < MythicStats.WORLDGEN_CAVE_MIN_Y || blockY > MythicStats.WORLDGEN_CAVE_MAX_Y) return;
-
+        int minY = MythicStats.WORLDGEN_CAVE_MIN_Y;
+        int maxY = MythicStats.WORLDGEN_CAVE_MAX_Y;
         int radius = MythicBiomeOverlay.blocksToQuarts(MythicStats.WORLDGEN_CAVE_RADIUS);
         int grid = MythicBiomeOverlay.gridFor(radius, MythicStats.WORLDGEN_CAVE_DENSITY);
-        if (!MythicBiomeOverlay.inPatch(x, z, 21, radius, grid)) return;
-
-        // Split cold/warm on the climate sample rather than on the biome that would
-        // have been returned: at HEAD there is no result yet, and reading another
-        // mod's biome would put us back at the mercy of what else is installed.
-        cir.setReturnValue(sampler.sample(x, y, z).temperature() < 0L
-            ? mythicupgrades$coldCaves
-            : mythicupgrades$warmCaves);
+        return (x, y, z) -> {
+            int blockY = QuartPos.toBlock(y);
+            if (blockY < minY || blockY > maxY || !MythicBiomeOverlay.inPatch(x, z, 21, radius, grid)) {
+                return original.getNoiseBiome(x, y, z);
+            }
+            // Split cold/warm on the climate's temperature rather than on the biome
+            // the original resolver would pick: reading another mod's biome would put
+            // us back at the mercy of what else is installed. Quantized exactly as
+            // Climate.Sampler#sample does, so the split matches earlier versions.
+            float temperature = sampler.temperature().sampleValue(
+                QuartPos.toBlock(x), blockY, QuartPos.toBlock(z));
+            return Climate.quantizeCoord(temperature) < 0L ? cold : warm;
+        };
     }
 }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/sapphire_schist"
+        "recipes": "mythicupgrades:crafting/sapphire_schist"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

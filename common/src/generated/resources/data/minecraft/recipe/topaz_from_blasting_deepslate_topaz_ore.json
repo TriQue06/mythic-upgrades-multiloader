@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "experience": 1.4,
-  "group": "topaz",
-  "ingredient": "mythicupgrades:deepslate_topaz_ore",
-  "result": {
-    "id": "mythicupgrades:topaz"
-  }
-}

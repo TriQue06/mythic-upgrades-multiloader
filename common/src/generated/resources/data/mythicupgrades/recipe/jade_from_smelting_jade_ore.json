@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 1.4,
+  "group": "jade",
+  "ingredient": "mythicupgrades:jade_ore",
+  "result": {
+    "id": "mythicupgrades:jade"
+  }
+}

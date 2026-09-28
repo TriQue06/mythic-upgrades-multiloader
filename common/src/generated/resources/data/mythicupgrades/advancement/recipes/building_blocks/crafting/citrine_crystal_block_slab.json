@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/citrine_crystal_block_slab"
+        "recipes": "mythicupgrades:crafting/citrine_crystal_block_slab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

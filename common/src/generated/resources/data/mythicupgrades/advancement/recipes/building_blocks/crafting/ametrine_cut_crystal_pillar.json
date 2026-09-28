@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/ametrine_cut_crystal_pillar"
+        "recipes": "mythicupgrades:crafting/ametrine_cut_crystal_pillar"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

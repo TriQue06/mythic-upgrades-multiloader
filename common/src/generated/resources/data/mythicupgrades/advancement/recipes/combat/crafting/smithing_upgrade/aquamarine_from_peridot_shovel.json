@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/smithing_upgrade/aquamarine_from_peridot_shovel"
+        "recipes": "mythicupgrades:crafting/smithing_upgrade/aquamarine_from_peridot_shovel"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

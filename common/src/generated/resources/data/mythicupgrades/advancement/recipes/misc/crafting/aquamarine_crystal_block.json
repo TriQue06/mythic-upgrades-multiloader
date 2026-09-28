@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/aquamarine_crystal_block"
+        "recipes": "mythicupgrades:crafting/aquamarine_crystal_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

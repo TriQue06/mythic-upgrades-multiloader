@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/citrine_polished_schist_stairs"
+        "recipes": "mythicupgrades:crafting/citrine_polished_schist_stairs"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

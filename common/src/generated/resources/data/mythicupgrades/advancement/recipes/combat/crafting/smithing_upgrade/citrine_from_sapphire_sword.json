@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/smithing_upgrade/citrine_from_sapphire_sword"
+        "recipes": "mythicupgrades:crafting/smithing_upgrade/citrine_from_sapphire_sword"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

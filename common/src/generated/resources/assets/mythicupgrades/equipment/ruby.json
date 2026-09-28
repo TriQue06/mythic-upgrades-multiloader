@@ -10,5 +10,13 @@
         "texture": "mythicupgrades:ruby"
       }
     ]
-  }
+  },
+  "trim_overrides": [
+    {
+      "palette": "mythicupgrades:trim/ruby_darker",
+      "when": {
+        "material": "mythicupgrades:ruby"
+      }
+    }
+  ]
 }

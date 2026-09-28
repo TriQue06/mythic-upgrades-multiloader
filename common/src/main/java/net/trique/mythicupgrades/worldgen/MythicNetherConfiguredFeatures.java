@@ -14,20 +14,21 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.GeodeBlockSettings;
 import net.minecraft.world.level.levelgen.GeodeCrackSettings;
 import net.minecraft.world.level.levelgen.GeodeLayerSettings;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.core.Holder;
+import net.minecraft.world.level.levelgen.feature.BlockReplacement;
+import net.minecraft.world.level.levelgen.feature.GeodeFeature;
+import net.minecraft.world.level.levelgen.feature.OreFeature;
+import net.trique.mythicupgrades.worldgen.feature.CrystalBudFeature;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
-import net.trique.mythicupgrades.worldgen.feature.CrystalBudFeatureConfig;
 
 import java.util.List;
 
 public class MythicNetherConfiguredFeatures {
 
-    public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> ctx) {
+    public static void bootstrap(BootstrapContext<Feature> ctx) {
         HolderGetter<Block> blocks = ctx.lookup(Registries.BLOCK);
 
         for (NetherGemType gem : NetherGemType.values()) {
@@ -35,36 +36,27 @@ public class MythicNetherConfiguredFeatures {
             Block crystal = blocks.getOrThrow(gem.crystalBlock()).value();
             Block ore = blocks.getOrThrow(gem.oreBlock()).value();
 
-            ctx.register(gem.stoneBlobsCF(), new ConfiguredFeature<>(Feature.ORE,
-                new OreConfiguration(List.of(
-                    OreConfiguration.target(new BlockMatchTest(Blocks.NETHERRACK), stone.defaultBlockState())
-                ), 64)
-            ));
+            ctx.register(gem.stoneBlobsCF(), new OreFeature(List.of(
+                    BlockReplacement.replace(new BlockMatchTest(Blocks.NETHERRACK), stone.defaultBlockState())
+                ), 64));
 
-            ctx.register(gem.crystalBlobsCF(), new ConfiguredFeature<>(Feature.ORE,
-                new OreConfiguration(List.of(
-                    OreConfiguration.target(new BlockMatchTest(Blocks.NETHERRACK), crystal.defaultBlockState()),
-                    OreConfiguration.target(new BlockMatchTest(stone), crystal.defaultBlockState())
-                ), 20)
-            ));
+            ctx.register(gem.crystalBlobsCF(), new OreFeature(List.of(
+                    BlockReplacement.replace(new BlockMatchTest(Blocks.NETHERRACK), crystal.defaultBlockState()),
+                    BlockReplacement.replace(new BlockMatchTest(stone), crystal.defaultBlockState())
+                ), 20));
 
-            ctx.register(gem.crystalBudsCF(), new ConfiguredFeature<>(MythicFeatures.CRYSTAL_BUD,
-                new CrystalBudFeatureConfig(
-                    new WeightedStateProvider(WeightedList.<BlockState>builder()
+            ctx.register(gem.crystalBudsCF(), new CrystalBudFeature(
+                    Holder.direct(new WeightedStateProvider(WeightedList.<BlockState>builder()
                         .add(budState(blocks, gem.mediumBud()), 3)
                         .add(budState(blocks, gem.largeBud()), 2)
-                        .add(budState(blocks, gem.cluster()), 1)
-                        .build()),
+                        .add(budState(blocks, gem.cluster()), 1))),
                     96, 5, 4
-                )
-            ));
+                ));
 
 
-            ctx.register(gem.oreCF(), new ConfiguredFeature<>(Feature.ORE,
-                new OreConfiguration(List.of(
-                    OreConfiguration.target(new BlockMatchTest(Blocks.NETHERRACK), ore.defaultBlockState())
-                ), 6)
-            ));
+            ctx.register(gem.oreCF(), new OreFeature(List.of(
+                    BlockReplacement.replace(new BlockMatchTest(Blocks.NETHERRACK), ore.defaultBlockState())
+                ), 6));
 
             Block buddingBlock = blocks.getOrThrow(gem.buddingCrystal()).value();
             Block smallBud = blocks.getOrThrow(gem.smallBud()).value();
@@ -72,14 +64,13 @@ public class MythicNetherConfiguredFeatures {
             Block largeBud = blocks.getOrThrow(gem.largeBud()).value();
             Block clusterBlock = blocks.getOrThrow(gem.cluster()).value();
 
-            ctx.register(gem.geodeCF(), new ConfiguredFeature<>(Feature.GEODE,
-                new GeodeConfiguration(
+            ctx.register(gem.geodeCF(), new GeodeFeature(
                     new GeodeBlockSettings(
-                        BlockStateProvider.simple(Blocks.AIR),
-                        BlockStateProvider.simple(crystal),
-                        BlockStateProvider.simple(buddingBlock),
-                        BlockStateProvider.simple(Blocks.CALCITE),
-                        BlockStateProvider.simple(Blocks.SMOOTH_BASALT),
+                        BlockStateProvider.holderOf(Blocks.AIR),
+                        BlockStateProvider.holderOf(crystal),
+                        BlockStateProvider.holderOf(buddingBlock),
+                        BlockStateProvider.holderOf(Blocks.CALCITE),
+                        BlockStateProvider.holderOf(Blocks.SMOOTH_BASALT),
                         List.of(
                             smallBud.defaultBlockState(),
                             mediumBud.defaultBlockState(),
@@ -94,8 +85,7 @@ public class MythicNetherConfiguredFeatures {
                     0.35, 0.083, true,
                     UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2),
                     -16, 16, 0.05, 1
-                )
-            ));
+                ));
         }
     }
 

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/topaz_crystal_block_slab_stonecutting"
+        "recipes": "mythicupgrades:crafting/topaz_crystal_block_slab_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

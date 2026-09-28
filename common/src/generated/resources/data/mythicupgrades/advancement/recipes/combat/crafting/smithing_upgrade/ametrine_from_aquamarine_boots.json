@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/smithing_upgrade/ametrine_from_aquamarine_boots"
+        "recipes": "mythicupgrades:crafting/smithing_upgrade/ametrine_from_aquamarine_boots"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

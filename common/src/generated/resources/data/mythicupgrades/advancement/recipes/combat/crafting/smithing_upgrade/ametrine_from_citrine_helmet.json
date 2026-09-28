@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/smithing_upgrade/ametrine_from_citrine_helmet"
+        "recipes": "mythicupgrades:crafting/smithing_upgrade/ametrine_from_citrine_helmet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

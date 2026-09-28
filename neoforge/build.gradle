@@ -42,9 +42,11 @@ neoForge {
 }
 
 dependencies {
-    // Not a dependency of the mod — present in the dev run only, so the overlay
-    // mixins can be regression-tested against TerraBlender's HEAD cancellation.
-    runtimeOnly "com.github.glitchfiend:TerraBlender-neoforge:${terrablender_version}"
+    // TerraBlender is a dev-run regression target only, never a mod dependency.
+    // Disabled on NeoForge for now: TerraBlender 26.3-26.3.0.0.7 still references
+    // DataPackRegistryEvent$NewRegistry, which NeoForge 26.3 betas renamed to
+    // NewDatapackRegistryEvent, so it crashes on load. Re-enable once it catches up.
+    // runtimeOnly "com.github.glitchfiend:TerraBlender-neoforge:${terrablender_version}"
     implementation "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}"
 }
 

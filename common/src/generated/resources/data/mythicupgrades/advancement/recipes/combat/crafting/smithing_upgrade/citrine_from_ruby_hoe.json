@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/smithing_upgrade/citrine_from_ruby_hoe"
+        "recipes": "mythicupgrades:crafting/smithing_upgrade/citrine_from_ruby_hoe"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

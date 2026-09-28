@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/topaz_polished_schist_slab"
+        "recipes": "mythicupgrades:crafting/topaz_polished_schist_slab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

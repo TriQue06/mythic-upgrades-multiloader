@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "experience": 1.4,
-  "group": "sapphire",
-  "ingredient": "mythicupgrades:sapphire_ore",
-  "result": {
-    "id": "mythicupgrades:sapphire"
-  }
-}

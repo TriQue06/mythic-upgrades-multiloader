@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/jade_schist"
+        "recipes": "mythicupgrades:crafting/jade_schist"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

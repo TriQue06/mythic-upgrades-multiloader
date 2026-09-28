@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:ore",
+  "discard_chance_on_air_exposure": 0.0,
+  "size": 20,
+  "targets": [
+    {
+      "state": "mythicupgrades:sapphire_crystal_block",
+      "target": {
+        "block": "minecraft:netherrack",
+        "predicate_type": "minecraft:block_match"
+      }
+    },
+    {
+      "state": "mythicupgrades:sapphire_crystal_block",
+      "target": {
+        "block": "mythicupgrades:sapphire_schist",
+        "predicate_type": "minecraft:block_match"
+      }
+    }
+  ]
+}

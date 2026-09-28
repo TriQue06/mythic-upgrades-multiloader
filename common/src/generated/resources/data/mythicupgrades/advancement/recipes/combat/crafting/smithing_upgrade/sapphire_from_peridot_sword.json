@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/smithing_upgrade/sapphire_from_peridot_sword"
+        "recipes": "mythicupgrades:crafting/smithing_upgrade/sapphire_from_peridot_sword"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

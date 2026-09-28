@@ -10,5 +10,13 @@
         "texture": "mythicupgrades:topaz"
       }
     ]
-  }
+  },
+  "trim_overrides": [
+    {
+      "palette": "mythicupgrades:trim/topaz_darker",
+      "when": {
+        "material": "mythicupgrades:topaz"
+      }
+    }
+  ]
 }

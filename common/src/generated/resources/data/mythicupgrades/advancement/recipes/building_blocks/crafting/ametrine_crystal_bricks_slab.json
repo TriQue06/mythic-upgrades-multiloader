@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/ametrine_crystal_bricks_slab"
+        "recipes": "mythicupgrades:crafting/ametrine_crystal_bricks_slab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -883,7 +883,7 @@ public abstract class LivingEntityMixin {
             double y = Mth.clamp(entity.getY() + (entity.getRandom().nextInt(16) - 8),
                 entity.level().getMinY(), entity.level().getMaxY());
             double z = entity.getZ() + (entity.getRandom().nextDouble() - 0.5) * 16.0;
-            if (entity.randomTeleport(x, y, z, true)) break;
+            if (entity.randomTeleport(x, y, z, true, state -> false)) break;
         }
     }
 

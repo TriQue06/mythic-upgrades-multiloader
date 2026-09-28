@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "experience": 1.4,
-  "group": "ruby",
-  "ingredient": "mythicupgrades:ruby_ore",
-  "result": {
-    "id": "mythicupgrades:ruby"
-  }
-}

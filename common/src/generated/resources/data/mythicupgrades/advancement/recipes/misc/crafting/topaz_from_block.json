@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/topaz_from_block"
+        "recipes": "mythicupgrades:crafting/topaz_from_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

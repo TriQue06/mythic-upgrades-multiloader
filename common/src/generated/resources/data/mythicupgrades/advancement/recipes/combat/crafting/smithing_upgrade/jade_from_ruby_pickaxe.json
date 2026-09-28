@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/smithing_upgrade/jade_from_ruby_pickaxe"
+        "recipes": "mythicupgrades:crafting/smithing_upgrade/jade_from_ruby_pickaxe"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

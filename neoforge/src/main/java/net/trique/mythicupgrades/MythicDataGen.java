@@ -33,13 +33,13 @@ import net.trique.mythicupgrades.worldgen.MythicPlacedFeatures;
 
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.CompletableFuture;
 
 @EventBusSubscriber(modid = Constants.MOD_ID)
 public class MythicDataGen {
 
-    private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
-        .add(Registries.CONFIGURED_FEATURE, ctx -> {
+    // World-layer registries: worldgen, biomes, damage types, biome modifiers.
+    private static final RegistrySetBuilder WORLD = new RegistrySetBuilder()
+        .add(Registries.FEATURE, ctx -> {
             MythicConfiguredFeatures.bootstrap(ctx);
             MythicNetherConfiguredFeatures.bootstrap(ctx);
             MythicEndConfiguredFeatures.bootstrap(ctx);
@@ -57,23 +57,24 @@ public class MythicDataGen {
         .add(Registries.DAMAGE_TYPE, MythicDamageTypeBootstrap::bootstrap)
         .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, MythicBiomeModifierBootstrap::bootstrap);
 
+    // Reloadable-layer registries (26.3): loot tables, recipes and their advancements.
+    private static final RegistrySetBuilder RELOADABLE = new RegistrySetBuilder()
+        .add(Registries.LOOT_TABLE, new LootTableProvider(Set.of(),
+            List.of(new LootTableProvider.SubProviderEntry(MythicBlockLootTableProvider::new, LootContextParamSets.BLOCK))))
+        .add(MythicRecipeProvider.create());
+
     @SubscribeEvent
     public static void onGatherData(GatherDataEvent.Client event) {
         PackOutput output = event.getGenerator().getPackOutput();
-        CompletableFuture<net.minecraft.core.HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        event.createDatapackRegistryObjects(BUILDER, Set.of(Constants.MOD_ID));
+        // Registries first, so the tag providers below see the modded entries.
+        event.createWorldRegistryObjects(WORLD, Set.of(Constants.MOD_ID));
+        event.createReloadableRegistryObjects(RELOADABLE, Set.of(Constants.MOD_ID));
 
         event.createProvider(MythicBlockTagsProvider::new);
         event.createProvider(MythicItemTagsProvider::new);
         event.createProvider(MythicBiomeTagsProvider::new);
         event.createProvider(MythicDamageTypeTagsProvider::new);
-
-        event.addProvider(new LootTableProvider(output, Set.of(),
-            List.of(new LootTableProvider.SubProviderEntry(MythicBlockLootTableProvider::new, LootContextParamSets.BLOCK)),
-            lookupProvider));
-
-        event.createProvider(MythicRecipeProvider.Runner::new);
 
         event.addProvider(new MythicTrimMaterialProvider(output));
         event.addProvider(new MythicTrimAtlasProvider(output));

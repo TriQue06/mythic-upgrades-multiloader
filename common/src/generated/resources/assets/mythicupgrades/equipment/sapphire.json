@@ -10,5 +10,13 @@
         "texture": "mythicupgrades:sapphire"
       }
     ]
-  }
+  },
+  "trim_overrides": [
+    {
+      "palette": "mythicupgrades:trim/sapphire_darker",
+      "when": {
+        "material": "mythicupgrades:sapphire"
+      }
+    }
+  ]
 }

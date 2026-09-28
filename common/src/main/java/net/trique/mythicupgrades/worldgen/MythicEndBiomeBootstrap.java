@@ -4,6 +4,7 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.util.ARGB;
 import net.minecraft.world.attribute.AmbientAdditionsSettings;
 import net.minecraft.world.attribute.AmbientMoodSettings;
 import net.minecraft.world.attribute.AmbientSounds;
@@ -17,20 +18,20 @@ import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
+import net.minecraft.world.level.levelgen.carver.WorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class MythicEndBiomeBootstrap {
 
     public static void bootstrap(BootstrapContext<Biome> ctx) {
         HolderGetter<PlacedFeature> features = ctx.lookup(Registries.PLACED_FEATURE);
-        HolderGetter<ConfiguredWorldCarver<?>> carvers = ctx.lookup(Registries.CONFIGURED_CARVER);
+        HolderGetter<WorldCarver> carvers = ctx.lookup(Registries.CARVER);
 
         ctx.register(MythicBiomes.MYTHIC_BARRENS, buildBiome(features, carvers));
     }
 
     private static Biome buildBiome(HolderGetter<PlacedFeature> features,
-                                    HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+                                    HolderGetter<WorldCarver> carvers) {
 
         BiomeGenerationSettings.Builder gen = new BiomeGenerationSettings.Builder(features, carvers);
         for (EndGemType gem : EndGemType.values()) {
@@ -41,7 +42,6 @@ public class MythicEndBiomeBootstrap {
         }
 
         MobSpawnSettings spawns = new MobSpawnSettings.Builder()
-                .creatureGenerationProbability(0.0f)
                 .build();
 
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
@@ -52,9 +52,10 @@ public class MythicEndBiomeBootstrap {
                 .hasPrecipitation(false)
                 .temperature(0.5f)
                 .downfall(0.0f)
-                .setAttribute(EnvironmentAttributes.FOG_COLOR, 0xFF0B0E2E)
-                .setAttribute(EnvironmentAttributes.SKY_COLOR, 0xFF0B0E2E)
-                .setAttribute(EnvironmentAttributes.WATER_FOG_COLOR, 0xFF050533)
+                .setAttribute(EnvironmentAttributes.CREATURE_WORLD_GEN_SPAWN_PROBABILITY, 0.0f)
+                .setAttribute(EnvironmentAttributes.FOG_COLOR, ARGB.vector3fFromRGB24(0x0B0E2E))
+                .setAttribute(EnvironmentAttributes.SKY_COLOR, ARGB.vector3fFromRGB24(0x0B0E2E))
+                .setAttribute(EnvironmentAttributes.WATER_FOG_COLOR, ARGB.vector3fFromRGB24(0x050533))
                 .setAttribute(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(
                     Optional.empty(),
                     Optional.of(AmbientMoodSettings.LEGACY_CAVE_SETTINGS),

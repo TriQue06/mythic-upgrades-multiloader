@@ -1,9 +1,8 @@
 package net.trique.mythicupgrades.datagen;
 
 import net.minecraft.advancements.predicates.ItemPredicate;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
@@ -14,7 +13,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import net.trique.mythicupgrades.block.MythicBlocks;
 import net.trique.mythicupgrades.item.MythicItems;
 
@@ -23,8 +22,8 @@ import java.util.Set;
 
 public class MythicBlockLootTableProvider extends BlockLootSubProvider {
 
-    public MythicBlockLootTableProvider(HolderLookup.Provider registries) {
-        super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
+    public MythicBlockLootTableProvider(LootTableSubProvider.Context output) {
+        super(Set.of(), FeatureFlags.REGISTRY.allFlags(), output);
     }
 
     @Override
@@ -191,13 +190,12 @@ public class MythicBlockLootTableProvider extends BlockLootSubProvider {
     private LootTable.Builder createClusterDrop(Block block, Item shard) {
         return createSilkTouchDispatchTable(block,
             LootItem.lootTableItem(shard)
-                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F)))
-                .apply(ApplyBonusCount.addOreBonusCount(
-                    this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE)))
-                .when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(this.registries.lookupOrThrow(Registries.ITEM), ItemTags.PICKAXES)))
+                .apply(SetItemCountFunction.setCount(ContextIntProviders.exactly(4)))
+                .apply(ApplyBonusCount.addOreBonusCount(this.enchantments.getOrThrow(Enchantments.FORTUNE)))
+                .when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(this.items, ItemTags.PICKAXES)))
                 .otherwise(applyExplosionDecay(block,
                     LootItem.lootTableItem(shard)
-                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F))))));
+                        .apply(SetItemCountFunction.setCount(ContextIntProviders.exactly(2))))));
     }
 
     private void addSilkTouchOnlyGroup(Block... blocks) {

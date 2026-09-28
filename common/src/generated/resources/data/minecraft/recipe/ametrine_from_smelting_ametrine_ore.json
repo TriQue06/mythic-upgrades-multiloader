@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "experience": 1.4,
-  "group": "ametrine",
-  "ingredient": "mythicupgrades:ametrine_ore",
-  "result": {
-    "id": "mythicupgrades:ametrine"
-  }
-}

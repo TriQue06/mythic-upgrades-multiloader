@@ -7,11 +7,8 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.Consumable;
 import net.minecraft.world.item.component.Consumables;
@@ -93,9 +90,9 @@ public class MythicItems {
 
     public static final Item AQUAMARINE_SWORD = defer("aquamarine_sword", new Item(props("aquamarine_sword").sword(MythicToolMaterials.AQUAMARINE, 3.0F, -2.4F)));
     public static final Item AQUAMARINE_PICKAXE = defer("aquamarine_pickaxe", new Item(props("aquamarine_pickaxe").pickaxe(MythicToolMaterials.AQUAMARINE, 1.0F, -2.8F)));
-    public static final Item AQUAMARINE_AXE = defer("aquamarine_axe", new AxeItem(MythicToolMaterials.AQUAMARINE, 5.0F, -3.0F, props("aquamarine_axe")));
-    public static final Item AQUAMARINE_SHOVEL = defer("aquamarine_shovel", new ShovelItem(MythicToolMaterials.AQUAMARINE, 1.5F, -3.0F, props("aquamarine_shovel")));
-    public static final Item AQUAMARINE_HOE = defer("aquamarine_hoe", new HoeItem(MythicToolMaterials.AQUAMARINE, -4.0F, 0.0F, props("aquamarine_hoe")));
+    public static final Item AQUAMARINE_AXE = defer("aquamarine_axe", new Item(props("aquamarine_axe").axe(MythicToolMaterials.AQUAMARINE, 5.0F, -3.0F)));
+    public static final Item AQUAMARINE_SHOVEL = defer("aquamarine_shovel", new Item(props("aquamarine_shovel").shovel(MythicToolMaterials.AQUAMARINE, 1.5F, -3.0F)));
+    public static final Item AQUAMARINE_HOE = defer("aquamarine_hoe", new Item(props("aquamarine_hoe").hoe(MythicToolMaterials.AQUAMARINE, -4.0F, 0.0F)));
     public static final Item AQUAMARINE_HELMET = defer("aquamarine_helmet", armor("aquamarine_helmet", MythicArmorMaterials.AQUAMARINE, ArmorType.HELMET));
     public static final Item AQUAMARINE_CHESTPLATE = defer("aquamarine_chestplate", armor("aquamarine_chestplate", MythicArmorMaterials.AQUAMARINE, ArmorType.CHESTPLATE));
     public static final Item AQUAMARINE_LEGGINGS = defer("aquamarine_leggings", armor("aquamarine_leggings", MythicArmorMaterials.AQUAMARINE, ArmorType.LEGGINGS));
@@ -103,9 +100,9 @@ public class MythicItems {
 
     public static final Item CITRINE_SWORD = defer("citrine_sword", new Item(props("citrine_sword").sword(MythicToolMaterials.CITRINE, 3.0F, -2.4F)));
     public static final Item CITRINE_PICKAXE = defer("citrine_pickaxe", new Item(props("citrine_pickaxe").pickaxe(MythicToolMaterials.CITRINE, 1.0F, -2.8F)));
-    public static final Item CITRINE_AXE = defer("citrine_axe", new AxeItem(MythicToolMaterials.CITRINE, 5.0F, -3.0F, props("citrine_axe")));
-    public static final Item CITRINE_SHOVEL = defer("citrine_shovel", new ShovelItem(MythicToolMaterials.CITRINE, 1.5F, -3.0F, props("citrine_shovel")));
-    public static final Item CITRINE_HOE = defer("citrine_hoe", new HoeItem(MythicToolMaterials.CITRINE, -4.0F, 0.0F, props("citrine_hoe")));
+    public static final Item CITRINE_AXE = defer("citrine_axe", new Item(props("citrine_axe").axe(MythicToolMaterials.CITRINE, 5.0F, -3.0F)));
+    public static final Item CITRINE_SHOVEL = defer("citrine_shovel", new Item(props("citrine_shovel").shovel(MythicToolMaterials.CITRINE, 1.5F, -3.0F)));
+    public static final Item CITRINE_HOE = defer("citrine_hoe", new Item(props("citrine_hoe").hoe(MythicToolMaterials.CITRINE, -4.0F, 0.0F)));
     public static final Item CITRINE_HELMET = defer("citrine_helmet", armor("citrine_helmet", MythicArmorMaterials.CITRINE, ArmorType.HELMET));
     public static final Item CITRINE_CHESTPLATE = defer("citrine_chestplate", armor("citrine_chestplate", MythicArmorMaterials.CITRINE, ArmorType.CHESTPLATE));
     public static final Item CITRINE_LEGGINGS = defer("citrine_leggings", armor("citrine_leggings", MythicArmorMaterials.CITRINE, ArmorType.LEGGINGS));
@@ -113,9 +110,9 @@ public class MythicItems {
 
     public static final Item TOPAZ_SWORD = defer("topaz_sword", new Item(props("topaz_sword").sword(MythicToolMaterials.TOPAZ, 3.0F, -2.4F)));
     public static final Item TOPAZ_PICKAXE = defer("topaz_pickaxe", new Item(props("topaz_pickaxe").pickaxe(MythicToolMaterials.TOPAZ, 1.0F, -2.8F)));
-    public static final Item TOPAZ_AXE = defer("topaz_axe", new AxeItem(MythicToolMaterials.TOPAZ, 5.0F, -3.0F, props("topaz_axe")));
-    public static final Item TOPAZ_SHOVEL = defer("topaz_shovel", new ShovelItem(MythicToolMaterials.TOPAZ, 1.5F, -3.0F, props("topaz_shovel")));
-    public static final Item TOPAZ_HOE = defer("topaz_hoe", new HoeItem(MythicToolMaterials.TOPAZ, -4.0F, 0.0F, props("topaz_hoe")));
+    public static final Item TOPAZ_AXE = defer("topaz_axe", new Item(props("topaz_axe").axe(MythicToolMaterials.TOPAZ, 5.0F, -3.0F)));
+    public static final Item TOPAZ_SHOVEL = defer("topaz_shovel", new Item(props("topaz_shovel").shovel(MythicToolMaterials.TOPAZ, 1.5F, -3.0F)));
+    public static final Item TOPAZ_HOE = defer("topaz_hoe", new Item(props("topaz_hoe").hoe(MythicToolMaterials.TOPAZ, -4.0F, 0.0F)));
     public static final Item TOPAZ_HELMET = defer("topaz_helmet", armor("topaz_helmet", MythicArmorMaterials.TOPAZ, ArmorType.HELMET));
     public static final Item TOPAZ_CHESTPLATE = defer("topaz_chestplate", armor("topaz_chestplate", MythicArmorMaterials.TOPAZ, ArmorType.CHESTPLATE));
     public static final Item TOPAZ_LEGGINGS = defer("topaz_leggings", armor("topaz_leggings", MythicArmorMaterials.TOPAZ, ArmorType.LEGGINGS));
@@ -123,9 +120,9 @@ public class MythicItems {
 
     public static final Item PERIDOT_SWORD = defer("peridot_sword", new Item(props("peridot_sword").sword(MythicToolMaterials.PERIDOT, 3.0F, -2.4F)));
     public static final Item PERIDOT_PICKAXE = defer("peridot_pickaxe", new Item(props("peridot_pickaxe").pickaxe(MythicToolMaterials.PERIDOT, 1.0F, -2.8F)));
-    public static final Item PERIDOT_AXE = defer("peridot_axe", new AxeItem(MythicToolMaterials.PERIDOT, 5.0F, -3.0F, props("peridot_axe")));
-    public static final Item PERIDOT_SHOVEL = defer("peridot_shovel", new ShovelItem(MythicToolMaterials.PERIDOT, 1.5F, -3.0F, props("peridot_shovel")));
-    public static final Item PERIDOT_HOE = defer("peridot_hoe", new HoeItem(MythicToolMaterials.PERIDOT, -4.0F, 0.0F, props("peridot_hoe")));
+    public static final Item PERIDOT_AXE = defer("peridot_axe", new Item(props("peridot_axe").axe(MythicToolMaterials.PERIDOT, 5.0F, -3.0F)));
+    public static final Item PERIDOT_SHOVEL = defer("peridot_shovel", new Item(props("peridot_shovel").shovel(MythicToolMaterials.PERIDOT, 1.5F, -3.0F)));
+    public static final Item PERIDOT_HOE = defer("peridot_hoe", new Item(props("peridot_hoe").hoe(MythicToolMaterials.PERIDOT, -4.0F, 0.0F)));
     public static final Item PERIDOT_HELMET = defer("peridot_helmet", armor("peridot_helmet", MythicArmorMaterials.PERIDOT, ArmorType.HELMET));
     public static final Item PERIDOT_CHESTPLATE = defer("peridot_chestplate", armor("peridot_chestplate", MythicArmorMaterials.PERIDOT, ArmorType.CHESTPLATE));
     public static final Item PERIDOT_LEGGINGS = defer("peridot_leggings", armor("peridot_leggings", MythicArmorMaterials.PERIDOT, ArmorType.LEGGINGS));
@@ -133,9 +130,9 @@ public class MythicItems {
 
     public static final Item RUBY_SWORD = defer("ruby_sword", new Item(props("ruby_sword").sword(MythicToolMaterials.RUBY, 3.0F, -2.4F)));
     public static final Item RUBY_PICKAXE = defer("ruby_pickaxe", new Item(props("ruby_pickaxe").pickaxe(MythicToolMaterials.RUBY, 1.0F, -2.8F)));
-    public static final Item RUBY_AXE = defer("ruby_axe", new AxeItem(MythicToolMaterials.RUBY, 5.0F, -3.0F, props("ruby_axe")));
-    public static final Item RUBY_SHOVEL = defer("ruby_shovel", new ShovelItem(MythicToolMaterials.RUBY, 1.5F, -3.0F, props("ruby_shovel")));
-    public static final Item RUBY_HOE = defer("ruby_hoe", new HoeItem(MythicToolMaterials.RUBY, -4.0F, 0.0F, props("ruby_hoe")));
+    public static final Item RUBY_AXE = defer("ruby_axe", new Item(props("ruby_axe").axe(MythicToolMaterials.RUBY, 5.0F, -3.0F)));
+    public static final Item RUBY_SHOVEL = defer("ruby_shovel", new Item(props("ruby_shovel").shovel(MythicToolMaterials.RUBY, 1.5F, -3.0F)));
+    public static final Item RUBY_HOE = defer("ruby_hoe", new Item(props("ruby_hoe").hoe(MythicToolMaterials.RUBY, -4.0F, 0.0F)));
     public static final Item RUBY_HELMET = defer("ruby_helmet", armor("ruby_helmet", MythicArmorMaterials.RUBY, ArmorType.HELMET));
     public static final Item RUBY_CHESTPLATE = defer("ruby_chestplate", armor("ruby_chestplate", MythicArmorMaterials.RUBY, ArmorType.CHESTPLATE));
     public static final Item RUBY_LEGGINGS = defer("ruby_leggings", armor("ruby_leggings", MythicArmorMaterials.RUBY, ArmorType.LEGGINGS));
@@ -143,9 +140,9 @@ public class MythicItems {
 
     public static final Item SAPPHIRE_SWORD = defer("sapphire_sword", new Item(props("sapphire_sword").sword(MythicToolMaterials.SAPPHIRE, 4.0F, -2.4F)));
     public static final Item SAPPHIRE_PICKAXE = defer("sapphire_pickaxe", new Item(props("sapphire_pickaxe").pickaxe(MythicToolMaterials.SAPPHIRE, 2.0F, -2.8F)));
-    public static final Item SAPPHIRE_AXE = defer("sapphire_axe", new AxeItem(MythicToolMaterials.SAPPHIRE, 6.0F, -3.0F, props("sapphire_axe")));
-    public static final Item SAPPHIRE_SHOVEL = defer("sapphire_shovel", new ShovelItem(MythicToolMaterials.SAPPHIRE, 2.5F, -3.0F, props("sapphire_shovel")));
-    public static final Item SAPPHIRE_HOE = defer("sapphire_hoe", new HoeItem(MythicToolMaterials.SAPPHIRE, -3.0F, 0.0F, props("sapphire_hoe")));
+    public static final Item SAPPHIRE_AXE = defer("sapphire_axe", new Item(props("sapphire_axe").axe(MythicToolMaterials.SAPPHIRE, 6.0F, -3.0F)));
+    public static final Item SAPPHIRE_SHOVEL = defer("sapphire_shovel", new Item(props("sapphire_shovel").shovel(MythicToolMaterials.SAPPHIRE, 2.5F, -3.0F)));
+    public static final Item SAPPHIRE_HOE = defer("sapphire_hoe", new Item(props("sapphire_hoe").hoe(MythicToolMaterials.SAPPHIRE, -3.0F, 0.0F)));
     public static final Item SAPPHIRE_HELMET = defer("sapphire_helmet", armor("sapphire_helmet", MythicArmorMaterials.SAPPHIRE, ArmorType.HELMET));
     public static final Item SAPPHIRE_CHESTPLATE = defer("sapphire_chestplate", armor("sapphire_chestplate", MythicArmorMaterials.SAPPHIRE, ArmorType.CHESTPLATE));
     public static final Item SAPPHIRE_LEGGINGS = defer("sapphire_leggings", armor("sapphire_leggings", MythicArmorMaterials.SAPPHIRE, ArmorType.LEGGINGS));
@@ -153,9 +150,9 @@ public class MythicItems {
 
     public static final Item JADE_SWORD = defer("jade_sword", new Item(props("jade_sword").sword(MythicToolMaterials.JADE, 3.0F, -2.4F)));
     public static final Item JADE_PICKAXE = defer("jade_pickaxe", new Item(props("jade_pickaxe").pickaxe(MythicToolMaterials.JADE, 1.0F, -2.8F)));
-    public static final Item JADE_AXE = defer("jade_axe", new AxeItem(MythicToolMaterials.JADE, 5.0F, -3.0F, props("jade_axe")));
-    public static final Item JADE_SHOVEL = defer("jade_shovel", new ShovelItem(MythicToolMaterials.JADE, 1.5F, -3.0F, props("jade_shovel")));
-    public static final Item JADE_HOE = defer("jade_hoe", new HoeItem(MythicToolMaterials.JADE, -4.0F, 0.0F, props("jade_hoe")));
+    public static final Item JADE_AXE = defer("jade_axe", new Item(props("jade_axe").axe(MythicToolMaterials.JADE, 5.0F, -3.0F)));
+    public static final Item JADE_SHOVEL = defer("jade_shovel", new Item(props("jade_shovel").shovel(MythicToolMaterials.JADE, 1.5F, -3.0F)));
+    public static final Item JADE_HOE = defer("jade_hoe", new Item(props("jade_hoe").hoe(MythicToolMaterials.JADE, -4.0F, 0.0F)));
     public static final Item JADE_HELMET = defer("jade_helmet", armor("jade_helmet", MythicArmorMaterials.JADE, ArmorType.HELMET));
     public static final Item JADE_CHESTPLATE = defer("jade_chestplate", armor("jade_chestplate", MythicArmorMaterials.JADE, ArmorType.CHESTPLATE));
     public static final Item JADE_LEGGINGS = defer("jade_leggings", armor("jade_leggings", MythicArmorMaterials.JADE, ArmorType.LEGGINGS));
@@ -163,9 +160,9 @@ public class MythicItems {
 
     public static final Item AMETRINE_SWORD = defer("ametrine_sword", new Item(props("ametrine_sword").sword(MythicToolMaterials.AMETRINE, 3.0F, -2.4F)));
     public static final Item AMETRINE_PICKAXE = defer("ametrine_pickaxe", new Item(props("ametrine_pickaxe").pickaxe(MythicToolMaterials.AMETRINE, 1.0F, -2.8F)));
-    public static final Item AMETRINE_AXE = defer("ametrine_axe", new AxeItem(MythicToolMaterials.AMETRINE, 5.0F, -3.0F, props("ametrine_axe")));
-    public static final Item AMETRINE_SHOVEL = defer("ametrine_shovel", new ShovelItem(MythicToolMaterials.AMETRINE, 1.5F, -3.0F, props("ametrine_shovel")));
-    public static final Item AMETRINE_HOE = defer("ametrine_hoe", new HoeItem(MythicToolMaterials.AMETRINE, -4.0F, 0.0F, props("ametrine_hoe")));
+    public static final Item AMETRINE_AXE = defer("ametrine_axe", new Item(props("ametrine_axe").axe(MythicToolMaterials.AMETRINE, 5.0F, -3.0F)));
+    public static final Item AMETRINE_SHOVEL = defer("ametrine_shovel", new Item(props("ametrine_shovel").shovel(MythicToolMaterials.AMETRINE, 1.5F, -3.0F)));
+    public static final Item AMETRINE_HOE = defer("ametrine_hoe", new Item(props("ametrine_hoe").hoe(MythicToolMaterials.AMETRINE, -4.0F, 0.0F)));
     public static final Item AMETRINE_HELMET = defer("ametrine_helmet", armor("ametrine_helmet", MythicArmorMaterials.AMETRINE, ArmorType.HELMET));
     public static final Item AMETRINE_CHESTPLATE = defer("ametrine_chestplate", armor("ametrine_chestplate", MythicArmorMaterials.AMETRINE, ArmorType.CHESTPLATE));
     public static final Item AMETRINE_LEGGINGS = defer("ametrine_leggings", armor("ametrine_leggings", MythicArmorMaterials.AMETRINE, ArmorType.LEGGINGS));

@@ -1,11 +1,20 @@
 package net.trique.mythicupgrades.datagen;
 
-import net.minecraft.core.HolderLookup;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.MultiRegistryBootstrap;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.world.item.crafting.CookingBookCategory;
-import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.BlastingRecipe;
+import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
@@ -21,33 +30,60 @@ import net.trique.mythicupgrades.block.MythicBlocks;
 import net.trique.mythicupgrades.item.MythicItems;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
+import java.util.Set;
 
 public class MythicRecipeProvider extends RecipeProvider {
 
-    public MythicRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
-        super(registries, output);
+    public MythicRecipeProvider(BootstrapContext<Recipe<?>> recipes, BootstrapContext<Advancement> advancements) {
+        super(recipes, advancements);
     }
 
-    public static class Runner extends RecipeProvider.Runner {
-        public Runner(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries) {
-            super(packOutput, registries);
-        }
+    /** Recipes and their unlock advancements are reloadable registry entries since 26.3. */
+    public static MultiRegistryBootstrap create() {
+        return new MultiRegistryBootstrap() {
+            @Override
+            public Set<ResourceKey<? extends Registry<?>>> requestedRegistries() {
+                return Set.of(Registries.RECIPE, Registries.ADVANCEMENT);
+            }
 
-        @Override
-        protected RecipeProvider createRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
-            return new MythicRecipeProvider(registries, output);
-        }
+            @Override
+            public void run(MultiRegistryBootstrap.BootstrapGetter registries) {
+                new MythicRecipeProvider(registries.get(Registries.RECIPE), registries.get(Registries.ADVANCEMENT)).buildRecipes();
+            }
+        };
+    }
 
-        @Override
-        public String getName() {
-            return "MythicUpgrades Recipes";
+    // Vanilla's oreCooking saves under a bare path, i.e. the minecraft namespace, and
+    // since 26.3 datagen only writes entries in our own namespace — so these would be
+    // dropped silently. Same ids as before, moved into mythicupgrades.
+    @Override
+    protected void oreSmelting(List<ItemLike> smeltables, RecipeCategory craftingCategory, CookingBookCategory cookingCategory,
+                               ItemLike result, float experience, int cookingTime, String group) {
+        mythicOreCooking(SmeltingRecipe::new, smeltables, craftingCategory, cookingCategory, result, experience, cookingTime, group, "_from_smelting");
+    }
+
+    @Override
+    protected void oreBlasting(List<ItemLike> smeltables, RecipeCategory craftingCategory, CookingBookCategory cookingCategory,
+                               ItemLike result, float experience, int cookingTime, String group) {
+        mythicOreCooking(BlastingRecipe::new, smeltables, craftingCategory, cookingCategory, result, experience, cookingTime, group, "_from_blasting");
+    }
+
+    private <T extends AbstractCookingRecipe> void mythicOreCooking(
+            AbstractCookingRecipe.Factory<T> factory, List<ItemLike> smeltables, RecipeCategory craftingCategory,
+            CookingBookCategory cookingCategory, ItemLike result, float experience, int cookingTime, String group, String fromDesc) {
+        for (ItemLike item : smeltables) {
+            SimpleCookingRecipeBuilder.generic(Ingredient.of(item), craftingCategory, cookingCategory, result, experience, cookingTime, factory)
+                .group(group)
+                .unlockedBy(getHasName(item), this.has(item))
+                .save(this.output, ResourceKey.create(Registries.RECIPE,
+                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, getItemName(result) + fromDesc + "_" + getItemName(item))));
         }
     }
 
     @Override
     protected void buildRecipes() {
         RecipeOutput output = this.output;
+        new MythicBrewingProvider(output).buildRecipes();
         gemGroup(output, "aquamarine",
             MythicItems.AQUAMARINE, MythicItems.AQUAMARINE_INGOT, MythicItems.AQUAMARINE_CRYSTAL_SHARD,
             MythicBlocks.AQUAMARINE_ORE, MythicBlocks.DEEPSLATE_AQUAMARINE_ORE, MythicBlocks.AQUAMARINE_BLOCK,

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/jade_crystal_bricks_wall"
+        "recipes": "mythicupgrades:crafting/jade_crystal_bricks_wall"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
