@@ -82,12 +82,14 @@ public class MythicBlockModelProvider implements DataProvider {
         pillar("cut_" + gem + "_crystal_pillar", gem + "_crystal_pillar_top");
 
         wall(gem + "_crystal_bricks_wall", gem + "_crystal_bricks");
+        wall("polished_" + gem + "_crystal_block_wall", "polished_" + gem + "_crystal_block");
 
         simpleBlock(gem + "_schist");
         simpleBlock("polished_" + gem + "_schist");
         slabAndStairs(gem + "_schist");
         slabAndStairs("polished_" + gem + "_schist");
         wall(gem + "_schist_wall", gem + "_schist");
+        wall("polished_" + gem + "_schist_wall", "polished_" + gem + "_schist");
     }
 
     private void slabAndStairs(String base) {

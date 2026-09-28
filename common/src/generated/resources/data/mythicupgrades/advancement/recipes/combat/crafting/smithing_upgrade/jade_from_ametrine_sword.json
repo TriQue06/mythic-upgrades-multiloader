@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/smithing_upgrade/jade_from_ametrine_sword"
+        "recipes": "mythicupgrades:crafting/smithing_upgrade/jade_from_ametrine_sword"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

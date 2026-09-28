@@ -5,7 +5,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.trique.mythicupgrades.Constants;
 
@@ -41,14 +41,14 @@ public enum CaveGemType {
         return cold ? MythicBiomes.COLD_MYTHIC_CAVES : MythicBiomes.WARM_MYTHIC_CAVES;
     }
 
-    public ResourceKey<ConfiguredFeature<?, ?>> stoneBlobsCF()      { return cf(id + "_schist_blobs"); }
-    public ResourceKey<ConfiguredFeature<?, ?>> crystalBlobsCF()    { return cf(id + "_crystal_blobs"); }
-    public ResourceKey<ConfiguredFeature<?, ?>> crystalBudsCF()     { return cf(id + "_crystal_buds"); }
-    public ResourceKey<ConfiguredFeature<?, ?>> oreCF()             { return cf(id + "_ore"); }
-    public ResourceKey<ConfiguredFeature<?, ?>> geodeCF()           { return cf(id + "_geode"); }
+    public ResourceKey<Feature> stoneBlobsCF()      { return cf(id + "_schist_blobs"); }
+    public ResourceKey<Feature> crystalBlobsCF()    { return cf(id + "_crystal_blobs"); }
+    public ResourceKey<Feature> crystalBudsCF()     { return cf(id + "_crystal_buds"); }
+    public ResourceKey<Feature> oreCF()             { return cf(id + "_ore"); }
+    public ResourceKey<Feature> geodeCF()           { return cf(id + "_geode"); }
 
-    private ResourceKey<ConfiguredFeature<?, ?>> cf(String name) {
-        return ResourceKey.create(Registries.CONFIGURED_FEATURE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name));
+    private ResourceKey<Feature> cf(String name) {
+        return ResourceKey.create(Registries.FEATURE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name));
     }
 
     public ResourceKey<PlacedFeature> stoneBlobsPF()      { return pf(id + "_schist_blobs"); }

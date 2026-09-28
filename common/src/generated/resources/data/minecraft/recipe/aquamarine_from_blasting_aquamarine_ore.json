@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "experience": 1.4,
-  "group": "aquamarine",
-  "ingredient": "mythicupgrades:aquamarine_ore",
-  "result": {
-    "id": "mythicupgrades:aquamarine"
-  }
-}

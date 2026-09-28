@@ -13,6 +13,12 @@ java {
     withJavadocJar()
 }
 
+// Keep doclint's real checks (broken links, bad HTML) but not "no comment" on
+// every undocumented public member.
+tasks.withType(Javadoc).configureEach {
+    options.addStringOption('Xdoclint:all,-missing', '-quiet')
+}
+
 repositories {
     mavenCentral()
     maven {

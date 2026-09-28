@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/smithing_upgrade/sapphire_from_ametrine_pickaxe"
+        "recipes": "mythicupgrades:crafting/smithing_upgrade/sapphire_from_ametrine_pickaxe"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

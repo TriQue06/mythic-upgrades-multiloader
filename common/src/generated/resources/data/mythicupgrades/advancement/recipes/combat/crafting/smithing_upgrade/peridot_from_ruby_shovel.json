@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/smithing_upgrade/peridot_from_ruby_shovel"
+        "recipes": "mythicupgrades:crafting/smithing_upgrade/peridot_from_ruby_shovel"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

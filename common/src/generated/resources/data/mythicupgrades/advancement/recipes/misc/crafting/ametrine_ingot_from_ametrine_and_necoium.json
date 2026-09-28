@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/ametrine_ingot_from_ametrine_and_necoium"
+        "recipes": "mythicupgrades:crafting/ametrine_ingot_from_ametrine_and_necoium"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

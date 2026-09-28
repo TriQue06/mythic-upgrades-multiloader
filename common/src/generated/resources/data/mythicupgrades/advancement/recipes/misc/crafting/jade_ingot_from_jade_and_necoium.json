@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/jade_ingot_from_jade_and_necoium"
+        "recipes": "mythicupgrades:crafting/jade_ingot_from_jade_and_necoium"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

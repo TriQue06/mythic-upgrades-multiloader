@@ -4,7 +4,7 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.CountPlacement;
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
@@ -20,7 +20,7 @@ public class MythicEndPlacedFeatures {
     private static final int END_MAX_Y = 128;
 
     public static void bootstrap(BootstrapContext<PlacedFeature> ctx) {
-        HolderGetter<ConfiguredFeature<?, ?>> features = ctx.lookup(Registries.CONFIGURED_FEATURE);
+        HolderGetter<Feature> features = ctx.lookup(Registries.FEATURE);
 
         for (EndGemType gem : EndGemType.values()) {
             ctx.register(gem.stoneBlobsPF(), new PlacedFeature(

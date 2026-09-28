@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/sapphire_crystal_bricks_stairs_stonecutting"
+        "recipes": "mythicupgrades:crafting/sapphire_crystal_bricks_stairs_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

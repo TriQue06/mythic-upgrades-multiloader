@@ -297,6 +297,19 @@ public class MythicItemModelProvider implements DataProvider {
 
         JsonObject root = new JsonObject();
         root.add("layers", layers);
+
+        // Same-gem trim on same-gem armor uses the darker palette so it stays visible
+        // (citrine has no darker palette). Replaces 26.2's override_armor_assets.
+        if (!gem.equals("citrine")) {
+            JsonObject when = new JsonObject();
+            when.addProperty("material", Constants.MOD_ID + ":" + gem);
+            JsonObject override = new JsonObject();
+            override.add("when", when);
+            override.addProperty("palette", Constants.MOD_ID + ":trim/" + gem + "_darker");
+            JsonArray overrides = new JsonArray();
+            overrides.add(override);
+            root.add("trim_overrides", overrides);
+        }
         save(root, Constants.MOD_ID + "/equipment/" + gem + ".json");
     }
 

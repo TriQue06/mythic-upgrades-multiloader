@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/smithing_upgrade/peridot_from_jade_axe"
+        "recipes": "mythicupgrades:crafting/smithing_upgrade/peridot_from_jade_axe"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

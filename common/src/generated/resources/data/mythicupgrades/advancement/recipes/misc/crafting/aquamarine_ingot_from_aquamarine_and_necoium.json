@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/aquamarine_ingot_from_aquamarine_and_necoium"
+        "recipes": "mythicupgrades:crafting/aquamarine_ingot_from_aquamarine_and_necoium"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

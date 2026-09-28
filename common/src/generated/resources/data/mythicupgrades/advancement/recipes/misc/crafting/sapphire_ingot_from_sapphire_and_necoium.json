@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/sapphire_ingot_from_sapphire_and_necoium"
+        "recipes": "mythicupgrades:crafting/sapphire_ingot_from_sapphire_and_necoium"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

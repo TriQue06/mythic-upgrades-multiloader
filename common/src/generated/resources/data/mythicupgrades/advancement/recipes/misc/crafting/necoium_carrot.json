@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/necoium_carrot"
+        "recipes": "mythicupgrades:crafting/necoium_carrot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

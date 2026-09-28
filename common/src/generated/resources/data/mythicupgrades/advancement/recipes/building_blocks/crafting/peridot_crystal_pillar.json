@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/peridot_crystal_pillar"
+        "recipes": "mythicupgrades:crafting/peridot_crystal_pillar"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

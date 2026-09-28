@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/smithing_upgrade/jade_from_citrine_shovel"
+        "recipes": "mythicupgrades:crafting/smithing_upgrade/jade_from_citrine_shovel"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

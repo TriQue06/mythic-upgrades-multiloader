@@ -1,10 +1,7 @@
 {
-  "asset_name": "ametrine",
   "description": {
     "color": "#8422AE",
     "translate": "trim_material.mythicupgrades.ametrine"
   },
-  "override_armor_assets": {
-    "mythicupgrades:ametrine": "ametrine_darker"
-  }
+  "palette_id": "mythicupgrades:trim/ametrine"
 }

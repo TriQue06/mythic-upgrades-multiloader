@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/smithing_upgrade/sapphire_from_netherite_shovel"
+        "recipes": "mythicupgrades:crafting/smithing_upgrade/sapphire_from_netherite_shovel"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

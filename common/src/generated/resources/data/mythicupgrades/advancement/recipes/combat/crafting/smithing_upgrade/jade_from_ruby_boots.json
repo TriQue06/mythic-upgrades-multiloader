@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/smithing_upgrade/jade_from_ruby_boots"
+        "recipes": "mythicupgrades:crafting/smithing_upgrade/jade_from_ruby_boots"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

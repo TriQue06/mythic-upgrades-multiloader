@@ -5,28 +5,26 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
+          "modifier": [
             {
-              "conditions": [
-                {
-                  "block": "mythicupgrades:polished_ruby_crystal_block_slab",
-                  "condition": "minecraft:block_state_property",
-                  "properties": {
-                    "type": "double"
-                  }
+              "type": "minecraft:set_count",
+              "condition": {
+                "type": "minecraft:match_block",
+                "blocks": "mythicupgrades:polished_ruby_crystal_block_slab",
+                "state": {
+                  "type": "double"
                 }
-              ],
-              "count": 2.0,
-              "function": "minecraft:set_count"
+              },
+              "count": 2
             },
             {
-              "function": "minecraft:explosion_decay"
+              "type": "minecraft:explosion_decay"
             }
           ],
           "name": "mythicupgrades:polished_ruby_crystal_block_slab"
         }
       ],
-      "rolls": 1.0
+      "rolls": 1
     }
   ],
   "random_sequence": "mythicupgrades:blocks/polished_ruby_crystal_block_slab"

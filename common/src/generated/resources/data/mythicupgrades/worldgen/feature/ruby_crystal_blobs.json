@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:ore",
+  "discard_chance_on_air_exposure": 0.0,
+  "size": 20,
+  "targets": [
+    {
+      "state": "mythicupgrades:ruby_crystal_block",
+      "target": {
+        "block": "minecraft:netherrack",
+        "predicate_type": "minecraft:block_match"
+      }
+    },
+    {
+      "state": "mythicupgrades:ruby_crystal_block",
+      "target": {
+        "block": "mythicupgrades:ruby_schist",
+        "predicate_type": "minecraft:block_match"
+      }
+    }
+  ]
+}

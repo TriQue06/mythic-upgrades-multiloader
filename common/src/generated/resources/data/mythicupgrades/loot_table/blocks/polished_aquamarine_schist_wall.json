@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "condition": {
+        "type": "minecraft:survives_explosion"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "mythicupgrades:polished_aquamarine_schist_wall"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "mythicupgrades:blocks/polished_aquamarine_schist_wall"
+}

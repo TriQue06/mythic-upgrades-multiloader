@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/smithing_upgrade/topaz_from_ametrine_helmet"
+        "recipes": "mythicupgrades:crafting/smithing_upgrade/topaz_from_ametrine_helmet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

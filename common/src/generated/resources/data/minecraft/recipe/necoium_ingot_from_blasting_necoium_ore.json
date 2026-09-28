@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "experience": 1.4,
-  "group": "necoium",
-  "ingredient": "mythicupgrades:necoium_ore",
-  "result": {
-    "id": "mythicupgrades:necoium_ingot"
-  }
-}

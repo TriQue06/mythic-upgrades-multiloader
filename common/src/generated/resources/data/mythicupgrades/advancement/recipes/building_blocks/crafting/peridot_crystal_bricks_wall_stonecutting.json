@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/peridot_crystal_bricks_wall_stonecutting"
+        "recipes": "mythicupgrades:crafting/peridot_crystal_bricks_wall_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

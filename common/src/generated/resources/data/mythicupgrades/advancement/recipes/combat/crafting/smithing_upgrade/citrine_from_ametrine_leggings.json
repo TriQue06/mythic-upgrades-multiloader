@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/smithing_upgrade/citrine_from_ametrine_leggings"
+        "recipes": "mythicupgrades:crafting/smithing_upgrade/citrine_from_ametrine_leggings"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

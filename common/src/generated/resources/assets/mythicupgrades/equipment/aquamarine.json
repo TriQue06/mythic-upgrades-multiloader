@@ -10,5 +10,13 @@
         "texture": "mythicupgrades:aquamarine"
       }
     ]
-  }
+  },
+  "trim_overrides": [
+    {
+      "palette": "mythicupgrades:trim/aquamarine_darker",
+      "when": {
+        "material": "mythicupgrades:aquamarine"
+      }
+    }
+  ]
 }

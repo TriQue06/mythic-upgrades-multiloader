@@ -55,8 +55,8 @@ public class MythicUpgrades implements ModInitializer {
         MythicPotions.register((name, potion) ->
             Registry.register(BuiltInRegistries.POTION, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), potion));
 
-        MythicFeatures.register((name, feature) ->
-            Registry.register(BuiltInRegistries.FEATURE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), feature));
+        MythicFeatures.register((name, featureType) ->
+            Registry.register(BuiltInRegistries.FEATURE_TYPE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), featureType));
 
         MythicSounds.register((name, sound) ->
             Registry.register(BuiltInRegistries.SOUND_EVENT, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name), sound));
@@ -91,7 +91,6 @@ public class MythicUpgrades implements ModInitializer {
             }
         });
 
-        FabricBrewingHelper.register();
 
         CommonClass.init();
     }

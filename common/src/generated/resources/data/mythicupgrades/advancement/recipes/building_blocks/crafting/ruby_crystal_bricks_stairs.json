@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/ruby_crystal_bricks_stairs"
+        "recipes": "mythicupgrades:crafting/ruby_crystal_bricks_stairs"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/citrine_from_block"
+        "recipes": "mythicupgrades:crafting/citrine_from_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

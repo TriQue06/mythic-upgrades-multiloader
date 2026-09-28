@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/necoium_block"
+        "recipes": "mythicupgrades:crafting/necoium_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

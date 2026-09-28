@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "experience": 1.4,
-  "group": "topaz",
-  "ingredient": "mythicupgrades:topaz_ore",
-  "result": {
-    "id": "mythicupgrades:topaz"
-  }
-}

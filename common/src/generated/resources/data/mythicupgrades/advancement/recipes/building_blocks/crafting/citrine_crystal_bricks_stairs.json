@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/citrine_crystal_bricks_stairs"
+        "recipes": "mythicupgrades:crafting/citrine_crystal_bricks_stairs"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mythicupgrades:crafting/ametrine_schist_stairs_stonecutting"
+        "recipes": "mythicupgrades:crafting/ametrine_schist_stairs_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

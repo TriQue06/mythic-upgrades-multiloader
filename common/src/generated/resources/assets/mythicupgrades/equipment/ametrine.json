@@ -10,5 +10,13 @@
         "texture": "mythicupgrades:ametrine"
       }
     ]
-  }
+  },
+  "trim_overrides": [
+    {
+      "palette": "mythicupgrades:trim/ametrine_darker",
+      "when": {
+        "material": "mythicupgrades:ametrine"
+      }
+    }
+  ]
 }
